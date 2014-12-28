@@ -1,0 +1,67 @@
+% ==================================================
+%	Dokumentklasse
+% ==================================================
+
+\documentclass[
+	11pt,
+	a4paper,
+	fleqn,
+	ngerman,
+	parskip,
+	toc=bibliography
+]{scrartcl}
+
+% input header
+\input{../../../header/header.tex}
+
+% ==================================================
+%	Definitionen für das Dokument
+% ==================================================
+
+
+% ==================================================
+%	Dokument beginnt
+% ==================================================
+
+\begin{document}
+
+% ==================================================
+%	Titelseite
+% ==================================================
+
+\titel{Titel}
+\versuch{Versuch}
+\newcommand{\thedate}{13.10.2014}
+
+\input{../../../header/titel.tex}
+
+% ==================================================
+%	Inhaltversichnis
+% ==================================================
+
+\thispagestyle{plain}
+\tableofcontents
+\newpage
+
+% ==================================================
+%	Haupteil
+% ==================================================
+
+\input{abschnitte/einleitung.tex}
+\input{abschnitte/theorie.tex}
+\input{abschnitte/aufbau.tex}
+\input{abschnitte/durchfuehrung.tex}
+\input{abschnitte/auswertung.tex}
+\input{abschnitte/diskussion.tex}
+
+% ==================================================
+%	Literaturverzeichnis
+% ==================================================
+
+% \referenzen
+
+% ==================================================
+%	Dokument endet
+% ==================================================
+
+\end{document}

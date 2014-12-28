@@ -1,0 +1,312 @@
+
+% ==================================================
+%	Auswertung
+% ==================================================
+
+\section{Auswertung}
+
+% ==================================================
+%	Stabilitätsbedingung
+% ==================================================
+\subsection{Stabilitätsbedingung}
+\label{sec:Stabilitätsbedingung}
+
+In diesem Versuchteil wurde für zwei Resonatoren der Diodenstrom $I$ in
+Abhängigkeit der Resonatorlänge $l$ zur Überprüfung der
+Stabilitätsbedingung %TODO
+aufgenommen. Hierfür wurde zum einen ein Resonator mit den Spiegelradien
+$r_1 = r_2 = \SI{1400}{\mm}$ (bezeichnet mit R1)
+und zum anderen ein Resonator mit den
+Spiegelradien $r_1 = \SI{1000}{\mm}$ und $r_2 = \SI{1400}{\mm}$
+(bezeichnet mit R2) verwandt.
+Die zu den Resonatorlängen gemessenen Ströme befinden sich in Tabelle
+\ref{tab:S1} und \ref{tab:S2}.
+In Abbildung \ref{fig:S1} ist die theoretische Kurve der Stabilitätsbedingung
+\ref{eq:Resonanzbedingung} und die gemessenen Ströme für R1 geplottet.
+Zu sehen ist in Abbildung \ref{fig:S1}, dass das Minium der theoretischen Kurve
+bei $\SI{140}{\cm}$ auch experimentell verifiziert werden kann.
+In Abbildung \ref{fig:S2} sind die theoretische Kurve der Stabilitätsbedingung
+und die Werte aus Tabelle \ref{tab:S2} dargestellt.
+Hier ist ebenfalls zu sehen, dass in dem Bereich wo $g_1g_2 < 0$ ist, auch der
+Laser nicht gearbeitet hat und demzufolge kein Strom gemessen wird.
+
+\begin{table}
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$l/\si{\cm}$ & $I/\si{\mA}$ & $l/\si{\cm}$ & $I/\si{\mA}$ &
+		$l/\si{\cm}$ & $I/\si{\mA}$ \\
+		\midrule
+		\input{tabellen/S1.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der gemessenen Diodenströme $I$ zu den jeweiligen
+		Resonatorlängen $l$ für den Resonator mit den Spiegelradien
+		$r_1 = \SI{1400}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$.}
+	\label{tab:S1}
+\end{table}
+
+\begin{figure}[hb]
+	\centering
+	\includegraphics{bilder/fig_S1.pdf}
+	\caption{Darstellung der gemessenen Diodenströme I in Abhängigkeit der
+	Resonatorabstände l für den Resonator mit den Spiegelradien
+	$r_1 = \SI{1400}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$. Zudem
+	ist die theoretische Kurve $g_1g_2$ zur Überprüfung der Stabilitätsbedingung
+	eingetragen.}
+	\label{fig:S1}
+\end{figure}
+
+\clearpage
+\begin{SCtable}
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$l/\si{\cm}$ & $I/\si{\mA}$ & $l/\si{\cm}$ & $I/\si{\mA}$ &
+		$l/\si{\cm}$ & $I/\si{\mA}$ \\
+		\midrule
+		\input{tabellen/S2.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der gemessenen Diodenströme $I$ zu den jeweiligen
+		Resonatorlängen $l$ für den Resonator mit den Spiegelradien
+		$r_1 = \SI{1000}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$.}
+	\label{tab:S2}
+\end{SCtable}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{bilder/fig_S2.pdf}
+	\caption{Darstellung der gemessenen Diodenströme I in Abhängigkeit der
+	Resonatorabstände l für den Resonator mit den Spiegelradien
+	$r_1 = \SI{1000}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$. Zudem
+	ist die theoretische Kurve $g_1g_2$ zur Überprüfung der Stabilitätsbedingung
+	eingetragen.}
+	\label{fig:S2}
+\end{figure}
+
+\clearpage
+% ==================================================
+%	Moden
+% ==================================================
+\subsection{Transversale Moden}
+\label{sec:Transversale_Moden}
+
+Es wurde der Diodenstrom $I$ in Abhängigkeit des Abstandes $a$ von dem
+Strahlachse gemessen, bzw es wurde nur die Einstellung Diode gemessen, sodass
+die Strahlmitte nicht mit dem Nullpunkt der Skala zusammenfällt.
+Die Messunge wird für den Resonator mit Spiegelradien $r_1 = r_2 =
+\SI{1400}{\mm}$ durchgeführt.
+Die Messwerte für die $\TEMN$-Mode befinden sich in Tabelle \ref{tab:M2} und
+für die $\TEME$-Mode in Tabelle \ref{tab:M1}.
+In Abbildung \ref{fig:M2} sind die Werte für die \TEMN-Mode dargestellt.
+Die Werte werden entsprechend der Gleichung \eqref{eq:TEM00} mit
+%
+\begin{equation}
+	I_{00}(r) = I_0\exp[-\left(\frac{r-r_0}{w}\right)^2]
+\end{equation}
+%
+gefittet.
+Die sich daraus ergebenden Fitparameter lauten
+%
+\begin{align*}
+	I_0 &= \input{gleichungen/I0_M2.tex} \\
+	r_0 &= \input{gleichungen/r0_M2.tex} \\
+	w &= \input{gleichungen/w_M2.tex} ~.
+\end{align*}
+%
+In Abbildung \ref{fig:M1} sind die Werte für die \TEME-Mode dargestellt.
+Die Werte werden hier entsprechend der Gleichung \ref{eq:Feldverteilung} mit
+%
+\begin{equation}
+	I_{10}(r) = \left( a(r-r_0)+b \right)^2 \exp[-\left(\frac{r-r_0}{w}\right)^2]
+\end{equation}
+%
+gefittet. Die gefittet Werte lauten hier
+%
+\begin{align*}
+	r_0 &= \input{gleichungen/r0_M1.tex} \\
+	w &= \input{gleichungen/w_M1.tex} \\
+	a &= \input{gleichungen/a_M1.tex} \\
+	b &= \input{gleichungen/b_M1.tex} ~.
+\end{align*}
+%
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$a/\si{\mm}$ & $I/\si{\nA}$ & $a/\si{\mm}$ & $I/\si{\nA}$ &
+		$a/\si{\mm}$ & $I/\si{\nA}$ \\
+		\midrule
+		\input{tabellen/M2.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der gemessenen Diodenströme $I$ zu den jeweiligen
+		Abständen $a$ für den Resonator mit den Spiegelradien
+		$r_1 = \SI{1400}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$,
+		wobei der Resonator in der $\text{TEM}_{00}$-Mode schwingt.}
+	\label{tab:M2}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{bilder/fig_M2.pdf}
+	\caption{Dastellung der gemessenen Diodenströme $I$ in Abhängigkeit der
+	gemessenen Diodeneinstellungen $r$ senkreckt zur Strahlachse.
+	Zudem ist der Fit $I_{00}(r)$ eingetragen.}
+	\label{fig:M2}
+\end{figure}
+
+\clearpage
+\begin{table}[hb]
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$a/\si{\mm}$ & $I/\si{\uA}$ & $a/\si{\mm}$ & $I/\si{\uA}$ &
+		$a/\si{\mm}$ & $I/\si{\uA}$ \\
+		\midrule
+		\input{tabellen/M1.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der gemessenen Diodenströme $I$ zu den jeweiligen
+		Abständen $a$ für den Resonator mit den Spiegelradien
+		$r_1 = \SI{1400}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$,
+		wobei der Resonator in der $\text{TEM}_{10}$-Mode schwingt.}
+	\label{tab:M1}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{bilder/fig_M1.pdf}
+	\caption{Dastellung der gemessenen Diodenströme $I$ in Abhängigkeit der
+	gemessenen Diodeneinstellungen $r$ senkreckt zur Strahlachse.
+	Zudem ist der Fit $I_{10}(r)$ eingetragen.}
+	\label{fig:M1}
+\end{figure}
+
+\clearpage
+% ==================================================
+%	Polarisation
+% ==================================================
+\subsection{Polarisation}
+\label{sec:Polarisation}
+
+In Tabelle \ref{tab:P} sind die aufgenommenen Diodenströme zu den jeweiligen
+Einstellungen des Polarisationsfilters dargestellt.
+In Abbildung \ref{fig:P} sind diese Werte graphisch dargestellt.
+Zudem ist darin ein Fit dieser Werte mit der Funktion
+%
+\begin{equation}
+	I_\text{P}(\varphi) = A \sin^2\left(
+		\frac{\uppi}{\SI{180}{\degree}} \varphi - \varphi_0
+		\right)
+\end{equation}
+%
+eingetragen.
+Die Parameter des Fits lauten hier
+%
+\begin{align}
+	A &= \input{gleichungen/A.tex} \\
+	\varphi_0 &= \input{gleichungen/phi0.tex} ~.
+\end{align}
+
+\begin{table}[hb]
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$\varphi/\si{\degree}$ & $I/\si{\uA}$ &
+		$\varphi/\si{\degree}$ & $I/\si{\uA}$ &
+		$\varphi/\si{\degree}$ & $I/\si{\uA}$ \\
+		\midrule
+		\input{tabellen/P.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der gemessenen Diodenströme $I$ zu den jeweiligen
+		Einstellung der Polarisationsfilters $\varphi$
+		für den Resonator mit den Spiegelradien
+		$r_1 = \SI{1400}{\milli\meter}$ und $r_2 = \SI{1400}{\milli\meter}$.}
+	\label{tab:P}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{bilder/fig_P.pdf}
+	\caption{Darstellung der gemessenen Diodenströme $I$ in Abhängigkeit des
+	eingestellten Winkels $\varphi$ am Polarisationsfilter.
+	Zudem ist der Fit $I_\text{P}$ eingetragen.}
+	\label{fig:P}
+\end{figure}
+
+\clearpage
+% ==================================================
+%	Gitter
+% ==================================================
+\subsection{Besimmung der Wellenlänge des HeNe-Lasers}
+\label{sec:Gitter}
+
+Die Wellenlänge $\lambda$ des HeNe-Lasers lässt sich aus
+%
+\begin{equation}
+	\lambda = \frac{g \sin(\varphi_n)}{n}
+	\label{eq:lambda_phi}
+\end{equation}
+%
+bestimmen, wobei $n$ die Ordung des Beugungsmaximums, $g$ die Gitterkonstante
+und $\varphi_n$ der Beugungswinkel des $n$-ten Beugungsmaximums zum Maximum der
+nullten Ordnung ist.
+Der Beugungswinkel $\varphi_n$ ergibt sich hierbei aus
+%
+\begin{equation}
+	\varphi_n = \arctan(\frac{a}{L}) ~,
+	\label{eq:Winkelbeziehung}
+\end{equation}
+%
+wobei $L$ der Abstand vom Gitter zum Schirm und $a$ der Abstand vom
+$n$-ten Beugungsmaximum zum Beugungsmaximum der nullten Ordnung ist.
+Einsetzen dieser Beziehung in \eqref{eq:lambda_phi} ergibt schließlich
+%
+\begin{equation}
+	% \tcboxmath[skin=enhanced, arc=0pt, frame hidden]{
+		\lambda = \frac{g}{n \sqrt{1 + \left(\frac{L}{a}\right)^2}} ~.
+		\label{eq:lambda_komplett}
+\end{equation}
+%
+In Tabelle \ref{tab:G} sind die gemessenen Werte der Beugungsmaxima
+dargestellt. Mit Hilfe dieser Werte und der Gleichung
+\eqref{eq:lambda_komplett} werden der Mittelwert und die Standardabweichung
+bestimmt.
+Die Berechnung liefert schließlich für die Wellenlänge des HeNe-Lasers einen
+Wert von
+%
+\begin{equation}
+	\input{gleichungen/l.tex} ~.
+	\label{eq:l_ergebnis}
+\end{equation}
+%
+\begin{table}[hb]
+	\centering
+	\begin{tabular}{ccc|ccc}
+		\midrule
+		\midrule
+		$n$ & $a_r/\si{\cm}$ & $a_l/\si{\cm}$ &
+		$n$ & $a_r/\si{\cm}$ & $a_l/\si{\cm}$ \\
+		\midrule
+		\input{tabellen/G.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der Abstände $a_r$ und $a_l$ der Beugungsmaxima der
+		jeweiligen Ordnung $n$ rechts
+		und links von der nullten Ordnung aus gemessen.}
+	\label{tab:G}
+\end{table}

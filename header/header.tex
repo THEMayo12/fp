@@ -1,0 +1,188 @@
+%        File: header.tex
+%     Created: Sa Mär 08 11:00  2014 C
+% Last Change: Sa Mär 08 11:00  2014 C
+%
+
+% ==================================================
+%	Encoding
+% ==================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+% ==================================================
+%	Spacheinstellung
+% ==================================================
+
+\usepackage[ngerman]{babel}
+
+% ==================================================
+%	Referenzen
+% ==================================================
+
+\usepackage[ngerman]{varioref}
+% Links im pdf
+\usepackage[pdfborder={0 0 0}, hypertexnames=false]{hyperref}
+% zusammen mit varioref, hyperref folgt damit
+% z. B. in \vref{eq:1} -> in Gl. 1 auf Seite 4, cleveres referenzieren
+\usepackage{cleveref}
+
+% ==================================================
+%	Grafiken, Abbildungen und Tabellen
+% ==================================================
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[font=small, labelfont=bf, format=plain]{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+% for floating figures and floating tables
+\usepackage[vflt]{floatflt}
+
+\usepackage{rotating}
+
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{tikz}
+\usetikzlibrary{shadows, calc, arrows, patterns}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% ==================================================
+%	Seiten-Layout und -Definitionen
+% ==================================================
+
+% Maße für DIN A4
+\usepackage[a4paper]{geometry}
+
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+
+% ==================================================
+%	Float-Parameter
+% ==================================================
+
+% minimaler Anteil der Seite für den Text
+\renewcommand{\textfraction}{0.05}
+% maximaler Anteil der Seite für Floats am Anfang
+\renewcommand{\topfraction}{0.95}
+% maximaler Anteil der Seite für Floats am Enden
+\renewcommand{\bottomfraction}{0.95}
+% mininaler Anteil der Float-Seite für Text
+\renewcommand{\floatpagefraction}{0.35}
+% maximale Anzahl der Floats auf der Seite
+\setcounter{totalnumber}{5}
+
+% ==================================================
+%	Fancy Header
+% ==================================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Stil für gesamtes Dokument
+\fancyhf{}
+
+% Dicke der Linien ändern
+\renewcommand{\headrulewidth}{1.0pt}
+\renewcommand{\footrulewidth}{1.0pt}
+
+% Abschnitte in Großschrift
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
+\renewcommand{\subsectionmark}[1]{}
+
+% Die Positionen in Kopf- und Fußzeile füllen
+\fancyhead[L]{
+	TU Dortmund
+}
+\fancyhead[R]{\tit}
+\fancyfoot[L]{\rightmark}
+\fancyfoot[R]{Seite \thepage}
+
+\addtolength{\headheight}{2\baselineskip}
+
+% Neudefinition von plain (wird auf Kapitel/Verzeichnis-Seiten verwendet)
+\fancypagestyle{plain}{
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\fancyfoot[L]{\rightmark}
+	\fancyfoot[R]{Seite \thepage}
+}
+
+\fancypagestyle{firstpage}{
+	\fancyhf{}
+	\fancyhead[L]{}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+
+% ==================================================
+%	Bibliograhphie
+% ==================================================
+
+\newcommand{\anhang}{
+	\clearpage
+	\setcounter{page}{0}
+	\pagenumbering{Roman}
+	% Kapitelnummerierung in Großbuchstaben statt Zahlen
+	\appendix
+}
+
+\newcommand{\referenzen}{
+	% \renewcommand{\refname}{Quellenverzeichnis}
+	\bibliographystyle{utphys}
+	\bibliography{literatur}
+}
+
+% ========================================
+%	Angaben für das Titelblatt
+% ========================================
+
+% einfaches Verändern des Titels/Versuchs in der Hauptdatei
+\newcommand{\titel}[1]{\newcommand{\tit}{#1}}
+\newcommand{\versuch}[1]{\newcommand{\ver}{Versuch #1}}
+
+% ==================================================
+%	Mathematik
+% ==================================================
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{mathtools}
+% für Einheitsmatrix '1'
+\usepackage{bbm}
+
+% Mathematik Font
+\usepackage[sc]{mathpazo}
+% Palatino needs more leading (space between lines)
+\linespread{1.05}
+
+% ==================================================
+%	Physik
+% ==================================================
+
+\usepackage{upgreek}
+\usepackage{physics}
+\usepackage[nice]{units}
+\usepackage[parse-numbers=false, per-mode=symbol]{siunitx}
+
+% ==================================================
+%	Sonstiges
+% ==================================================
+
+% rechnen mit LateX-Counter
+\usepackage{calc}
+% Euro-Zeichen
+\usepackage{eurosym}
+% ein paar LateX-Fehler beheben
+\usepackage{fixltx2e}
+% für bessere Darstellung von Text (Abstände)
+\usepackage{microtype}
+% Einfügen von Text um Layout zu testen
+\usepackage{lipsum}

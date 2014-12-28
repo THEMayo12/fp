@@ -1,0 +1,82 @@
+\section{Zielsetzung}
+Das Ziel dieses Versuches ist es, die Funktionsweise eines HeNe-Lasers zu
+untersuchen. Dazu werden die Stbilitätsbedingungen des Lasers sowie zwei TEM-
+Moden untersucht. Außerdem wird die Polarisationsrichtung des Laserstrahles
+sowie seine Wellenlänge bestimmt.\cite{AP}
+
+
+\section{Theorie}
+\subsection{Photonwechselwirkung mit einem Atom}
+Besitzt ein Atom zwei Energieniveaus 1 und 2 der Energien $E_1$ und $E_2>E_1$, so kann ein Photon der Energie $E=E_2-E_1$ auf folgende zwei Arten damit
+wechselwirken.
+\begin{description}
+\item[Absorption:] Befindet sich ein Elektron in 1 und ist 2 nicht voll
+besetzt, so kann dieses das Photon absorbieren wodurch es in 2 übergeht.
+\item[Stimulierte Emission] Befindet sich ein Elektron in 2 und ist 1 nicht voll besetzt, so kann das Elektron unter Emission eines weiteren Photons, welches in seinen Eigenschaften identisch mit dem wechselwirkenden ist, in 1 wechseln.
+\end{description}
+Die Wahrscheinlichkeiten für das Auftreten der beiden Fälle sind gleich.
+Außerdem kann es zur spontanen Emission kommen. Dabei wird ein Photon der Energie $E$ mit zufälligen Eigenschaften emittiert.
+\subsection{Photonwechselwirkung im Mehratomesystem}
+In einem Mehratomesystem mit Energieniveaus 1 (Grundzustand) und 2 (angeregter
+Zustand) der Energien $E_1$ und
+$E_2$ und den Besetzungdichten $n_1$ und $n_2$ überwiegt gemäß der Maxwell-
+Boltzmann-Verteilung der Grundzustand, also $n_1>n_2$. Um einen kohärenten
+Lichtstrahl zu erhalten muss die stimulierte Emission überwiegen, es muss
+demnach der Zustand 2 höher Besetzt sein als der Zustand 1. Erreicht wird
+dies durch eine Besetzungsinversion.
+
+Beim HeNe-Laser ist Neon das aktive Material; die Besetzungsinversion
+geschieht wie folgt. Durch elektrische Entladungen werden die Helium Atome in
+einen energetisch höheren Zustand gebracht. Durch Stöße zweiter Art mit den
+Neonatomen werden diese in einen angeregten Zustand überführt, was einer
+Besetzungsinversion entspricht.
+
+Da die Besetzung der Zustände längs des aktiven Mediums homogen und die
+Wahrscheinlichkeit der Wechselwirkung eines Photons mit einem Elektron für
+alle Elektronen gleich ist, wächst die Verstärkung exponentiell zur Länge des
+durch das Medium verlaufenden Weges an. Um diesen Weg zu verlängern und damit
+die Verstärkung zu erhöhen wird mit zwei Spiegeln ein Resonator erzeugt,
+sodass der Lichtstrahl das aktive Medium oft durchläuft. Um den Lichtstrahl
+auszukoppeln ist einer der Spiegel teildurchlässig. Um einen selbsterregenden
+Oszillator zu erhalten, müssen die Verluste kleiner als die Verstärkung sein.
+Dazu muss insbesondere die optische Bedingung
+\begin{equation}
+0\leq g_1 \cdot g_2 <1 \label{eq:Resonanzbedingung}
+\end{equation}
+mit den Resonatorparametern $g_\text{i}=1-L/r_\text{i}$ erfüllt sein. Dabei
+steht $L$ für die Länge des Resonators und $r_\text{i}$ für den
+Krümmungsradius des $i$. Spiegels.
+
+Durch Unebenheiten und Verkippungen der Spiegel wird werden im Experiment
+allgemein transversale Schwingungsmoden TM$_{lpq}$ auftreten, wobei $l$, $p$
+und $q$ die Anzahl der Knoten in x-, y- (transversal) und z-Richtung
+(longitudinal) angeben. Die entsprechende Feldverteilung für einen konfokalen
+Resonator kann durch
+\begin{equation}
+E_{lpq}\propto \cos(l\varphi)\frac{4\varrho^2}{(1+Z^2)^{(1+l)/2}}L_p^q\left(\frac{4\varrho^2}{1+Z^2}\right) \text{e}^{-\frac{\varrho^2}{1+Z^2}-\text{i}\left( \frac{(1+Z)\uppi R}{\lambda} +\frac{\varrho^2 Z}{1+Z^2}-(l+1p+1)\left(\frac{\uppi}{2}-\arctan\left( \frac{1-Z}{1+Z} \right) \right) \right)}  \label{eq:Feldverteilung}
+\end{equation}
+beschrieben werden, wobei $\varrho^2=\frac{2\uppi}{R\lambda}$ und $RZ=2z$. Es
+ist $L_p^q$ das zugeordnete Laguerrepolynom.
+Für die TEM$_{00q}$-Mode ergibt sich damit
+\begin{equation}
+I(r)=I_0 e^{-\frac{2r^2}{w^2}} \label{eq:TEM00} \quad ,
+\end{equation}
+wobei $r$ der Abstand zur optischen Achse ist.
+
+\subsection{Dopplereffekt bei longitudinalen Moden}
+Neben der Bedingung \eqref{eq:Resonanzbedingung} zur optischen Stabilität
+eines Resonators muss außerdem die Bedingung
+\begin{equation}
+L=n\frac{\text{c}}{2 \nu}
+\end{equation}
+erfüllt sein, die sicherstellt, dass eine stehende Welle der Ordnung $n$ mit
+der Frequenz $\nu$ und Ausbreitungsgeschwindigkeit c entsteht. Zu einer
+gegebenen Resonatorlänge $L_0$ entsteht also ein Linienspektrum möglicher Frequenzen $\nu_n=\frac{n \text{c}}{2L_0}$. Eine alternative Sichtweise ist,  dass, da der Laser
+auf dem 3s-2p Übergang im Neon arbeitet, die Frequenz durch $\nu_0=632.8 \text{ nm}$ fest ist und die Resonatorlängen durch $L_n=\frac{n\text{c}}{2\nu_0}$
+festgelegt werden.
+
+Da den Geschwindigkeiten der Neonatome eine Maxwell-Boltzmann-Verteilung
+zugrunde liegt, kommt es zum Dopplereffekt. Während ein (im Laborsystem)
+ruhendes Atom die Frequenz $\nu_0$ verstärkt, so wird ein dazu bewegtes
+Atom ein Photon der Frequenz $\nu$ abstrahlen, welche leicht von $\nu_0$
+verschieden ist. Auf diese Weise entsteht eine gaußförmige Verstärkungskurve.

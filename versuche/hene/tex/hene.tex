@@ -1,0 +1,71 @@
+% ==================================================
+%	Dokumentklasse
+% ==================================================
+
+\documentclass[
+	11pt,
+	a4paper,
+	fleqn,
+	ngerman,
+	parskip,
+	toc=bibliography
+]{scrartcl}
+
+% input header
+\input{../../../header/header.tex}
+
+% ==================================================
+%	Definitionen für das Dokument
+% ==================================================
+
+\usepackage{sidecap}
+
+\newcommand{\TEMN}{\ensuremath{\text{TEM}_{00}}}
+\newcommand{\TEME}{\ensuremath{\text{TEM}_{10}}}
+
+% ==================================================
+%	Dokument beginnt
+% ==================================================
+
+\begin{document}
+
+% ==================================================
+%	Titelseite
+% ==================================================
+
+\titel{Der HeNe-Laser}
+\versuch{V61}
+\newcommand{\thedate}{17.11.2014}
+
+\input{../../../header/titel.tex}
+
+% ==================================================
+%	Inhaltversichnis
+% ==================================================
+
+\thispagestyle{plain}
+\tableofcontents
+\newpage
+
+% ==================================================
+%	Haupteil
+% ==================================================
+
+% \input{abschnitte/einleitung.tex}
+\input{abschnitte/theorie.tex}
+% \input{abschnitte/aufbau.tex}
+\input{abschnitte/durchfuehrung.tex}
+\input{abschnitte/auswertung.tex}
+\input{abschnitte/diskussion.tex}
+
+% ==================================================
+%	Literaturverzeichnis
+% ==================================================
+
+\referenzen
+
+% ==================================================
+%	Dokument endet
+% ==================================================
+
+\end{document}
