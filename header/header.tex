@@ -1,7 +1,3 @@
-%        File: header.tex
-%     Created: Sa Mär 08 11:00  2014 C
-% Last Change: Sa Mär 08 11:00  2014 C
-%
 
 % ==================================================
 %	Encoding
@@ -38,7 +34,6 @@
 \usepackage[font=small, labelfont=bf, format=plain]{caption}
 \usepackage{subcaption}
 \usepackage{booktabs}
-% for floating figures and floating tables
 \usepackage[vflt]{floatflt}
 
 \usepackage{rotating}
@@ -59,8 +54,8 @@
 % Maße für DIN A4
 \usepackage[a4paper]{geometry}
 
-\clubpenalty10000
-\widowpenalty10000
+\clubpenalty=10000
+\widowpenalty=10000
 \displaywidowpenalty=10000
 
 % ==================================================
@@ -158,10 +153,13 @@
 % für Einheitsmatrix '1'
 \usepackage{bbm}
 
-% Mathematik Font
+% % Mathematik Font
+% % Palatino needs more leading (space between lines)
+% \linespread{1.05}
+
+% Mathematik Font mit smallcaps und Standard-Font New Century Schoolbook.
 \usepackage[sc]{mathpazo}
-% Palatino needs more leading (space between lines)
-\linespread{1.05}
+\usepackage{newcent}
 
 % ==================================================
 %	Physik
