@@ -147,6 +147,17 @@ tex_mathpazo_preamble = [
     r"\usepackage{siunitx}",
 ]
 
+tex_fouriernc_preamble = [
+    r"\usepackage{amsmath}",
+    r"\usepackage[utf8]{inputenc}",
+    r"\usepackage[T1]{fontenc}",
+    r"\usepackage{fouriernc}"
+    r"\usepackage{newcent}"
+    r"\usepackage{upgreek}",
+    r"\usepackage[nice]{units}",
+    r"\usepackage{siunitx}",
+]
+
 params = {
     'backend': 'pdf',
     'font.family':'serif',
