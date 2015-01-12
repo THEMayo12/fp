@@ -1,6 +1,88 @@
-
-% ==================================================
-%	Auswertung
-% ==================================================
-
 \section{Auswertung}
+Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom sind in den 
+Tabellen \ref{tab:1} und \ref{tab:2} zu sehen. Im Folgenden beziehen sich Größen mit
+Index "`1"' auf die Heizrate $b_1=2$ K/min bzw. mit Index "`2"' auf $b_2=2.5$ 
+K/min.
+
+%
+%\input{../tabellen/tab1}
+%\input{../tabellen/tab2}
+%
+\subsection{Bestimmung von $W$ aus dem ersten Teil des Kurvenverlaufes}
+Für Temperaturen nahe bei $T_0:=\min\{T_1\}$ gilt die Abhängigkeit
+\begin{equation}
+j(T)\propto \text{e}^{-W/\text{k}_\text{B}T} \quad ,
+\end{equation}
+wobei $j$ der Depolarisationsstrom, $W$ die Aktivierungsenergie, $T$ die 
+Temperatur sind, sowie $\text{e}$ und $\text{k}_\text{B}$ die Eulersche- und 
+Boltzmannkonstanten.
+
+Ein linearer Fit für $\ln(j)$ gegen $1/T$ ergibt
+%\input{G1}
+%\input{G2}
+Die Graphen dazu sind in den Abbildungen \ref{fig:G1} und \ref{fig:G2} zu sehen.
+
+Damit ergibt sich
+\begin{align}
+W_1&= \\
+W_2&=   \quad .
+\end{align}
+Da bei der Rechnung nur eine fehlerbehaftete Größe (die Steigung der 
+Ausgleichsgeraden) vorkommt, sind die Fehlerrechnung identisch mit der 
+zum Mittelwert.
+\subsection{Bestimmung von $W$ aus dem gesamten Kurvenverlauf}
+Definiere 
+\begin{equation}
+S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \frac{1}{j(T)}
+\end{equation}
+mit dem letzten gemessenen Wert $T^*$.
+Bei konstanter Heizrate gilt
+\begin{equation}
+\frac{W}{\text{k}_\text{B} T}=\ln S(T)
+\end{equation}
+mit einer Konstanten $k$. Bei der Berechnung wurde die Näherung 
+\begin{equation}
+S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \approx \sum\limits_{\#\text{Messwerte}} j^n  \hat{b}
+\end{equation}
+benutzt. Der Index bezieht sich dabei auf den $n$-ten Messwert, $\hat{b}$ ist die 
+Heizrate in SI-Einheiten. Ein linearer Fit für $\ln(S(T))$ gegen $1/T$ ergibt 
+%\input{GS1}
+%\input{GS2}
+Die entsprechenden Abbildungen sind \ref{fig:GS1} und \ref{fig:GS2}.
+Es folgen
+\begin{align}
+W_{S,1}=  \\
+W_{S,2}=   \quad .
+\end{align}
+Da wieder nur eine fehlerbehaftete Größe vorkommt, kann der Fehler wie der 
+Messwert behandelt werden.
+
+\subsection{Bestimmung der Relaxationszeit $\tau$}
+Differentiation von Gleichung \ref{} ergibt
+\begin{equation}
+1/b + \frac{\text{d}}{\text{d}T}\eval_\text{max}\tau(T)=0
+\end{equation}
+mit $T_\text{max}=\max\{T \}$. Mit
+\begin{equation}
+ \frac{\text{d}}{\text{d}T}\eval_\text{max}\tau(T) =-\frac{W}{\text{k}_\text{B} 
+ T^2}
+\end{equation}
+folgt
+\begin{equation}
+\tau(T_\text{max})=\frac{\text{k}_\text{B} T_\text{max}^2}{W b} \quad .
+\end{equation}
+Nun kann mit Hilfe von Gleichung \eqref{eq:tau} die Relaxationszeit $\tau_0$ 
+gemäß
+\begin{equation}
+\tau_0=\tau(T_\text{max})\text{e}^{-\frac{W}{\text{k}_\text{B}T_\text{max}}}
+\end{equation}
+bestimmt werden.
+
+So ergibt sich
+\begin{align}
+\tau_{0,1}=
+\tau_{0,2}=
+\end{align}
+
+Die Fehlerrechnung geschieht dabei gemäß der Gaußschen Fehlerfortpflanzung.
+
