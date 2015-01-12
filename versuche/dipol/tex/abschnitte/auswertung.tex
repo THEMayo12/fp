@@ -20,12 +20,31 @@ Boltzmannkonstanten.
 Ein linearer Fit für $\ln(j)$ gegen $1/T$ ergibt
 %\input{G1}
 %\input{G2}
+\begin{align}
+G_1(x)&= ( 1.74\pm 0.15)\times 10^{3} \,x - (35.74 \pm 0.61) \\
+G_2(x)&= (0.919 \pm 0.10 )\times 10^{3} \,x - (32.18 \pm 0.42)
+\end{align}
 Die Graphen dazu sind in den Abbildungen \ref{fig:G1} und \ref{fig:G2} zu sehen.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{../skript/G1.pdf}
+\caption{Darstellung der Messwerte zur Heizrate $b=2.0$ K/min.}
+\label{fig:G1}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{../skript/G2.pdf}
+\caption{Darstellung der Messwerte zur Heizrate $b=2.5$ K/min.}
+\label{fig:G2}
+\end{figure}
+
+
 
 Damit ergibt sich
 \begin{align}
-W_1&= \\
-W_2&=   \quad .
+W_1&= (2.040 \pm 0.020)\times 10^{-20}\text{J}=(0.1273\pm0.0012)\text{ eV}\\
+W_2&=  (1.26 \pm 0.14) \times 10^{-20}\text{J}=(0.0786\pm 0.0087)\text{ eV}\quad .
 \end{align}
 Da bei der Rechnung nur eine fehlerbehaftete Größe (die Steigung der 
 Ausgleichsgeraden) vorkommt, sind die Fehlerrechnung identisch mit der 
@@ -48,17 +67,33 @@ benutzt. Der Index bezieht sich dabei auf den $n$-ten Messwert, $\hat{b}$ ist di
 Heizrate in SI-Einheiten. Ein linearer Fit für $\ln(S(T))$ gegen $1/T$ ergibt 
 %\input{GS1}
 %\input{GS2}
+\begin{align}
+G_{S,1}(x)&= (7.62 \pm 0.13 )\times 10^{3} \,x - (19.04 \pm 0.41)  \\
+G_{S,2}(x)&= (8.19 \pm 0.18 )\times 10^{3} \,x - (20.36 \pm 0.53)
+\end{align}
 Die entsprechenden Abbildungen sind \ref{fig:GS1} und \ref{fig:GS2}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{../skript/S1.pdf}
+\caption{Darstellung der Messwerte zur Heizrate $b=2.0$ K/min.}
+\label{fig:GS1}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{../skript/S2.pdf}
+\caption{Darstellung der Messwerte zur Heizrate $b=2.5$ K/min.}
+\label{fig:GS2}
+\end{figure}
 Es folgen
 \begin{align}
-W_{S,1}=  \\
-W_{S,2}=   \quad .
+W_{S,1}&=  (10.51 \pm 0.18)\times 10^{-20}\text{ J}= (0.656\pm 0.011)\text{ eV}\\
+W_{S,2}&=  (11.30 \pm 0.25) \times 10^{-20}\text{J}= (0.705\pm 0.016)\text{ eV}\quad .
 \end{align}
 Da wieder nur eine fehlerbehaftete Größe vorkommt, kann der Fehler wie der 
 Messwert behandelt werden.
 
 \subsection{Bestimmung der Relaxationszeit $\tau$}
-Differentiation von Gleichung \ref{} ergibt
+Differentiation von Gleichung \eqref{eq:Stromdichte} ergibt
 \begin{equation}
 1/b + \frac{\text{d}}{\text{d}T}\eval_\text{max}\tau(T)=0
 \end{equation}
@@ -71,7 +106,7 @@ folgt
 \begin{equation}
 \tau(T_\text{max})=\frac{\text{k}_\text{B} T_\text{max}^2}{W b} \quad .
 \end{equation}
-Nun kann mit Hilfe von Gleichung \eqref{eq:tau} die Relaxationszeit $\tau_0$ 
+Nun kann mit Hilfe von Gleichung \eqref{eq:relaxationszeit} die Relaxationszeit $\tau_0$ 
 gemäß
 \begin{equation}
 \tau_0=\tau(T_\text{max})\text{e}^{-\frac{W}{\text{k}_\text{B}T_\text{max}}}
@@ -80,8 +115,8 @@ bestimmt werden.
 
 So ergibt sich
 \begin{align}
-\tau_{0,1}=
-\tau_{0,2}=
+\tau_{0,1}=(5.5\pm 2.1)\times 10^{-9} \text{ s} \\
+\tau_{0,2}=(1.50\pm 0.73)\times 10^{-9} \text{ s}
 \end{align}
 
 Die Fehlerrechnung geschieht dabei gemäß der Gaußschen Fehlerfortpflanzung.
