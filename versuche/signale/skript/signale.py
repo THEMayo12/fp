@@ -174,3 +174,12 @@ fig1.savefig('file.pdf')
 # ==================================================
 #	start evaluation
 # ==================================================
+
+f_D, A0, A1 = np.loadtxt(
+    "../messwerte/werte_daempfung.txt",
+    unpack=True
+)
+
+A = ev.get_uncert(A1 / A0)
+print A1 / A0
+print A
