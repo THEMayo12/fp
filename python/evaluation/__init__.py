@@ -20,8 +20,9 @@ import warnings
 __all__ = [
     "get_data",
     "get_uncert",
-    "to_tex",
     "latexEq",
+    "tex_eq",
+    "tex_linreg"
     "plot_layout",
     "write"
 ]

@@ -83,6 +83,10 @@ def v(s, t):
 
 s, t = ev.get_data("messwerte.txt", unpack=True, index=0)
 
+# oder, wenn nur eine Tabelle pro Datei
+
+s, t = np.loadtxt("messwerte.txt", unpack=True)
+
 # ===== Berechnungen ===============================
 
 # berechne Geschwindigkeiten in array
@@ -92,7 +96,7 @@ v_arr = v(s, t)
 v_uc = ev.get_uncert(v_arr)
 
 # Geschwindigkeit als LateX-Code
-v_tex = ev.to_tex(v_uc, unit="{m}{s}")
+v_tex = ev.tex_eq(v_uc, unit="\meter\per\second")
 
 # linerare Ausgleichrechnung
 val, cov = optimize.curve_fit(G, t, s)
@@ -103,11 +107,11 @@ std = ev.get_std(cov)
 val, std = ev.fit(G, t, s)
 
 # latex-Gleichung der linearen Regression
-lin_reg = ev.equation_linReg(
+lin_reg = ev.tex_linreg(
+        "v(t)"
         val,
         std,
-        unit=["{s}{m}", "{m}"],
-        funcname="v(t)"
+        unit = ["\second\per\meter", "\meter"]
 )
 
 print_tex(ev.latexEq(lin_reg))
@@ -141,25 +145,13 @@ plt.show()
 
 # ===== Tabellen ===================================
 
-# see numpy doc! -> very useful function to put array's together!!!
-M = np.concatenate([A, B, C])
-
 # LateX-Tabelle erzeugen
 t = lt.latextable(
     [t, v_arr],
     "file",
     alignment = 'CC',
-    formatcolumn = '%.3f',
-    transpose = True,
-    comma = True,
-    tableoption = 'ht',
-    header = 	[r'$t / \unit{s}$',
-                    r'$v / \unitfrac{m}{s}$'],
-    caption = r'Just an amazing caption.'
+    form = '%.3f',
 )
-
-# Tabellen ggf. zu minipage zsuammenfassen
-m = lt.minipage([t, t], pageWidth = r'0.3\textwidth')
 
 # ===== Daten/Plots speichern ======================
 
