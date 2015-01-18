@@ -361,9 +361,13 @@ def fit(f, x, y, p0=None, sigma=None, **keywords):
 
 
 def plot_layout(ax):
-    """
-    default layout for plotting with matplotlib,
-    ax must be type 'figure' and executed after set legend
+    """default layout for plotting with matplotlib
+
+    Args:
+        ax (matplotlib.axes.Subplot): modify layout
+
+    Returns:
+        matplotlib.axes.Subplot.
     """
     er.assert_arg(ax, Subplot)
 
@@ -392,6 +396,7 @@ def plot_layout(ax):
         ltext = leg.get_texts()
         frame = leg.get_frame()
         frame.set_facecolor('0.90')
+        frame.set_edgecolor('0.90')
         # frame.set_facecolor((238/255., 233/255., 250/255.))
         # frame.set_edgecolor((238/255., 233/255., 250/255.))
 
@@ -511,10 +516,12 @@ def tex_eq(uc_val, **keywords):
         uc_val (uncertainties.Variable): the ufloat.
 
     Kwargs:
-        name (str): name with variable in braces. Ex: "G(x)"
+        name (str): name with variable in braces. Ex: "G(x)".
+                    Default: None
         form (str): string of the format of the value with needed braces
-                    for latex. Ex: "{:0.2f}"
-        unit (str): unit as string for latex. Ex: "\milli\second"
+                    for latex. Ex: "{:0.2f}". Default: "{:eL}"
+        unit (str): unit as string for latex. Ex: "\milli\second".
+                    Default: ""
 
     """
 
