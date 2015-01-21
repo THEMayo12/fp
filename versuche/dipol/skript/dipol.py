@@ -144,7 +144,7 @@ print "Zweiter Wert W2-DW2 = " + str(W2) + "+/-" + str(DW2)
 
 
 # über den gesamten Verlauf:
-#da jeder Stromwert für 2K bzw 2.5K steht, kann das Integral als 
+#da jeder Stromwert für 2K bzw 2.5K steht, kann das Integral als
 # 2*\sum_{n=n_0}^{n_max} J[n] geschrieben werden
 def integral1(n0):
 	i=0.
@@ -283,14 +283,8 @@ print "Gerade S2="+str(valS2[0])+" +- "+str(stdS2[0])+" x + "+str(valS2[1])+" +-
 # LateX-Tabelle erzeugen
 t1 = lt.latextable(
     [T1, J1],
-    "/home/dominik/Dokumente/fp/fp/versuche/diopl/tex/tabellen/tab1.tex",
+    "../tex/tabellen/tab1.tex",
     alignment = 'CC',
-    formatColumn = ['%.1f','%g'],
-    transpose = True,
-    comma = True,
-#   tableOption = 'ht',
-    header = 	[r'$T / \unit{K}$',
-                    r'$J_\text{Dipolarisation} / \unit{A}$' , r' $ J_\text{Heiz}/\unit{A} ##$'],
-    caption = r'Messwerte zu $b=2$ K/min.'
+    form= ['.1f','g'],
 )
 
