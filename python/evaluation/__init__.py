@@ -63,7 +63,7 @@ except ImportError:
 #	settings
 # ==================================================
 
-_use_unitpkg = "units"
+_use_unitpkg = "siunitx"
 
 def use_unitpkg(unit):
     """set the latex-package for units.
@@ -397,8 +397,6 @@ def plot_layout(ax):
         frame = leg.get_frame()
         frame.set_facecolor('0.90')
         frame.set_edgecolor('0.90')
-        # frame.set_facecolor((238/255., 233/255., 250/255.))
-        # frame.set_edgecolor((238/255., 233/255., 250/255.))
 
     return ax
 
@@ -470,15 +468,13 @@ def stretch_array(x, **keywords):
 # ==================================================
 
 
-def write(filename, string, **keywords):
+def write(filename, string, option="w"):
     """write a string to a file
 
     Args:
         filename (str): filename with path
         string (str): the string
-
-    Kwargs:
-        append (bool): set True to append the string to existing file.
+        option (str): the option to open file with builtin open()
 
     """
 
@@ -487,26 +483,10 @@ def write(filename, string, **keywords):
     else:
         pass
 
-    option = 'w'
-
-    for key in keywords:
-        value = keywords[key]
-        if key == "append":
-            er.assert_key(key, value, bool)
-            if value:
-                option = 'a'
-            else:
-                pass
-        else:
-            er.key_error(key)
-
-    File = open(filename, option)
-
-    if option == 'a':
-        File.write('\n\n')
-    File.write(string)
-
-    File.close()
+    with open(filename, option) as f:
+        if option == "a":
+            f.write("\n\n")
+        f.write(string)
 
 
 def tex_eq(uc_val, **keywords):
@@ -680,3 +660,4 @@ if __name__ == "__main__":
     a = np.array([1.1, 1.2, 0.9, .089, 1.33])
 
     u = get_uncert(a)
+    print tex_eq(u, unit="\mA", form="({:L})")
