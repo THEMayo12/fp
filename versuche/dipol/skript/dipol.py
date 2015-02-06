@@ -282,9 +282,17 @@ print "Gerade S2="+str(valS2[0])+" +- "+str(stdS2[0])+" x + "+str(valS2[1])+" +-
 '''
 # LateX-Tabelle erzeugen
 t1 = lt.latextable(
-    [T1, J1],
+    [T1, J1*1e12],
     "../tex/tabellen/tab1.tex",
     alignment = 'CC',
-    form= ['.1f','g'],
+    form= ['.1f','.2f', '.1f','.2f', '.1f','.2f'],
+    split = 3
 )
 
+t2 = lt.latextable(
+    [T2, J2*1e12],
+    "../tex/tabellen/tab2.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f', '.1f','.2f', '.1f','.2f'],
+    split = 3
+)
