@@ -1,5 +1,5 @@
 Ein bisschen Text, um vim fugitive zu
 testen.
-Aber ne?
+Uiiiii.
 Ok?
 Und nun gehts weiter!
