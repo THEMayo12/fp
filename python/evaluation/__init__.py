@@ -1,9 +1,6 @@
-# import sys
-# import os
-# sys.path.append(os.path.abspath("../.."))
 
 """
-                             _             _   _
+                              _             _   _
               _____   ____ _| |_   _  __ _| |_(_) ___  _ __
              / _ \ \ / / _` | | | | |/ _` | __| |/ _ \| '_ \
             |  __/\ V / (_| | | |_| | (_| | |_| | (_) | | | |
@@ -11,24 +8,11 @@
 
 """
 
+###############################################################################
+
+
 import sys
 import warnings
-
-###############################################################################
-
-# Attributes that are always exported
-__all__ = [
-    "get_data",
-    "get_uncert",
-    "latexEq",
-    "tex_eq",
-    "tex_linreg"
-    "plot_layout",
-    "write"
-]
-
-###############################################################################
-
 import errors as er
 
 # import numpy
@@ -57,13 +41,29 @@ try:
 except ImportError:
     er.import_error("scipy")
 
+
+###############################################################################
+
+
+# Attributes that are always exported
+__all__ = [
+    "get_data",
+    "get_uncert",
+    "latexEq",
+    "tex_eq",
+    "tex_linreg"
+    "plot_layout",
+    "write"
+]
+
 ###############################################################################
 
 # ==================================================
-#	settings
+#       settings
 # ==================================================
 
 _use_unitpkg = "siunitx"
+
 
 def use_unitpkg(unit):
     """set the latex-package for units.
@@ -87,8 +87,9 @@ def use_unitpkg(unit):
     _use_unitpkg = unit
 
 # ==================================================
-#	read data
+#       read data
 # ==================================================
+
 
 def get_data(file_name, **keywords):
     """get data from a textfile
@@ -119,7 +120,7 @@ def get_data(file_name, **keywords):
 
     """
 
-    #keywords
+    # keywords
     index = 0
     unpack = False
     delimiter = '\t'
@@ -142,7 +143,7 @@ def get_data(file_name, **keywords):
             er.assert_key(key, value, str)
             index_delim = value
         elif key == "usecols":
-            er.assert_key(key, value (tuple, list))
+            er.assert_key(key, value(tuple, list))
             usecols = value
         else:
             er.key_error(key)
@@ -193,7 +194,7 @@ def get_data(file_name, **keywords):
     return Return
 
 # ==================================================
-#	functions for evaluation
+# 	functions for evaluation
 # ==================================================
 
 
@@ -356,7 +357,7 @@ def fit(f, x, y, p0=None, sigma=None, **keywords):
     return [val, get_std(cov)]
 
 # ==================================================
-#	plot layout
+# 	plot layout
 # ==================================================
 
 
@@ -401,7 +402,7 @@ def plot_layout(ax):
     return ax
 
 # ==================================================
-#	format data for output
+# 	format data for output
 # ==================================================
 
 
@@ -463,8 +464,8 @@ def stretch_array(x, **keywords):
     return shift_list(L, shift)
 
 # ==================================================
-#	easy output function to write a string
-#	to a file
+# 	easy output function to write a string
+# 	to a file
 # ==================================================
 
 
@@ -479,7 +480,7 @@ def write(filename, string, option="w"):
     """
 
     if not filename.endswith('.tex'):
-        filename ="{}.tex".format(filename)
+        filename = "{}.tex".format(filename)
     else:
         pass
 
@@ -612,7 +613,7 @@ def tex_linreg(name, val, std, **keywords):
 
     funcname = "".join([name, " = "])
     variable = r'\, \cdot \,' \
-        + funcname[funcname.find("(") +1: funcname.rfind(")")] \
+        + funcname[funcname.find("(") + 1: funcname.rfind(")")] \
         + r'\,'
 
     # ===== create equation with siunitx or units ======
@@ -652,7 +653,7 @@ def tex_linreg(name, val, std, **keywords):
     return eq
 
 # ==================================================
-#	main
+# 	main
 # ==================================================
 
 

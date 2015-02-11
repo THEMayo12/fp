@@ -10,18 +10,17 @@
 ###############################################################################
 
 
-__all__ = ["latextable"]
-__author__ = ["Mario Dunsch"]
-
+import sys
+import os.path
 
 ###############################################################################
 
 
-import sys, os.path
-
+__all__ = ["latextable"]
+__author__ = ["Mario Dunsch"]
 
 # ==================================================
-#	check arguments of latextabel function
+#       check arguments of latextabel function
 # ==================================================
 
 
@@ -47,13 +46,14 @@ def check_arg(_mat):
             mat[i] = list(mat[i])
         except TypeError, e:
             raise TypeError(
-                "Rows and colums of the " \
+                "Rows and colums of the "
                 "matrix hast to be iterable: {}".format(e)
             )
         except Exception, e:
             raise e
 
     return mat
+
 
 def fill_empty(mat, fill):
     """Fill empty entries of matrix withs string.
@@ -93,13 +93,13 @@ def check_dim(mat):
     for i in range(m):
         n_temp = len(mat[i])
         if n_temp > n:
-            n= len(mat[i])
+            n = len(mat[i])
 
     return m, n
 
 
 # ==================================================
-#	helper function to format values
+#       helper function to format values
 # ==================================================
 
 
@@ -128,7 +128,7 @@ def format_col(col, form):
     elif isinstance(form, list):
         if len(col) != len(form):
             raise Exception(
-                "List in keyword form doesn't match" \
+                "List in keyword form doesn't match"
                 "the dimension of the matrix!"
             )
         else:
@@ -151,8 +151,8 @@ def format_col(col, form):
 
 
 # ==================================================
-#	helper function to fing pre and post decimal
-#	digits
+#       helper function to fing pre and post decimal
+#       digits
 # ==================================================
 
 
@@ -182,7 +182,7 @@ def get_digits(value):
         float(value)
     except ValueError, e:
         # None will be ignored of functions like max
-        return (None, None)
+        return (None, None), None
 
     pos = value.find(".")
     digits = [0, 0]
@@ -276,7 +276,7 @@ def align_value(value, max_digits, dot=True):
 
 
 # ==================================================
-#	function to split matrix
+#       function to split matrix
 # ==================================================
 
 
@@ -304,7 +304,7 @@ def split(matrix, part, fill="-"):
     # check if part is higher then the number of columns
     if part > n:
         raise Exception(
-            "Can't split matrix in more parts then the number of columns.\n" \
+            "Can't split matrix in more parts then the number of columns.\n"
             "Columns: {}, Split: {}".format(n, part)
         )
 
@@ -320,7 +320,7 @@ def split(matrix, part, fill="-"):
 
     # split each column in blocks of size chunk and store in temp_mat
     for i, col in enumerate(mat):
-        temp_mat.append([col[i:i+chunk] for i  in range(0, len(col), chunk)])
+        temp_mat.append([col[i:i+chunk] for i in range(0, len(col), chunk)])
     # fill up the temporary matrix
     for i, col in enumerate(temp_mat):
         fill_empty(col, fill)
@@ -363,14 +363,15 @@ def latextable(matrix, filename=None, **keywords):
             with the required number of '0's to reserve the right
             space. Have a look at the example for better understanding
             of the idea.
+            (See Keyword 'split' for additional use with split)
 
         transpose (bool): Transpose the input matrix, True.
 
         emptystr (str): String wich will be placed, if rows or columns doesn't
             have the full dimension, to get a full m x n matrix.
 
-        form (list, str): List of strings or string of the form '.2f'.
-            string will extended internally to '{:.2f}' for use with builtin
+        form (list, str): List of strings or a string of the form '.2f'.
+            String will extended internally to '{:.2f}' for use with builtin
             function 'format'. So you can use any format specifier.
 
             If 'form' is a list, every entry will be applied to the
@@ -379,11 +380,15 @@ def latextable(matrix, filename=None, **keywords):
             format every entrie of an column different.
             If 'form' is a str, then this format will be applied to every
             column and every entrie.
+            (See Keyword 'split' for additional use with split)
 
         split (int): If columns of a table are to long, you can split up the
             table into 'split' parts.
+            If 'split' is set, the lenght of the string of the
+            'alignment'-keyword and the list of the 'form'-keyword can have
+            ('split') * (number of columns) for additional customization.
 
-    Returns: TODO
+    Returns: str. Latex formated table.
 
     """
 
@@ -437,7 +442,7 @@ def latextable(matrix, filename=None, **keywords):
                 )
             if value <= 0:
                 raise Exception(
-                    "Value of keyword split is not accepted. Got {}\n" \
+                    "Value of keyword split is not accepted. Got {}\n"
                     "Should be higher than 0.".format(value)
                 )
             split_parts = value
@@ -464,17 +469,39 @@ def latextable(matrix, filename=None, **keywords):
             "Characters of keyword 'align' should be one of 'crlCRL|'!"
         )
     elif len(align) == 1:
-        align = align*n
-    elif len(align.replace("|", "")) != n:
+        align = align * n
+        if split_parts:
+            align = split_parts * align
+        else:
+            pass
+    elif len(align.replace("|", "")) not in [n, n * split_parts]:
         raise Exception(
             "Dimensions of matrix and align string are different!"
         )
+    elif split_parts:  # adjust the alignment sting, if split is set.
+        align = split_parts * align
     else:
         pass
 
     # add extension if not present
     if filename and not filename.endswith(".tex"):
         filename = "{}.tex".format(filename)
+
+    # check lenght of form string
+    if isinstance(form, str) or len(form) not in [n, n * split_parts]:
+        raise Exception(
+            "Lenght of keyword 'form' doesn't match the number of columns."
+        )
+    elif split_parts:  # adjust the form list, if split is set.
+        form = split_parts * form
+    else:
+        pass
+
+    # ===== split matrix if key is set =================
+
+    if split_parts:
+        mat = split(mat, split_parts, emptystr)
+        m, n = check_dim(mat)
 
     # ===== format elements ============================
 
@@ -506,11 +533,6 @@ def latextable(matrix, filename=None, **keywords):
 
     mat = [list(i) for i in zip(*temp_mat)]
 
-    # ===== split matrix if key is set =================
-
-    if split_parts:
-        mat = split(mat, split_parts, emptystr)
-
     # ===== matrix to latex format =====================
 
     mat_list = []
@@ -533,26 +555,22 @@ def latextable(matrix, filename=None, **keywords):
 
 
 # ==================================================
-#	main
+#       main
 # ==================================================
 
 
 def main():
-    """Lets do some tests.
-    Returns: TODO
-
-    """
     # locale.setlocale(locale.LC_ALL, "de_DE")
 
-    m1 = [[1,2,3], [5,6]]
+    m1 = [[1, 2, 3], [5, 6]]
     m2 = [[107, 108, 111, 23, 0.2], [43.9, 33.2, 55.3, 12.33, 222.3]]
 
     print latextable(
         m2,
         # "hallo",
-        alignment="CC",
+        alignment="CCcC",
         # form=[".0f", 3*["0.1f"] + ["0.2f"]]
-        form=[".0f", 3*["0.1f"] + ["0.2f"] + ["0.1f"]],
+        form=[".0f", ".3f"],
         split=2
         # form="0.2f"
     )

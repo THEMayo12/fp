@@ -3,7 +3,7 @@ import sys
 import inspect
 
 # ==================================================
-#	error functions
+# 	error functions
 # ==================================================
 
 
@@ -79,7 +79,7 @@ def assert_function(f):
 
 
 # ==================================================
-#	main
+# 	main
 # ==================================================
 
 
@@ -108,7 +108,6 @@ if __name__ == "__main__":
                 assert_key(key, value, np.ndarray)
             else:
                 key_error(key)
-
 
         return "Well done"
 

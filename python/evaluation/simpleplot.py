@@ -9,24 +9,13 @@
 
 """
 
+
 import sys
 import inspect
 
 ###############################################################################
 
-# Attributes that are always exported
-__all__ = [
-    "fig_size",
-    "apply_params",
-    "use_layoutfunc",
-    "set_layoutfunc",
-    "figure",
-    "plot_layout"
-]
 
-###############################################################################
-
-# from errors import *
 import errors as er
 
 # import numpy
@@ -46,8 +35,21 @@ except ImportError:
 
 ###############################################################################
 
+
+# Attributes that are always exported
+__all__ = [
+    "fig_size",
+    "apply_params",
+    "use_layoutfunc",
+    "set_layoutfunc",
+    "figure",
+    "plot_layout"
+]
+
+###############################################################################
+
 # ==================================================
-#	function to calc fig_size
+# 	function to calc fig_size
 # ==================================================
 
 
@@ -94,9 +96,8 @@ def golden_mean(width):
     return width * golden_mean
 
 
-
 # ==================================================
-#	settings
+# 	settings
 # ==================================================
 
 # ===== some nice params for matplotlib ============
@@ -160,7 +161,7 @@ tex_fouriernc_preamble = [
 
 params = {
     'backend': 'pdf',
-    'font.family':'serif',
+    'font.family': 'serif',
     'font.size': 10,
     'text.usetex': True,
     'text.latex.preamble': tex_preamble,
@@ -186,8 +187,8 @@ _USE_LAYOUTFUNC = True
 _layoutfunc = None
 
 # ==================================================
-#	function to update parameter and
-#	layoutfunction
+# 	function to update parameter and
+# 	layoutfunction
 # ==================================================
 
 
@@ -214,6 +215,7 @@ def use_layoutfunc(u):
     global _USE_LAYOUTFUNC
     _USE_LAYOUTFUNC = u
 
+
 def set_layoutfunc(f):
     """set layoutfunction which is use in plot().
 
@@ -231,6 +233,7 @@ def set_layoutfunc(f):
         raise Exception(
             "Expected function."
         )
+
 
 def set_fontsize(size):
     """set the fontsize of the plot. Everything will have that size
@@ -253,7 +256,6 @@ def set_fontsize(size):
     plt.rcParams.update(params)
 
 
-
 def show():
     """use matplotlibs show() function to show plot.
     If you want to save your plot, do not use this function before saving.
@@ -262,7 +264,7 @@ def show():
     plt.show()
 
 # ==================================================
-#	simpleplot
+# 	simpleplot
 # ==================================================
 
 
@@ -299,7 +301,6 @@ class figure(object):
         self.__ylim = None
         self.__samples = 1000
 
-
     def clear_plots(self):
         self.__plots = []
         self.__have_legend = False
@@ -307,24 +308,20 @@ class figure(object):
         self.__ylim = None
         self.__samples = 1000
 
-
     def set_xlabel(self, x):
         """set label of x-axis"""
         er.assert_arg(x, str)
         self.__xlabel = x
-
 
     def set_ylabel(self, y):
         """set label of y-axis"""
         er.assert_arg(y, str)
         self.__ylabel = y
 
-
     def set_samples(self, samples):
         """set number of values for all lineplots"""
         er.assert_arg(samples, int)
         self.__samples = samples
-
 
     def set_xlim(self, xlim):
         """set limit of x-axis"""
@@ -335,7 +332,6 @@ class figure(object):
             )
         self.__xlim = xlim
 
-
     def set_ylim(self, ylim):
         """set limit of y-axis"""
         er.assert_arg(ylim, list)
@@ -344,7 +340,6 @@ class figure(object):
                 "Expected two itmes in list. Got {n}".format(n=len(ylim))
             )
         self.__ylim = ylim
-
 
     def add_plot(self, *args, **keywords):
         """add plot to dictonary"""
@@ -418,7 +413,6 @@ class figure(object):
             }
 
         self.__plots.append(plot)
-
 
     def plot(self):
 
@@ -521,7 +515,7 @@ class figure(object):
         return fig
 
 # ==================================================
-#	plot-layout
+# 	plot-layout
 # ==================================================
 
 
@@ -567,10 +561,8 @@ def plot_layout(ax):
 
     return ax
 
-# splot = plot()
-
 # ==================================================
-#	main
+# 	main
 # ==================================================
 
 
@@ -597,20 +589,19 @@ def main():
     s = t + 2
 
     p1 = sp.figure()
-    p1.add_plot(t, s, label = "$G(x)$")
-    p1.add_plot(G, 2, 1, label = "$G(x)$")
+    p1.add_plot(t, s, label="$G(x)$")
+    p1.add_plot(G, 2, 1, label="$G(x)$")
     p1.set_xlabel("Hallo")
     fig1 = p1.plot()
     # fig.savefig("test1.pdf")
-
 
     sp.set_layoutfunc(layout)
     sp.use_layoutfunc(False)
 
     p2 = sp.figure(["Hallo", "Du"])
     p2.set_xlim([0, 1])
-    p2.add_plot(t, s, label = "$G(x)$")
-    p2.add_plot(G, 2, 1, usevar="m", label = "$G(x)$", samples=10)
+    p2.add_plot(t, s, label="$G(x)$")
+    p2.add_plot(G, 2, 1, usevar="m", label="$G(x)$", samples=10)
     fig1 = p2.plot()
     # fig.savefig("test1.pdf")
 
