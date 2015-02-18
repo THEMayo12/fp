@@ -1,7 +1,7 @@
-#-*- coding: iso-8859-1 -*-
+# -*- coding: iso-8859-1 -*-
 
 # ==================================================
-#	import modules
+# 	import modules
 # ==================================================
 
 # import sys
@@ -31,7 +31,7 @@ from scipy import optimize
 import scipy.constants as const
 
 # ==================================================
-#	settings
+# 	settings
 # ==================================================
 
 
@@ -41,16 +41,17 @@ plt.rcParams.update(sp.params)
 ev.use_unitpkg("siunitx")
 
 # ==================================================
-#	function to print equations with
-#	matplotlib
+# 	function to print equations with
+# 	matplotlib
 # ==================================================
 
 
-def show(x) :
+def show(x):
     assert isinstance(x, str)
     print x + " = "
     print eval(x)
     print "\n"
+
 
 def print_tex(s):
     assert isinstance(s, str)
@@ -58,13 +59,13 @@ def print_tex(s):
     ax = fig.add_subplot(111)
     ax.axis('off')
     ax.text(0.0, 0.5,
-            s.replace('\t',' ').replace('\n',' ').replace('%',''),
-            color='k', size = 'x-large'
-    )
+            s.replace('\t', ' ').replace('\n', ' ').replace('%', ''),
+            color='k', size='x-large'
+            )
     plt.show()
 
 # ==================================================
-#	example
+#       example
 # ==================================================
 
 """
@@ -164,6 +165,8 @@ fig1.savefig('file.pdf')
 
 """
 
-# ==================================================
-#	start evaluation
-# ==================================================
+###########################################################################
+#                            Beginn Auswertung                            #
+###########################################################################
+
+

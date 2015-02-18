@@ -1,0 +1,197 @@
+# # ===== R_50k ======================================
+#
+# fig_R50k = plt.figure()
+# ax1 = fig_R50k.add_subplot(111)
+#
+# ax1.plot(
+#     f_50k,
+#     R_50k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$R / \si{\ohm}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_R50k.tight_layout()
+#
+# # ===== R_50l ======================================
+#
+# fig_R50l = plt.figure()
+# ax1 = fig_R50l.add_subplot(111)
+#
+# ax1.plot(
+#     f_50l,
+#     R_50l,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$R / \si{\ohm}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_R50l.tight_layout()
+#
+# # ===== R_75k ======================================
+#
+# fig_R75k = plt.figure()
+# ax1 = fig_R75k.add_subplot(111)
+#
+# ax1.plot(
+#     f_75k,
+#     R_75k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$R / \si{\ohm}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_R75k.tight_layout()
+#
+# # ===== C_50k ======================================
+#
+# fig_C50k = plt.figure()
+# ax1 = fig_C50k.add_subplot(111)
+#
+# ax1.plot(
+#     f_50k,
+#     C_50k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$C / \si{\pico\farad}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_C50k.tight_layout()
+#
+# # ===== C_50l ======================================
+#
+# fig_C50l = plt.figure()
+# ax1 = fig_C50l.add_subplot(111)
+#
+# ax1.plot(
+#     f_50l,
+#     C_50l,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$C / \si{\nano\farad}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_C50l.tight_layout()
+#
+# # ===== C_75k ======================================
+#
+# fig_C75k = plt.figure()
+# ax1 = fig_C75k.add_subplot(111)
+#
+# ax1.plot(
+#     f_75k,
+#     C_75k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$C / \si{\pico\farad}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_C75k.tight_layout()
+#
+# # ===== L_50k ======================================
+#
+# fig_L50k = plt.figure()
+# ax1 = fig_L50k.add_subplot(111)
+#
+# ax1.plot(
+#     f_50k,
+#     L_50k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$L / \si{\micro\henry}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_L50k.tight_layout()
+#
+# # ===== L_50l ======================================
+#
+# fig_L50l = plt.figure()
+# ax1 = fig_L50l.add_subplot(111)
+#
+# ax1.plot(
+#     f_50l,
+#     L_50l,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$L / \si{\micro\henry}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_L50l.tight_layout()
+#
+# # ===== L_75k ======================================
+#
+# fig_L75k = plt.figure()
+# ax1 = fig_L75k.add_subplot(111)
+#
+# ax1.plot(
+#     f_75k,
+#     L_75k,
+#     color='k',
+#     linestyle='none',
+#     marker='+',
+#     label='Messwerte'
+# )
+#
+# ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+# ax1.set_ylabel(r'$L / \si{\micro\henry}$')
+#
+# ax1.legend(loc='best')
+# ax1 = ev.plot_layout(ax1)
+#
+# fig_L75k.tight_layout()

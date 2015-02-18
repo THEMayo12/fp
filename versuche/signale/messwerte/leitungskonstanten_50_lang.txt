@@ -1,6 +1,5 @@
 # Leitungskonstanten, 50 ohm, lang
 #
-#
 # f / kHz, C / nF, R / ohm, L / muH
 0.2 	8.5013 	4.1958 	24.9
 0.4 	8.5015 	4.1992 	26.4

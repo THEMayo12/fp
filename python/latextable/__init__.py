@@ -400,7 +400,7 @@ def latextable(matrix, filename=None, **keywords):
     transpose = True
     emptystr = "-"
     form = ""
-    split_parts = None
+    split_parts = 0  # use 0 as boolean False
 
     # ===== check keyword args =========================
 
@@ -488,7 +488,9 @@ def latextable(matrix, filename=None, **keywords):
         filename = "{}.tex".format(filename)
 
     # check lenght of form string
-    if isinstance(form, str) or len(form) not in [n, n * split_parts]:
+    if isinstance(form, str):
+        pass
+    elif len(form) not in [n, n * split_parts]:
         raise Exception(
             "Lenght of keyword 'form' doesn't match the number of columns."
         )

@@ -500,7 +500,7 @@ def tex_eq(uc_val, **keywords):
         name (str): name with variable in braces. Ex: "G(x)".
                     Default: None
         form (str): string of the format of the value with needed braces
-                    for latex. Ex: "{:0.2f}". Default: "{:eL}"
+                    for latex. Ex: "{:0.2f}". Default: "{:L}"
         unit (str): unit as string for latex. Ex: "\milli\second".
                     Default: ""
 
@@ -509,7 +509,7 @@ def tex_eq(uc_val, **keywords):
     # ===== keywords ===================================
 
     unit = ""
-    form = "{:eL}"
+    form = "{:L}"
     name = None
 
     # ===== check keywords =============================
@@ -582,7 +582,7 @@ def tex_linreg(name, val, std, **keywords):
     # ===== keywords ===================================
 
     unit = ["", ""]
-    form = ["{:eL}", "{:eL}"]
+    form = ["{:L}", "{:L}"]
 
     # ===== check keywords =============================
 
