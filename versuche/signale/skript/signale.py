@@ -4,10 +4,8 @@
 # 	import modules
 # ==================================================
 
-# import sys
-
-# append paths
-# sys.path.append("/home/mario12/dokumente/physik/module/fp/python/")
+import os
+import sys
 
 import evaluation as ev
 import evaluation.simpleplot as sp
@@ -34,6 +32,8 @@ import scipy.constants as const
 # 	settings
 # ==================================================
 
+# change path to script directory
+os.chdir(sys.path[0])
 
 sp.params["text.latex.preamble"] = sp.tex_fouriernc_preamble
 plt.rcParams.update(sp.params)
@@ -207,6 +207,31 @@ def teil_a():
     def Leitwert(R, C, L):
         return R*C/L
 
+    G_50k = Leitwert(R_50k, C_50k, L_50k)
+    G_50l = Leitwert(R_50l, C_50l, L_50l)
+    G_75k = Leitwert(R_75k, C_75k, L_75k)
+
+    lt.latextable(
+        [f_50k, C_50k, R_50k, L_50k, G_50k],
+        "../tex/tabellen/Leitungskonstanten_50k.tex",
+        form=[".1f", ".2f", ".4f", ".2f", ".3f"],
+        alignment="CCCCC"
+    )
+
+    lt.latextable(
+        [f_50l, C_50l, R_50l, L_50l, G_50l],
+        "../tex/tabellen/Leitungskonstanten_50l.tex",
+        form=[".1f", ".4f", ".4f", ".1f", ".3f"],
+        alignment="CCCCC"
+    )
+
+    lt.latextable(
+        [f_75k, C_75k, R_75k, L_75k, G_75k],
+        "../tex/tabellen/Leitungskonstanten_75k.tex",
+        form=[".2f", ".4f", ".4f", ".1f", ".3f"],
+        alignment="CCCCC"
+    )
+
     plot_dict = {
         "R_50k": [R_50k, r'$R / \si{\ohm}$'],
         "R_50l": [R_50l, r'$R / \si{\ohm}$'],
@@ -217,9 +242,9 @@ def teil_a():
         "L_50k": [L_50k, r'$L / \si{\micro\henry}$'],
         "L_50l": [L_50l, r'$L / \si{\micro\henry}$'],
         "L_75k": [L_75k, r'$L / \si{\micro\henry}$'],
-        "S_50k": [Leitwert(R_50k, C_50k, L_50k), r'$G / \si{\milli\siemens}$'],
-        "S_50l": [Leitwert(R_50l, C_50l, L_50l), r'$G / \si{\siemens}$'],
-        "S_75k": [Leitwert(R_75k, C_75k, L_75k), r'$G / \si{\milli\siemens}$'],
+        "S_50k": [G_50k, r'$G / \si{\milli\siemens}$'],
+        "S_50l": [G_50l, r'$G / \si{\siemens}$'],
+        "S_75k": [G_75k, r'$G / \si{\milli\siemens}$'],
     }
 
     for key in plot_dict:
@@ -485,7 +510,8 @@ def teil_d():
 
     # L bestimmen
     m_L = uc.ufloat(val_L[0], std_L[0])  # m=-1/tau, tau in ns
-    L = - (Z0 - R) / uc.ufloat(val_L[0], std_L[0])  # L in nH
+    # L = - (Z0 - R) / uc.ufloat(val_L[0], std_L[0])  # L in nH
+    L = - Z0 / uc.ufloat(val_L[0], std_L[0])  # L in nH
     L = L*1e-3  # L in muH
     L_tex = ev.tex_eq(L, unit=r"\mu\henry")
 
@@ -730,8 +756,8 @@ def teil_e():
 # ==================================================
 
 
-# teil_a()
+teil_a()
 # teil_b()
 # teil_c()
-teil_d()
+# teil_d()
 # teil_e()

@@ -1,6 +1,76 @@
 
 % ==================================================
+%	Definitionen
+% ==================================================
+
+\newcommand{\CU}{RG-58C/U}
+\newcommand{\BU}{RG-58B/U}
+
+% ==================================================
 %	Auswertung
 % ==================================================
 
 \section{Auswertung}
+
+\subsection{Leitungskonstanten}
+\label{sub:leitungskonstanten}
+
+Es sollen die mit einem LCU-Messgerät bestimmen Leitungskonstanten
+$R$, $L$ und $C$ in Abhängigkeit der Frequenz $\nu$ von drei Koaxialkabel,
+einem langen und einem kurzen \CU\ sowie einem kurzen \BU\ dargestellt werden.
+Des weiteren soll der Leitwert $G$ berechnet und ebenfalls graphisch
+dargestellt werden.
+Die im Versuch gemessenen Werte befinden sich dabei in den Tabellen
+\ref{tab:Leitungskonstanten_50k}, \ref{tab:Leitungskonstanten_50l} und
+\ref{tab:Leitungskonstanten_75k}.
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{ccccc}
+		\midrule
+		\midrule
+		$\nu / \si{kHz}$        & $C / \si{\pico\farad}$     & $R / \si{\ohm}$ &
+		$L / \si{\micro\henry}$ & $G / \si{\milli\siemens}$ \\
+		\midrule
+		\input{tabellen/Leitungskonstanten_50k.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+		Leitungskonstanten $R$, $L$ und $C$ für das kurze \CU-Kabel.}
+\label{tab:Leitungskonstanten_50k}
+\end{table}
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{ccccc}
+		\midrule
+		\midrule
+		$\nu / \si{kHz}$        & $C / \si{\nano\farad}$     & $R / \si{\ohm}$ &
+		$L / \si{\micro\henry}$ & $G / \si{\milli\siemens}$ \\
+		\midrule
+		\input{tabellen/Leitungskonstanten_50l.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+		Leitungskonstanten $R$, $L$ und $C$ für das lange \CU-Kabel.}
+\label{tab:Leitungskonstanten_50l}
+\end{table}
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{ccccc}
+		\midrule
+		\midrule
+		$\nu / \si{kHz}$        & $C / \si{\pico\farad}$     & $R / \si{\ohm}$ &
+		$L / \si{\micro\henry}$ & $G / \si{\milli\siemens}$ \\
+		\midrule
+		\input{tabellen/Leitungskonstanten_75k.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+		Leitungskonstanten $R$, $L$ und $C$ für das \BU-Kabel.}
+\label{tab:Leitungskonstanten_75k}
+\end{table}

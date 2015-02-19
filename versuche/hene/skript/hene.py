@@ -4,7 +4,8 @@
 #	import modules
 # ==================================================
 
-# import sys
+import os
+import sys
 
 # append paths
 # sys.path.append("/home/mario12/dokumente/physik/module/fp/python/")
@@ -31,9 +32,11 @@ from scipy import optimize
 import scipy.constants as const
 
 # ==================================================
-#	settings
+# 	settings
 # ==================================================
 
+# change path to script directory
+os.chdir(sys.path[0])
 
 sp.params["text.latex.preamble"] = sp.tex_mathpazo_preamble
 plt.rcParams.update(sp.params)
@@ -41,16 +44,17 @@ plt.rcParams.update(sp.params)
 ev.use_unitpkg("siunitx")
 
 # ==================================================
-#	function to print equations with
-#	matplotlib
+# 	function to print equations with
+# 	matplotlib
 # ==================================================
 
 
-def show(x) :
+def show(x):
     assert isinstance(x, str)
     print x + " = "
     print eval(x)
     print "\n"
+
 
 def print_tex(s):
     assert isinstance(s, str)
