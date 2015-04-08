@@ -4,3 +4,93 @@
 % ==================================================
 
 \section{Auswertung}
+Auf dem als Ergebnis der experimentellen Durchführung erhaltenen Fotostreifen sind 
+jeweils einige Beugungsringe schwach zu erkennen. Zunächst wurden die Radien dieser 
+Ringe gemessen und der Beugungswinkel $\vartheta$ bestimmt. Die Messwerte sind in den 
+Tabellen \ref{tab:1} und \ref{tab:2} zu sehen.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+Radius $r$/m & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/m \\
+\midrule
+\input{tabellen/tabelle1}
+\end{tabular}
+\caption{Messwerte und Vergleichswerte zur ersten Probe. Dabei ist $r$ der Radius 
+eines Ringes, $\vartheta$ der Beugungswinkel und $a$ die ermittelte Gitterkonstante.}
+\label{tab:1}
+\end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+Radius $r$/m & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/m \\
+\input{tabellen/tabelle1}
+\end{tabular}
+\caption{Messwerte und Vergleichswerte zur zweiten Probe. Dabei ist $r$ der Radius 
+eines Ringes, $\vartheta$ der Beugungswinkel und $a$ die ermittelte Gitterkonstante.}
+\label{tab:2}
+\end{table}
+
+\subsection{Bestimmung der Gitterstruktur und der Gitterkonstanten}
+
+Die Werte wurden wie folgt berechnet. Zu einem Ringradius $r$ und der Fotospule vom 
+Radius $R=57.4 \text{ cm}$ lässt sich der Beugungswinkel $\vartheta=r/2R$ ermitteln. 
+Definiere
+\begin{equation}
+s_i^\text{exp}:=4 \frac{\sin^2(\vartheta_i)}{\sin^2(\vartheta_0)} \quad ,
+\end{equation}
+wobei $\vartheta_0$ der kleinste gemessene Wert ist. Diese Definition leitet sich 
+aus
+\begin{equation}
+\lambda=2\sin(\vartheta) d \label{eq}
+\end{equation}
+ab, wobei $\lambda$ die Wellenlänge des verwendeten Röntgenlichtes ist, $\vartheta$ der Beugungswinkel und $d=a/\sqrt{h^2+k^2+l^2}$ der Netzebenenabstand der $(h,k,l)$-
+Netzebenenschar zu einem kubischen Gitter mit Gitterkonstante $a$. Der Faktor $4$ rührt daher, dass angenommen wird, dass der erste Ring zur 
+Beugungsebene (2,0,0) gehört. Dies kann nur damit begründet werden, dass durch diese
+Wahl die Messwerte sinnvoll sind. 
+Definiere weiter $s^\text{th}_i:=h_i^2+k_i^2+l_i^2$, wobei $(h_i,k_i,l_i)$ die 
+Millerindizes zum $i$-ten Beugungsring sind.\\
+Im Falle einer perfekten Messung sollte also $s_i^\text{th}=s_i^\text{exp}$ gelten.
+\\
+Anhand der $s_i^\text{exp}$ wurde nun abgeschätzt, zu welchen Netzebenenscharen die 
+Beugungsringe gehören und mit den bekannten Gitterstrukturen verglichen. Eine 
+theoretische Betrachtung der Strukturfaktoren eines bcc-Gitters ergibt zum Beispiel 
+Reflexe bei $s^\text{th} \in \{ 2,4,8,10,16,20,22,... \}$, für ein Diamantgitter 
+ergeben sich lediglich Reflexe bei $s^\text{th}\in \{ 4,11,... \}$. Da dies sehr gut 
+zu den Beobachteten $s^\text{exp}$ passt, wird nun angenommen, dass es sich bei der 
+ersten Probe um eine bcc- und bei der zweiten Probe um eine Diamantstruktur handelt.
+\\
+Schließlich können die Gitterkonstanten über
+\begin{equation}
+a=\frac{\sqrt{s^\text{th}} \lambda}{2 \sin(\vartheta)}
+\end{equation}
+(vgl. \eqref{eq}) bestimmt werden, wobei $(s^\text{th},\vartheta)$ für ein 
+zusammengehörendes Paar von Netzebene und Beugungswinkel steht, außerdem steht 
+$\lambda$ wieder für die Wellenlänge der Röntgenstrahlung.
+
+\subsection{Korrektur der Gitterkonstanten und Bestimmung der Probenmaterialien}
+Um eine möglichst gute Schätzung für die Gitterkonstante $a$ zu bekommen, wird nun 
+$a$ gegen $\cos^2(\vartheta)$ aufgetragen. Die Extrapolation auf 
+$\cos^2(\vartheta)=0$ ergibt dann den besten Wert für die Gitterkonstante. In 
+den Abbildungen \ref{fig:1} und \ref{fig:2} sind die Gitterkonstanten gegen 
+$\cos^2(\vartheta)$ aufgetragen und es wurde eine lineare Regression durchgeführt.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{bilder/fig1.pdf}
+\caption{Extrapolation der Gitterkonstanten für die erste Probe.}
+\label{fig:1}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{bilder/fig2.pdf}
+\caption{Extrapolation der Gitterkonstanten für die zweite Probe.}
+\label{fig:2}
+\end{figure}
+Es ergeben sich die Regressionsgeraden $(t:=\cos^2(\vartheta))$
+\begin{equation}
+\input{gleichungen/gerade1}
+\end{equation}
+sowie
+\begin{equation}
+\input{gleichungen/gerade2}
+\end{equation}
