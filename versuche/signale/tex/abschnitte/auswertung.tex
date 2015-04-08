@@ -1,6 +1,646 @@
 
 % ==================================================
+%	Definitionen
+% ==================================================
+
+\newcommand{\CU}{RG-58C/U}
+\newcommand{\BU}{RG-58B/U}
+
+% ==================================================
 %	Auswertung
 % ==================================================
 
 \section{Auswertung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Leitungskonstanten                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Leitungskonstanten}
+\label{sub:leitungskonstanten}
+
+Es sollen die mit einem LCU-Messgerät bestimmen Leitungskonstanten
+$R$, $L$ und $C$ in Abhängigkeit der Frequenz $\nu$ von drei Koaxialkabel,
+einem langen und einem kurzen \CU\ sowie einem kurzen \BU\ dargestellt werden.
+Des weiteren soll der Leitwert $G$ berechnet und ebenfalls graphisch
+dargestellt werden.
+Die im Versuch gemessenen Werte befinden sich dabei in den
+Tabellen~\ref{tab:Leitungskonstanten_50k},~\ref{tab:Leitungskonstanten_50l}
+und~\ref{tab:Leitungskonstanten_75k}.
+Die in den Tabellen angegebenen Daten sind in den Abbildungen~\ref{fig:R_50k}
+bis~\ref{fig:G_75k} graphisch dargestellt.
+
+% ==================================================
+% 	Tabellen
+% ==================================================
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{ccccc}
+    \midrule
+    \midrule
+    $\nu / \si{kHz}$        & $C / \si{\pico\farad}$     & $R / \si{\ohm}$ &
+    $L / \si{\micro\henry}$ & $G / \si{\milli\siemens}$ \\
+    \midrule
+    \input{tabellen/Leitungskonstanten_50k.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+      Leitungskonstanten $R$, $L$ und $C$ für das kurze \CU-Kabel.}
+\label{tab:Leitungskonstanten_50k}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{ccccc}
+    \midrule
+    \midrule
+    $\nu / \si{kHz}$        & $C / \si{\nano\farad}$     & $R / \si{\ohm}$ &
+    $L / \si{\micro\henry}$ & $G / \si{\siemens}$ \\
+    \midrule
+    \input{tabellen/Leitungskonstanten_50l.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+      Leitungskonstanten $R$, $L$ und $C$ für das lange \CU-Kabel.}
+\label{tab:Leitungskonstanten_50l}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{ccccc}
+    \midrule
+    \midrule
+    $\nu / \si{kHz}$        & $C / \si{\pico\farad}$     & $R / \si{\ohm}$ &
+    $L / \si{\micro\henry}$ & $G / \si{\milli\siemens}$ \\
+    \midrule
+    \input{tabellen/Leitungskonstanten_75k.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der in Abhängigkeit der Frequenz $\nu$ gemessenen
+      Leitungskonstanten $R$, $L$ und $C$ für das \BU-Kabel.}
+\label{tab:Leitungskonstanten_75k}
+\end{table}
+
+% ==================================================
+% 	Plots
+% ==================================================
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=1.0]{bilder/R_50k.pdf}
+	\caption{Darstellung des Widerstandes $R$ in Abhängigkeit der Frequenz $\nu$
+	für das kurze \CU-Kabel.}
+	\label{fig:R_50k}
+	\includegraphics[scale=1.0]{bilder/R_50l.pdf}
+	\caption{Darstellung des Widerstandes $R$ in Abhängigkeit der Frequenz $\nu$
+	für das lange \CU-Kabel.}
+	\label{fig:R_50l}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{bilder/R_75k.pdf}
+	\caption{Darstellung des Widerstandes $R$ in Abhängigkeit der Frequenz $\nu$
+	für das \BU-Kabel.}
+	\label{fig:R_75k}
+	\includegraphics[scale=1.0]{bilder/C_50k.pdf}
+	\caption{Darstellung der Kapazität $C$ in Abhängigkeit der Frequenz $\nu$
+	für das kurze \CU-Kabel.}
+	\label{fig:C_50k}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{bilder/C_50l.pdf}
+	\caption{Darstellung der Kapazität $C$ in Abhängigkeit der Frequenz $\nu$
+	für das lange \CU-Kabel.}
+	\label{fig:C_50l}
+	\includegraphics[scale=1.0]{bilder/C_75k.pdf}
+	\caption{Darstellung der Kapazität $C$ in Abhängigkeit der Frequenz $\nu$
+	für das \BU-Kabel.}
+	\label{fig:C_75k}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{bilder/L_50k.pdf}
+	\caption{Darstellung der Induktivität $L$ in Abhängigkeit der Frequenz $\nu$
+	für das kurze \CU-Kabel.}
+	\label{fig:L_50k}
+	\includegraphics[scale=1.0]{bilder/L_50l.pdf}
+	\caption{Darstellung der Induktivität $L$ in Abhängigkeit der Frequenz $\nu$
+	für das lange \CU-Kabel.}
+	\label{fig:L_50l}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{bilder/L_75k.pdf}
+	\caption{Darstellung der Induktivität $L$ in Abhängigkeit der Frequenz $\nu$
+	für das \BU-Kabel.}
+	\label{fig:L_75k}
+	\includegraphics[scale=1.0]{bilder/G_50k.pdf}
+	\caption{Darstellung des Leitwerts $G$ in Abhängigkeit der Frequenz $\nu$
+	für das kurze \CU-Kabel.}
+	\label{fig:G_50k}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{bilder/G_50l.pdf}
+	\caption{Darstellung des Leitwerts $G$ in Abhängigkeit der Frequenz $\nu$
+	für das lange \CU-Kabel.}
+	\label{fig:G_50l}
+	\includegraphics[scale=1.0]{bilder/G_75k.pdf}
+	\caption{Darstellung des Leitwerts $G$ in Abhängigkeit der Frequenz $\nu$
+	für das \BU-Kabel.}
+	\label{fig:G_75k}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Dämpfungskonstante                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\subsection{Dämpfungskonstante}
+\label{sub:d_mpfungskonstante}
+
+Es soll die Frequenzabhängigkeit der Dämpfungskonstante des langen
+\CU-Kabels bestimmt werden. %TODO
+Dazu wird ein Signal auf das kurze \CU-Kabel gegeben und die Dämpfung $L_0$
+der ersten Oberwelle bestimmt.
+Anschließend wird das Signal auf das zu analysierende lange
+\CU-Kabel gegeben und ebenfalls wieder die Dämpfung $L_1$ der ersten Oberwelle
+bestimmt.
+Die Dämpfung wird dabei in \si{dBm} gemessen. Der Pegel ist damit durch
+\begin{equation}
+	L = 10 \log(\frac{P}{1\si{\milli\watt}})
+\end{equation}
+gegeben. Daher kann die Dämpfung in \si{\dB} des \CU-Kabel durch
+\begin{equation}
+	A = L_1 - L_0
+\end{equation}
+bestimmt werden. In Tabelle \ref{tab:Attenuation} sind die gemessenen Pegel und
+die berechnete Dämpfung angegeben. Die berechneten Werte sind in
+\ref{fig:bilder/alpha} graphisch dargestellt.
+
+\begin{table}[hb]
+  \centering
+  \begin{tabular}{ccc|c}
+    \midrule
+    \midrule
+    $\nu / \si{\kHz}$ & $L_0 / \si{dBm}$ & $L_1 / \si{dBm}$ &
+    $A / \si{\dB}$ \\
+    \midrule
+    \input{tabellen/alpha.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Gemessene Werte der Dämpfung des kurzen \CU-Kabels $A_0$ und
+  des langen \CU-Kabels im Bezug zu \SI{1}{\milli\watt}
+  sowie die berechnete Dämpfung A des \CU-Kabels.}
+  \label{tab:Attenuation}
+\end{table}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=1.0]{bilder/alpha.pdf}
+	\caption{Darstellung der berechneten Dämpfungen des langen \CU-Kabels.}
+\label{fig:bilder/alpha}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 Spannungsverlauf offen kurzgeschlossen                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\subsection{Spannungsverlauf bei offenen und kurzgeschlossenem Ende}
+\label{sub:spannungsverlauf_bei_offenen_und_kurzgeschlossenem_ende}
+
+% ==================================================
+% 	Kabellänge aus Laufzeitmessung
+% ==================================================
+
+\subsubsection{Bestimmung der Kabellänge durch Laufzeitmessung}
+\label{ssub:bestimmung_der_kabell_nge_durch_laufzeitmessung}
+
+Hier wird die Länge der drei Kabel durch Betrachtung der Spannungsverläufe am
+Anfang des Kabels bei offenen und kurzgeschlossenem Ende bestimmt. Hieran
+lassen sich die Zeiten $t_1$, den Beginn des einlaufenden Impulses, und $t_2$,
+den Beginn des reflektierten Impulses, ablesen. Die Länge der Kabel lassen sich
+schließlich mit%
+\begin{equation}
+  l = \frac{v \Delta t}{2}, \qquad \Delta t = t_2 - t_1, \quad \text{und} \quad
+  v = \frac{1}{\sqrt{LC}} = \frac{\text{c}}{\sqrt{\epsilon_r}}
+  \label{eq:laenge}
+\end{equation}
+bestimmen, wobei $v$ die Ausbreitungsgeschwindigkeit,
+$\text{c}$ die Lichtgeschwindigkeit und $\epsilon_r = 2.25$
+die Dielektrizitätskonstante des Dielektrikums ist.
+Die aufgenommenen Oszillosgraphenbilder sind in de
+Abbildungen~\ref{fig:oszi_50k_offen} bis~\ref{fig:oszi_50l_kurz} dargestellt.
+Im Anhang sind diese Bilder mit abgelesenen Zeiten zu finden.
+Als Fehler der Zeiten wird die Ablesegenauigkeit in den Bildern
+genommen. Die Werte befinden sich in Tabelle~\ref{tab:Zeiten}.
+Die hiermit und mit der Gleichungen~\eqref{eq:laenge} berechneten Längen
+befinden sich in Tabelle~\ref{tab:Laengen}.
+
+\begin{table}[hb]
+  \centering
+  \begin{tabular}{lcccc}
+    \midrule
+    \midrule
+    & \multicolumn{2}{c}{offenes Ende} &
+    \multicolumn{2}{c}{kurzgeschlossenes Ende} \\
+    \cmidrule(lr{0.75em}){2-5}
+    % \cline{2-5}
+    & $t_1 / \si{\nano\second}$ & $t_2 / \si{\nano\second}$    &
+    $t_1 / \si{\nano\second}$ & $t_2 / \si{\nano\second}$ \\
+    \midrule
+    \input{tabellen/zeiten.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der abgelesenen Zeiten $t_1$ und $t_2$ der
+  jeweiligen Kabel.}
+  \vspace{2em}
+  \label{tab:Zeiten}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lcc}
+    \midrule
+    \midrule
+    & \multicolumn{2}{c}{$l / \si{\meter}$} \\
+    \cmidrule(lr{0.75em}){2-3}
+    & offenes Ende & kurzgeschlossenes Ende \\
+    \midrule
+    \input{tabellen/laengen.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der berechneten Längen $l$ der jeweiligen Kabel mit
+    offenem und kurzgeschlossenem Ende.}
+  \label{tab:Laengen}
+\end{table}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{bilder/reflexion/F0000TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \CU-Kabels mit
+  offenem Ende.}
+  \label{fig:oszi_50k_offen}
+  \vspace{2em}
+  \includegraphics[scale=0.5]{bilder/reflexion/F0001TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \CU-Kabels mit
+  kurzgeschlossenem Ende.}
+  \label{fig:oszi_50k_kurz}
+\end{figure}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{bilder/reflexion/F0002TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \BU-Kabels mit
+  offenem Ende.}
+  \label{fig:oszi_75k_offen}
+  \vspace{2em}
+  \includegraphics[scale=0.5]{bilder/reflexion/F0003TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \BU-Kabels mit
+  kurzgeschlossenem Ende.}
+  \label{fig:oszi_75k_kurz}
+\end{figure}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{bilder/reflexion/F0004TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des langen \CU-Kabels mit
+  offenem Ende.}
+  \label{fig:oszi_50l_offen}
+  \vspace{2em}
+  \includegraphics[scale=0.5]{bilder/reflexion/F0005TEK.JPG}
+  \caption{Mit dem Oszilloskop aufgenommenes Bild des langen \CU-Kabels mit
+  kurzgeschlossenem Ende.}
+  \label{fig:oszi_50l_kurz}
+\end{figure}
+
+% ==================================================
+% 	Leitungskonstanten
+% ==================================================
+
+\clearpage
+\subsubsection{Bestimmung der Leitungskonstanten}
+\label{ssub:bestimmung_der_leitungskonstanten}
+
+In diesem und den folgenden Unterkapiteln werden Daten aus den
+Abbildungen~\ref{fig:oszi_50l_offen} und~\ref{fig:oszi_50l_kurz} über den
+ganzen $t$-Bereich oder nur bestimmte Teilbereiche mit Hilfe des Programms
+\texttt{Engauge} digitalisiert, um eine bessere Auswertung der Daten zu
+ermöglichen. Des weiteren ist die Bestimmung der Leitungskonstante nur bei
+dem langen \CU-Kabel möglich, da nur hier der kapazitive und induktive Verlauf
+der Spannung zu sehen ist. Im Folgenden werden daher nun die Leitungskonstanten
+des langen \CU-Kabels bestimmt.
+
+\paragraph{Der Widerstandsbelag}
+\label{par:der_widerstandsbelag}
+
+Hier wird das Oszillosgraphenbild~\ref{fig:oszi_50l_kurz} digitalisiert.
+Die erhaltenen Daten befinden sich in Tabelle~\ref{tab:R_Daten} und werden
+in Abbildung~\ref{fig:R_Daten} graphisch dargestellt.
+Mit Hilfe der Beziehung
+\begin{equation}
+  U_1 (1 + \Gamma) = U_0 \quad \Rightarrow \quad \Gamma = \frac{U_0}{U_1} - 1
+  \label{eq:Gamma_R}
+\end{equation}
+kann der Reflektionsfaktor $\Gamma$ bestimmt werden. Einsetzen des Ergebnisses
+in
+\begin{equation}
+  \Gamma = \frac{R-Z_0}{R+Z_0} \quad \Rightarrow \quad
+  R = - \frac{Z_0(\Gamma + 1)}{\Gamma - 1}
+  \label{eq:R}
+\end{equation}
+liefert schließlich den gewünschten Widerstandsbelag $R$.
+Hierbei gilt für den Wellenwiderstand $Z_0 = \SI{50}{\ohm}$.
+Es gilt also $U_0$ und $U_1$ zu bestimmen, wobei $U_0$ die Höhe des Pulses aus
+Abbildung~\ref{fig:R_Daten} ist und $U_1$ die Höhe der Spannung nach Abfall des
+Pulses. Um die Spannungen $U_1$ und $U_0$ bestimmen zu können, muss zudem eine
+Offsetspannung $U_\text{off}$ ermittelt werden.
+Die eben genannten Spannungen werden entsprechend
+\begin{align}
+  \begin{aligned}
+    U_\text{off} &= \overline{U(t)}\,, \\
+    U_1          &= \overline{U(t)}\,, \\
+    U_0          &= \overline{U(t)}\,,
+  \end{aligned}
+  \qquad
+  \begin{aligned}
+    &t~< \SI{500}{\nano\second} \\
+    \SI{750}{\nano\second}  <~&t~< \SI{1360}{\nano\second} \\
+    \SI{2000}{\nano\second} <~&t~< \SI{2250}{\nano\second}
+  \end{aligned}
+\end{align}
+bestimmt, wobei $U(t)$ und $t$ aus Tabelle~\ref{tab:R_Daten} bzw.
+Abbildung~\ref{fig:R_Daten} entnommen werden.
+Die so berechneten Werte lauten
+\begin{align}
+  U_\text{off} &= \input{gleichungen/teil_d/U_R_off.tex} \\
+  U_0 &= \input{gleichungen/teil_d/U0_R.tex} \\
+  U_1 &= \input{gleichungen/teil_d/U1_R.tex}~.
+\end{align}
+Damit berechnet sich der Widerstandsbelag nach Gleichung~\eqref{eq:Gamma_R} und
+\eqref{eq:R} zu
+\begin{equation}
+  \underline{R = \input{gleichungen/teil_d/R.tex}}~.
+\end{equation}
+
+% Tabellen und Bilder
+\begin{table}[hb]
+  \centering
+  \begin{tabular}{cc|cc|cc}
+    \midrule
+    \midrule
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ \\
+    \midrule
+    \input{tabellen/R.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Datstellung der digitalisierten Daten des
+    Oszillosgraphenbild~\ref{fig:oszi_50l_kurz}.}
+  \label{tab:R_Daten}
+\end{table}
+\begin{figure}[hb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/R.pdf}
+  \caption{Graphische Darstellung der digitalisierten Daten des
+    Oszillosgraphenbild~\ref{fig:oszi_50l_kurz}.}
+\label{fig:R_Daten}
+\end{figure}
+
+\clearpage
+\paragraph{Der induktive Belag}
+\label{par:der_induktive_belag}
+
+Ein kurzgeschlossenes Koaxialkabel zeigt ein rein induktives Verhalten, daher
+wird zur Bestimmung des induktiven Belags ebenfalls das
+Oszillosgraphenbild~\ref{fig:oszi_50l_kurz} mit den entsprechend
+digitalisierten Daten aus Tabelle~\ref{tab:R_Daten} verwandt.
+Jedoch werden diese Daten auf den für den Induktivitätsbelag relevanten Teil
+eingeschränkt, sodass nur die Werte $U(t)$ aus
+\begin{equation}
+  \SI{1430}{\nano\second} <~t~< \SI{2250}{\nano\second}
+\end{equation}
+betrachtet werden. Diese Werte sind in Abbildung~\ref{fig:induktivitaetsbelag}
+graphisch dargestellt.
+Die Abfallende Flanke des Pulses entspricht nun einem Ausschaltvorgang
+einer Spule entsprechend
+\begin{equation}
+  U(t) = U_0 \exp(-\frac{t}{\tau}) + U_\text{off} \quad \text{mit} \quad
+  \tau = \frac{L}{R+Z_0}~,
+  \label{eq:L_abschalt}
+\end{equation}
+wobei $R$ den oben bestimmten Widerstandsbelag und $U_\text{off}$ die
+Offsetspannung zu \SI{0}{\volt} darstellt. Durch Umstellen und Logarithmierung
+der Gleichung \eqref{eq:L_abschalt} ergibt sich eine Geradengleichung der Form
+\begin{equation}
+  \ln(U - U_\text{off}) = -\frac{t}{\tau} + \ln U_0 \coloneqq
+  m \cdot t + \ln U_0 \quad \text{mit} \quad m = - \frac{1}{\tau}
+\end{equation}
+womit schließlich eine lineare Regression durchgeführt und aus der
+Steigung der Induktivitätsbelag bestimmt werden kann.
+Die Offsetspannung wird entsprechend%
+\begin{equation}
+  U_\text{off} = \overline{U(t)}\,,
+  \quad \SI{2100}{\nano\second} <~t~< \SI{2250}{\nano\second}
+\end{equation}
+zu%
+\begin{equation}
+  U_\text{off} = \input{gleichungen/teil_d/U_L_off.tex}
+\end{equation}
+bestimmt.
+In Abbildung~\ref{fig:induktivitaetsbelag_fit} sind nun die Daten
+${\ln(U - U_\text{off})}$ sowie die dazugehörige lineare Regression eingetragen.
+Die entsprechenden Daten befinden sich in Tabelle~\ref{tab:L_Daten}.
+Der Fit ergibt dabei die Gleichung
+\begin{equation}
+  \sisetup{per-mode=reciprocal-positive-first}
+  \input{gleichungen/teil_d/L_fit.tex}~.
+  \label{eq:L_fit}
+\end{equation}
+Aus der Steigung von~\ref{eq:L_fit} wird nun mit Gleichung~\eqref{eq:L_abschalt} der
+Induktivitätsbelag zu
+\begin{equation}
+  \underline{L = \input{gleichungen/teil_d/L.tex}}
+  \label{eq:indukivitaetsbelag}
+\end{equation}
+bestimmt.
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cccc}
+    \midrule
+    \midrule
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $U - U_\text{off} / \si{\milli\volt}$ & $\ln(U - U_\text{off})$ \\
+    \midrule
+    \input{tabellen/L.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der für den Induktivitätsbelag relevanten Daten sowie
+  die berechneten Werte für den Fit.}
+  \label{tab:L_Daten}
+\end{table}
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/L.pdf}
+  \caption{Darstellung der für die zur Bestimmung des Induktivitätsbelags
+    relevanten digitalisierten Daten von Abbildung~\ref{fig:oszi_50l_kurz}.}
+  \label{fig:induktivitaetsbelag}
+  \includegraphics[scale=1.0]{bilder/L_fit.pdf}
+  \caption{Darstellung der für die zur Bestimmung des Induktivitätsbelags
+    relevanten digitalisierten Daten von Abbildung~\ref{fig:oszi_50l_kurz}.}
+  \label{fig:induktivitaetsbelag_fit}
+\end{figure}
+
+\clearpage
+\paragraph{Der Kapazitätsbelag}
+\label{par:der_kapazit_tsbelag}
+
+Entgegen dem Induktivitätsbelag zeigt ein Koaxialkabel mit offenem Ende ein
+rein kapazitives Verhalten. Somit wird zur Bestimmung des Kapazitätsbelags das
+Oszillosgraphenbild~\ref{fig:oszi_50l_offen} verwandt. Die entsprechenden
+digitalisierten Daten sind in Tabelle~\ref{tab:C_roh_Daten} und
+Abbildung~\ref{fig:C_roh_Daten} dargestellt.
+Die Einschränkung der relevanten Daten bezieht sich hier auf $U(t)$ aus
+\begin{equation}
+  \quad \SI{1370}{\nano\second} <~t~< \SI{1650}{\nano\second}~.
+\end{equation}
+Den zu betrachtenden Verlauf entspricht hier einer Aufladekurve eines
+Kondensators gemäß
+\begin{equation}
+  U = U_0\qty(1 - \exp(-\frac{t}{\tau})) \quad \text{mit} \quad
+  \tau = RC~,
+  \label{eq:Aufladekurve_C}
+\end{equation}
+wobei $R$ wiederum der obiger Widerstandsbelag ist. Diese Gleichung kann wieder
+linearisiert werden zu
+\begin{equation}
+  \ln(U_0 - U) = - \frac{t}{\tau} + \ln(U_0)~,
+\end{equation}
+woraus aus der Steigung der Kapazitätsbelag bestimmt werden kann.
+Die Sättigungsspannung $U_0$ wird dabei entsprechend
+\begin{equation}
+  U_0 = \overline{U(t)}\,,
+  \quad \SI{2000}{\nano\second} <~t
+\end{equation}
+zu
+\begin{equation}
+  U_0 = \input{gleichungen/teil_d/U0.tex}
+\end{equation}
+bestimmt. Die für den Fit relevanten Daten sind in Tabelle~\ref{tab:C_fit}
+dargestellt. Der Fit befindet sich in Abbildung~\ref{fig:C_fit}.
+Die aus dem Fit erhaltene Gleichung lautet
+\begin{equation}
+  \sisetup{per-mode=reciprocal-positive-first}
+  \input{gleichungen/teil_d/C_fit.tex}~.
+  \label{eq:C_fit}
+\end{equation}
+Aus der Steigung kann nun der Kapazitätsbelag mit Hilfe von
+Gleichung~\eqref{eq:Aufladekurve_C} zu
+\begin{equation}
+  \underline{C = \input{gleichungen/teil_d/C.tex}}
+\end{equation}
+bestimmt werden.
+
+% Tabellen und Plots
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc}
+    \midrule
+    \midrule
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ \\
+    \midrule
+    \input{tabellen/C_roh.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der digitalisierten Daten aus dem
+    Oszillosgraphenbild~\ref{fig:oszi_50l_offen}.}
+\label{tab:C_roh_Daten}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cccc}
+    \midrule
+    \midrule
+    $t / \si{\nano\second}$ & $U / \si{\milli\volt}$ &
+    $U_0 - U / \si{\milli\volt}$ & $\ln(U_0 - U) / \si{\milli\volt}$ \\
+    \midrule
+    \input{tabellen/C_fit.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der für den Fit relevanten Daten.}
+\label{tab:C_fit}
+\end{table}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/C.pdf}
+  \caption{Graphische Darstellung der digitalisierten Daten des langen
+    \CU-Kabels mit offenem Ende.}
+\label{fig:C_roh_Daten}
+  \includegraphics[scale=1.0]{bilder/C_fit.pdf}
+  \caption{Graphische Darstellung der digitalisierten Daten des langen
+    \CU-Kabels mit offenem Ende.}
+\label{fig:C_fit}
+\end{figure}
+
+% ==================================================
+% 	Schmitt-Diagramm
+% ==================================================
+
+\clearpage
+\subsubsection{Bestimmung der Kabellänge über ein Schmitt-Diagramm}
+\label{ssub:bestimmung_der_kabell_nge_ber_ein_schmitt_diagramm}
+
+Nun soll die Länge des langen \BU-Kabels (die Leitungskonstanten der anderen
+Kabel konnten wie oben beschrieben nicht bestimmt werden) mit Hilfe eines
+Schmitt-Diagramms bestimmt werden. Die vollständige Umdrehung der
+Schmitt-Diagramms entspricht einer halben Wellenlänge $\lambda$, sodass die
+Länge des Kabels durch
+\begin{equation}
+  l = \frac{\lambda}{2} \cdot \frac{\varphi}{2 \pi}
+\end{equation}
+angegeben werden kann, wobei $\phi$ die Phasenverschiebung nach der Reflexion
+am Kabelende beschreibt. Die Wellenlänge lässt sich zudem durch
+\begin{equation}
+  \lambda = \frac{c}{f \sqrt{\epsilon_r}}
+\end{equation}
+ausdrücken.
+Das heißt, gesucht ist zunächst die Phasenverschiebung $\varphi$.
+Dazu wird nun der kurzgeschlossene Fall betrachtet.
+Die Impedanz des Kabels beträgt hier
+\begin{equation}
+  Z_L = R + \text{i}\, 2 \pi f L~,
+\end{equation}
+wobei $R$ und $L$ die oben bestimmten Widerstands- bzw. Induktivitätsbeläge
+sind. Somit ergibt sich die Impedanz zu
+\begin{equation}
+  Z_L = \input{gleichungen/teil_d/Z_L_L.tex}~.
+\end{equation}
+Die Phasenverschiebung $\varphi$ kann nun beschrieben werden als Winkel
+zwischen den Reflexionsfaktoren
+\begin{equation}
+  \Gamma_{L,R} = \frac{Z - Z_0}{Z + Z_0}\,, \quad Z = R, Z_L
+  % \input{gleichungen/teil_d/G_L_L.tex}
+\end{equation}
+

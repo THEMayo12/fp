@@ -4,10 +4,8 @@
 # 	import modules
 # ==================================================
 
-# import sys
-
-# append paths
-# sys.path.append("/home/mario12/dokumente/physik/module/fp/python/")
+import sys
+import os
 
 import evaluation as ev
 import evaluation.simpleplot as sp
@@ -34,6 +32,8 @@ import scipy.constants as const
 # 	settings
 # ==================================================
 
+# change path to script directory
+os.chdir(sys.path[0])
 
 sp.params["text.latex.preamble"] = sp.tex_fouriernc_preamble
 plt.rcParams.update(sp.params)
