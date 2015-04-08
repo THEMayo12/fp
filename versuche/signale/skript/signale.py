@@ -7,6 +7,8 @@
 import os
 import sys
 
+import inspect
+
 import evaluation as ev
 import evaluation.simpleplot as sp
 import latextable as lt
@@ -46,11 +48,21 @@ ev.use_unitpkg("siunitx")
 # ==================================================
 
 
-def show(x):
-    assert isinstance(x, str)
-    print x + " = "
-    print eval(x)
-    print "\n"
+def show(var):
+    callers_local_vars = inspect.currentframe().f_back.f_locals.items()
+    var_name = [
+        var_name for var_name,
+        var_val in callers_local_vars if var_val is var
+    ]
+    var_format = " VARIABLE: {} ".format(var_name[0])
+    print "{:=^50}".format(var_format)
+
+    if isinstance(var, (int, float, uc.UFloat)):
+        print "{} = {}".format(var_name[0], var)
+    else:
+        print var
+
+    print ""  # newline
 
 
 def print_tex(s):
@@ -214,21 +226,21 @@ def teil_a():
     lt.latextable(
         [f_50k, C_50k, R_50k, L_50k, G_50k],
         "../tex/tabellen/Leitungskonstanten_50k.tex",
-        form=[".1f", ".2f", ".4f", ".2f", ".3f"],
+        form=[".1f", ".2f", ".4f", ".2f", ".1f"],
         alignment="CCCCC"
     )
 
     lt.latextable(
         [f_50l, C_50l, R_50l, L_50l, G_50l],
         "../tex/tabellen/Leitungskonstanten_50l.tex",
-        form=[".1f", ".4f", ".4f", ".1f", ".3f"],
+        form=[".1f", ".4f", ".4f", ".1f", ".1f"],
         alignment="CCCCC"
     )
 
     lt.latextable(
         [f_75k, C_75k, R_75k, L_75k, G_75k],
         "../tex/tabellen/Leitungskonstanten_75k.tex",
-        form=[".2f", ".4f", ".4f", ".1f", ".3f"],
+        form=[".2f", ".4f", ".4f", ".1f", ".1f"],
         alignment="CCCCC"
     )
 
@@ -242,9 +254,9 @@ def teil_a():
         "L_50k": [L_50k, r'$L / \si{\micro\henry}$'],
         "L_50l": [L_50l, r'$L / \si{\micro\henry}$'],
         "L_75k": [L_75k, r'$L / \si{\micro\henry}$'],
-        "S_50k": [G_50k, r'$G / \si{\milli\siemens}$'],
-        "S_50l": [G_50l, r'$G / \si{\siemens}$'],
-        "S_75k": [G_75k, r'$G / \si{\milli\siemens}$'],
+        "G_50k": [G_50k, r'$G / \si{\milli\siemens}$'],
+        "G_50l": [G_50l, r'$G / \si{\siemens}$'],
+        "G_75k": [G_75k, r'$G / \si{\milli\siemens}$'],
     }
 
     for key in plot_dict:
@@ -260,7 +272,7 @@ def teil_a():
             label='Messwerte'
         )
 
-        ax1.set_xlabel(r'$\omega / \si{\kHz}$')
+        ax1.set_xlabel(r'$\nu / \si{\kHz}$')
         ax1.set_ylabel(plot_dict[key][1])
 
         ax1.legend(loc='best')
@@ -288,6 +300,13 @@ def teil_b():
     # Berechne Dämpfung, A0 = -10*log(U0/1mW) <-- dBm! ...
     alpha = A - A0
 
+    lt.latextable(
+        [f_D, A0, A, alpha],
+        "../tex/tabellen/alpha.tex",
+        form=["g", ".1f", ".1f", ".1f"],
+        alignment="CCCC"
+    )
+
     fig_alpha = plt.figure()
     ax1 = fig_alpha.add_subplot(111)
 
@@ -300,8 +319,8 @@ def teil_b():
         label='Messwerte'
     )
 
-    ax1.set_xlabel(r'$\omega / \si{\MHz}$')
-    ax1.set_ylabel(r'$\alpha / \si{dBm}$')
+    ax1.set_xlabel(r'$\nu / \si{\MHz}$')
+    ax1.set_ylabel(r'$\alpha / \si{dB}$')
 
     ax1.legend(loc='best')
     ax1 = ev.plot_layout(ax1)
@@ -322,23 +341,26 @@ def teil_c():
     epslison_r = 2.25
     v = const.c / np.sqrt(epslison_r)
 
-    def laenge(v, t1, t2, scale=1e-9):
+    def laenge(v, t1, t2, unit=True, scale=1e-9):
         l = 0.5*v*(t2 - t1)*scale
         print l
 
-        return ev.tex_eq(
-            l,
-            form="({:L})",
-            unit="\meter"
-        )
+        if unit:
+            return ev.tex_eq(
+                l,
+                form="({:L})",
+                unit="\meter"
+            )
+        else:
+            return l
 
     # ===== 50, kurz ===================================
 
     # Alles in ns
-    t_50k_offen_1 = uc.ufloat(105.0, 5.0)
-    t_50k_offen_2 = uc.ufloat(308.0, 5.0)
-    t_50k_kurz_1 = uc.ufloat(104.0, 5.0)
-    t_50k_kurz_2 = uc.ufloat(306.0, 5.0)
+    t_50k_offen_1 = uc.ufloat(104.0, 5.0)
+    t_50k_offen_2 = uc.ufloat(307.0, 5.0)
+    t_50k_kurz_1 = uc.ufloat(105.0, 5.0)
+    t_50k_kurz_2 = uc.ufloat(307.0, 5.0)
 
     ev.write(
         "../tex/gleichungen/teil_c/laenge_50k_offen.tex",
@@ -353,10 +375,10 @@ def teil_c():
     # ===== 75, kurz ===================================
 
     # Alles in ns
-    t_75k_offen_1 = uc.ufloat(104.0, 5.0)
-    t_75k_offen_2 = uc.ufloat(307.0, 5.0)
-    t_75k_kurz_1 = uc.ufloat(105.0, 5.0)
-    t_75k_kurz_2 = uc.ufloat(307.0, 5.0)
+    t_75k_offen_1 = uc.ufloat(105.0, 5.0)
+    t_75k_offen_2 = uc.ufloat(308.0, 5.0)
+    t_75k_kurz_1 = uc.ufloat(104.0, 5.0)
+    t_75k_kurz_2 = uc.ufloat(306.0, 5.0)
 
     ev.write(
         "../tex/gleichungen/teil_c/laenge_75k_offen.tex",
@@ -388,22 +410,66 @@ def teil_c():
 
     # ===== Alles in einer Tabelle =====================
 
+    # Tabelle Zeiten
+    col_1 = [t_50k_offen_1, t_75k_offen_1, t_50l_offen_1]
+    col_2 = [t_50k_offen_2, t_75k_offen_2, t_50l_offen_2]
+    col_3 = [t_50k_kurz_1, t_75k_kurz_1, t_50l_kurz_1]
+    col_4 = [t_50k_kurz_2, t_75k_kurz_2, t_50l_kurz_2]
+
     table = [
             [
-                "$\SI{50}{\ohm}$, kurz",
-                "$\SI{75}{\ohm}$, kurz",
-                "$\SI{50}{\ohm}$, lang"
+                r"\CU, kurz",
+                r"\BU",
+                r"\CU, lang",
             ],
-            [t_50k_offen_1, t_75k_offen_1, t_50l_offen_1],
-            [t_50k_offen_2, t_75k_offen_2, t_50l_offen_2],
-            [t_50k_kurz_1, t_75k_kurz_1, t_50l_kurz_1],
-            [t_50k_kurz_2, t_75k_kurz_2, t_50l_kurz_2],
+                col_1,
+                col_2,
+                col_3,
+                col_4
+            ]
+
+    lt.latextable(
+        table,
+        "../tex/tabellen/zeiten.tex",
+        form=[
+            "",
+            "0.3gL",
+            ["0.3gL", "0.3gL", "0.4gL"],
+            "0.3gL",
+            ["0.3gL", "0.3gL", "0.4gL"],
+        ],
+    )
+
+    # Tabelle Längen
+    col_1 = [
+        laenge(v, t_50k_offen_1, t_50k_offen_2, False),
+        laenge(v, t_50l_offen_1, t_50l_offen_2, False),
+        laenge(v, t_75k_offen_1, t_75k_offen_2, False)
+    ]
+    col_2 = [
+        laenge(v, t_50k_kurz_1, t_50k_kurz_2, False),
+        laenge(v, t_50l_kurz_1, t_50l_kurz_2, False),
+        laenge(v, t_75k_kurz_1, t_75k_kurz_2, False)
+    ]
+
+    table = [
+            [
+                r"\CU, kurz",
+                r"\BU",
+                r"\CU, lang",
+            ],
+                col_1,
+                col_2
             ]
 
     lt.latextable(
         table,
         "../tex/tabellen/laengen.tex",
-        form=["", "0.4gL", "0.4gL", "0.4gL", "0.4gL"],
+        form=[
+            "",
+            "0.3gL",
+            "0.3gL"
+        ],
     )
 
     pass
@@ -423,27 +489,44 @@ def teil_d():
     # ===== R bestimmen ================================
 
     t_R, U_R = np.loadtxt(
-        "../messwerte/kurz_R.csv",
+        "../messwerte/kurz.csv",
         unpack=True,
         delimiter=","
     )
 
     # Werte selektieren
     U_R_off_values = U_R[t_R < 500]
-    U1_R_values = U_R[(t_R > 550) & (t_R < 1360)]
-    U0_R_values = U_R[t_R > 2000]
+    U1_R_values = U_R[(t_R > 750) & (t_R < 1360)]
+    U0_R_values = U_R[(t_R > 2000) & (t_R < 2250)]
 
     # Uncertainties
     U_R_off = ev.get_uncert(U_R_off_values)
     U1_R = ev.get_uncert(U1_R_values)
     U0_R = ev.get_uncert(U0_R_values)
 
+    # Werte speichern
+    ev.write(
+        "../tex/gleichungen/teil_d/U_R_off.tex",
+        ev.tex_eq(U_R_off, unit=r"\milli\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_d/U1_R.tex",
+        ev.tex_eq(U1_R, unit=r"\milli\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_d/U0_R.tex",
+        ev.tex_eq(U0_R, unit=r"\milli\volt")  # , form="({:L})")
+    )
+
     # R bestimmen
     G = U0_R / U1_R - 1.0
     R = - Z0*(G + 1.0)/(G - 1.0)
-    R_tex = ev.tex_eq(R, unit=r"\ohm", form="{:L}")
+    R_tex = ev.tex_eq(R, unit=r"\ohm", form="({:L})")
 
     ev.write("../tex/gleichungen/teil_d/R.tex", R_tex)
+
+    # Daten in Tabelle
+    # lt.latextable([t_R, U_R], "../tex/tabellen/R.tex", alignment="CC", split=3)
 
     # Plot
     fig_R = plt.figure()
@@ -471,14 +554,36 @@ def teil_d():
     # ===== L bestimmen ================================
 
     t_L_roh, U_L_roh = np.loadtxt(
-        "../messwerte/kurz_L.csv",
+        "../messwerte/kurz.csv",
         unpack=True,
         delimiter=","
     )
 
     # Werte selektieren
-    t_L = t_L_roh[t_L_roh > 1430]
-    U_L = U_L_roh[t_L_roh > 1430]
+    t_L = t_L_roh[(t_L_roh > 1430) & (t_L_roh < 2250)]
+    U_L = U_L_roh[(t_L_roh > 1430) & (t_L_roh < 2250)]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    # Daten plotten
+    ax.plot(
+        t_L,
+        U_L,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$U / \si{\milli\volt}$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/L.pdf")
 
     # Fit-Funktion
     def Geradenfkt(x, m, b):
@@ -505,7 +610,13 @@ def teil_d():
 
     ev.write(
         "../tex/gleichungen/teil_d/L_fit.tex",
-        ev.tex_linreg("G_L(t)", val_L, std_L, unit=[r"\per\nano\second", ""])
+        ev.tex_linreg(
+            "G_L(t)",
+            val_L,
+            std_L,
+            unit=[r"\per\nano\second", ""],
+            # form=["({:L})", "({:L})"]
+        )
     )
 
     # L bestimmen
@@ -513,7 +624,7 @@ def teil_d():
     # L = - (Z0 - R) / uc.ufloat(val_L[0], std_L[0])  # L in nH
     L = - Z0 / uc.ufloat(val_L[0], std_L[0])  # L in nH
     L = L*1e-3  # L in muH
-    L_tex = ev.tex_eq(L, unit=r"\mu\henry")
+    L_tex = ev.tex_eq(L, unit=r"\micro\henry")
 
     ev.write("../tex/gleichungen/teil_d/L.tex", L_tex)
 
@@ -535,7 +646,7 @@ def teil_d():
     ax1.plot(x, Geradenfkt(x, val_L[0], val_L[1]), color='k', label="Fit")
 
     ax1.set_xlabel(r'$t / \si{\nano\second}$')
-    ax1.set_ylabel(r'$\ln(U)$')
+    ax1.set_ylabel(r'$\ln(U - U_\text{off})$')
 
     ax1.legend(loc='best')
     ax1 = ev.plot_layout(ax1)
@@ -543,10 +654,23 @@ def teil_d():
     fig_L.tight_layout()
     fig_L.savefig("../tex/bilder/L_fit.pdf")
 
+    # Daten für Plot in Tabelle schreiben
+    lt.latextable(
+        [
+            t_L,
+            U_L,
+            U_L - U_L_off,
+            np.log(U_L - U_L_off)
+        ],
+        "../tex/tabellen/L.tex",
+        alignment="CCCC",
+        form=[".0f", ".1f", "0.2f", "0.2f"]
+    )
+
     # ===== Kapazität ==================================
 
     t_C, U_C = np.loadtxt(
-        "../messwerte/offen_C.csv",
+        "../messwerte/offen.csv",
         unpack=True,
         delimiter=","
     )
@@ -564,6 +688,37 @@ def teil_d():
         U0_tex
     )
 
+    # Daten plotten
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t_C,
+        U_C,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$U / \si{\milli\second}$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/C.pdf")
+
+    # Tabelle der Rohdaten schreiben
+    lt.latextable(
+        [t_C, U_C],
+        "../tex/tabellen/C_roh.tex",
+        form=[".0f", ".3f"],
+        alignment="CC",
+        split=3
+    )
+
     # Fit vorbereiten
     U_C_fit_log = np.log(U0 - U_C_fit)
 
@@ -577,6 +732,14 @@ def teil_d():
     ev.write(
         "../tex/gleichungen/teil_d/C_fit.tex",
         ev.tex_linreg("G_C(t)", val_C, std_C, unit=[r"\per\nano\second", ""])
+    )
+
+    # Tabelle der Fitdaten
+    lt.latextable(
+        [t_C_fit, U_C_fit, U0 - U_C_fit, U_C_fit_log],
+        "../tex/tabellen/C_fit.tex",
+        form=[".0f", ".3f", ".3f", ".3f"],
+        alignment="CCCC"
     )
 
     # C berechnen
@@ -622,6 +785,7 @@ def teil_d():
     # ===== Länge ======================================
 
     f = 1000.0  # Hz
+    f = 117000.0  # Hz
 
     def laenge(f, phi, e_r):
         l = const.c / (f*np.sqrt(e_r))
@@ -756,7 +920,7 @@ def teil_e():
 # ==================================================
 
 
-teil_a()
+# teil_a()
 # teil_b()
 # teil_c()
 # teil_d()

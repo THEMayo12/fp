@@ -13,6 +13,13 @@
 import sys
 import os.path
 
+# import numpy
+try:
+    import numpy as np
+    __NUMPY = True
+except ImportError:
+    __NUMPY = False
+
 ###############################################################################
 
 
@@ -118,12 +125,14 @@ def format_col(col, form):
 
         for c in col:
             try:
-                formatted_col.append(format(c, form))
-            except ValueError, e:
+                # formatted_col.append(format(c, form))
                 if isinstance(c, str):
                     formatted_col.append(c)
                 else:
-                    raise Exception("Format specifier hast wrong form!")
+                    formatted_col.append(format(c, form))
+                    # formatted_col.append("${}$".format(format(c, form)))
+            except ValueError, e:
+                raise Exception("Format specifier hast wrong form!")
 
     elif isinstance(form, list):
         if len(col) != len(form):
@@ -135,15 +144,16 @@ def format_col(col, form):
             formatted_col = []
             for i, c in enumerate(col):
                 try:
-                    formatted_col.append(format(c, form[i]))
+                    if isinstance(c, str):
+                        formatted_col.append(c)
+                    else:
+                        formatted_col.append(format(c, form[i]))
+                        # formatted_col.append("${}$".format(format(c, form[i])))
                 except IndexError, e:
                     # here its a "real" index error
                     raise e
                 except ValueError, e:
-                    if isinstance(c, str):
-                        formatted_col.append(c)
-                    else:
-                        raise Exception("Format specifier hast wrong form!")
+                    raise Exception("Format specifier hast wrong form!")
     else:
         raise Exception("Keyword form has wrong type!")
 
@@ -151,7 +161,7 @@ def format_col(col, form):
 
 
 # ==================================================
-#       helper function to fing pre and post decimal
+#       helper function to find pre and post decimal
 #       digits
 # ==================================================
 
@@ -179,7 +189,12 @@ def get_digits(value):
 
     """
     try:
-        float(value)
+        check = float(value)
+
+        # check 'nan', if numpy is available
+        if __NUMPY:
+            if np.isnan(check) or np.isinf(check):
+                raise ValueError
     except ValueError, e:
         # None will be ignored of functions like max
         return (None, None), None
@@ -270,9 +285,18 @@ def align_value(value, max_digits, dot=True):
         val = value.replace("-", "--")
 
         if dot and not has_dot:
-            return "{a}{b}{c}{d}".format(a=pre, b=val, c="\phantom{.}", d=post)
+            return "{a}{b}{c}{d}".format(
+                a=pre,
+                b=val,
+                c="\phantom{.}",
+                d=post
+            )
         else:
-            return "{a}{b}{c}".format(a=pre, b=val, c=post)
+            return "{a}{b}{c}".format(
+                a=pre,
+                b=val,
+                c=post
+            )
 
 
 # ==================================================
