@@ -1,0 +1,119 @@
+
+% ==================================================
+%	Auswertung
+% ==================================================
+
+\section{Auswertung}
+
+In diesem Kapitel sollen die Messgrößen Schichtdicke, Dispersion und Rauigkeit
+der auf einem Silizium-Wafer befindlichen Polystyrolprobe aus der Messung des
+Diffraktometers bestimmt werden.
+Hierzu werden die Messdaten zunächst aufbereitet und anschließend wird ein Fit
+mit dem Parratt-Algorithmus durchgeführt.
+
+\subsection{Datenaufbereitung}
+\label{sub:datenaufbereitung}
+
+Die Datenaufbereitung gliedert sich in drei Schritte.
+
+\paragraph{Diffuser Scan}
+\label{par:diffuser_scan}
+
+Zusätzlich zu dem Reflektivitätsscan wird ein diffuser Scan, welcher den Anteil
+der gestreuten Intensität bestimmt, durchgeführt.
+Hierbei ist der Detektor um \SI{0.1}{\degree} gegenüber dem Einfallswinkel
+verschoben. Der so erhaltene Scan wird von dem Reflektivitätsscan abgezogen.
+In Abbildung~\ref{fig:data} sind der Reflektivitätsscan und der diffuse Scan
+dargestellt.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/data.pdf}
+  \caption{Gemessener Reflektivitätsscan zusammen mit dem diffusen Scan.}
+\label{fig:data}
+  \includegraphics[scale=1.0]{bilder/geometriefaktor.pdf}
+  \caption{Darstellung der Messdaten mit abgezogenen diffusen Scan einmal mit
+    und ohne Berücksichtigung des Geometriefaktors.}
+\label{fig:geometriefaktor}
+\end{figure}
+
+\paragraph{Geometriefaktor}
+\label{par:geometriefaktor}
+
+Unterhalb eines Grenzwinkels $\alpha_\text{g}$ deckt der Röntgenstrahl eine
+Fläche ab die Größer ist als die Fläche der Probe. Dies verringert die
+Intensität und muss mit einem Geometriefaktor $G$ berücksichtigt werden.
+Der Grenzwinkel wird dabei mit
+\begin{equation}
+  \alpha_\text{g} = \arcsin(\frac{d_0}{D})
+\end{equation}
+berechnet, wobei $d_0 = \SI{0.1}{\mm}$ die Strahlhöhe und
+$D = \SI{30}{\mm}$ die Ausdehnung der Probe ist. Damit ergibt sich
+ein Grenzwinkel von
+\begin{equation}
+  \alpha_\text{g} = \SI{0.190986}{\degree}~.
+\end{equation}
+Die Messwerte unterhalb des Grenzwinkels werden schließlich durch den
+Geometriefaktor
+\begin{equation}
+  G(\alpha) = \frac{D \sin\alpha}{d_0}
+\end{equation}
+dividiert. In Abbildung~\ref{fig:geometriefaktor} ist die Auswirkung der
+Berücksichtigung des Geometriefaktors dargestellt.
+Der Geometriefaktor führt dazu, dass im Winkelbereich der Totalreflexion
+eine nahezu flaches Plateau entsteht.
+
+% \begin{figure}[htpb]
+%   \centering
+%   \includegraphics[scale=1.0]{bilder/geometriefaktor.pdf}
+%   \caption{Darstellung der Messdaten mit abgezogenen diffusen Scan einmal mit
+%     und ohne Berücksichtigung des Geometriefaktors.}
+% \label{fig:geometriefaktor}
+% \end{figure}
+
+\paragraph{Normierung}
+\label{par:normierung}
+
+Um die Messdaten schließlich mit dem Parratt-Algorithmus zu vergleichen, müssen
+diese noch normiert werden.
+Im folgenden werden nur noch die Messwerte oberhalb von \SI{0.08}{\degree}
+verwandt. Um die Lage des 1-Niveaus zu bestimmen, werden die Daten im
+Intervall $\SI{0.082}{\degree} < \alpha < \SI{0.168}{\degree}$
+(dem Bereich des Plateaus) betrachtet und
+gemittelt. Die Daten werden nun durch den so erhaltenen Wert dividiert.
+
+\subsection{Fit der Parameter}
+\label{sub:fit_der_parameter}
+
+Für den Fit wird ein \texttt{Python}-Skript erstellt und mit Hilfe des Moduls
+\texttt{scipy.optimize} der Parratt-Algorithmus an die Daten gefittet.
+Hierbei werden die Parameter der Dispersion ($n_1$, $n_2$, $n_3$),
+der Rauigkeit ($\sigma_1$, $\sigma_2$) und die Schichtdicke $z_2$ variiert.
+Die Startwerte werden zu
+\begin{align*}
+  n_1      &= n_2 = n_3 = 1 \\
+  \sigma_1 &= 3 \times 10^{-10} \\
+  \sigma_2 &= 6 \times 10^{-10} \\
+  z_2      &= 209 \times 10^{-10}
+\end{align*}
+gewählt.
+Für den Fit werden die Werte im Intervall
+$\SI{1.0}{\degree} < \alpha < \SI{2.0}{\degree}$ verwandt.
+Das Ergebnis des Fits ist in Abbildung~\ref{fig:fit} dargestellt.
+Die Parameter ergeben sich zu
+\begin{align*}
+  n_1      &= 1 - \input{gleichungen/n1.tex} \\
+  n_2      &= 1 - \input{gleichungen/n2.tex} \\
+  n_3      &= 1 - \input{gleichungen/n3.tex} \\
+  \sigma_1 &= \input{gleichungen/sig1.tex} \\
+  \sigma_2 &= \input{gleichungen/sig2.tex} \\
+  z_2      &= \input{gleichungen/z2.tex}
+\end{align*}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/fit.pdf}
+  \caption{Darstellung der aufbereiteten Daten mit der daran gefitteten
+  Theoriekurve.}
+\label{fig:fit}
+\end{figure}
