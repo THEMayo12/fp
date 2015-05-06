@@ -12,9 +12,13 @@ Tabellen \ref{tab:1} und \ref{tab:2} zu sehen.
 \begin{table}[h]
 \centering
 \begin{tabular}{ccccc}
-Radius $r$/m & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/m \\
+\toprule
+\midrule
+ $r$/mm & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/$\AA$ \\
 \midrule
 \input{tabellen/tabelle1}
+\midrule
+\bottomrule
 \end{tabular}
 \caption{Messwerte und Vergleichswerte zur ersten Probe. Dabei ist $r$ der Radius 
 eines Ringes, $\vartheta$ der Beugungswinkel und $a$ die ermittelte Gitterkonstante.}
@@ -23,8 +27,13 @@ eines Ringes, $\vartheta$ der Beugungswinkel und $a$ die ermittelte Gitterkonsta
 \begin{table}[h]
 \centering
 \begin{tabular}{ccccc}
-Radius $r$/m & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/m \\
+\toprule
+\midrule
+$r$/mm & $\vartheta$ &$s_\text{exp}$& $s_\text{th}$& $a$/$\AA$ \\
+\midrule
 \input{tabellen/tabelle1}
+\midrule
+\bottomrule
 \end{tabular}
 \caption{Messwerte und Vergleichswerte zur zweiten Probe. Dabei ist $r$ der Radius 
 eines Ringes, $\vartheta$ der Beugungswinkel und $a$ die ermittelte Gitterkonstante.}
@@ -58,7 +67,9 @@ theoretische Betrachtung der Strukturfaktoren eines bcc-Gitters ergibt zum Beisp
 Reflexe bei $s^\text{th} \in \{ 2,4,8,10,16,20,22,... \}$, für ein Diamantgitter 
 ergeben sich lediglich Reflexe bei $s^\text{th}\in \{ 4,11,... \}$. Da dies sehr gut 
 zu den Beobachteten $s^\text{exp}$ passt, wird nun angenommen, dass es sich bei der 
-ersten Probe um eine bcc- und bei der zweiten Probe um eine Diamantstruktur handelt.
+ersten Probe um eine bcc- oder NaCl- und bei der zweiten Probe um eine 
+Diamantstruktur handelt. Wobei die NaCl-Struktur der bcc-Struktur für kleine 
+Millerindizes sehr ähnlich ist.
 \\
 Schließlich können die Gitterkonstanten über
 \begin{equation}
@@ -94,3 +105,14 @@ sowie
 \begin{equation}
 \input{gleichungen/gerade2}
 \end{equation}
+
+Als beste Werte für die Gitterkonstanten ergeben sich so
+\begin{align*}
+a_{\text{bcc}}&=(5.3 \pm 0.4)\, \AA \\
+a_\text{Diamant}&=(6.61 \pm 0 )\, \AA \quad ,
+\end{align*}
+wobei der Fehler von $a_2$ wegen der zu geringen Datenmenge in der Rechnung zwar 
+verschwindet, jedoch in der gleichen Größenordnung wie der Fehler von $a_1$ zu 
+erwarten ist.
+Eine NaCl-Struktur mit $a_\text{NaCl}=5.6 \, \AA$ weist NaCl auf, sodass wir 
+annehmen, dass es sich der ersten Probe um diesen Stoff handelt.
