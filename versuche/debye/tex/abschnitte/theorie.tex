@@ -4,3 +4,191 @@
 % ==================================================
 
 \section{Theorie}
+
+\subsection{Beschreibung der Kristallstrukturen}
+\label{sub:beschreibung_der_kristallstrukturen}
+
+Ein Kristall ist eine räumlich periodische von Atomen oder Atomgruppen.
+Er kann daher als Punktgitter gesehen werden, wobei jeder Punkt einem Atom oder
+einer Atomgruppe, genannt Basis, zugeordnet wird. Es genügen nun drei
+Basisvektoren, um das Gitter aufzuspannen. Die besondere Eigenschaft eines
+Gitters ist nun, dass die Verschiebung des Gitters um einen Vektor
+$\vb*{t} = n_1 \vb*{a} + n_2 \vb*{b} + n_3 \vb*{c}$ mit $n_i \in \mathbb{Z}$
+das Gitter selbst wieder ergibt.
+Zur Einordnung verschiedener Kristallarten wird der Einkristall bzw.\ die
+Elementarzelle verwandt.
+Sie ist die kleinste Volumeneinheit, die einen Kristall eindeutig festlegt.
+Besitzt die Elementarzelle nur ein Atom, so wird sie primitiv genannt.
+Nun existieren 14 verschiedene Gittertypen, welche entsprechend der Längen der
+Gittervektoren und deren Winkel zueinander klassifiziert werden.
+In diesem Versuch werden ausschließlich kubische Gitter betrachtet. Hierbei
+sind alle Längen der Gittervektoren gleich lang und die Winkel betragen
+\SI{90}{\degree}.
+Die so in Frage kommenden Gittertypen sind
+\begin{description}
+  \item[Das kubische Gitter (sc):] Die Elementarzelle besitzt nur ein Basis in
+    einer Ecke des Würfels.
+  \item[Das kubisch-raumzentrierte Gitter (bcc):] Die Elementarzelle besitzt
+    zusätzlich zum sc-Gitter eine Basis in der Mitte des Würfels. Die
+    Koordinaten der Basen lauten hier
+    \begin{equation}
+      (0, 0, 0) \,, \quad \qty(\frac12, \frac12, \frac12)
+    \end{equation}
+  \item[Das kubisch-flächenzentrierte Gitter (fcc):] Die Elementarzelle besitzt
+    zusätzlich zum sc-Gitter noch eine Basis in der Mitte der Würdelseiten.
+    Die Koordinaten lauten hier
+    \begin{equation}
+      (0,0,0)\,,\quad \qty(\frac12, \frac12, 0)\,,\quad
+      \qty(\frac12, 0, \frac12)\,,\quad \qty(0, \frac12, \frac12)
+    \end{equation}
+\end{description}
+
+In der Natur gibt es zusätzlich Gitterstrukturen, welche aus den oben genannten
+zusammengesetz sind. Die Struktur der Elementarzellen mit den entsprechenden
+Koordinaten der Basen sollen im Folgenden genannt werden.
+\begin{description}
+  \item[Die Diamantstruktur:] Sie besteht aus zwei fcc-Gittern, welche um ein
+    Viertel der Raumdiagonalen verschoben sind.
+    \begin{equation}
+      (0, 0, 0)\,, \qty(\frac12, \frac12, 0)\,, \qty(\frac12, 0, \frac12)\,,
+      \qty(\frac14, \frac14, \frac14)\,, \qty(\frac34, \frac34, \frac14)\,,
+      \qty(\frac34, \frac14, \frac34)\,, \qty(\frac14, \frac34, \frac34)
+    \end{equation}
+  \item[Die Zinkblende-Struktur:] Sie entspricht der Diamantstruktur worin die
+    beiden fcc-Gitter mit unterschiedlichen Basen besetzt sind.
+  \item[Die Steinsalz-Struktur:] Sie besteht aus zwei fcc-Gittern, welche um
+    die Hälfte der Raumdiagonalen versetzt sind. Zudem bestehen die fcc-Gitter
+    aus zwei verschiedenen Basisarten $A$ und $B$.
+    \begin{align*}
+      A&:\quad (0, 0, 0)\,, \qty(\frac12, 0, \frac12)\,,
+      \qty(0, \frac12, \frac12) \\
+      B&:\quad \qty(\frac12, \frac12, \frac12)\,, \qty(1, 1, \frac12)\,,
+      \qty(1, \frac12, 1)\,, \qty(\frac12, 1, 1)
+    \end{align*}
+  \item[Die Cäsiumchlorid-Struktur:] Sie ist aus zwei sc-Gittern mit
+    verschiedenen Basisarten $A$ und $B$ aufgebaut,
+    welche um eine halbe Raumdiagonale verschoben ist.
+    \begin{align*}
+      A&:\quad (0, 0, 0) \\
+      B&:\quad \qty(\frac12, \frac12, \frac12)
+    \end{align*}
+  \item[Die Fluorit-Struktur:] Sie tritt bei Verbindungen des Typs $AB_2$ auf
+    und besteht aus drei fcc-Gittern, welche gegeneinander um 1/4 bzw. 3/4 der
+    Würdelidagonalen verschoben sind.
+    \begin{align*}
+      A&: (0, 0, 0)\,, \qty(\frac12, \frac12, 0)\,, \qty(\frac12, 0, \frac12)
+      \qty(0, \frac12, \frac12) \\
+      B&:\left\{
+      \begin{aligned}
+        &\qty(\frac14, \frac14, \frac14)\,, \qty(\frac34, \frac34, \frac14)\,,
+        \qty(\frac34, \frac14, \frac34)\,, \qty(\frac14, \frac34, \frac34) \\
+        &\qty(\frac34, \frac34, \frac34)\,, \qty(\frac14, \frac14, \frac34)\,,
+        \qty(\frac14, \frac34, \frac14)\,, \qty(\frac34, \frac14, \frac14)
+      \end{aligned}
+      \right.
+    \end{align*}
+\end{description}
+
+\subsection{Netzebenenabstand}
+\label{sub:netzebenenabstand}
+
+Eine Netzebene im Kristall ist eine Ebene, in welcher Schwerpunkte von Atomen
+liegen. Die Gesamtheit der Netzebenen, die zu einer vorgegebenen Netzebene
+parallel liegen, werden Netzebenenschar bezeichnet. Die Lage der
+Netzebenenschar in den von den Gittervektoren aufgespannten Basis wird mit den
+Miller'schen Indizes beschrieben.
+Zur Bestimmung der Miller'schen Indizes betrachte man die Schnittpunkte einer
+Netzebene mit den Achsen der von den Gittervektoren aufgespannten Basis.
+Die reziproken Werte, so multipliziert, dass Brüche verschwinden, ergeben die
+Miller'schen Indizes. Negative Zahlen werden hierbei mit einem Balken über der
+Zahl angegeben und wird eine Achse nicht geschnitten, so lautet deren Index 0.
+Der Abstand der Netzebenen mit den Miller'schen Indizes $(h, k, l)$
+lautet für das kubisch Gitter mit der Gitterkonstanten $a$
+\begin{equation}
+  d = \frac{a}{\sqrt{h^2 + k^2 + l^2}}~.
+  \label{eq:gitterabstand}
+\end{equation}
+
+\subsection{Beugung von Röntgenstrahlen an Kristallen}
+\label{sub:beugung_von_r_ntgenstrahlen_an_kristallen}
+
+Die Wechselwirkung von Röntgenstrahlen einem Kristall kann als klassischer
+Streuprozess interpretiert werden. Das heißt, die geladenen Teilchen werden
+unter dem Einfluss des elektrischen Feldes zum schwingen angeregt und
+emittieren ebenfalls aufgrund der Beschleunigung wieder elektromagnetische
+Strahlung. Entscheidend ist nun, dass die Streuzentren periodisch angeordnet
+sind und somit in bestimmten Raumrichtungen Maxima und Minima der gestreuten
+Intensität auftritt. Aufgrund der Zusammenhänge zwischen der Extrema und der
+Lage der Streuzentren, können nun Rückschlüsse auf die Kristallstruktur gezogen
+werden. Da ein zum schwingen angeregtes Teilchen kann als Hertz'scher Dipol
+gesehen werden. Dieser besitzt eine $1/m^2$-Abhängigkeit, sodass die schweren
+Atomkerne an der Beugung praktisch nicht beteiligt sind und im folgenden nur
+die Elektronen eine Rolle spielen.
+
+\subsubsection{Der Atomfaktor}
+\label{ssub:der_atomfaktor}
+
+Bei der Streuung an einem Atom, muss berücksichtigt werden, dass das Elektron
+nicht punktförmig auftritt, sondern mit einer Ladungsverteilung $\rho(\vb*{r})$
+um der Kern "`verschmiert"' ist, weshalb die Intensität der Röntgenstrahlung
+von der Intensität der Beugung an einer Punktladung abweichen wird.
+Diese Abweichung wird durch
+\begin{equation}
+  f^2 \coloneqq \frac{I_a}{I_e}
+\end{equation}
+definiert, wobei $I_a$ die Intensität von der Streuung an einem Atom und
+$I_e$ die Intensität von der Streuung an einem Elektron ist.
+Der Formfaktor kann letztendlich durch eine Fourier-Transformation der
+Ladungsverteilung entsprechend
+\begin{equation}
+  f = \int\limits_\text{Hülle} \dd[3]{\vb*{r}}\ \rho(\vb*{r})
+  \ \exp\big[-2\uppi\mathrm{i}\ (\vb*{k}-\vb*{k}_0)\big]
+\end{equation}
+bestimmt werden, wobei $\vb*{k}_0$ der Wellenzahlvektor der einfallenden Welle
+und $\vb*{k}$ der Wellenzahlvektor der gestreuten Wellen ist.
+
+\subsubsection{Bragg-Bedingung}
+\label{ssub:bragg_bedingung}
+
+Die Streuung der Röntgenstrahlen findet nicht nur an einer Netzebene statt,
+sondern an der gesamten Netzebenenschar. Somit müssen auch die
+Interferenzeffekte an allen Ebenen der Netzebenenschar berücksichtigt werden.
+Die Bedingung wann an zwei benachbarten Ebenen konstruktive Interferenz
+auftritt liefert die Bragg-Bedingung
+\begin{equation}
+  n \lambda = 2d\ \sin\theta~,
+\end{equation}
+wobei $\lambda$ die Wellenlänge der Röntgenstrahlung, $d$ der
+Netzebenenabstand, $theta$ der Winkel zwischen dem einfallenden Wellenvektor
+und der Netzebene und $n \in \mathbb{R}$ ist.
+Diese Bedingung ist äquivalent zu
+\begin{equation}
+  \vb*{k} - \vb*{k}_0 = \vb*{g}~,
+\end{equation}
+wobei
+\begin{equation}
+  \vb*{g} = h\vb{A} + k\vb*{B} + l\vb*{C}
+\end{equation}
+der reziproke Gittervektor mit der reziproken Basis
+$\{\vb*{A}, \vb*{B}, \vb*{C}\}$ und den Miller'schen Indizes $(h, k, l)$ ist.
+Die Basis des reziproken Gittervektors ist mit den Gittervektoren durch
+die Bedingung
+\begin{equation}
+  \vb*{a}_i\vb*{A}_j = 2\uppi\ \delta_{ij}
+\end{equation}
+miteinander verknüpft.
+
+\subsubsection{Der Strukturfaktor}
+\label{ssub:der_strukturfaktor}
+
+Der Strukturfaktor erweitert den Atomfaktor insofern, dass nicht nur die
+Ladungsverteilung eines Atoms, sondern zusätzlich auch die
+Ladungsverteilung in der Elementarzelle betrachtet wird.
+Da die Ladungsverteilung in der Elementarzelle diskret ist, reicht hier
+allerdings eine Summe, womit für den Strukturfaktor
+\begin{equation}
+  S = \sum_i f_i\ \exp\big[-2\uppi\mathrm{i}\ (x_ih + y_ik + z_il)\big]
+  \label{eq:strukturfaktor}
+\end{equation}
+folgt, wobei $f_i$ die Atomfaktoren des $i$-ten Atoms und $(x_i, y_i, z_i)$ die
+Position des $i$-ten Atoms in der Basis der Gittervektoren sind.
