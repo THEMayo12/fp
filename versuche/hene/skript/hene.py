@@ -428,13 +428,13 @@ w_M1_tex = ev.tex_eq(
 a_tex = ev.tex_eq(
     uc.ufloat(val_M1[2], std_M1[2]),
     # name=r"w",
-    unit=r"$\sqrt{\upmu\text{A}}$",
+    unit=r"\sqrt{\upmu\text{A}}",
     form="({:0L})"
 )
 b_tex = ev.tex_eq(
     uc.ufloat(val_M1[3], std_M1[3]),
     # name=r"w",
-    unit=r"$\sqrt{\upmu\text{A}}$",
+    unit=r"\sqrt{\upmu\text{A}}",
     form="({:0L})"
 )
 
@@ -536,9 +536,8 @@ lt.latextable(
     temp1[2], temp2[2]],
     "../tex/tabellen/S1.tex",
     alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.1f', '%.0f', '%.1f', '%.0f', '%.1f'],
+    form = ['.0f', '.1f', '.0f', '.1f', '.0f', '.1f'],
     transpose = True,
-    body=True
 )
 
 temp1 = np.split(l_S2, 3)
@@ -548,9 +547,8 @@ lt.latextable(
     [temp1[0], temp2[0], temp1[1], temp2[1], temp1[2], temp2[2]],
     "../tex/tabellen/S2.tex",
     alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.1f', '%.0f', '%.1f', '%.0f', '%.1f'],
+    form = ['.0f', '.1f', '.0f', '.1f', '.0f', '.1f'],
     transpose = True,
-    body=True
 )
 
 temp1 = np.split(a_M1, 3)
@@ -560,9 +558,8 @@ lt.latextable(
     [temp1[0], temp2[0], temp1[1], temp2[1], temp1[2], temp2[2]],
     "../tex/tabellen/M1.tex",
     alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.2f', '%.0f', '%.2f', '%.0f', '%.2f'],
+    form = ['.0f', '.2f', '.0f', '.2f', '.0f', '.2f'],
     transpose = True,
-    body=True
 )
 
 temp1 = np.split(np.append(a_M2, ["-", "-"]), 3)
@@ -572,9 +569,8 @@ lt.latextable(
     [temp1[0], temp2[0], temp1[1], temp2[1], temp1[2], temp2[2]],
     "../tex/tabellen/M2.tex",
     alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.2f', '%.0f', '%.2f', '%.0f', '%.2f'],
+    form = ['.0f', '.2f', '.0f', '.2f', '.0f', '.2f'],
     transpose = True,
-    body=True
 )
 
 temp1 = np.split(phi, 3)
@@ -583,10 +579,9 @@ temp2 = np.split(I_phi, 3)
 lt.latextable(
     [temp1[0], temp2[0], temp1[1], temp2[1], temp1[2], temp2[2]],
     "../tex/tabellen/P.tex",
-    alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.2f', '%.0f', '%.2f', '%.0f', '%.2f'],
-    transpose = True,
-    body=True
+    alignment='CCCCCC',
+    form=['.0f', '.2f', '.0f', '.2f', '.0f', '.2f'],
+    transpose=True,
 )
 
 temp1 = np.split(np.append(order, "-"), 2)
@@ -597,8 +592,7 @@ lt.latextable(
     # [order, a_r, a_l],
     [temp1[0], temp2[0], temp3[0], temp1[1], temp2[1], temp3[1]],
     "../tex/tabellen/G.tex",
-    alignment = 'CCCCCC',
-    formatcolumn = ['%.0f', '%.1f', '%.1f', '%.0f', '%.1f', '%.1f' ],
-    transpose = True,
-    body=True
+    alignment='CCCCCC',
+    form=['.0f', '.1f', '.1f', '.0f', '.1f', '.1f'],
+    transpose=True,
 )

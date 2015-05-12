@@ -455,8 +455,8 @@ def teil_c():
     table = [
             [
                 r"\CU, kurz",
-                r"\BU",
                 r"\CU, lang",
+                r"\BU",
             ],
                 col_1,
                 col_2
