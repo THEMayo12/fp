@@ -4,10 +4,10 @@
 #	import modules
 # ==================================================
 
-# import sys
+import os
+import sys
 
-# append paths
-# sys.path.append("/home/mario12/dokumente/physik/module/fp/python/")
+import inspect
 
 import evaluation as ev
 import evaluation.simpleplot as sp
@@ -31,9 +31,11 @@ from scipy import optimize
 import scipy.constants as const
 
 # ==================================================
-#	settings
+# 	settings
 # ==================================================
 
+# change path to script directory
+os.chdir(sys.path[0])
 
 sp.params["text.latex.preamble"] = sp.tex_fouriernc_preamble
 plt.rcParams.update(sp.params)
@@ -178,7 +180,7 @@ R=57.3 #in mm
 t1=r1/(2.*R)
 t2=r2/(2.*R)
 
-print str(t1) + "t1" 
+print str(t1) + "t1"
 print str(t2) + "t2"
 #Bragg: nl=2dsint , Ann:n=_1 ? => d= l/2sint
 d11=l1/(2.*np.sin(t1))
@@ -225,7 +227,7 @@ a2_uc = ev.get_uncert(a2)
 print a1_uc
 print a2_uc
 
-#Regression a gegen cos^2 t 
+#Regression a gegen cos^2 t
 
 
 def G(x, m, b):
@@ -280,20 +282,21 @@ fig2.savefig('../tex/bilder/fig2.pdf')
 
 # LateX-Tabelle erzeugen
 table1 = lt.latextable(
-    [r1,t1,s1,sth1, a1],
+
+    [r1,t1,s1,sth1, a1*10**10],
     "table",
     alignment = 'CCCCC',
     form = '.3f',
 )
 table2 = lt.latextable(
-    [r2,t2,s2,sth2, a2],
+    [r2,t2,s2,sth2, a2*10**10],
     "table",
     alignment = 'CCCCC',
     form = '.3f',
 )
 
-ev.write('../tex/tabellen/tabelle1.tex', table1)
-ev.write('../tex/tabellen/tabelle2.tex', table2)
+# ev.write('../tex/tabellen/tabelle1.tex', table1)
+# ev.write('../tex/tabellen/tabelle2.tex', table2)
 
 # latex-Gleichung der linearen Regression
 lin_reg1 = ev.tex_linreg(

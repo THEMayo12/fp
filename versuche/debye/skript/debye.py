@@ -282,24 +282,15 @@ fig2.savefig('../tex/bilder/fig2.pdf')
 
 # LateX-Tabelle erzeugen
 table1 = lt.latextable(
-<<<<<<< HEAD
+
     [r1,t1,s1,sth1, a1*10**10],
     "table",
-=======
-    [r1,t1,s1,sth1, a1],
-    "../tex/tabellen/tabelle1.tex",
->>>>>>> e508ca8b42155f0a4ce080f338907b64f8e72c02
     alignment = 'CCCCC',
     form = '.3f',
 )
 table2 = lt.latextable(
-<<<<<<< HEAD
     [r2,t2,s2,sth2, a2*10**10],
     "table",
-=======
-    [r1,t1,s1,sth1, a1],
-    "../tex/tabellen/tabelle2.tex",
->>>>>>> e508ca8b42155f0a4ce080f338907b64f8e72c02
     alignment = 'CCCCC',
     form = '.3f',
 )
