@@ -234,10 +234,7 @@ def G(x, m, b):
     return m*x + b
 
 val1, std1 = ev.fit(G, np.cos(t1)**2,a1 )
-#val2, std2 = ev.fit(G, np.cos(t2)**2,a2 )  ###
-m=(a2[1]-a2[0])/(np.cos(t2[1])**2 - np.cos(t2[0])**2)
-b=a2[0]-m*np.cos(t2[0])**2
-
+val2, std2 = ev.fit(G, np.cos(t1)**2,a1 )  ###
 
 fig1 = plt.figure()
 ax1 = fig1.add_subplot(111)
@@ -260,10 +257,10 @@ fig1.tight_layout()
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
 
-ax2.plot(np.cos(t2)**2, a2, linestyle = 'none', marker = '+', label = 'Messwerte')
+ax2.plot(np.cos(t1)**2, a1, linestyle = 'none', marker = '+', label = 'Messwerte')
 lim = ax2.get_xlim()
 x = np.linspace(lim[0], lim[1], 1000)
-ax2.plot(x, G(x, m, b), label="Fit")
+ax2.plot(x, G(x, val2[0], val2[1]), label="Fit")
 
 ax2.set_xlabel(r'$\cos^2(\vartheta)$')
 ax2.set_ylabel(r'$a / \si{\meter}$')
@@ -282,24 +279,14 @@ fig2.savefig('../tex/bilder/fig2.pdf')
 
 # LateX-Tabelle erzeugen
 table1 = lt.latextable(
-<<<<<<< HEAD
-    [r1,t1,s1,sth1, a1*10**10],
-    "table",
-=======
     [r1,t1,s1,sth1, a1],
     "../tex/tabellen/tabelle1.tex",
->>>>>>> e508ca8b42155f0a4ce080f338907b64f8e72c02
     alignment = 'CCCCC',
     form = '.3f',
 )
 table2 = lt.latextable(
-<<<<<<< HEAD
-    [r2,t2,s2,sth2, a2*10**10],
-    "table",
-=======
     [r1,t1,s1,sth1, a1],
     "../tex/tabellen/tabelle2.tex",
->>>>>>> e508ca8b42155f0a4ce080f338907b64f8e72c02
     alignment = 'CCCCC',
     form = '.3f',
 )
@@ -319,8 +306,8 @@ ev.write('../tex/gleichungen/gerade1.tex', lin_reg1)
 
 lin_reg2 = ev.tex_linreg(
         "G_2(t)",
-        [m,b],
-        [0,0],
+        val2,
+        std2,
         unit = ["", "\meter"]
 )
 
