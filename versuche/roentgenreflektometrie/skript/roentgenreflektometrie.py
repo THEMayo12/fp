@@ -237,7 +237,7 @@ def plot_data(theta, psd, psd_diff):
     fig.savefig("../tex/bilder/data.pdf")
 
 
-plot_data(theta_rho, psd_rho, psd_diff_rho)
+# plot_data(theta_rho, psd_rho, psd_diff_rho)
 
 # ==================================================
 # 	Geometriewinkel
@@ -299,7 +299,7 @@ def plot_geom(theta_rho, psd1, psd2):
     plt.show()
 
 
-plot_geom(theta_rho, psd1, psd2)
+# plot_geom(theta_rho, psd1, psd2)
 
 # ==================================================
 # 	Normierung
@@ -496,14 +496,14 @@ sel = (theta > 1.0) & (theta < 2.0)
 theta_fit = theta[sel]
 psd3_fit = psd3[sel]
 
-val, cor = optimize.curve_fit(
-    X_sig_fit_squared,
-    (np.deg2rad(theta_fit), 0, k),
-    psd3_fit,
-    p0=[n1, n2, n3, z2, sig1, sig2],
-    maxfev=10000,
-)
-std = ev.get_std(cor)
+# val, cor = optimize.curve_fit(
+#     X_sig_fit_squared,
+#     (np.deg2rad(theta_fit), 0, k),
+#     psd3_fit,
+#     p0=[n1, n2, n3, z2, sig1, sig2],
+#     maxfev=100000,
+# )
+# std = ev.get_std(cor)
 
 
 def plot_X_fitted(val, theta, psd3):
@@ -514,13 +514,22 @@ def plot_X_fitted(val, theta, psd3):
         theta,
         X_sig_fit_squared(
             (np.deg2rad(theta), 0, k),
-            val[0],
-            val[1],
-            val[2],
-            val[3],
-            val[4],
-            val[5]
+            1.0,
+            1.0 - 1.0e-5,
+            1.0 - 1.3e-7,
+            6.0e-10,
+            4.0e-10,
+            210e-10
         ),
+        # X_sig_fit_squared(
+        #     (np.deg2rad(theta), 0, k),
+        #     val[0],
+        #     val[1],
+        #     val[2],
+        #     val[3],
+        #     val[4],
+        #     val[5]
+        # ),
         color='k',
         linestyle='-',
         # marker='+',
@@ -547,30 +556,31 @@ def plot_X_fitted(val, theta, psd3):
     plt.show()
 
 
-plot_X_fitted(val, theta, psd3)
+# plot_X_fitted(val, theta, psd3)
+plot_X_fitted(None, theta, psd3)
 
 # ==================================================
 # 	Daten schreiben
 # ==================================================
 
-n1_tex = ev.tex_eq(1.0 - uc.ufloat(val[0], std[0]))
-n2_tex = ev.tex_eq(1.0 - uc.ufloat(val[1], std[1]))
-n3_tex = ev.tex_eq(1.0 - uc.ufloat(val[2], std[2]))
-sig1_tex = ev.tex_eq(uc.ufloat(-val[4], std[4]))
-sig2_tex = ev.tex_eq(uc.ufloat(val[5], std[5]))
-z2_tex = ev.tex_eq(uc.ufloat(val[3], std[3])*1e10, unit=r"\angstrom")
-
-show(n1_tex)
-show(n1_tex)
-show(n2_tex)
-show(n3_tex)
-show(sig1_tex)
-show(sig2_tex)
-show(z2_tex)
-
-ev.write("../tex/gleichungen/n1.tex", n1_tex)
-ev.write("../tex/gleichungen/n2.tex", n2_tex)
-ev.write("../tex/gleichungen/n3.tex", n3_tex)
-ev.write("../tex/gleichungen/sig1.tex", sig1_tex)
-ev.write("../tex/gleichungen/sig2.tex", sig2_tex)
-ev.write("../tex/gleichungen/z2.tex", z2_tex)
+# n1_tex = ev.tex_eq(1.0 - uc.ufloat(val[0], std[0]))
+# n2_tex = ev.tex_eq(1.0 - uc.ufloat(val[1], std[1]))
+# n3_tex = ev.tex_eq(1.0 - uc.ufloat(val[2], std[2]))
+# sig1_tex = ev.tex_eq(uc.ufloat(-val[4], std[4]))
+# sig2_tex = ev.tex_eq(uc.ufloat(val[5], std[5]))
+# z2_tex = ev.tex_eq(uc.ufloat(val[3], std[3])*1e10, unit=r"\angstrom")
+#
+# show(n1_tex)
+# show(n1_tex)
+# show(n2_tex)
+# show(n3_tex)
+# show(sig1_tex)
+# show(sig2_tex)
+# show(z2_tex)
+#
+# ev.write("../tex/gleichungen/n1.tex", n1_tex)
+# ev.write("../tex/gleichungen/n2.tex", n2_tex)
+# ev.write("../tex/gleichungen/n3.tex", n3_tex)
+# ev.write("../tex/gleichungen/sig1.tex", sig1_tex)
+# ev.write("../tex/gleichungen/sig2.tex", sig2_tex)
+# ev.write("../tex/gleichungen/z2.tex", z2_tex)
