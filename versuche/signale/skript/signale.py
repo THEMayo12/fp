@@ -352,7 +352,10 @@ def teil_c():
                 unit="\meter"
             )
         else:
-            return l
+            return ev.tex_eq(
+                l,
+                form="{:L}",
+            )
 
     # ===== 50, kurz ===================================
 
@@ -442,14 +445,14 @@ def teil_c():
 
     # Tabelle Längen
     col_1 = [
-        laenge(v, t_50k_offen_1, t_50k_offen_2, False),
-        laenge(v, t_50l_offen_1, t_50l_offen_2, False),
-        laenge(v, t_75k_offen_1, t_75k_offen_2, False)
+        "${}$".format(laenge(v, t_50k_offen_1, t_50k_offen_2, False)),
+        "${}$".format(laenge(v, t_50l_offen_1, t_50l_offen_2, False)),
+        "${}$".format(laenge(v, t_75k_offen_1, t_75k_offen_2, False))
     ]
     col_2 = [
-        laenge(v, t_50k_kurz_1, t_50k_kurz_2, False),
-        laenge(v, t_50l_kurz_1, t_50l_kurz_2, False),
-        laenge(v, t_75k_kurz_1, t_75k_kurz_2, False)
+        "${}$".format(laenge(v, t_50k_kurz_1, t_50k_kurz_2, False)),
+        "${}$".format(laenge(v, t_50l_kurz_1, t_50l_kurz_2, False)),
+        "${}$".format(laenge(v, t_75k_kurz_1, t_75k_kurz_2, False))
     ]
 
     table = [
@@ -524,6 +527,7 @@ def teil_d():
     R_tex = ev.tex_eq(R, unit=r"\ohm", form="({:L})")
 
     ev.write("../tex/gleichungen/teil_d/R.tex", R_tex)
+    ev.write("../tex/gleichungen/teil_d/G.tex", ev.tex_eq(G, form="{:L}"))
 
     # Daten in Tabelle
     # lt.latextable([t_R, U_R], "../tex/tabellen/R.tex", alignment="CC", split=3)
@@ -816,6 +820,10 @@ def teil_d():
 
     # bestimme Winkel zwischen G_L und G
     phi_L = np.angle(np.complex(G.nominal_value)/G_L)
+    # ev.write(
+    #     "../tex/gleichungen/teil_d/phi_L.tex",
+    #     ev.tex_eq(uc.ufloat(phi_L), form="{:L}")
+    # )
 
     # bestimme Länge des Kabels
     laenge_L = laenge(f, phi_L, epslison_r)
@@ -913,7 +921,8 @@ def teil_e():
     ax_M = ev.plot_layout(ax_M)
 
     fig_M.tight_layout()
-    # plt.show()
+    fig_M.savefig("../tex/bilder/mehrfachreflexion/mf.pdf")
+    plt.show()
 
 # ==================================================
 # 	Ausführen der Versuchsteile
@@ -922,6 +931,6 @@ def teil_e():
 
 # teil_a()
 # teil_b()
-# teil_c()
-# teil_d()
+teil_c()
+teil_d()
 # teil_e()

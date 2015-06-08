@@ -609,18 +609,18 @@ bestimmt werden.
 % ==================================================
 
 \clearpage
-\subsubsection{Bestimmung der Kabellänge über ein Schmitt-Diagramm}
-\label{ssub:bestimmung_der_kabell_nge_ber_ein_schmitt_diagramm}
+\subsubsection{Bestimmung der Kabellänge über ein Smith-Diagramm}
+\label{ssub:bestimmung_der_kabell_nge_ber_ein_smith_diagramm}
 
 Nun soll die Länge des langen \BU-Kabels (die Leitungskonstanten der anderen
 Kabel konnten wie oben beschrieben nicht bestimmt werden) mit Hilfe eines
-Schmitt-Diagramms bestimmt werden. Die vollständige Umdrehung der
-Schmitt-Diagramms entspricht einer halben Wellenlänge $\lambda$, sodass die
+Smith-Diagramms bestimmt werden. Die vollständige Umdrehung der
+Smith-Diagramms entspricht einer halben Wellenlänge $\lambda$, sodass die
 Länge des Kabels durch
 \begin{equation}
   l = \frac{\lambda}{2} \cdot \frac{\varphi}{2 \pi}
 \end{equation}
-angegeben werden kann, wobei $\phi$ die Phasenverschiebung nach der Reflexion
+angegeben werden kann, wobei $\varphi$ die Phasenverschiebung nach der Reflexion
 am Kabelende beschreibt. Die Wellenlänge lässt sich zudem durch
 \begin{equation}
   \lambda = \frac{c}{f \sqrt{\epsilon_r}}
@@ -640,7 +640,155 @@ sind. Somit ergibt sich die Impedanz zu
 Die Phasenverschiebung $\varphi$ kann nun beschrieben werden als Winkel
 zwischen den Reflexionsfaktoren
 \begin{equation}
-  \Gamma_{L,R} = \frac{Z - Z_0}{Z + Z_0}\,, \quad Z = R, Z_L
+  \Gamma_{L,R} = \frac{Z - Z_0}{Z + Z_0}\,, \quad Z = R, Z_L~,
   % \input{gleichungen/teil_d/G_L_L.tex}
 \end{equation}
+wobei
+\begin{equation}
+  \Gamma_R = \input{gleichungen/teil_d/G.tex}~,
+\end{equation}
+der Reflektionsfaktor am Ende des Kabels,
+aus Gleichung \eqref{eq:Gamma_R} gegeben ist.
+Damit kann nun die Phase mit
+\begin{equation}
+  \varphi = \measuredangle(\Gamma_L, \Gamma_R)
+\end{equation}
+berechnet werden, womit sich schließlich für die Länge
+\begin{equation}
+  l_L = \underline{\input{gleichungen/teil_d/laenge_L.tex}}
+\end{equation}
+ergibt.
+Im offenen Fall gilt
+\begin{align}
+  \Gamma_R &= 1 \\
+  Z_L &= - \frac{i}{2\pi\ fC}~.
+\end{align}
+Hiermit wird die analog zum kurzgeschlossenen Fall die Länge zu
+\begin{equation}
+  L_C = \input{gleichungen/teil_d/laenge_C.tex}
+\end{equation}
+bestimmt.
+
+% ==================================================
+% 	Mehrfachreflexion
+% ==================================================
+
+\subsection{Mehrfachreflexion}
+\label{sub:mehrfachreflexion}
+
+In diesem Teil sollen Reflexionen betrachtet werden, die entstehen, wenn zwei
+Kabel mit unterschiedlichem Widerstand hintereinandergeschaltet werden.
+In diesem Fall das kurze \CU und das kurze \BU-Kabel.
+Das aufgenommene Oszillosgraphenbild und die entsprechend digitalisierten Werte
+sind in Abbildung~\ref{fig:mehrfachreflexion_roh}
+bzw.~\ref{fig:mehrfachreflexion} dargestellt.
+Nun werden wieder die Werte der Spannungsplateaus gemittelt, um die
+Spannungsflanken und schließlich die Reflexionsfaktoren zu bestimmen.
+Die hier verwandten Werte ergeben sich aus
+\begin{align*}
+  \begin{aligned}
+    U_\text{off} &= \overline{U(t)}\,, \\
+    U_0          &= \overline{U(t)}\,, \\
+    U_1          &= \overline{U(t)}\,, \\
+    U_2          &= \overline{U(t)}\,, \\
+    U_3          &= \overline{U(t)}\,,
+  \end{aligned}
+  \qquad
+  \begin{aligned}
+    &t~< \SI{80}{\nano\second} \\
+    \SI{110}{\nano\second} <~&t~< \SI{180}{\nano\second} \\
+    \SI{210}{\nano\second}  <~&t~< \SI{285}{\nano\second} \\
+    \SI{322}{\nano\second} <~&t~< \SI{380}{\nano\second} \\
+    \SI{432}{\nano\second} <~&t
+  \end{aligned}
+\end{align*}
+mit den Ergebnissen
+\begin{align*}
+  U_\text{off} &= \input{gleichungen/teil_e/U0_roh.tex} \\
+  U_0 &= \input{gleichungen/teil_e/U0_roh.tex} \\
+  U_1 &= \input{gleichungen/teil_e/U1_roh.tex} \\
+  U_2 &= \input{gleichungen/teil_e/U2_roh.tex} \\
+  U_3 &= \input{gleichungen/teil_e/U2_roh.tex}~.
+\end{align*}
+Von diesen Spannungen wird die Offset-Spannung abgezogen und die folgenden
+Spannungsdifferenzen berechnet.
+\begin{align*}
+  \Delta U_1 &= U_1 - U_0 \\
+  \Delta U_2 &= U_2 - U_1 \\
+  \Delta U_3 &= U_3 - U_2~.
+\end{align*}
+Hiermit lassen sich nun die Reflexionsfaktoren zu
+\begin{align*}
+  \Gamma_L &= \frac{\Delta U_1}{U_0} = \input{gleichungen/teil_e/G_L.tex} \\
+  \Gamma_E &= \frac{\Delta U_3}{\Delta U_2} +
+  \frac{\Delta U_2}{U_0(1 - \Gamma_L)}
+  = \input{gleichungen/teil_e/G_E.tex} \\
+  \Gamma_R &= \frac{\Delta U_3}{\Delta U_2 \Gamma_E}
+  = \input{gleichungen/teil_e/G_R.tex}
+\end{align*}
+bestimmen.
+Die Reflexionsfaktoren $\Gamma_L$ und $\Gamma_R$ sollten nach der Theorie
+betragsmäßig ca. 0.2 sein. Somit ist anzunehmen, dass die verwandten Kabel von
+ihrer Nennimpedanz abweichen.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.6]{bilder/mehrfachreflexion/F0000TEK.JPG}
+  \caption{Aufgenommenes Oszillosgraphenbild bei hintereinandergeschalteten
+    \CU- und \BU-Kabel.}
+\label{fig:mehrfachreflexion_roh}
+  \includegraphics[scale=1.0]{bilder/mehrfachreflexion/mf.pdf}
+  \caption{Darstellung der digitalisierten Daten aus dem
+    Oszilloskopenbild aus Abbildung~\ref{fig:mehrfachreflexion_roh}}
+\label{fig:mehrfachreflexion}
+\end{figure}
+
+\subsection{Spannungsverlauf bei drei verschiedenen Abschlusswiderständen}
+\label{sub:spannungsverlauf_bei_drei_verschiedenen_abschlusswiderst_nden}
+
+In diesem Versuchsteil sollen die Spannungsverläufe mit drei unterschiedlichen,
+noch unbekannten, Abschlusswiderständen untersucht werden.
+Hierbei wird das kurze \CU-Kabel verwandt.
+
+\paragraph{Abschluss 3}
+\label{ssub:abschluss_3}
+
+Der Spannungsverlauf ist in Abbildung~\ref{fig:abschluss_3} dargestellt.
+Im Vergleich der im Anhang befindlichen Abbildung~\ref{fig:abschluesse} handelt
+es sich hier um Abschluss, welcher aus einer Parallelschaltung von einem
+Widerstand mit einem Kondensator besteht.
+
+\paragraph{Abschluss 4}
+\label{ssub:abschluss_4}
+
+Der Spannungsverlauf des Signals mit Abschluss 4 ist in
+Abbildung~\ref{fig:abschluss_4} dargestellt. Hierbei handelt es sich um eine
+Reihenschaltung von einem Widerstand mit einer Spule.
+
+\paragraph{Abschluss 1}
+\label{par:abschluss_1}
+
+Hier befindet sich der Spannungsverlauf in Abbildung~\ref{fig:abschluss_1}.
+Der Vergleich mit den Abschlüssen in Abbildung~\ref{fig:abschluesse} liefert
+hier einen Abschlusswiderstand, welcher aus einer Reihenschaltung eines
+Widerstandes und einem Kondensator besteht.
+
+
+\begin{figure}[htpb]
+  \centering
+  \fbox{\includegraphics[scale=0.45]{bilder/abschluss/F0003TEK.JPG}}
+  \caption{Spannungsverlauf mit Abschlusswiderstand 3.}
+\label{fig:abschluss_3}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \fbox{\includegraphics[scale=0.5]{bilder/abschluss/F0004TEK.JPG}}
+  \caption{Spannungsverlauf mit Abschlusswiderstand 4.}
+\label{fig:abschluss_4}
+  \vspace{2em}
+  \fbox{\includegraphics[scale=0.5]{bilder/abschluss/F0005TEK.JPG}}
+  \caption{Spannungsverlauf mit Abschlusswiderstand 1.}
+\label{fig:abschluss_1}
+\end{figure}
 

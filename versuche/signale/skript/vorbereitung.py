@@ -1,4 +1,6 @@
-#-*- coding: iso-8859-1 -*-
+#!/usr/bin/env python2
+# -*- coding: iso-8859-1 -*-
+
 
 # ==================================================
 #	import modules
@@ -70,4 +72,5 @@ def print_tex(s):
 d = 0.9
 D = 2.95
 e = 2.25
+print e, D, d
 
