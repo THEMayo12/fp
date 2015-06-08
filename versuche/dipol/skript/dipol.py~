@@ -61,31 +61,112 @@ T2,J2,Jh2 = ev.get_data("../messwerte/messwerte2.txt", unpack=True, index=0)
 
 T1=T1+273.15
 T2=T2+273.15
-'''
+
+#Heizrate
+Z1=[]
+Z2=[]
+
+for i in range (0,len(T1)):
+	Z1.append(i+1)
+for i in range (0,len(T2)):
+	Z2.append(i+1)
+der1=[]
+der2=[]
+for i in range (1,len(Z1)-1):
+	der1.append( (T1[i+1]-T1[i-1])/2. )	
+for i in range (1,len(Z2)-1):
+	der2.append( (T2[i+1]-T2[i-1])/2. )	
+figHeiz = plt.figure()
+axHeiz = figHeiz.add_subplot(111)
+
+axHeiz.plot(T1[1:len(T1)-1],der1 , label = "Heizrate 1 in K/min")
+axHeiz.plot(T2[1:len(T2)-1],der2 , label = "Heizrate 2 in K/min")
+
+axHeiz.set_xlabel(r'Zeit/min')
+axHeiz.set_ylabel(r'Heizrate/(K/min)')
+
+axHeiz.legend(loc = 'best')
+axHeiz = ev.plot_layout(axHeiz)
+
+figHeiz.tight_layout()
+figHeiz.savefig('Heizrate.pdf')
+
 # Geradenfunktion
 def G(x, m, b):
     return m*x + b
+
 
 #plot
 #x1 = np.linspace(9, 12.4, 1000)
 #x2 = np.linspace(7.5, 12, 1000)
 #x3 = np.linspace(7.5, 11.3, 1000)
-
+Te1=np.concatenate((T1[:30],T1[45:55],[T1[len(T1)-1]]))
+Je1=np.concatenate((J1[:30],J1[45:55],[J1[len(J1)-1]]))
+vale1,cove1=optimize.curve_fit(G,Te1,np.log(Je1))
+#
+Te2=np.concatenate((T2[:20],T2[36:45],[T2[len(T2)-1]]))
+Je2=np.concatenate((J2[:20],J2[36:45],[J2[len(J2)-1]]))
+vale2,cove2=optimize.curve_fit(G,Te2,np.log(Je2))
 #--PLOT-----------------------------------
-fig1 = plt.figure()
-ax1 = fig1.add_subplot(111)
+fig1a = plt.figure()
+ax1a = fig1a.add_subplot(111)
 
-ax1.plot(T1,J1 , label = r'$b=2$ K/min')
-ax1.plot(T2,J2 , label = r'$b=2.5$ K/min')
+ax1a.plot(T1,J1 , label = r'$b=2$ K/min')
+#ax1.plot(T2,J2 , label = r'$b=2.5$ K/min')
+ax1a.plot(T1,np.exp(vale1[0]*(T1)+vale1[1]),label="Untergrund")
 
-ax1.set_xlabel(r'Temperatur/K')
-ax1.set_ylabel(r'Depolarisationsstrom/A')
+ax1a.set_xlabel(r'Temperatur/K')
+ax1a.set_ylabel(r'Depolarisationsstrom/A')
 
-ax1.legend(loc = 'best')
-ax1 = ev.plot_layout(ax1)
+ax1a.legend(loc = 'best')
+ax1a = ev.plot_layout(ax1a)
 
-fig1.tight_layout()
-fig1.savefig('Temp_Strom_Verlauf.pdf')
+fig1a.tight_layout()
+fig1a.savefig('Temp_Strom_Verlaufa.pdf')
+
+fig1b = plt.figure()
+ax1b = fig1b.add_subplot(111)
+
+ax1b.plot(T2,J2 , label = r'$b=2.5$ K/min')
+#ax1.plot(T2,J2 , label = r'$b=2.5$ K/min')
+ax1b.plot(T2,np.exp(vale2[0]*(T2)+vale2[1]),label="Untergrund")
+
+ax1b.set_xlabel(r'Temperatur/K')
+ax1b.set_ylabel(r'Depolarisationsstrom/A')
+
+ax1b.legend(loc = 'best')
+ax1b = ev.plot_layout(ax1b)
+
+fig1b.tight_layout()
+fig1b.savefig('Temp_Strom_Verlaufb.pdf')
+
+
+
+for i in range (0,len(T1)):
+	J1[i]=J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])
+	if J1[i]<0:
+		J1[i]=1e-15
+
+for i in range (0,len(T2)):
+	J2[i]=J2[i]-np.exp(vale2[0]*(T2[i])+vale2[1])
+	if J2[i]<0:
+		J2[i]=1e-15
+
+fig1c = plt.figure()
+ax1c = fig1c.add_subplot(111)
+
+ax1c.plot(T1,J1 , label = r'$b=2$ K/min')
+ax1c.plot(T2,J2 , label = r'$b=2.5$ K/min')
+
+ax1c.set_xlabel(r'Temperatur/K')
+ax1c.set_ylabel(r'Depolarisationsstrom/A')
+
+ax1c.legend(loc = 'best')
+ax1c = ev.plot_layout(ax1c)
+
+fig1c.tight_layout()
+fig1c.savefig('Temp_Strom_Verlaufc.pdf')
+	
 #----------------------------------------
 
 #Es soll ln(J) linear zu 1/T sein
@@ -144,7 +225,7 @@ print "Zweiter Wert W2-DW2 = " + str(W2) + "+/-" + str(DW2)
 
 
 # über den gesamten Verlauf:
-#da jeder Stromwert für 2K bzw 2.5K steht, kann das Integral als 
+#da jeder Stromwert für 2K bzw 2.5K steht, kann das Integral als
 # 2*\sum_{n=n_0}^{n_max} J[n] geschrieben werden
 def integral1(n0):
 	i=0.
@@ -279,18 +360,21 @@ print "Gerade S2="+str(valS2[0])+" +- "+str(stdS2[0])+" x + "+str(valS2[1])+" +-
 #)
 #ev.write('/home/dominik/Dokumente/fp/fp/versuche/dipolrelaxation/tex/gleichungen/GS2' ,GS2 )
 
-'''
+
 # LateX-Tabelle erzeugen
 t1 = lt.latextable(
-    [T1, J1],
-    "/home/dominik/Dokumente/fp/fp/versuche/diopl/tex/tabellen/tab1.tex",
+    [T1, J1*1e12],
+    "../tex/tabellen/tab1.tex",
     alignment = 'CC',
-#    formatColumn = ['%.1f','%g'],
-#    transpose = True,
-    comma = True,
-#   tableOption = 'ht',
-    header = 	[r'$T / \unit{K}$',
-                    r'$J_\text{Dipolarisation} / \unit{A}$' , r' $ J_\text{Heiz}/\unit{A} ##$'],
-    caption = r'Messwerte zu $b=2$ K/min.'
+    form= ['.1f','.2f'],
+    split = 3
+)
+
+t2 = lt.latextable(
+    [T2, J2*1e12],
+    "../tex/tabellen/tab2.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
 )
 
