@@ -1,8 +1,45 @@
 \section{Auswertung}
 Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom sind in den
-Tabellen \ref{tab:tab1} und \ref{tab:tab2} zu sehen. Im Folgenden beziehen sich Größen mit
+Tabellen \ref{tab:tab1} und \ref{tab:tab2} und den Abbildungen \ref{fig:Messwertea} und 
+\ref{fig:Messwerteb} zu sehen. Im Folgenden beziehen sich Größen mit
 Index "`1"' auf die Heizrate $b_1=2$ K/min bzw. mit Index "`2"' auf $b_2=2.5$
-K/min.
+K/min. \\ Zunächst werden die gemessenen Daten durch Abschätzung des Untergrunds korrigiert. 
+Dazu wird der Untergrund als $j_\text{Untergrund}(T)=A\e^{B T}$ beschrieben und die Parameter 
+$A$ und $B$ werden über die Regressionsgerade $\ln(j_\text{Untergrund})(T)=\ln(A)+BT$ gefittet. 
+Das Ergebnis ist Abbildung \ref{fig:Messwertec} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
+Heizrate gezeigt. Diese wurde als zentraler Differenzenquotient der Temperatur $T$ gemäß
+\begin{equation}
+b_t=\frac{T_{t+1}-T_{t-1}}{2 \text{min}}
+\end{equation}
+berechnet. Dabei ist zu erwähnen, dass die in Tabelle \ref{tab:tab1} und \ref{tab:tab2} zu 
+sehenden Messwerte in Zeitabständen von einer Minute gemessen wurden.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{../skript/Heizrate.pdf}
+\caption{Heizrate der zwei Messreihen.}
+\label{fig:Heiz}
+\end{figure}
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{../skript/Temp_Strom_Verlaufa.pdf}
+\caption{Gemessener Temperatur-Strom-Verlauf und Untergrundabschätzung für die erste Messung.}
+\label{fig:Messwertea}
+\includegraphics[scale=0.8]{../skript/Temp_Strom_Verlaufb.pdf}
+\caption{Gemessener Temperatur-Strom-Verlauf und Untergrundabschätzung für die zweite Messung.}
+\label{fig:Messwerteb}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{../skript/Temp_Strom_Verlaufc.pdf}
+\caption{Korrigierter Temperatur-Strom-Verlauf.}
+\label{fig:Messwertec}
+\end{figure}
 
 \begin{table}[htpb]
 	\centering
