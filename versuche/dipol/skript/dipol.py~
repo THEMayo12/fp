@@ -105,23 +105,40 @@ def G(x, m, b):
 #x2 = np.linspace(7.5, 12, 1000)
 #x3 = np.linspace(7.5, 11.3, 1000)
 
+fig0 = plt.figure()
+ax0 = fig0.add_subplot(111)
+
+ax0.plot(T1,J1 , label = r'$b=2$ K/min',marker ='x')
+ax0.plot(T2,J2,label=r'$b=2.5$ K/min', marker='x')
+
+ax0.set_xlabel(r'Temperatur/K')
+ax0.set_ylabel(r'Depolarisationsstrom/A')
+
+ax0.legend(loc = 'best')
+ax0 = ev.plot_layout(ax0)
+
+fig0.tight_layout()
+fig0.savefig('Temp_Strom_Verlauf0.pdf')
+
+J1=J1[(T1>280)&(T1<310)]
+J2=J2[(T2>280)&(T2<320)]
+T1=T1[(T1>280)&(T1<310)]
+T2=T2[(T2>280)&(T2<320)]
+
 #
-Te2=T2 #np.concatenate((T2[:20],T2[36:45],[T2[len(T2)-1]]))
-Je2=J2 #np.concatenate((J2[:20],J2[36:45],[J2[len(J2)-1]]))
+Te2=T2[(T2<281)|(T2>315)]
+Je2=J2[(T2<281)|(T2>315)]
 vale2,cove2=optimize.curve_fit(G,Te2,np.log(Je2))
 
-Te1=T1[(T1>270)&(T1<340)]
-Je1=J1[(T1>270)&(T1<340)]
-Te1=Te1[(Te1<280)|(306<Te1)] #np.concatenate((T1[:33],T1[48:len(T1)-6]))
-Je1=Je1[(Te1<280)|(306<Te1)] #np.concatenate((J1[:33],J1[48:len(J1)-6]))
-vale1,cove1=optimize.curve_fit(exp,Te1,Je1)#,p0=[np.exp(vale2[1]),vale2[0],1e-12])
+Te1=T1[(T1<285)|(T1>305)]
+Je1=J1[(T1<285)|(T1>305)]
+vale1,cove1=optimize.curve_fit(G,Te1,np.log(Je1))
 #--PLOT-----------------------------------
 fig1a = plt.figure()
 ax1a = fig1a.add_subplot(111)
 
-ax1a.plot(T1,J1 , label = r'$b=2$ K/min')
-#ax1.plot(T2,J2 , label = r'$b=2.5$ K/min')
-ax1a.plot(T1,exp(T1, *vale1),label="Untergrund")
+ax1a.plot(T1,J1 , label = r'$b=2$ K/min', marker='x')
+ax1a.plot(T1,np.exp(vale1[0]*(T1)+vale1[1]),label="Untergrund")
 
 ax1a.set_xlabel(r'Temperatur/K')
 ax1a.set_ylabel(r'Depolarisationsstrom/A')
@@ -135,8 +152,7 @@ fig1a.savefig('Temp_Strom_Verlaufa.pdf')
 fig1b = plt.figure()
 ax1b = fig1b.add_subplot(111)
 
-ax1b.plot(T2,J2 , label = r'$b=2.5$ K/min')
-#ax1.plot(T2,J2 , label = r'$b=2.5$ K/min')
+ax1b.plot(T2,J2 , label = r'$b=2.5$ K/min', marker='x')
 ax1b.plot(T2,np.exp(vale2[0]*(T2)+vale2[1]),label="Untergrund")
 
 ax1b.set_xlabel(r'Temperatur/K')
@@ -148,7 +164,7 @@ ax1b = ev.plot_layout(ax1b)
 fig1b.tight_layout()
 fig1b.savefig('Temp_Strom_Verlaufb.pdf')
 
-plt.show()
+
 
 for i in range (0,len(T1)):
 	J1[i]=J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])
@@ -181,10 +197,10 @@ fig1c.savefig('Temp_Strom_Verlaufc.pdf')
 
 # linerare Ausgleichrechnung
 
-val1, cov1 = optimize.curve_fit(G, 1./T1[0:12], np.log(J1[0:12]))
+val1, cov1 = optimize.curve_fit(G, 1./T1[0:7], np.log(J1[0:7]))
 std1 = ev.get_std(cov1)
 
-val2, cov2 = optimize.curve_fit(G, 1./T2[0:12], np.log(J2[0:12]))
+val2, cov2 = optimize.curve_fit(G, 1./T2[0:7], np.log(J2[0:7]))
 std2 = ev.get_std(cov2)
 
 
@@ -193,9 +209,9 @@ std2 = ev.get_std(cov2)
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
 
-ax2.plot(1./T1[0:12], np.log(J1[0:12]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax2.plot(1./T1[12:], np.log(J1[12:]), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax2.plot(1./T1[0:20], G(1./T1[0:20], val1[0], val1[1]), label="Fit")
+ax2.plot(1./T1[0:7], np.log(J1[0:7]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax2.plot(1./T1[7:], np.log(J1[7:]), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
+ax2.plot(1./T1[0:9], G(1./T1[0:9], val1[0], val1[1]), label="Fit")
 
 ax2.set_xlabel(r'$1/T$')
 ax2.set_ylabel(r'$\ln(\{J \})$')
@@ -210,9 +226,9 @@ fig2.savefig('G1.pdf')
 fig3 = plt.figure()
 ax3 = fig3.add_subplot(111)
 
-ax3.plot(1./T2[0:12], np.log(J2[0:12]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax3.plot(1./T2[12:], np.log(J2[12:]), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax3.plot(1./T2[0:20], G(1./T2[0:20], val2[0], val2[1]), label="Fit")
+ax3.plot(1./T2[0:7], np.log(J2[0:7]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax3.plot(1./T2[7:], np.log(J2[7:]), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
+ax3.plot(1./T2[0:9], G(1./T2[0:9], val2[0], val2[1]), label="Fit")
 
 ax3.set_xlabel(r'$1/T$')
 ax3.set_ylabel(r'$\ln(\{J \})$')

@@ -1,9 +1,14 @@
 \section{Auswertung}
-Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom sind in den
-Tabellen \ref{tab:tab1} und \ref{tab:tab2} und den Abbildungen \ref{fig:Messwertea} und 
-\ref{fig:Messwerteb} zu sehen. Im Folgenden beziehen sich Größen mit
+Die gemessenen Wertepaare der beiden Messreihen sind in Abbildung \ref{fig:Verlauf} zu sehen. Es 
+ist zu erkennen, dass der Verlauf des Graphen für Temperaturen unter ca. $280$ K und über 
+ca. $310$ K ein Verhalten zeigt, dass qualitativ nicht mit dem in der Theorie erwarteten 
+Verhalten übereinstimmt, so dass vermutet wird, dass die Theorie nur für den entsprechenden 
+Bereich dazwischen gültig ist, während in den äußeren Bereichen andere Effekte berücksichtigt 
+werden müssen. Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom. Im Folgenden 
+beziehen sich Größen mit
 Index "`1"' auf die Heizrate $b_1=2$ K/min bzw. mit Index "`2"' auf $b_2=2.5$
-K/min. \\ Zunächst werden die gemessenen Daten durch Abschätzung des Untergrunds korrigiert. 
+K/min. \\ Zunächst werden die gemessenen Daten auf den Bereich zwischen $280$ K und $310$ K 
+eingegrenzt durch Abschätzung des Untergrunds korrigiert. 
 Dazu wird der Untergrund als $j_\text{Untergrund}(T)=A\e^{B T}$ beschrieben und die Parameter 
 $A$ und $B$ werden über die Regressionsgerade $\ln(j_\text{Untergrund})(T)=\ln(A)+BT$ gefittet. 
 Das Ergebnis ist Abbildung \ref{fig:Messwertec} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
@@ -21,6 +26,12 @@ sehenden Messwerte in Zeitabständen von einer Minute gemessen wurden.
 \label{fig:Heiz}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{../skript/Temp_Strom_Verlauf0.pdf}
+\caption{Temperatur-Strom-Verlauf der zwei Messreihen.}
+\label{fig:Verlauf}
+\end{figure}
 
 
 

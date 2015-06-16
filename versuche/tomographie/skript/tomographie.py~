@@ -473,7 +473,7 @@ R=[val0r,val1r,val2r,val3r]
 N=[N0,N1,N2,N3]
 for j in range(0,4):
 
-	for i in range(0,len(N[j])):
+	for i in range(0,len(N1)):
 		fig2 = plt.figure()
 		ax2 = fig2.add_subplot(111)
 
