@@ -186,8 +186,8 @@ def H(x,a,b,c):
 	if (x<b):
 		return a
 
-	elif (x>400):
-		return 0
+#	elif (x>400):
+#		return 0
 	else:
 		return c
 # Dreiecksfunktion, normiert
@@ -313,6 +313,9 @@ B=np.matrix((
 (0,0,0,s,0,0,0,s,0)
 ))
 
+A=A*30. #in mm
+B=B*30.
+
 #Bem: A.transpose(), np.linalg,inv(A)
 
 #Grenzen des Strahlungspeaks
@@ -374,26 +377,26 @@ C3=[]
 for j in range(0,len(X0)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y0[j][i]-erfc(X0[j][i],val0l[j],X0[j][np.argmax(Y0[j])],val0r[j],(4.*1./(minir-maxil)/2.))
+		RE=RE+Y0[j][i]-erfc(X0[j][i],val0l[j],X0[j][np.argmax(Y0[j])],val0r[j],(3.*1./(minir-maxil)/2.))
 	
 	C0.append(RE)
 
 for j in range(0,len(X1)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y1[j][i]-erfc(X1[j][i],val1l[j],X1[j][np.argmax(Y1[j])],val1r[j],(4.*1./(minir-maxil)/2.))
+		RE=RE+Y1[j][i]-erfc(X1[j][i],val1l[j],X1[j][np.argmax(Y1[j])],val1r[j],(3.*1./(minir-maxil)/2.))
 	
 	C1.append(RE)
 for j in range(0,len(X2)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y2[j][i]-erfc(X2[j][i],val2l[j],X2[j][np.argmax(Y2[j])],val2r[j],(4.*1./(minir-maxil)/2.))
+		RE=RE+Y2[j][i]-erfc(X2[j][i],val2l[j],X2[j][np.argmax(Y2[j])],val2r[j],(3.*1./(minir-maxil)/2.))
 	
 	C2.append(RE)
 for j in range(0,len(X3)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y3[j][i]-erfc(X3[j][i],val3l[j],X3[j][np.argmax(Y3[j])],val3r[j],(4.*1./(minir-maxil)/2.))
+		RE=RE+Y3[j][i]-erfc(X3[j][i],val3l[j],X3[j][np.argmax(Y3[j])],val3r[j],(3.*1./(minir-maxil)/2.))
 	
 	C3.append(RE)
 
@@ -461,8 +464,8 @@ print mu3
 #Ausgabe
 N0=["C02.pdf","C08.pdf","C09.pdf"]
 N1=["C11.pdf","C13.pdf","C14.pdf","C15.pdf","C16.pdf","C17.pdf","C18.pdf","C19.pdf","C110.pdf","C111.pdf","C112.pdf",]
-N2=["C21.pdf","C22","C23","C24","C25","C26","C27","C28","C29","C210","C211","C212",]
-N3=["C31.pdf","C32","C33","C34","C35","C36","C37","C38","C39","C310","C311","C312",]
+N2=["C21.pdf","C22.pdf","C23.pdf","C24.pdf","C25.pdf","C26.pdf","C27.pdf","C28.pdf","C29.pdf","C210.pdf","C211.pdf","C212.pdf",]
+N3=["C31.pdf","C32.pdf","C33.pdf","C34.pdf","C35.pdf","C36.pdf","C37.pdf","C38.pdf","C39.pdf","C310.pdf","C311.pdf","C312.pdf",]
 
 
 ###
@@ -471,6 +474,7 @@ y=[Y0,Y1,Y2,Y3]
 L=[val0l,val1l,val2l,val3l]
 R=[val0r,val1r,val2r,val3r]
 N=[N0,N1,N2,N3]
+'''
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
@@ -489,4 +493,15 @@ for j in range(0,4):
 		fig2.tight_layout()
 		fig2.savefig(N[j][i])
 ###
+'''
+#Fehler
+sigma1=0.03
+sigma2=0.03
+sigma3=0.01
+ 
+f1=sigma1**2 * np.linalg.inv(np.dot(B.transpose(),B))
+f2=sigma2**2 * np.linalg.inv(np.dot(A.transpose(),A))
+f3=sigma3**2 * np.linalg.inv(np.dot(A.transpose(),A))
+
+
 
