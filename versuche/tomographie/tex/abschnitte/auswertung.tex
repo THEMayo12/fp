@@ -4,3 +4,105 @@
 % ==================================================
 
 \section{Auswertung}
+Für die Berechnungen werden nur die Counts im Bereich von Kanal 257 bis Kanal 315 verwand, da in 
+diesem Bereich der Gammastrahlungspeak liegt, der aus dem Teil der Strahlung stammt, welcher 
+das Medium direkt durchdringt und primär nicht aus anderen Streueffekten stammt. Um die restlichen 
+Streubeiträge zu korrigieren wird eine Korrektur des Spektrums im relevanten Bereich vorgenommen. 
+Dazu wird eine Stufenfunktion von Kanal 220 bis 257 und von 315 bis 1023 (letzter Kanal) mit dem 
+Sprung beim Kanal mit den maximalen Counts an die Spektren gefittet und durch Faltung mit einer 
+Gaußfunktion geglättet. Die resultierende Untergrundabschätzung kann dann durch
+\begin{equation}
+\text{erfc}_{a,b,c,d}(x):=\frac{a-c}{2} \left(1-\text{erf}(d(x-b))\right)+c
+\end{equation}
+parametrisiert werden. Dabei sind $a$ und $c$ die Grenzwerte am linken und rechten Rand 
+(entsprechend der Stufenfunktion), $b$ der Kanal mit maximalen Counts und $d$ ein Maß für die 
+Breite der Verteilung, $\text{erf}$ ist die Gaußsche Fehlerfunktion. Die Abbildungen aller 
+Spektren und die gefitteten Untergrundfunktionen sind im Anhang zu sehen. In den Tabellen 
+\ref{tab:0}, \ref{tab:1}, \ref{tab:2} und \ref{tab:3} sind die Messzeiten mit den zugehörigen 
+Counts im relevanten Bereich zu sehen. Die Messung ohne Würfel ergibt $T_\text{init}=45.14$ s mit 
+$C_\text{init}=10236$ Counts.
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\toprule \midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle0.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 0.} \label{tab:0}
+
+\begin{tabular}{ccc}
+\toprule \midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle1.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 1. Für diesen Würfel wurde die Projektion 2 nicht gemessen.} \label{tab:1}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\toprule
+\midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle2.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 2.} \label{tab:2}
+
+\begin{tabular}{ccc}
+\toprule
+\midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle3.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 3.} \label{tab:3}
+\end{table}
+
+Im nächsten Schritt werden die Intensitäten $I_{j,i}:=T_{j,i}/C_{j,i}$ der $i$-ten Projektion des 
+$j$-ten 
+Würfels aus den Messzeiten $T_{j,i}$ und Counts $C_{j,i}$ der $i$-ten Projektion des 
+$j$-ten Würfels berechnet.\\
+Da in die Abschwächung der Intensität bei Durchtritt durch Materie exponentiell zu dem Produkt 
+aus Absorptionskoeffizient und Materialdicke ist,\footnote{Diese Gleichung ist für $I$ und 
+$\vec{\mu}$ für die Würfel 1,2 und 3 gültig.}
+\begin{equation}
+I_(j) \propto \exp\left( (d A \vec{\mu})_j + F_\text{Mantel,j} \right)=
+\exp\left( (d A \vec{\mu})_j \right) \exp\left( F_\text{Mantel,j} \right) \quad ,
+\end{equation} 
+kann der Effekt $F_\text{Mantel,j}$ des Aluminiummantels einfach 
+korrigiert werden, indem an jede Intensität der 1,2,3,4,5 oder 6 Projektion der Faktor 
+$I_\text{init}/I_{0,2}$, an die 7,9,10 und 12 Projektionen der Faktor $I_\text{init}/I_{0,9}$ und 
+an die 8 und 11 Projektion der Faktor $I_\text{init}/I_{0,8}$ multipliziert wird. Die 
+resultierenden Intensitäten $J_1$, $J_2$ und $J_3$ sind in Tabelle \ref{tab:korr} zu sehen.
+\begin{table}
+\centering
+\begin{tabular}{cccc}
+\toprule
+\midrule
+Projektion &	$J_1$ & $J_2$ & $J_3$ \\
+\midrule
+\input{../skript/korr.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die um die Effekte des Aluminiummantels korrigierten Intensitäten.} \label{tab:korr}
+\end{table}

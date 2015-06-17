@@ -225,7 +225,7 @@ T1,C1 = ev.get_data("../messwerte/Peak1.txt", unpack=True, index=0)
 T2,C2 = ev.get_data("../messwerte/Peak2.txt", unpack=True, index=0)
 T3,C3 = ev.get_data("../messwerte/Peak3.txt", unpack=True, index=0)
 
-Tinit=45.	#ohne Wuerfel
+Tinit=45.14	#ohne Wuerfel
 Cinit=10236. 	#ohne Wuerfel
 
 
@@ -313,8 +313,8 @@ B=np.matrix((
 (0,0,0,s,0,0,0,s,0)
 ))
 
-A=A*30. #in mm
-B=B*30.
+A=A*1. #in cm
+B=B*1.
 
 #Bem: A.transpose(), np.linalg,inv(A)
 
@@ -418,6 +418,47 @@ I1=C1/T1
 I2=C2/T2
 I3=C3/T3
 
+# LateX-Tabelle erzeugen
+#Richtungen 
+R0=[2,8,9]
+R1=[1,3,4,5,6,7,8,9,10,11,12]
+R2=[1,2,3,4,5,6,7,8,9,10,11,12]
+
+t0 = lt.latextable(
+    [R0,T0, C0],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle0', t0)
+
+t1 = lt.latextable(
+    [R1,T1, C1],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle1', t1)
+
+t2 = lt.latextable(
+    [R2,T2, C2],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle2', t2)
+
+t3 = lt.latextable(
+    [R2,T3, C3],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle3', t3)
+
+
+
+
 #Um den Alumantel korrigieren
 F1=Iinit/I0[0]#Frontal
 F2=Iinit/I0[1]#Hauptdiagonale
@@ -425,6 +466,7 @@ F3=Iinit/I0[2]#Nebendiagonale
 
 #print I1
 #print I2
+
 for i in range(0,len(I1)):
 	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)):
 		I1[i]=I1[i]*F1
@@ -450,6 +492,24 @@ for i in range(0,len(I3)):
 
 #print I1
 #print I2
+J1=np.insert(I1,1,'-')
+
+#erste Tabelle
+t5 = lt.latextable(
+    [R2,J1, I2,I3],
+    "table",
+    alignment = 'CCCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('korr', t5)
+
+
+
+I1=np.log(Iinit/I1)
+I2=np.log(Iinit/I2)
+I3=np.log(Iinit/I3)
+
+
 
 #Berechne die Absorptionskoeffizienten
 mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),B)),B.transpose()),I1)
@@ -467,18 +527,19 @@ N1=["C11.pdf","C13.pdf","C14.pdf","C15.pdf","C16.pdf","C17.pdf","C18.pdf","C19.p
 N2=["C21.pdf","C22.pdf","C23.pdf","C24.pdf","C25.pdf","C26.pdf","C27.pdf","C28.pdf","C29.pdf","C210.pdf","C211.pdf","C212.pdf",]
 N3=["C31.pdf","C32.pdf","C33.pdf","C34.pdf","C35.pdf","C36.pdf","C37.pdf","C38.pdf","C39.pdf","C310.pdf","C311.pdf","C312.pdf",]
 
-
-###
 x=[X0,X1,X2,X3]
 y=[Y0,Y1,Y2,Y3]
 L=[val0l,val1l,val2l,val3l]
 R=[val0r,val1r,val2r,val3r]
 N=[N0,N1,N2,N3]
+
+#PLOTS
 '''
+fig2 = plt.figure()
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
-		fig2 = plt.figure()
+		
 		ax2 = fig2.add_subplot(111)
 
 		ax2.plot(x[j][i], y[j][i], linestyle = 'none', marker = '+', label = 'Messwerte')
@@ -492,8 +553,20 @@ for j in range(0,4):
 
 		fig2.tight_layout()
 		fig2.savefig(N[j][i])
+		plt.clf()
 ###
+
 '''
+#PLOTS FERTIG
+
+
+#Mittelwerte für Messing? und Blei
+mumess_uc = ev.get_uncert(mu1)
+mublei_uc = ev.get_uncert(mu2)
+
+print mumess_uc
+print mublei_uc 
+
 #Fehler
 sigma1=0.03
 sigma2=0.03
@@ -502,4 +575,21 @@ sigma3=0.01
 f1=sigma1**2 * np.linalg.inv(np.dot(B.transpose(),B))
 f2=sigma2**2 * np.linalg.inv(np.dot(A.transpose(),A))
 f3=sigma3**2 * np.linalg.inv(np.dot(A.transpose(),A))
+
+'''
+print "Fehler1"
+for i in range(0,9):
+	print f1[i,i]
+print "Fehler2"
+for i in range(0,9):
+	print f2[i,i]
+print "Fehler3"
+for i in range(0,9):
+	print f3[i,i]
+'''
+
+
+
+
+
 
