@@ -4,22 +4,33 @@ ist zu erkennen, dass der Verlauf des Graphen für Temperaturen unter ca. $280$ 
 ca. $310$ K ein Verhalten zeigt, dass qualitativ nicht mit dem in der Theorie erwarteten 
 Verhalten übereinstimmt, so dass vermutet wird, dass die Theorie nur für den entsprechenden 
 Bereich dazwischen gültig ist, während in den äußeren Bereichen andere Effekte berücksichtigt 
-werden müssen. Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom. Im Folgenden 
+werden müssen. Die gemessenen Wertepaare von Temperatur und Depolarisationsstrom sind in 
+Abbildung \ref{fig:Verlauf} zu sehen. Im Folgenden 
 beziehen sich Größen mit
 Index "`1"' auf die Heizrate $b_1=2$ K/min bzw. mit Index "`2"' auf $b_2=2.5$
 K/min. \\ Zunächst werden die gemessenen Daten auf den Bereich zwischen $280$ K und $310$ K 
 eingegrenzt durch Abschätzung des Untergrunds korrigiert. 
 Dazu wird der Untergrund als $j_\text{Untergrund}(T)=A\e^{B T}$ beschrieben und die Parameter 
 $A$ und $B$ werden über die Regressionsgerade $\ln(j_\text{Untergrund})(T)=\ln(A)+BT$ gefittet. 
-Das Ergebnis ist Abbildung \ref{fig:Messwertec} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
+Da der Untergrund-Fit an einigen Stellen unter den gemessenen Werten liegt und dies ein 
+unphysikalisches Verhalten darstellt, wird dieser soweit 
+nach unten verschoben, dass er unterhalb aller Messwerte liegt.
+Das Ergebnis ist in den Abbildungen \ref{fig:Messwertea}, \ref{fig:Messwerteb} und 
+\ref{fig:Messwertec} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
 Heizrate gezeigt. Diese wurde als zentraler Differenzenquotient der Temperatur $T$ gemäß
 \begin{equation}
 b_t=\frac{T_{t+1}-T_{t-1}}{2 \text{min}}
 \end{equation}
 berechnet. Dabei ist zu erwähnen, dass die in Tabelle \ref{tab:tab1} und \ref{tab:tab2} zu 
-sehenden Messwerte in Zeitabständen von einer Minute gemessen wurden.
+sehenden Messwerte in Zeitabständen von einer Minute gemessen wurden. Im Durchschnitt ergeben 
+sich so als reale Heizraten
+\begin{align}
+b_{1,\text{real}}&=( 1.63 \pm 0.31 ) \text{ K/min}\\
+b_{2,\text{real}}&= (2.41 \pm 0.30 ) \text{ K/min} \quad .
+\end{align}
 
-\begin{figure}
+
+\begin{figure}[t]
 \centering
 \includegraphics[scale=0.8]{../skript/Heizrate.pdf}
 \caption{Heizrate der zwei Messreihen.}
@@ -107,8 +118,8 @@ Ein linearer Fit für $\ln(j)$ gegen $1/T$ ergibt
 %\input{G1}
 %\input{G2}
 \begin{align}
-G_1(x)&= ( 1.74\pm 0.15)\times 10^{3} \,x - (35.74 \pm 0.61) \\
-G_2(x)&= (0.919 \pm 0.10 )\times 10^{3} \,x - (32.18 \pm 0.42)
+G_1(x)&= -( 26.1\pm 4.3)\times 10^{3} \,x - (62 \pm 15) \\
+G_2(x)&= -(27.3 \pm 3.1 )\times 10^{3} \,x - (65 \pm 10)
 \end{align}
 Die Graphen dazu sind in den Abbildungen \ref{fig:G1} und \ref{fig:G2} zu sehen.
 
@@ -129,8 +140,8 @@ Die Graphen dazu sind in den Abbildungen \ref{fig:G1} und \ref{fig:G2} zu sehen.
 
 Damit ergibt sich
 \begin{align}
-W_1&= (2.040 \pm 0.020)\times 10^{-20}\text{J}=(0.1273\pm0.0012)\text{ eV}\\
-W_2&=  (1.26 \pm 0.14) \times 10^{-20}\text{J}=(0.0786\pm 0.0087)\text{ eV}\quad .
+W_1&= (3.61 \pm 0.59)\times 10^{-19}\text{J}=(2.25 \pm 0.37)\text{ eV}\\
+W_2&=  (3.77 \pm 0.43) \times 10^{-19}\text{J}=(2.35 \pm 0.26)\text{ eV}\quad .
 \end{align}
 Da bei der Rechnung nur eine fehlerbehaftete Größe (die Steigung der
 Ausgleichsgeraden) vorkommt, sind die Fehlerrechnung identisch mit der
@@ -140,7 +151,11 @@ Definiere
 \begin{equation}
 S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \frac{1}{j(T)}
 \end{equation}
-mit dem letzten gemessenen Wert $T^*$.
+mit dem letzten gemessenen Wert $T^*$\footnote{Für die erste Messreihe war dies $310$ K, für 
+die zweite Messreihe $320$ K.}. Statt des Stroms $i$ kann hier die 
+Stromdichte $j$ benutzt werden, da sich $i$ und $j$ nur um einen Faktor (
+Querschnittsfläche des Kabels) unterscheiden, und dieser bei der weiteren 
+Berechnung wegfällt.
 Bei konstanter Heizrate gilt
 \begin{equation}
 \frac{W}{\text{k}_\text{B} T}=\ln S(T)
@@ -154,8 +169,8 @@ Heizrate in SI-Einheiten. Ein linearer Fit für $\ln(S(T))$ gegen $1/T$ ergibt
 %\input{GS1}
 %\input{GS2}
 \begin{align}
-G_{S,1}(x)&= (7.62 \pm 0.13 )\times 10^{3} \,x - (19.04 \pm 0.41)  \\
-G_{S,2}(x)&= (8.19 \pm 0.18 )\times 10^{3} \,x - (20.36 \pm 0.53)
+G_{S,1}(x)&= (8.8 \pm 1.6 )\times 10^{3} \,x - (27.9 \pm 5.5)  \\
+G_{S,2}(x)&= (5.6 \pm 1.7 )\times 10^{3} \,x - (16.1 \pm 5.8)
 \end{align}
 Die entsprechenden Abbildungen sind \ref{fig:GS1} und \ref{fig:GS2}.
 \begin{figure}[h]
@@ -172,8 +187,8 @@ Die entsprechenden Abbildungen sind \ref{fig:GS1} und \ref{fig:GS2}.
 \end{figure}
 Es folgen
 \begin{align}
-W_{S,1}&=  (10.51 \pm 0.18)\times 10^{-20}\text{ J} = (0.656\pm 0.011)\text{ eV}\\
-W_{S,2}&=  (11.30 \pm 0.25) \times 10^{-20}\text{J} = (0.705\pm 0.016)\text{ eV}\quad .
+W_{S,1}&=  (1.22 \pm 0.22)\times 10^{-19}\text{ J} = (0.76\pm 0.13)\text{ eV}\\
+W_{S,2}&=  (7.77 \pm 2.43) \times 10^{-20}\text{ J} = (0.48\pm 0.15)\text{ eV}\quad .
 \end{align}
 Da wieder nur eine fehlerbehaftete Größe vorkommt, kann der Fehler wie der
 Messwert behandelt werden.
@@ -201,9 +216,9 @@ bestimmt werden.
 
 So ergibt sich
 \begin{align}
-\tau_{0,1} &=(5.5\pm 2.1)\times 10^{-9} \text{ s} \\
-\tau_{0,2} &=(1.50\pm 0.73)\times 10^{-9} \text{ s}
+\tau_{0,1} &=(1.8 \pm 9.6)\times 10^{-12} \text{ s} \\
+\tau_{0,2} &=(1.54\pm 8.5)\times 10^{-7} \text{ s}
 \end{align}
 
-Die Fehlerrechnung geschieht dabei gemäß der Gaußschen Fehlerfortpflanzung.
+Die Fehlerrechnung geschieht dabei gemäß der Gaußschen Fehlerfortpflanzung. 
 
