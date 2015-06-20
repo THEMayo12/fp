@@ -76,24 +76,25 @@ Projektion &$T/$s & $C$ \\
 Projektionen zu 
 Würfel 3.} \label{tab:3}
 \end{table}
-
-Im nächsten Schritt werden die Intensitäten $I_{j,i}:=T_{j,i}/C_{j,i}$ der $i$-ten Projektion des 
-$j$-ten 
-Würfels aus den Messzeiten $T_{j,i}$ und Counts $C_{j,i}$ der $i$-ten Projektion des 
-$j$-ten Würfels berechnet.\\
+\clearpage
+Im nächsten Schritt werden die Intensitäten $I_{i,j}:=T_{i,j}/C_{i,j}$ der $j$-ten Projektion des 
+$i$-ten 
+Würfels aus den Messzeiten $T_{i,j}$ und Counts $C_{i,j}$ der $j$-ten Projektion des 
+$i$-ten Würfels berechnet.\\
 Da in die Abschwächung der Intensität bei Durchtritt durch Materie exponentiell zu dem Produkt 
-aus Absorptionskoeffizient und Materialdicke ist,\footnote{Diese Gleichung ist für $I$ und 
-$\vec{\mu}$ für die Würfel 1,2 und 3 gültig.}
+aus Absorptionskoeffizient und Materialdicke ist,\footnote{Hierin bedeutet $i$ den Würfel und 
+$j$ die Projektion; $\vec{\mu}_i$ sind die Ansorptionskoeffizienten zum $i$-ten Würfel. Die 
+Gleichung ist für $i=1,2,3$ gültig.}
 \begin{equation}
-I_(j) \propto \exp\left( (d A \vec{\mu})_j + F_\text{Mantel,j} \right)=
-\exp\left( (d A \vec{\mu})_j \right) \exp\left( F_\text{Mantel,j} \right) \quad ,
+I_{i,j} \propto -\exp\left( (d A \vec{\mu}_i)_{j} + F_{\text{Mantel},j} \right)=
+-\exp\left( (d A \vec{\mu}_i)_j \right) \exp\left( F_{\text{Mantel},j} \right) \quad ,
 \end{equation} 
-kann der Effekt $F_\text{Mantel,j}$ des Aluminiummantels einfach 
+kann der Effekt $F_{\text{Mantel},j}$ des Aluminiummantels einfach 
 korrigiert werden, indem an jede Intensität der 1,2,3,4,5 oder 6 Projektion der Faktor 
 $I_\text{init}/I_{0,2}$, an die 7,9,10 und 12 Projektionen der Faktor $I_\text{init}/I_{0,9}$ und 
 an die 8 und 11 Projektion der Faktor $I_\text{init}/I_{0,8}$ multipliziert wird. Die 
 resultierenden Intensitäten $J_1$, $J_2$ und $J_3$ sind in Tabelle \ref{tab:korr} zu sehen.
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{cccc}
 \toprule
@@ -105,4 +106,38 @@ Projektion &	$J_1$ & $J_2$ & $J_3$ \\
 \bottomrule
 \end{tabular}
 \caption{Die um die Effekte des Aluminiummantels korrigierten Intensitäten.} \label{tab:korr}
+\end{table}
+\clearpage
+
+Für den so korrigierten Intensitätsvektor $\vec{J}_i:=(J_{i,1},J_{i,2},\ldots,J_{i,12})^\text{T}$ 
+des $i$-ten Würfels gilt
+\begin{equation}
+J_{i,j}=I_\text{init}\exp\left(- (d A \vec{\mu}_i)_j \right) \quad ,
+\end{equation}
+und nach Anwenden des ln ergibt sich
+\begin{equation}
+A \vec{\mu}_i = \hat{J}_i \label{eq:linear}
+\end{equation}
+mit $\hat{J}_i:=(\ln(I_\text{init}/J_{i,1}),\ldots,\ln(I_\text{init}/J_{i,12}))^\text{T}$ 
+  \footnote{
+Da bei Würfel 1 die Projektion 2 fehlt, fällt für $i=1$ die zweite Zeile der Matrix $A$ weg.}. 
+Die Gleichung \eqref{eq:linear} kann in die Normalen-Gleichung
+\begin{equation}
+\vec{\mu}_i = \left( A^\text{T}A \right)^{-1} A^\text{T} \hat{J}_i
+\end{equation}
+überführt werden. Die daraus resultierenden Werte für die Absorptionskoeffizienten sind in 
+Tabelle \ref{tab:Koeff} zu sehen.
+\begin{table}[h]
+\centering
+\begin{tabular}{cccc}
+\toprule
+\midrule
+Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm \\
+\midrule
+\input{../skript/Koeff}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die Absorptionskoeffizienten-Vektoren $\vec{\mu}$ der Würfel 1, 2 und 3.}
+\label{tab:Koeff}
 \end{table}

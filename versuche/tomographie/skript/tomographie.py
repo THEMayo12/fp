@@ -516,10 +516,37 @@ mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),B)),B.transpose()),I1)
 
 mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I2)
 mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I3)
-
+'''
 print mu1
 print mu2
 print mu3
+'''
+
+#Weil ichs nicht besser kann
+AR=[1,2,3,4,5,6,7,8,9]
+Mu1=[]
+Mu2=[]
+Mu3=[]
+
+for i in range(0,9):
+	Mu1.append(mu1[0,i])
+	Mu2.append(mu2[0,i])
+	Mu3.append(mu3[0,i])
+print Mu1
+print Mu2
+print Mu3
+
+
+#Koeff Tabelle
+t6 = lt.latextable(
+    [AR,Mu1, Mu2,Mu3],
+    "table",
+    alignment = 'CCCC',
+    form = '.2f',
+ )
+# tex schreiben
+ev.write('Koeff', t6)
+
 
 #Ausgabe
 N0=["C02.pdf","C08.pdf","C09.pdf"]
