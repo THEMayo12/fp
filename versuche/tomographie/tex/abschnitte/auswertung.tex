@@ -77,7 +77,7 @@ Projektionen zu
 Würfel 3.} \label{tab:3}
 \end{table}
 \clearpage
-Im nächsten Schritt werden die Intensitäten $I_{i,j}:=T_{i,j}/C_{i,j}$ der $j$-ten Projektion des 
+Im nächsten Schritt werden die Intensitäten $I_{i,j}:=C_{i,j}/T_{i,j}$ der $j$-ten Projektion des 
 $i$-ten 
 Würfels aus den Messzeiten $T_{i,j}$ und Counts $C_{i,j}$ der $j$-ten Projektion des 
 $i$-ten Würfels berechnet.\\
@@ -123,7 +123,7 @@ mit $\hat{J}_i:=(\ln(I_\text{init}/J_{i,1}),\ldots,\ln(I_\text{init}/J_{i,12}))^
 Da bei Würfel 1 die Projektion 2 fehlt, fällt für $i=1$ die zweite Zeile der Matrix $A$ weg.}. 
 Die Gleichung \eqref{eq:linear} kann in die Normalen-Gleichung
 \begin{equation}
-\vec{\mu}_i = \left( A^\text{T}A \right)^{-1} A^\text{T} \hat{J}_i
+\vec{\mu}_i = \left( A^\text{T}A \right)^{-1} A^\text{T} \hat{J}_i \label{eq:linear2}
 \end{equation}
 überführt werden. Die daraus resultierenden Werte für die Absorptionskoeffizienten sind in 
 Tabelle \ref{tab:Koeff} zu sehen.
@@ -132,7 +132,7 @@ Tabelle \ref{tab:Koeff} zu sehen.
 \begin{tabular}{cccc}
 \toprule
 \midrule
-Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm \\
+Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_2$/cm & $\vec{\mu}_3$/cm \\
 \midrule
 \input{../skript/Koeff}
 \midrule
@@ -140,4 +140,65 @@ Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm & $\vec{\mu}_1$/cm \\
 \end{tabular}
 \caption{Die Absorptionskoeffizienten-Vektoren $\vec{\mu}$ der Würfel 1, 2 und 3.}
 \label{tab:Koeff}
+\end{table}
+\clearpage
+Es bleibt nun noch eine Fehlerabschätzung für die gefundenen Absorptionskoeffizienten zu geben. 
+Da die Messunsicherheit der Counts einer Poisson-Verteilung unterliegt, wird zu $C$ gemessene 
+Counts der Fehler $\Delta C=\sqrt{C}$ erwartet.
+Wird die Intensität $I_{i,j}$ der $j$-ten 
+Projektion des $i$-ten Würfels durch die fehlerbehaftete Messgrößen $C_{i,j}$ ausgedrückt,
+\begin{equation}
+I_{i,j}=\frac{C_{i,j}}{T_{i,j}}
+\end{equation}
+ergibt sich mit der Gaußschen Fehlerfortpflanzung\footnote{$i\in \{0,1,2,3,\text{init}\}$, für 
+$i=\text{init}$ fällt der Index $j$ weg.}
+\begin{equation}
+\Delta I_{i,j}=\frac{\Delta C_{i,j}}{T_{i,j}} \quad.
+\end{equation}
+Die Korrektur des Aluminiummantels\footnote{$i\in \{1,2,3\}$, zur besseren Übersichtlichkeit 
+steht $J_{i,j}$ für $\vec{J}_{i,j}$}
+\begin{equation}
+J_{i,j}=\frac{I_\text{init}}{I_{0,j}} I_{i,j}
+\end{equation}
+bekommt einen Fehler von
+\begin{equation}
+\Delta J_{i,j}= \sqrt{\left(\frac{\Delta I_\text{init}}{I_{0,j}} I_{i,j} \right)^2 +
+				\left(- \frac{I_\text{init}}{I_{0,j}^2} I_{i,j} \Delta I_{0,j} \right)^2 +
+				\left(\frac{I_\text{init}}{I_{0,j}}\Delta I_{i,j}\right)^2 } \quad.
+\end{equation}
+Schließlich werden daraus die Werte
+\begin{equation}
+\hat{J}_{i,j}=\ln\left( \frac{I_\text{init}}{J_{i,j}}  \right)
+\end{equation}
+berechnet, denen wiederum gemäß der Gaußschen Fehlerfortpflanzung der Fehler
+\begin{equation}
+\Delta \hat{J}_{i,j}=\sqrt{
+\left(\frac{J_{i,j}}{I_\text{init}} \Delta I_\text{init}\right)^2 +
+\left(\frac{J_{i,j}}{I_\text{init}} \frac{-I_\text{init}}{J^2_{i,j}} \Delta J_{i,j}\right)^2
+}
+\end{equation}
+zugeordnet wird. \\
+Für die Fehlerabschätzung der Normalengleichung \ref{eq:linear2} werden nun die Matrizen 
+\begin{equation}
+W_i:=\text{diag} (1/ (\Delta\hat{J}_{i,j})^2)
+\end{equation}
+definiert, wobei angenommen wird, dass die Messungen nicht korreliert sind \cite{Blobel}. 
+Die Fehler der Absorptionskoeffizienten lassen sich dann als
+\begin{equation}
+\Delta \vec{\mu}_i=(A^\text{T}W_i A)^{-1}\hat{J}_i
+\end{equation}
+bestimmen.
+
+\begin{table}
+\centering
+\begin{tabular}{c|cc|cc|cc}
+\toprule \midrule
+Projektion & $\vec{\mu}_1$ & $\Delta \vec{\mu}_1$& $\vec{\mu}_2$ & $\Delta \vec{\mu}_2$& $\vec{\mu}_3$ & $\Delta \vec{\mu}_3$ \\
+\midrule
+\input{../skript/Fehler.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Zusammenstellung der ermittelten Absorptionskoeffizienten mit Fehlern.}
+\label{Ergebnis}
 \end{table}
