@@ -62,6 +62,24 @@ T2,J2,Jh2 = ev.get_data("../messwerte/messwerte2.txt", unpack=True, index=0)
 T1=T1+273.15
 T2=T2+273.15
 
+#Tabellen
+t1 = lt.latextable(
+    [T1, J1*1e12],
+    "../tex/tabellen/tab10.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+
+t2 = lt.latextable(
+    [T2, J2*1e12],
+    "../tex/tabellen/tab20.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+
+
 #Heizrate
 Z1=[]
 Z2=[]
@@ -95,7 +113,7 @@ der1_uc = ev.get_uncert(der1)
 der2_uc = ev.get_uncert(der2)
 print der1_uc
 print der2_uc
-''' 
+
 
 #Exponentialfunktion
 def exp(x,A,B,y0):
@@ -359,8 +377,8 @@ print "Erster Wert WS1+-DWS1 = " + str(WS1) + "+/-" + str(DWS1)
 print "Zweiter Wert WS2-DWS2 = " + str(WS2) + "+/-" + str(DWS2)
 
 #Noch tau bestimmen (mit WS1,2 weil angeblich genauer)
-Tmax1=max(T1)
-Tmax2=max(T2)
+Tmax1=T1[J1>=max(J1)]
+Tmax2=T2[J2>=max(J2)]
 taumax1=const.k*Tmax1*Tmax1/(WS1*2.)
 taumax2=const.k*Tmax2*Tmax2/(WS2*2.5)
 Dtaumax1=taumax1* DWS1/WS1
@@ -434,4 +452,21 @@ t2 = lt.latextable(
     form= ['.1f','.2f'],
     split = 3
 )
-'''
+
+t3 = lt.latextable(
+    [T1, I1],
+    "../tex/tabellen/tab3.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+ev.write('Integrale1' ,t3 )
+
+t4 = lt.latextable(
+    [T2, I2],
+    "../tex/tabellen/tab4.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+ev.write('Integrale2' ,t4 )

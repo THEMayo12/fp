@@ -1,5 +1,7 @@
+\clearpage
 \section{Auswertung}
-Die gemessenen Wertepaare der beiden Messreihen sind in Abbildung \ref{fig:Verlauf} zu sehen. Es 
+Die gemessenen Wertepaare der beiden Messreihen sind in Abbildung \ref{fig:Verlauf} und den 
+Tabellen \ref{tab:tab10} und \ref{tab:tab20} zu sehen. Es 
 ist zu erkennen, dass der Verlauf des Graphen für Temperaturen unter ca. $280$ K und über 
 ca. $310$ K ein Verhalten zeigt, dass qualitativ nicht mit dem in der Theorie erwarteten 
 Verhalten übereinstimmt, so dass vermutet wird, dass die Theorie nur für den entsprechenden 
@@ -16,7 +18,7 @@ Da der Untergrund-Fit an einigen Stellen unter den gemessenen Werten liegt und d
 unphysikalisches Verhalten darstellt, wird dieser soweit 
 nach unten verschoben, dass er unterhalb aller Messwerte liegt.
 Das Ergebnis ist in den Abbildungen \ref{fig:Messwertea}, \ref{fig:Messwerteb} und 
-\ref{fig:Messwertec} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
+\ref{fig:Messwertec} sowie in den Tabellen \ref{tab:tab1} und \ref{tab:tab2} zu sehen.\\ Außerdem wird in \ref{fig:Heiz} die 
 Heizrate gezeigt. Diese wurde als zentraler Differenzenquotient der Temperatur $T$ gemäß
 \begin{equation}
 b_t=\frac{T_{t+1}-T_{t-1}}{2 \text{min}}
@@ -75,11 +77,54 @@ b_{2,\text{real}}&= (2.41 \pm 0.30 ) \text{ K/min} \quad .
 		$T / \si{\kelvin}$ &
 		$I / \si{\pA}$ \\
 		\midrule
-		\input{tabellen/tab1.tex}
+		\input{tabellen/tab10.tex}
 		\midrule
 		\midrule
 	\end{tabular}
 	\caption{Gemessene Ströme $I$ in Abhängigkeit der Temperatur $T$ mit
+		einer Heizrate von $b_1 = \SI{2}{\kelvin\per\minute}$.}
+	\label{tab:tab10}
+\end{table}
+%
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ &
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ &
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ \\
+		\midrule
+		\input{tabellen/tab20.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Gemessene Ströme $I$ in Abhängigkeit der Temperatur $T$ mit
+		einer Heizrate von $b_2 = \SI{2.5}{\kelvin\per\minute}$.}
+	\label{tab:tab20}
+\end{table}
+
+
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{cc|cc|cc}
+		\midrule
+		\midrule
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ &
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ &
+		$T / \si{\kelvin}$ &
+		$I / \si{\pA}$ \\
+		\midrule
+		\input{tabellen/tab1.tex}
+		\midrule
+		\midrule
+	\end{tabular}
+	\caption{Korrigierte Ströme $I$ in Abhängigkeit der Temperatur $T$ mit
 		einer Heizrate von $b_1 = \SI{2}{\kelvin\per\minute}$.}
 	\label{tab:tab1}
 \end{table}
@@ -100,11 +145,12 @@ b_{2,\text{real}}&= (2.41 \pm 0.30 ) \text{ K/min} \quad .
 		\midrule
 		\midrule
 	\end{tabular}
-	\caption{Gemessene Ströme $I$ in Abhängigkeit der Temperatur $T$ mit
+	\caption{Korrigierte Ströme $I$ in Abhängigkeit der Temperatur $T$ mit
 		einer Heizrate von $b_2 = \SI{2.5}{\kelvin\per\minute}$.}
 	\label{tab:tab2}
 \end{table}
 %
+\clearpage
 \subsection{Bestimmung von $W$ aus dem ersten Teil des Kurvenverlaufes}
 Für Temperaturen nahe bei $T_0:=\min\{T_1\}$ gilt die Abhängigkeit
 \begin{equation}
@@ -149,7 +195,7 @@ zum Mittelwert.
 \subsection{Bestimmung von $W$ aus dem gesamten Kurvenverlauf}
 Definiere
 \begin{equation}
-S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \frac{1}{j(T)}
+S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \frac{1}{j(T)} \label{eq:s}
 \end{equation}
 mit dem letzten gemessenen Wert $T^*$\footnote{Für die erste Messreihe war dies $310$ K, für 
 die zweite Messreihe $320$ K.}. Statt des Stroms $i$ kann hier die 
@@ -165,7 +211,45 @@ mit einer Konstanten $k$. Bei der Berechnung wurde die Näherung
 S(T)=\int\limits_T^{T^*} j(T') \text{d}T' \approx \sum\limits_{\#\text{Messwerte}} j^n  \hat{b}
 \end{equation}
 benutzt. Der Index bezieht sich dabei auf den $n$-ten Messwert, $\hat{b}$ ist die
-Heizrate in SI-Einheiten. Ein linearer Fit für $\ln(S(T))$ gegen $1/T$ ergibt
+Heizrate in SI-Einheiten.\\
+Die so ermittelten Werte sind in den Tabellen \ref{tab:tab3} und \ref{tab:tab4} zu sehen. Die 
+sehr großen $S$ Werte für kleine $T$ liegen an der $1/j(T)$-Abhängigkeit in $S$ (vgl. 
+\eqref{eq:s}), 
+und dem Umstand, dass der Untergrund-Fit gerade so angepasst wurde, dass der Strom $j(T)$ für 
+kleine $T$ nahe null liegt.
+
+\begin{table}
+\centering
+\begin{tabular}{cccccc}
+\toprule
+\midrule
+$T$ & $S(T)$&$T$ & $S(T)$&$T$ & $S(T)$ \\
+\midrule
+\input{tabellen/tab3.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die ermittelten $S$ Werte für die erste Messreihe.}
+\label{tab:3}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{cccccc}
+\toprule
+\midrule
+$T$ & $S(T)$&$T$ & $S(T)$&$T$ & $S(T)$ \\
+\midrule
+\input{tabellen/tab4.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die ermittelten $S$ Werte für die zweite Messreihe.}
+\label{tab:4}
+\end{table}
+
+
+ Ein linearer Fit für $\ln(S(T))$ gegen $1/T$ ergibt
 %\input{GS1}
 %\input{GS2}
 \begin{align}
@@ -187,11 +271,12 @@ Die entsprechenden Abbildungen sind \ref{fig:GS1} und \ref{fig:GS2}.
 \end{figure}
 Es folgen
 \begin{align}
-W_{S,1}&=  (1.22 \pm 0.22)\times 10^{-19}\text{ J} = (0.76\pm 0.13)\text{ eV}\\
-W_{S,2}&=  (7.77 \pm 2.43) \times 10^{-20}\text{ J} = (0.48\pm 0.15)\text{ eV}\quad .
+W_{S,1}&=  (1.22 \pm 0.22)\times 10^{-19}\text{ J} = (0.76\pm 0.13)\text{ eV} \label{W1} \\
+W_{S,2}&=  (7.77 \pm 2.43) \times 10^{-20}\text{ J} = (0.48\pm 0.15)\text{ eV}\quad . \label{W2}
 \end{align}
 Da wieder nur eine fehlerbehaftete Größe vorkommt, kann der Fehler wie der
 Messwert behandelt werden.
+
 
 \subsection{Bestimmung der Relaxationszeit $\tau$}
 Differentiation von Gleichung \eqref{eq:Stromdichte} ergibt
@@ -205,20 +290,34 @@ mit $T_\text{max}=\max\{T \}$. Mit
 \end{equation}
 folgt
 \begin{equation}
-\tau(T_\text{max})=\frac{\text{k}_\text{B} T_\text{max}^2}{W b} \quad .
+\tau(T_\text{max})=\frac{\text{k}_\text{B} T_\text{max}^2}{W b} \quad . \label{eq:taumax}
 \end{equation}
 Nun kann mit Hilfe von Gleichung \eqref{eq:relaxationszeit} die Relaxationszeit $\tau_0$
 gemäß
 \begin{equation}
-\tau_0=\tau(T_\text{max})\text{e}^{-\frac{W}{\text{k}_\text{B}T_\text{max}}}
+\tau_0=\tau(T_\text{max})\text{e}^{-\frac{W}{\text{k}_\text{B}T_\text{max}}} \label{eq:tau0}
 \end{equation}
 bestimmt werden.
 
 So ergibt sich
 \begin{align}
-\tau_{0,1} &=(1.8 \pm 9.6)\times 10^{-12} \text{ s} \\
-\tau_{0,2} &=(1.54\pm 8.5)\times 10^{-7} \text{ s}
+\tau_{0,1} &=(0.26 \pm 1.50)\times 
+10^{-12} \text{ s} \\
+\tau_{0,2} &=(0.32\pm 1.91)\times 
+10^{-7} \text{ s}
 \end{align}
 
-Die Fehlerrechnung geschieht dabei gemäß der Gaußschen Fehlerfortpflanzung. 
-
+Die Fehlerrechnung geschieht dabei mit gemäß der Gaußschen Fehlerfortpflanzung:\\
+Mit \eqref{eq:taumax} in \eqref{eq:tau0} und der Gaußschen Fehlerfortplanzung
+\begin{equation}
+\Delta \tau_0=\sqrt{\left(\frac{\partial \tau_0}{\partial W} \, \Delta W \right)^2} \quad ,
+\end{equation}
+wobei $\Delta \tau_0$ den erwarteten Fehler von $\tau_0$ und $\Delta W$ den erwarteten Fehler 
+von $W$ darstellen, ergibt sich
+\begin{align}
+\Delta \tau_0=\left| -\frac{\kB T_\text{max}^2}{W^2 b} \e^{-\frac{W}{\kB T_\text{max}}} - \frac{
+\kB T^2_\text{max}}{Wb}\frac{1}{\kB T_\text{max}} \e^{-\frac{W}{\kB T}} \right|\Delta W
+\end{align}
+wobei für $W$ und $\Delta W$ jeweils die Werte aus \eqref{W1} und \eqref{W2} eingesetzt wurden 
+und $b$ entsprechend die Heizrate $b_1$ bzw. $b_2$ ist.
+\clearpage
