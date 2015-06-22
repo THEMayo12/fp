@@ -4,3 +4,201 @@
 % ==================================================
 
 \section{Auswertung}
+Für die Berechnungen werden nur die Counts im Bereich von Kanal 257 bis Kanal 315 verwand, da in 
+diesem Bereich der Gammastrahlungspeak liegt, der aus dem Teil der Strahlung stammt, welcher 
+das Medium direkt durchdringt und primär nicht aus anderen Streueffekten stammt. Um die restlichen 
+Streubeiträge zu korrigieren wird eine Korrektur des Spektrums im relevanten Bereich vorgenommen. 
+Dazu wird eine Stufenfunktion von Kanal 220 bis 257 und von 315 bis 1023 (letzter Kanal) mit dem 
+Sprung beim Kanal mit den maximalen Counts an die Spektren gefittet und durch Faltung mit einer 
+Gaußfunktion geglättet. Die resultierende Untergrundabschätzung kann dann durch
+\begin{equation}
+\text{erfc}_{a,b,c,d}(x):=\frac{a-c}{2} \left(1-\text{erf}(d(x-b))\right)+c
+\end{equation}
+parametrisiert werden. Dabei sind $a$ und $c$ die Grenzwerte am linken und rechten Rand 
+(entsprechend der Stufenfunktion), $b$ der Kanal mit maximalen Counts und $d$ ein Maß für die 
+Breite der Verteilung, $\text{erf}$ ist die Gaußsche Fehlerfunktion. Die Abbildungen aller 
+Spektren und die gefitteten Untergrundfunktionen sind im Anhang zu sehen. In den Tabellen 
+\ref{tab:0}, \ref{tab:1}, \ref{tab:2} und \ref{tab:3} sind die Messzeiten mit den zugehörigen 
+Counts im relevanten Bereich zu sehen. Die Messung ohne Würfel ergibt $T_\text{init}=45.14$ s mit 
+$C_\text{init}=10236$ Counts.
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\toprule \midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle0.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 0.} \label{tab:0}
+
+\begin{tabular}{ccc}
+\toprule \midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle1.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 1. Für diesen Würfel wurde die Projektion 2 nicht gemessen.} \label{tab:1}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+\toprule
+\midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle2.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 2.} \label{tab:2}
+
+\begin{tabular}{ccc}
+\toprule
+\midrule
+Projektion &$T/$s & $C$ \\
+\midrule
+\input{../skript/tabelle3.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Korrigierte Messwertpaare von Messzeit $T$ und Counts $C$ für die vermessenen 
+Projektionen zu 
+Würfel 3.} \label{tab:3}
+\end{table}
+\clearpage
+Im nächsten Schritt werden die Intensitäten $I_{i,j}:=C_{i,j}/T_{i,j}$ der $j$-ten Projektion des 
+$i$-ten 
+Würfels aus den Messzeiten $T_{i,j}$ und Counts $C_{i,j}$ der $j$-ten Projektion des 
+$i$-ten Würfels berechnet.\\
+Da in die Abschwächung der Intensität bei Durchtritt durch Materie exponentiell zu dem Produkt 
+aus Absorptionskoeffizient und Materialdicke ist,\footnote{Hierin bedeutet $i$ den Würfel und 
+$j$ die Projektion; $\vec{\mu}_i$ sind die Ansorptionskoeffizienten zum $i$-ten Würfel. Die 
+Gleichung ist für $i=1,2,3$ gültig.}
+\begin{equation}
+I_{i,j} \propto -\exp\left( (d A \vec{\mu}_i)_{j} + F_{\text{Mantel},j} \right)=
+-\exp\left( (d A \vec{\mu}_i)_j \right) \exp\left( F_{\text{Mantel},j} \right) \quad ,
+\end{equation} 
+kann der Effekt $F_{\text{Mantel},j}$ des Aluminiummantels einfach 
+korrigiert werden, indem an jede Intensität der 1,2,3,4,5 oder 6 Projektion der Faktor 
+$I_\text{init}/I_{0,2}$, an die 7,9,10 und 12 Projektionen der Faktor $I_\text{init}/I_{0,9}$ und 
+an die 8 und 11 Projektion der Faktor $I_\text{init}/I_{0,8}$ multipliziert wird. Die 
+resultierenden Intensitäten $J_1$, $J_2$ und $J_3$ sind in Tabelle \ref{tab:korr} zu sehen.
+\begin{table}[h]
+\centering
+\begin{tabular}{cccc}
+\toprule
+\midrule
+Projektion &	$J_1$ & $J_2$ & $J_3$ \\
+\midrule
+\input{../skript/korr.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die um die Effekte des Aluminiummantels korrigierten Intensitäten.} \label{tab:korr}
+\end{table}
+\clearpage
+
+Für den so korrigierten Intensitätsvektor $\vec{J}_i:=(J_{i,1},J_{i,2},\ldots,J_{i,12})^\text{T}$ 
+des $i$-ten Würfels gilt
+\begin{equation}
+J_{i,j}=I_\text{init}\exp\left(- (d A \vec{\mu}_i)_j \right) \quad ,
+\end{equation}
+und nach Anwenden des ln ergibt sich
+\begin{equation}
+A \vec{\mu}_i = \hat{J}_i \label{eq:linear}
+\end{equation}
+mit $\hat{J}_i:=(\ln(I_\text{init}/J_{i,1}),\ldots,\ln(I_\text{init}/J_{i,12}))^\text{T}$ 
+  \footnote{
+Da bei Würfel 1 die Projektion 2 fehlt, fällt für $i=1$ die zweite Zeile der Matrix $A$ weg.}. 
+Die Gleichung \eqref{eq:linear} kann in die Normalen-Gleichung
+\begin{equation}
+\vec{\mu}_i = \left( A^\text{T}A \right)^{-1} A^\text{T} \hat{J}_i \label{eq:linear2}
+\end{equation}
+überführt werden. Die daraus resultierenden Werte für die Absorptionskoeffizienten sind in 
+Tabelle \ref{tab:Koeff} zu sehen.
+\begin{table}[h]
+\centering
+\begin{tabular}{cccc}
+\toprule
+\midrule
+Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_2$/cm & $\vec{\mu}_3$/cm \\
+\midrule
+\input{../skript/Koeff}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die Absorptionskoeffizienten-Vektoren $\vec{\mu}$ der Würfel 1, 2 und 3.}
+\label{tab:Koeff}
+\end{table}
+\clearpage
+Es bleibt nun noch eine Fehlerabschätzung für die gefundenen Absorptionskoeffizienten zu geben. 
+Da die Messunsicherheit der Counts einer Poisson-Verteilung unterliegt, wird zu $C$ gemessene 
+Counts der Fehler $\Delta C=\sqrt{C}$ erwartet.
+Wird die Intensität $I_{i,j}$ der $j$-ten 
+Projektion des $i$-ten Würfels durch die fehlerbehaftete Messgrößen $C_{i,j}$ ausgedrückt,
+\begin{equation}
+I_{i,j}=\frac{C_{i,j}}{T_{i,j}}
+\end{equation}
+ergibt sich mit der Gaußschen Fehlerfortpflanzung\footnote{$i\in \{0,1,2,3,\text{init}\}$, für 
+$i=\text{init}$ fällt der Index $j$ weg.}
+\begin{equation}
+\Delta I_{i,j}=\frac{\Delta C_{i,j}}{T_{i,j}} \quad.
+\end{equation}
+Die Korrektur des Aluminiummantels\footnote{$i\in \{1,2,3\}$, zur besseren Übersichtlichkeit 
+steht $J_{i,j}$ für $\vec{J}_{i,j}$}
+\begin{equation}
+J_{i,j}=\frac{I_\text{init}}{I_{0,j}} I_{i,j}
+\end{equation}
+bekommt einen Fehler von
+\begin{equation}
+\Delta J_{i,j}= \sqrt{\left(\frac{\Delta I_\text{init}}{I_{0,j}} I_{i,j} \right)^2 +
+				\left(- \frac{I_\text{init}}{I_{0,j}^2} I_{i,j} \Delta I_{0,j} \right)^2 +
+				\left(\frac{I_\text{init}}{I_{0,j}}\Delta I_{i,j}\right)^2 } \quad.
+\end{equation}
+Schließlich werden daraus die Werte
+\begin{equation}
+\hat{J}_{i,j}=\ln\left( \frac{I_\text{init}}{J_{i,j}}  \right)
+\end{equation}
+berechnet, denen wiederum gemäß der Gaußschen Fehlerfortpflanzung der Fehler
+\begin{equation}
+\Delta \hat{J}_{i,j}=\sqrt{
+\left(\frac{J_{i,j}}{I_\text{init}} \Delta I_\text{init}\right)^2 +
+\left(\frac{J_{i,j}}{I_\text{init}} \frac{-I_\text{init}}{J^2_{i,j}} \Delta J_{i,j}\right)^2
+}
+\end{equation}
+zugeordnet wird. \\
+Für die Fehlerabschätzung der Normalengleichung \ref{eq:linear2} werden nun die Matrizen 
+\begin{equation}
+W_i:=\text{diag} (1/ (\Delta\hat{J}_{i,j})^2)
+\end{equation}
+definiert, wobei angenommen wird, dass die Messungen nicht korreliert sind \cite{Blobel}. 
+Die Fehler der Absorptionskoeffizienten lassen sich dann als
+\begin{equation}
+\Delta \vec{\mu}_i=(A^\text{T}W_i A)^{-1}\hat{J}_i
+\end{equation}
+bestimmen.
+
+\begin{table}
+\centering
+\begin{tabular}{c|cc|cc|cc}
+\toprule \midrule
+Projektion & $\vec{\mu}_1$ & $\Delta \vec{\mu}_1$& $\vec{\mu}_2$ & $\Delta \vec{\mu}_2$& $\vec{\mu}_3$ & $\Delta \vec{\mu}_3$ \\
+\midrule
+\input{../skript/Fehler.tex}
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Zusammenstellung der ermittelten Absorptionskoeffizienten mit Fehlern.}
+\label{Ergebnis}
+\end{table}

@@ -62,6 +62,24 @@ T2,J2,Jh2 = ev.get_data("../messwerte/messwerte2.txt", unpack=True, index=0)
 T1=T1+273.15
 T2=T2+273.15
 
+#Tabellen
+t1 = lt.latextable(
+    [T1, J1*1e12],
+    "../tex/tabellen/tab10.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+
+t2 = lt.latextable(
+    [T2, J2*1e12],
+    "../tex/tabellen/tab20.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+
+
 #Heizrate
 Z1=[]
 Z2=[]
@@ -91,6 +109,12 @@ axHeiz = ev.plot_layout(axHeiz)
 figHeiz.tight_layout()
 figHeiz.savefig('Heizrate.pdf')
 
+der1_uc = ev.get_uncert(der1)
+der2_uc = ev.get_uncert(der2)
+print der1_uc
+print der2_uc
+
+
 #Exponentialfunktion
 def exp(x,A,B,y0):
 	return A*np.exp(B*x)+y0
@@ -108,8 +132,8 @@ def G(x, m, b):
 fig0 = plt.figure()
 ax0 = fig0.add_subplot(111)
 
-ax0.plot(T1,J1 , label = r'$b=2$ K/min',marker ='x')
-ax0.plot(T2,J2,label=r'$b=2.5$ K/min', marker='x')
+ax0.plot(T1,J1 , label = r'$b=2$ K/min',marker ='x', linestyle='none')
+ax0.plot(T2,J2,label=r'$b=2.5$ K/min', marker='x',linestyle='none')
 
 ax0.set_xlabel(r'Temperatur/K')
 ax0.set_ylabel(r'Depolarisationsstrom/A')
@@ -133,12 +157,31 @@ vale2,cove2=optimize.curve_fit(G,Te2,np.log(Je2))
 Te1=T1[(T1<285)|(T1>305)]
 Je1=J1[(T1<285)|(T1>305)]
 vale1,cove1=optimize.curve_fit(G,Te1,np.log(Je1))
+
+
+#Korrigiere Messwerte um den Untergrund
+MIN1=0
+MIN2=0
+for i in range (0,len(T1)):
+	if (J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])<MIN1):
+		MIN1=J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])
+
+for i in range (0,len(T2)):
+	if (J2[i]-np.exp(vale2[0]*(T2[i])+vale2[1])<MIN2):
+		MIN2=J2[i]-np.exp(vale2[0]*(T2[i])+vale2[1])
+MIN1+=-1e-20
+MIN2+=-1e-20
+
+
+
+#
+
 #--PLOT-----------------------------------
 fig1a = plt.figure()
 ax1a = fig1a.add_subplot(111)
 
 ax1a.plot(T1,J1 , label = r'$b=2$ K/min', marker='x')
-ax1a.plot(T1,np.exp(vale1[0]*(T1)+vale1[1]),label="Untergrund")
+ax1a.plot(T1,np.exp(vale1[0]*(T1)+vale1[1])+MIN1,label="Untergrund")
 
 ax1a.set_xlabel(r'Temperatur/K')
 ax1a.set_ylabel(r'Depolarisationsstrom/A')
@@ -153,7 +196,7 @@ fig1b = plt.figure()
 ax1b = fig1b.add_subplot(111)
 
 ax1b.plot(T2,J2 , label = r'$b=2.5$ K/min', marker='x')
-ax1b.plot(T2,np.exp(vale2[0]*(T2)+vale2[1]),label="Untergrund")
+ax1b.plot(T2,np.exp(vale2[0]*(T2)+vale2[1])+MIN2,label="Untergrund")
 
 ax1b.set_xlabel(r'Temperatur/K')
 ax1b.set_ylabel(r'Depolarisationsstrom/A')
@@ -164,18 +207,14 @@ ax1b = ev.plot_layout(ax1b)
 fig1b.tight_layout()
 fig1b.savefig('Temp_Strom_Verlaufb.pdf')
 
-#Faktor
-F=2.
 
+#Korrigieren
 for i in range (0,len(T1)):
-	J1[i]=F*J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])
-	if J1[i]<0:
-		J1[i]=1e-15
+	J1[i]=J1[i]-np.exp(vale1[0]*(T1[i])+vale1[1])-MIN1
 
 for i in range (0,len(T2)):
-	J2[i]=F*J2[i]-np.exp(vale2[0]*(T2[i])+vale2[1])
-	if J2[i]<0:
-		J2[i]=1e-15
+	J2[i]=J2[i]-np.exp(vale2[0]*(T2[i])+vale2[1])-MIN2
+
 
 fig1c = plt.figure()
 ax1c = fig1c.add_subplot(111)
@@ -198,10 +237,16 @@ fig1c.savefig('Temp_Strom_Verlaufc.pdf')
 
 # linerare Ausgleichrechnung
 
-val1, cov1 = optimize.curve_fit(G, 1./T1[1:6], np.log(J1[1:6]))
+a1=2
+b1=6
+
+a2=1
+b2=6
+
+val1, cov1 = optimize.curve_fit(G, 1./T1[a1:b1], np.log(J1[a1:b1]))
 std1 = ev.get_std(cov1)
 
-val2, cov2 = optimize.curve_fit(G, 1./T2[1:6], np.log(J2[1:6]))
+val2, cov2 = optimize.curve_fit(G, 1./T2[a2:b2], np.log(J2[a2:b2]))
 std2 = ev.get_std(cov2)
 
 
@@ -210,9 +255,9 @@ std2 = ev.get_std(cov2)
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
 
-ax2.plot(1./T1[1:6], np.log(J1[1:6]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax2.plot(1./np.insert(T1[6:],0,T1[0]), np.log(np.insert(J1[6:],0,J1[0])), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax2.plot(1./T1[0:9], G(1./T1[0:9], val1[0], val1[1]), label="Fit")
+ax2.plot(1./T1[a1:b1], np.log(J1[a1:b1]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax2.plot(1./np.insert(T1[b1:],0,T1[:a1]), np.log(np.insert(J1[b1:],0,J1[:a1])), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
+ax2.plot(1./T1[0:10], G(1./T1[0:10], val1[0], val1[1]), label="Fit")
 
 ax2.set_xlabel(r'$1/T$')
 ax2.set_ylabel(r'$\ln(\{J \})$')
@@ -227,9 +272,9 @@ fig2.savefig('G1.pdf')
 fig3 = plt.figure()
 ax3 = fig3.add_subplot(111)
 
-ax3.plot(1./T2[1:6], np.log(J2[1:6]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax3.plot(1./np.insert(T2[6:],0,T2[0]), np.log(np.insert(J2[6:],0,J2[0])), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax3.plot(1./T2[0:9], G(1./T2[0:9], val2[0], val2[1]), label="Fit")
+ax3.plot(1./T2[a2:b2], np.log(J2[a2:b2]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax3.plot(1./np.insert(T2[b2:],0,T2[:a2]), np.log(np.insert(J2[b2:],0,J2[:a2])), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
+ax3.plot(1./T2[0:10], G(1./T2[0:10], val2[0], val2[1]), label="Fit")
 
 ax3.set_xlabel(r'$1/T$')
 ax3.set_ylabel(r'$\ln(\{J \})$')
@@ -241,8 +286,8 @@ fig3.tight_layout()
 fig3.savefig('G2.pdf')
 
 # Damit m=W/k
-W1=val1[0]*const.k
-W2=val2[0]*const.k
+W1=-val1[0]*const.k
+W2=-val2[0]*const.k
 DW1=std1[0]*const.k
 DW2=std2[0]*const.k
 print "Erster Wert W1+-DW1 = " + str(W1) + "+/-" + str(DW1)
@@ -274,21 +319,26 @@ for n0 in range (0,len(J2)):
 #Trage 1/T gegen ln(i) auf , d.h. 1/T[m]:np.log(integral(m)) für m in range (0,len(T))
 
 #Ausgleichsrechnung durch die ersten 20 Messwerte:
-valS1, covS1 = optimize.curve_fit(G, 1./T1[1:7], np.log(I1[1:7]))
+A1=2
+B1=15
+A2=2
+B2=15
+
+valS1, covS1 = optimize.curve_fit(G, 1./T1[A1:B1], np.log(I1[A1:B1]))
 stdS1 = ev.get_std(covS1)
 
-valS2, covS2 = optimize.curve_fit(G, 1./T2[1:7], np.log(I2[1:7]))
+valS2, covS2 = optimize.curve_fit(G, 1./T2[A2:B2], np.log(I2[A2:B2]))
 stdS2 = ev.get_std(covS2)
 
 #
 fig4 = plt.figure()
 ax4 = fig4.add_subplot(111)
 
-Tx=np.insert(T1[7:],0,T1[0])
-Ix=np.insert(I1[7:],0,I1[0])
+Tx=np.insert(T1[B1:],0,T1[:A1])
+Ix=np.insert(I1[B1:],0,I1[:A1])
 ax4.plot(1./Tx, np.log(Ix), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax4.plot(1./T1[1:7], np.log(I1[1:7]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax4.plot(1./T1[0:8], G(1./T1[0:8], valS1[0], valS1[1]), label="Fit")
+ax4.plot(1./T1[A1:B1], np.log(I1[A1:B1]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax4.plot(1./T1, G(1./T1, valS1[0], valS1[1]), label="Fit")
 
 ax4.set_xlabel(r'$1/T$')
 ax4.set_ylabel(r'$\ln(S1(T))$')
@@ -303,11 +353,11 @@ fig4.savefig('S1.pdf')
 fig5 = plt.figure()
 ax5 = fig5.add_subplot(111)
 
-Txx=np.insert(T2[7:],0,T2[0])
-Ixx=np.insert(I2[7:],0,I2[0])
+Txx=np.insert(T2[B2:],0,T2[:A2])
+Ixx=np.insert(I2[B2:],0,I2[:A2])
 ax5.plot(1./Txx, np.log(Ixx), linestyle = 'none', marker = 'd', label = 'Messwerte (nicht in der Regression)')
-ax5.plot(1./T2[1:7], np.log(I2[1:7]), linestyle = 'none', marker = '+', label = 'Messwerte')
-ax5.plot(1./T2[0:8], G(1./T2[0:8], valS2[0], valS2[1]), label="Fit")
+ax5.plot(1./T2[A2:B2], np.log(I2[A2:B2]), linestyle = 'none', marker = '+', label = 'Messwerte')
+ax5.plot(1./T2, G(1./T2, valS2[0], valS2[1]), label="Fit")
 
 ax5.set_xlabel(r'$1/T$')
 ax5.set_ylabel(r'$\ln(S2(T))$')
@@ -327,8 +377,8 @@ print "Erster Wert WS1+-DWS1 = " + str(WS1) + "+/-" + str(DWS1)
 print "Zweiter Wert WS2-DWS2 = " + str(WS2) + "+/-" + str(DWS2)
 
 #Noch tau bestimmen (mit WS1,2 weil angeblich genauer)
-Tmax1=max(T1)
-Tmax2=max(T2)
+Tmax1=T1[J1>=max(J1)]
+Tmax2=T2[J2>=max(J2)]
 taumax1=const.k*Tmax1*Tmax1/(WS1*2.)
 taumax2=const.k*Tmax2*Tmax2/(WS2*2.5)
 Dtaumax1=taumax1* DWS1/WS1
@@ -403,3 +453,20 @@ t2 = lt.latextable(
     split = 3
 )
 
+t3 = lt.latextable(
+    [T1, I1],
+    "../tex/tabellen/tab3.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+ev.write('Integrale1' ,t3 )
+
+t4 = lt.latextable(
+    [T2, I2],
+    "../tex/tabellen/tab4.tex",
+    alignment = 'CC',
+    form= ['.1f','.2f'],
+    split = 3
+)
+ev.write('Integrale2' ,t4 )

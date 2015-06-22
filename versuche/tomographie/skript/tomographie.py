@@ -225,7 +225,7 @@ T1,C1 = ev.get_data("../messwerte/Peak1.txt", unpack=True, index=0)
 T2,C2 = ev.get_data("../messwerte/Peak2.txt", unpack=True, index=0)
 T3,C3 = ev.get_data("../messwerte/Peak3.txt", unpack=True, index=0)
 
-Tinit=45.	#ohne Wuerfel
+Tinit=45.14	#ohne Wuerfel
 Cinit=10236. 	#ohne Wuerfel
 
 
@@ -313,8 +313,8 @@ B=np.matrix((
 (0,0,0,s,0,0,0,s,0)
 ))
 
-A=A*30. #in mm
-B=B*30.
+A=A*1. #in cm
+B=B*1.
 
 #Bem: A.transpose(), np.linalg,inv(A)
 
@@ -405,9 +405,9 @@ for j in range(0,len(X3)):
 #Intensität=counts/second
 Iinit=Cinit/Tinit
 I0=C0/T0
-
-I1=[]
 '''
+I1=[]
+
 for i in range (0,len(T1)):
 	if T1[i]==0:
 		I1.append(0)
@@ -418,48 +418,248 @@ I1=C1/T1
 I2=C2/T2
 I3=C3/T3
 
+
+
+
+# LateX-Tabelle erzeugen
+#Richtungen 
+R0=[2,8,9]
+R1=[1,3,4,5,6,7,8,9,10,11,12]
+R2=[1,2,3,4,5,6,7,8,9,10,11,12]
+
+t0 = lt.latextable(
+    [R0,T0, C0],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle0', t0)
+
+t1 = lt.latextable(
+    [R1,T1, C1],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle1', t1)
+
+t2 = lt.latextable(
+    [R2,T2, C2],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle2', t2)
+
+t3 = lt.latextable(
+    [R2,T3, C3],
+    "table",
+    alignment = 'CCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('tabelle3', t3)
+
+
+
+
+
+
 #Um den Alumantel korrigieren
 F1=Iinit/I0[0]#Frontal
 F2=Iinit/I0[1]#Hauptdiagonale
 F3=Iinit/I0[2]#Nebendiagonale
 
+J1=[]
+J2=[]
+J3=[]
 #print I1
 #print I2
+
 for i in range(0,len(I1)):
 	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)):
-		I1[i]=I1[i]*F1
+		J1.append(I1[i]*F1)
 	elif ((i==7)|(i==10)):
-		I1[i]=I1[i]*F2
+		J1.append(I1[i]*F2)
 	else:
-		I1[i]=I1[i]*F3
+		J1.append(I1[i]*F3)
 for i in range(0,len(I2)):
 	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)|(i==6)):
-		I2[i]=I2[i]*F1
+		J2.append(I2[i]*F1)
 	elif ((i==8)|(i==11)):
-		I2[i]=I2[i]*F2
+		J2.append(I2[i]*F2)
 	else:
-		I2[i]=I2[i]*F3
+		J2.append(I2[i]*F3)
 for i in range(0,len(I3)):
 	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)|(i==6)):
-		I3[i]=I3[i]*F1
+		J3.append(I3[i]*F1)
 	elif ((i==8)|(i==11)):
-		I3[i]=I3[i]*F2
+		J3.append(I3[i]*F2)
 	else:
-		I3[i]=I3[i]*F3
+		J3.append(I3[i]*F3)
+
+#########Fehler##########################################################
+
+
+
+
+DCinit=np.sqrt(Cinit)
+DC0=np.sqrt(C0)
+DC1=np.sqrt(C1)
+DC2=np.sqrt(C2)
+DC3=np.sqrt(C3)
+
+DIinit=DCinit/Tinit
+DI0=DC0/T0
+DI1=DC1/T1
+DI2=DC2/T2
+DI3=DC3/T3
+
+DJ1=[]
+DJ2=[]
+DJ3=[]
+#1
+for i in range(0,len(I1)):
+	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)):
+		DJ1.append(np.sqrt((DIinit/I0[0] * I1[i])**2+(Iinit/(I0[0])**2 * I1[i]* DI0[0])**2+(Iinit/I0[0] *DI1[i])**2))
+	elif ((i==7)|(i==10)):
+		DJ1.append(np.sqrt((DIinit/I0[1] * I1[i])**2+(Iinit/(I0[1])**2 * I1[i]* DI0[1])**2+(Iinit/I0[1] *DI1[i])**2))
+	else:
+		DJ1.append(np.sqrt((DIinit/I0[2] * I1[i])**2+(Iinit/(I0[2])**2 * I1[i]* DI0[2])**2+(Iinit/I0[2] *DI1[i])**2))
+#2
+for i in range(0,len(I2)):
+	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)|(i==6)):
+		DJ2.append(np.sqrt((DIinit/I0[0] * I2[i])**2+(Iinit/(I0[0])**2 * I2[i]* DI0[0])**2+(Iinit/I0[0] *DI2[i])**2))
+	elif ((i==8)|(i==11)):
+		DJ2.append(np.sqrt((DIinit/I0[1] * I2[i])**2+(Iinit/(I0[1])**2 * I2[i]* DI0[1])**2+(Iinit/I0[1] *DI2[i])**2))
+	else:
+		DJ2.append(np.sqrt((DIinit/I0[2] * I2[i])**2+(Iinit/(I0[2])**2 * I2[i]* DI0[2])**2+(Iinit/I0[2] *DI2[i])**2))
+#3
+for i in range(0,len(I3)):
+	if ((i==1)|(i==2)|(i==3)|(i==4)|(i==5)|(i==6)):
+		DJ3.append(np.sqrt((DIinit/I0[0] * I3[i])**2+(Iinit/(I0[0])**2 * I3[i]* DI0[0])**2+(Iinit/I0[0] *DI3[i])**2))
+	elif ((i==8)|(i==11)):
+		DJ3.append(np.sqrt((DIinit/I0[1] * I3[i])**2+(Iinit/(I0[1])**2 * I3[i]* DI0[1])**2+(Iinit/I0[1] *DI3[i])**2))
+	else:
+		DJ3.append(np.sqrt((DIinit/I0[2] * I3[i])**2+(Iinit/(I0[2])**2 * I3[i]* DI0[2])**2+(Iinit/I0[2] *DI3[i])**2))
+###Fehler########################################
+
 
 
 #print I1
 #print I2
+
+
+#erste Tabelle
+t5 = lt.latextable(
+    [R2,np.insert(J1,1,0), J2,J3],
+    "table",
+    alignment = 'CCCC',
+    form = '.2f', )
+# tex schreiben
+ev.write('korr', t5)
+
+#############FEHLER##################
+DHJ1=[]
+DHJ2=[]
+DHJ3=[]
+
+for i in range(0,len(J1)):
+	DHJ1.append(np.sqrt( (J1[i]/Iinit *DIinit)**2 +(J1[i]/Iinit * Iinit/(J1[i])**2)**2 ))
+for i in range(0,len(J2)):
+	DHJ2.append(np.sqrt( (J2[i]/Iinit *DIinit)**2 +(J2[i]/Iinit * Iinit/(J2[i])**2)**2 ))
+for i in range(0,len(J3)):
+	DHJ3.append(np.sqrt( (J3[i]/Iinit *DIinit)**2 +(J3[i]/Iinit * Iinit/(J3[i])**2)**2 ))
+
+DHJ1=1./np.power(DHJ1,2)
+DHJ2=1./np.power(DHJ2,2)
+DHJ3=1./np.power(DHJ3,2)
+#print DHJ1
+#print len(DHJ1)
+#print len(DHJ2)
+W1=np.matrix(((DHJ1[0],0,0,0,0,0,0,0,0,0,0),
+(0,DHJ1[1],0,0,0,0,0,0,0,0,0),
+(0,0,DHJ1[2],0,0,0,0,0,0,0,0),
+(0,0,0,DHJ1[3],0,0,0,0,0,0,0),
+(0,0,0,0,DHJ1[4],0,0,0,0,0,0),
+(0,0,0,0,0,DHJ1[5],0,0,0,0,0),
+(0,0,0,0,0,0,DHJ1[6],0,0,0,0),
+(0,0,0,0,0,0,0,DHJ1[7],0,0,0),
+(0,0,0,0,0,0,0,0,DHJ1[8],0,0),
+(0,0,0,0,0,0,0,0,0,DHJ1[9],0),
+(0,0,0,0,0,0,0,0,0,0,DHJ1[10])
+))
+
+W2=np.matrix(((DHJ2[0],0,0,0,0,0,0,0,0,0,0,0),
+(0,DHJ2[1],0,0,0,0,0,0,0,0,0,0),
+(0,0,DHJ2[2],0,0,0,0,0,0,0,0,0),
+(0,0,0,DHJ2[3],0,0,0,0,0,0,0,0),
+(0,0,0,0,DHJ2[4],0,0,0,0,0,0,0),
+(0,0,0,0,0,DHJ2[5],0,0,0,0,0,0),
+(0,0,0,0,0,0,DHJ2[6],0,0,0,0,0),
+(0,0,0,0,0,0,0,DHJ2[7],0,0,0,0),
+(0,0,0,0,0,0,0,0,DHJ2[8],0,0,0),
+(0,0,0,0,0,0,0,0,0,DHJ2[9],0,0),
+(0,0,0,0,0,0,0,0,0,0,DHJ2[10],0),
+(0,0,0,0,0,0,0,0,0,0,0,DHJ2[11])
+))
+
+W3=np.matrix(((DHJ3[0],0,0,0,0,0,0,0,0,0,0,0),
+(0,DHJ3[1],0,0,0,0,0,0,0,0,0,0),
+(0,0,DHJ3[2],0,0,0,0,0,0,0,0,0),
+(0,0,0,DHJ3[3],0,0,0,0,0,0,0,0),
+(0,0,0,0,DHJ3[4],0,0,0,0,0,0,0),
+(0,0,0,0,0,DHJ3[5],0,0,0,0,0,0),
+(0,0,0,0,0,0,DHJ3[6],0,0,0,0,0),
+(0,0,0,0,0,0,0,DHJ3[7],0,0,0,0),
+(0,0,0,0,0,0,0,0,DHJ3[8],0,0,0),
+(0,0,0,0,0,0,0,0,0,DHJ3[9],0,0),
+(0,0,0,0,0,0,0,0,0,0,DHJ3[10],0),
+(0,0,0,0,0,0,0,0,0,0,0,DHJ3[11])
+))
+
+###########FEHLER#####################
+
+I1=np.log(Iinit/np.array(J1))
+I2=np.log(Iinit/np.array(J2))
+I3=np.log(Iinit/np.array(J3))
+
 
 #Berechne die Absorptionskoeffizienten
 mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),B)),B.transpose()),I1)
 
 mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I2)
 mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I3)
-
+'''
 print mu1
 print mu2
 print mu3
+'''
+
+#Weil ichs nicht besser kann
+AR=[1,2,3,4,5,6,7,8,9]
+Mu1=[]
+Mu2=[]
+Mu3=[]
+
+for i in range(0,9):
+	Mu1.append(mu1[0,i])
+	Mu2.append(mu2[0,i])
+	Mu3.append(mu3[0,i])
+#print Mu1
+#print Mu2
+#print Mu3
+
+
+#Koeff Tabelle
+t6 = lt.latextable(
+    [AR,Mu1, Mu2,Mu3],
+    "table",
+    alignment = 'CCCC',
+    form = '.3f',
+ )
+# tex schreiben
+ev.write('Koeff', t6)
+
 
 #Ausgabe
 N0=["C02.pdf","C08.pdf","C09.pdf"]
@@ -467,18 +667,19 @@ N1=["C11.pdf","C13.pdf","C14.pdf","C15.pdf","C16.pdf","C17.pdf","C18.pdf","C19.p
 N2=["C21.pdf","C22.pdf","C23.pdf","C24.pdf","C25.pdf","C26.pdf","C27.pdf","C28.pdf","C29.pdf","C210.pdf","C211.pdf","C212.pdf",]
 N3=["C31.pdf","C32.pdf","C33.pdf","C34.pdf","C35.pdf","C36.pdf","C37.pdf","C38.pdf","C39.pdf","C310.pdf","C311.pdf","C312.pdf",]
 
-
-###
 x=[X0,X1,X2,X3]
 y=[Y0,Y1,Y2,Y3]
 L=[val0l,val1l,val2l,val3l]
 R=[val0r,val1r,val2r,val3r]
 N=[N0,N1,N2,N3]
+
+#PLOTS
 '''
+fig2 = plt.figure()
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
-		fig2 = plt.figure()
+		
 		ax2 = fig2.add_subplot(111)
 
 		ax2.plot(x[j][i], y[j][i], linestyle = 'none', marker = '+', label = 'Messwerte')
@@ -492,16 +693,47 @@ for j in range(0,4):
 
 		fig2.tight_layout()
 		fig2.savefig(N[j][i])
+		plt.clf()
 ###
+
 '''
-#Fehler
-sigma1=0.03
-sigma2=0.03
-sigma3=0.01
- 
-f1=sigma1**2 * np.linalg.inv(np.dot(B.transpose(),B))
-f2=sigma2**2 * np.linalg.inv(np.dot(A.transpose(),A))
-f3=sigma3**2 * np.linalg.inv(np.dot(A.transpose(),A))
+#PLOTS FERTIG
 
 
+#Mittelwerte für Messing? und Blei
+mumess_uc = ev.get_uncert(mu1)
+mublei_uc = ev.get_uncert(mu2)
+
+#print mumess_uc
+#print mublei_uc 
+
+
+
+######FEHLER###################
+
+DMu1=np.linalg.inv(np.dot(np.dot(B.transpose(),W1),B))
+DMu2=np.linalg.inv(np.dot(np.dot(A.transpose(),W2),A))
+DMu3=np.linalg.inv(np.dot(np.dot(A.transpose(),W3),A))
+
+Dmu1=[]
+Dmu2=[]
+Dmu3=[]
+
+print DMu1
+
+for i in range(0,9):
+	Dmu1.append(DMu1[i,i])
+	Dmu2.append(DMu2[i,i])
+	Dmu3.append(DMu3[i,i])
+
+print Dmu1
+#Koeff Tabelle
+t7 = lt.latextable(
+    [AR,Mu1,Dmu1, Mu2,Dmu2,Mu3,Dmu3],
+    "table",
+    alignment = 'CCCCCCC',
+    form = '.3f',
+ )
+# tex schreiben
+ev.write('Fehler', t7)
 

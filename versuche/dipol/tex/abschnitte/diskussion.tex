@@ -10,28 +10,41 @@ zusammengefasst.
 \begin{table}[h]
 \centering
 \begin{tabular}{lr}
-\midrule \midrule
+\toprule \midrule
 Messgröße & Messergebnis\\
 \midrule
 
-$W_1$ &$ (0.1273\pm 0.0012) \text{ eV}$ \\
+$W_1$ &$ (2.25 \pm 0.37) \text{ eV}$ \\
 
-$W_2 $& $(0.0786\pm 0.0087) \text{ eV}$ \\
+$W_2 $& $(2.35\pm 0.26) \text{ eV}$ \\
 
-$W_{S,1}$ &$ (0.656\pm 0.011) \text{ eV}$ \\
+$W_{S,1}$ &$ (0.76\pm 0.13) \text{ eV}$ \\
 
-$W_{S,2}$ &$ (0.705\pm 0.016) \text{ eV}$ \\
+$W_{S,2}$ &$ (0.48\pm 0.15) \text{ eV}$ \\
 
-$\tau_{0,1}$ & $(5.5 \pm 2.1) \times 10^{-9}\text{ s}$ \\
+$\tau_{0,1}$ & $(0.26 \pm 1.50) \times 10^{-12}\text{ s}$ \\
 
-$\tau_{0,2} $& $(1.50 \pm 0.73) \times 10^{-9}\text{ s} $\\
-\midrule \midrule
+$\tau_{0,2} $& $(0.32 \pm 1.91) \times 10^{-7}\text{ s} $\\
+\midrule \bottomrule
 \end{tabular}
 \caption{Zusammenstellung der Messergebnisse.}
 \label{tab:Diskussion}
 \end{table}
 
-Zunächst sind die großen Abweichungen zwischen den Werten $W$ und $W_S$ zu bewerten.
-Nach der Theorie sollten die letzteren den wahren Wert besser annähern. Dabei
-wird jedoch vorausgesetzt, dass am Ende der Messung der Relaxationsstrom gegen Null
-geht, was in dieser Versuchsdurchführung jedoch nicht der Fall war.
+Zunächst ist festzustellen, dass die Werte $W_1,W_2$ und $W_{S,1},W_{S,2}$ nur gering voneinander 
+Abweichen, und alle in einer realistischen Größenordnung liegen. Typische Aktivierungsenergien 
+liegen im Bereich $10^{-1}-10^1$ eV. Die Werte $W_1$ und $W_2$ resultieren aus einer 
+Temperatur-Strom Näherung, welche nur für kleine Temperaturen gültig ist (vgl. Theorie), sodass 
+hier, da weniger Messwerte verwendet werden, größere Fehler erwartet werden als bei der 
+zweiten Berechnungsmethode. Bei der zweiten Methode, der Berechnung aus dem gesamten 
+Kurvenverlauf wird jedoch vorausgesetzt, dass die Heizrate während der Gesamten Messung konstant 
+ist. Dies ist jedoch, wie an der Abbildung \ref{fig:Heiz} zu sehen ist, nicht exakt erfüllt. 
+Die Heizraten lagen bei $b_{1,\text{real}}=(1.63\pm 0.31)$ K/min und $b_{2,\text{real}}=2.41\pm 
+0.30$ K/min, sodass hier entsprechende, allerdings relativ kleine Fehler erwartet werden. Die 
+ermittelten Werte für die Relaxationszeiten zeigen sehr große Fehler und weichen außerdem 
+um einen Faktor $10^5$ voneinander ab, sodass damit keine zuverlässige Aussage getroffen 
+werde kann. Bei der Ermittlung der Relaxationszeiten hat sich gezeigt, dass sie sehr 
+empfindlich von den Parametern abhängen, sodass eine kleine Änderung der Aktivierungsenergie 
+bereits eine große Veränderung der berechneten Relaxationszeit hervorruft. Um eine bessere 
+Aussage über diese Größe zu bekommen, müssten daher zuerst die Fehler der $W$-Messung verringert 
+werden.
