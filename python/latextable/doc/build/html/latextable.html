@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>latextable package &mdash; LateX-Table 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="LateX-Table 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to LateX-Table’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LateX-Table’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">LateX-Table 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="latextable-package">
+<h1>latextable package<a class="headerlink" href="#latextable-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-latextable.latextable">
+<span id="latextable-latextable-module"></span><h2>latextable.latextable module<a class="headerlink" href="#module-latextable.latextable" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="latextable.latextable.latextable">
+<tt class="descclassname">latextable.latextable.</tt><tt class="descname">latextable</tt><big>(</big><em>matrix</em>, <em>filename=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#latextable.latextable.latextable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert arrays/matrices to latex-code</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>matrix</strong> (<em>list, numpy.ndarray</em>) &#8211; Matrix to convert</li>
+<li><strong>filename</strong> (<em>str</em>) &#8211; File to place output.
+Extension .tex is added automatically.
+File can be included in a laTex document by input{filename}.
+Output will always be returned in a string.
+Filename must be a string or None.
+If filename is None, no outputfile will be generated.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first">
+<li><p class="first"><strong>alignment</strong> (<em>str</em>) &#8211; A string of latex alignment like &#8216;clr&#8217; and
+uppercase &#8216;CLR&#8217;.
+The lenght of the string has to be equal to the number of columns.
+The uppercase characters are for interpretation
+as &#8220;dot-alignment&#8221; and will be rewritten as &#8216;c&#8217;. To achieve
+dot-alignment, the latex-command &#8216;phantom{...}&#8217; will appear
+with the required number of &#8216;0&#8217;s to reserve the right
+space. Have a look at the example for better understanding
+of the idea.
+(See Keyword &#8216;split&#8217; for additional use with split)</p>
+</li>
+<li><p class="first"><strong>transpose</strong> (<em>bool</em>) &#8211; Transpose the input matrix, True.</p>
+</li>
+<li><p class="first"><strong>emptystr</strong> (<em>str</em>) &#8211; String wich will be placed, if rows or columns doesn&#8217;t
+have the full dimension, to get a full m x n matrix.</p>
+</li>
+<li><p class="first"><strong>form</strong> (<em>list, str</em>) &#8211; List of strings or a string of the form &#8216;.2f&#8217;.
+String will extended internally to &#8216;{:.2f}&#8217; for use with builtin
+function &#8216;format&#8217;. So you can use any format specifier.</p>
+<p>If &#8216;form&#8217; is a list, every entry will be applied to the
+appropriate column.
+It&#8217;s also possible to have a list of strings in that list, to
+format every entrie of an column different.
+If &#8216;form&#8217; is a str, then this format will be applied to every
+column and every entrie.
+(See Keyword &#8216;split&#8217; for additional use with split)</p>
+</li>
+<li><p class="first"><strong>split</strong> (<em>int</em>) &#8211; If columns of a table are to long, you can split up the
+table into &#8216;split&#8217; parts.
+If &#8216;split&#8217; is set, the lenght of the string of the
+&#8216;alignment&#8217;-keyword and the list of the &#8216;form&#8217;-keyword can have
+(&#8216;split&#8217;) * (number of columns) for additional customization.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str. Latex formated table.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="latextable.latextable.split">
+<tt class="descclassname">latextable.latextable.</tt><tt class="descname">split</tt><big>(</big><em>matrix</em>, <em>part</em>, <em>fill='-'</em><big>)</big><a class="headerlink" href="#latextable.latextable.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split matrix in &#8216;part&#8217; parts and fill up empty entries with
+string &#8216;fill&#8217; for the case the number of entries doesn&#8217;t match to the parts
+to split.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>matrix</strong> (<em>list</em>) &#8211; matrix to split</li>
+<li><strong>part</strong> (<em>int</em>) &#8211; number of parts in which the matrix should be splitted</li>
+<li><strong>fill</strong> (<em>str</em>) &#8211; String to fill the empty entries</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns: list. The new splitted matrix.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-latextable">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-latextable" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">latextable package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-latextable.latextable">latextable.latextable module</a></li>
+<li><a class="reference internal" href="#module-latextable">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to LateX-Table&#8217;s documentation!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/latextable.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LateX-Table’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">LateX-Table 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Mario Dunsch.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
