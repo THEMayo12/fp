@@ -175,8 +175,8 @@ def G(x, m, b):
     return m*x + b
 # Konstantenfunktion
 def C(x,Konst):
-	return Konst 
-#complementäre Errorfunktion mit limes-inf =a,lim+inf =c, mittelwert bei b 
+	return Konst
+#complementäre Errorfunktion mit limes-inf =a,lim+inf =c, mittelwert bei b
 def erfc(x,a,b,c,d):
 	return ((a-c)/2.)*(1.-erf(d*(x-b)))+c
 # Angepasste Heaviside
@@ -378,26 +378,26 @@ for j in range(0,len(X0)):
 	RE=0.
 	for i in range(maxil-1,minir):
 		RE=RE+Y0[j][i]-erfc(X0[j][i],val0l[j],X0[j][np.argmax(Y0[j])],val0r[j],(3.*1./(minir-maxil)/2.))
-	
+
 	C0.append(RE)
 
 for j in range(0,len(X1)):
 	RE=0.
 	for i in range(maxil-1,minir):
 		RE=RE+Y1[j][i]-erfc(X1[j][i],val1l[j],X1[j][np.argmax(Y1[j])],val1r[j],(3.*1./(minir-maxil)/2.))
-	
+
 	C1.append(RE)
 for j in range(0,len(X2)):
 	RE=0.
 	for i in range(maxil-1,minir):
 		RE=RE+Y2[j][i]-erfc(X2[j][i],val2l[j],X2[j][np.argmax(Y2[j])],val2r[j],(3.*1./(minir-maxil)/2.))
-	
+
 	C2.append(RE)
 for j in range(0,len(X3)):
 	RE=0.
 	for i in range(maxil-1,minir):
 		RE=RE+Y3[j][i]-erfc(X3[j][i],val3l[j],X3[j][np.argmax(Y3[j])],val3r[j],(3.*1./(minir-maxil)/2.))
-	
+
 	C3.append(RE)
 
 
@@ -422,7 +422,7 @@ I3=C3/T3
 
 
 # LateX-Tabelle erzeugen
-#Richtungen 
+#Richtungen
 R0=[2,8,9]
 R1=[1,3,4,5,6,7,8,9,10,11,12]
 R2=[1,2,3,4,5,6,7,8,9,10,11,12]
@@ -679,7 +679,7 @@ fig2 = plt.figure()
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
-		
+
 		ax2 = fig2.add_subplot(111)
 
 		ax2.plot(x[j][i], y[j][i], linestyle = 'none', marker = '+', label = 'Messwerte')
@@ -705,6 +705,11 @@ for j in range(0,4):
 #mublei_uc = ev.get_uncert(mu2)
 
 
+<<<<<<< HEAD
+=======
+#print mumess_uc
+#print mublei_uc
+>>>>>>> 0842bc7e34d0ae8e1578c33999fa4d2425754bcb
 
 
 
