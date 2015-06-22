@@ -374,29 +374,33 @@ C1=[]
 C2=[]
 C3=[]
 
+
+
+
+
 for j in range(0,len(X0)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y0[j][i]-erfc(X0[j][i],val0l[j],X0[j][np.argmax(Y0[j])],val0r[j],(3.*1./(minir-maxil)/2.))
+		RE=RE+Y0[j][i]-erfc(X0[j][i],val0l[j],X0[j][200+np.argmax(Y0[j][200:])],val0r[j],(3.*1./(minir-maxil)/2.))
 
 	C0.append(RE)
 
 for j in range(0,len(X1)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y1[j][i]-erfc(X1[j][i],val1l[j],X1[j][np.argmax(Y1[j])],val1r[j],(3.*1./(minir-maxil)/2.))
+		RE=RE+Y1[j][i]-erfc(X1[j][i],val1l[j],X1[j][200+np.argmax(Y1[j][200:])],val1r[j],(3.*1./(minir-maxil)/2.))
 
 	C1.append(RE)
 for j in range(0,len(X2)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y2[j][i]-erfc(X2[j][i],val2l[j],X2[j][np.argmax(Y2[j])],val2r[j],(3.*1./(minir-maxil)/2.))
+		RE=RE+Y2[j][i]-erfc(X2[j][i],val2l[j],X2[j][200+np.argmax(Y2[j][200:])],val2r[j],(3.*1./(minir-maxil)/2.))
 
 	C2.append(RE)
 for j in range(0,len(X3)):
 	RE=0.
 	for i in range(maxil-1,minir):
-		RE=RE+Y3[j][i]-erfc(X3[j][i],val3l[j],X3[j][np.argmax(Y3[j])],val3r[j],(3.*1./(minir-maxil)/2.))
+		RE=RE+Y3[j][i]-erfc(X3[j][i],val3l[j],X3[j][200+np.argmax(Y3[j][200:])],val3r[j],(3.*1./(minir-maxil)/2.))
 
 	C3.append(RE)
 
@@ -674,8 +678,9 @@ R=[val0r,val1r,val2r,val3r]
 N=[N0,N1,N2,N3]
 
 #PLOTS
-'''
+
 fig2 = plt.figure()
+fig2.set_size_inches(418./72.27/2., 418/72.27*0.618/2.)
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
@@ -683,7 +688,7 @@ for j in range(0,4):
 		ax2 = fig2.add_subplot(111)
 
 		ax2.plot(x[j][i], y[j][i], linestyle = 'none', marker = '+', label = 'Messwerte')
-		ax2.plot(x[j][i], erfc(x[j][i],L[j][i],x[j][i][np.argmax(y[j][i])],R[j][i],(4.*1./(minir-maxil)/2.)) , label="Fit")
+		ax2.plot(x[j][i], erfc(x[j][i],L[j][i],x[j][i][np.argmax(200+y[j][i][200:])],R[j][i],(3.*1./(minir-maxil)/2.)) , label="Fit")
 
 		ax2.set_xlabel('Kanal')
 		ax2.set_ylabel('Counts')
@@ -696,20 +701,37 @@ for j in range(0,4):
 		plt.clf()
 ###
 
+
+
+
 '''
+#Fit Tabelle
+tfit1 = lt.latextable(
+    [N3,val3l, X3[j][np.argmax(Y3[j])],val3r[j],(3.*1./(minir-maxil)/2.],
+    "table",
+    alignment = 'CCCC',
+    form = ['g', '.3f','.3f','.3f'] )
+# tex schreiben
+ev.write('korr', tfit1)
+,,val3r[j],(3.*1./(minir-maxil)/2.)
+'''
+
+
+
+
+
+
+
+
+
+
+
 #PLOTS FERTIG
 
 
 #Mittelwerte für Messing? und Blei
 #mumess_uc = ev.get_uncert(mu1)
 #mublei_uc = ev.get_uncert(mu2)
-
-
-<<<<<<< HEAD
-=======
-#print mumess_uc
-#print mublei_uc
->>>>>>> 0842bc7e34d0ae8e1578c33999fa4d2425754bcb
 
 
 
