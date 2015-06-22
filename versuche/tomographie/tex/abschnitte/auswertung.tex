@@ -4,9 +4,11 @@
 % ==================================================
 
 \section{Auswertung}
+\subsection{Ermittlung der Absorptionskeoffizienten}
 Für die Berechnungen werden nur die Counts im Bereich von Kanal 257 bis Kanal 315 verwand, da in 
 diesem Bereich der Gammastrahlungspeak liegt, der aus dem Teil der Strahlung stammt, welcher 
-das Medium direkt durchdringt und primär nicht aus anderen Streueffekten stammt. Um die restlichen 
+das Medium direkt durchdringt und primär nicht aus anderen Streueffekten stammt. Um die 
+restlichen 
 Streubeiträge zu korrigieren wird eine Korrektur des Spektrums im relevanten Bereich vorgenommen. 
 Dazu wird eine Stufenfunktion von Kanal 220 bis 257 und von 315 bis 1023 (letzter Kanal) mit dem 
 Sprung beim Kanal mit den maximalen Counts an die Spektren gefittet und durch Faltung mit einer 
@@ -142,6 +144,7 @@ Elementarwürfel & $\vec{\mu}_1$/cm & $\vec{\mu}_2$/cm & $\vec{\mu}_3$/cm \\
 \label{tab:Koeff}
 \end{table}
 \clearpage
+\subsection{Fehlerbetrachtung}
 Es bleibt nun noch eine Fehlerabschätzung für die gefundenen Absorptionskoeffizienten zu geben. 
 Da die Messunsicherheit der Counts einer Poisson-Verteilung unterliegt, wird zu $C$ gemessene 
 Counts der Fehler $\Delta C=\sqrt{C}$ erwartet.
@@ -185,7 +188,7 @@ W_i:=\text{diag} (1/ (\Delta\hat{J}_{i,j})^2)
 definiert, wobei angenommen wird, dass die Messungen nicht korreliert sind \cite{Blobel}. 
 Die Fehler der Absorptionskoeffizienten lassen sich dann als
 \begin{equation}
-\Delta \vec{\mu}_i=(A^\text{T}W_i A)^{-1}\hat{J}_i
+\left(\Delta \vec{\mu}_i\right)_j=\left( (A^\text{T}W_i A)^{-1} \right)_{jj}
 \end{equation}
 bestimmen.
 
@@ -193,7 +196,7 @@ bestimmen.
 \centering
 \begin{tabular}{c|cc|cc|cc}
 \toprule \midrule
-Projektion & $\vec{\mu}_1$ & $\Delta \vec{\mu}_1$& $\vec{\mu}_2$ & $\Delta \vec{\mu}_2$& $\vec{\mu}_3$ & $\Delta \vec{\mu}_3$ \\
+Elementarwürfel & $\vec{\mu}_1$/cm & $\Delta \vec{\mu}_1$/cm& $\vec{\mu}_2$/cm & $\Delta \vec{\mu}_2$/cm& $\vec{\mu}_3$/cm & $\Delta \vec{\mu}_3$/cm \\
 \midrule
 \input{../skript/Fehler.tex}
 \midrule
@@ -202,3 +205,31 @@ Projektion & $\vec{\mu}_1$ & $\Delta \vec{\mu}_1$& $\vec{\mu}_2$ & $\Delta \vec{
 \caption{Zusammenstellung der ermittelten Absorptionskoeffizienten mit Fehlern.}
 \label{Ergebnis}
 \end{table}
+\clearpage
+\subsection{Klassifizierung der Würfel}
+Da bekannt ist, dass Würfel 1 aus Messing und Würfel 2 aus Blei besteht und außerdem, dass 
+die Elementarwürfel von Würfel 3 ebenfalls aus Messing oder Blei bestehen, sollen nun 
+die Werte $\mu_\text{Messing}$ und $\mu_\text{Blei}$ gefunden werden, mit denen es möglich ist,
+die Zusammensetzung von Würfel 3 zu bestimmen. 
+Dazu werden die Mittelwerte aus $\vec{\mu}_1$ und $\vec{\mu}_2$ bestimmt. Es folgt
+\begin{align}
+\mu_\text{Messing}&=(0.57 \pm 0.06) \text{ cm}^{-1}\\
+\mu_\text{Blei}&=(1.03 \pm 0.16) \text{ cm}^{-1} \quad .
+\end{align}
+Vergleicht man diese Werte mit $\vec{\mu}_3$, so lässt sich die in Tabelle \ref{Zusammensetzung} 
+zu sehende Zusammensetzung für Würfel 3 vermuten.
+\begin{table}[h]
+\centering
+\begin{tabular}{cccccccccc}
+\toprule \midrule
+Elementarwürfel 	& 1&2&3&4&5&6&7&8&9 \\
+\midrule
+	Material&CuZn &CuZn &Pb	&CuZn &CuZn &Pb &CuZn &CuZn & Pb\\
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Vermutung über die Zusammensetzung des Würfels 3, ausgehend von den bisher ermittelten 
+Werten $\mu_\text{Blei}$, $\mu_\text{Messing}$ und $\vec{\mu}_3$.}
+\label{Zusammensetzung}
+\end{table}
+\clearpage

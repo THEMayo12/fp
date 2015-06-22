@@ -9,7 +9,7 @@ import os
 
 import evaluation as ev
 import evaluation.simpleplot as sp
-import latextable as lt
+import latextable.latextable as lt
 
 # calc with uncertainties and arrays of uncertainties [[val, std], ...]
 import uncertainties as uc
@@ -431,7 +431,7 @@ t0 = lt.latextable(
     [R0,T0, C0],
     "table",
     alignment = 'CCC',
-    form = '.2f', )
+    form = ['g','.3f','.3f'], )
 # tex schreiben
 ev.write('tabelle0', t0)
 
@@ -439,7 +439,7 @@ t1 = lt.latextable(
     [R1,T1, C1],
     "table",
     alignment = 'CCC',
-    form = '.2f', )
+    form = ['g','.3f','.3f'], )
 # tex schreiben
 ev.write('tabelle1', t1)
 
@@ -447,7 +447,7 @@ t2 = lt.latextable(
     [R2,T2, C2],
     "table",
     alignment = 'CCC',
-    form = '.2f', )
+    form = ['g','.3f','.3f'], )
 # tex schreiben
 ev.write('tabelle2', t2)
 
@@ -455,7 +455,7 @@ t3 = lt.latextable(
     [R2,T3, C3],
     "table",
     alignment = 'CCC',
-    form = '.2f', )
+    form = ['g','.3f','.3f'], )
 # tex schreiben
 ev.write('tabelle3', t3)
 
@@ -554,7 +554,7 @@ t5 = lt.latextable(
     [R2,np.insert(J1,1,0), J2,J3],
     "table",
     alignment = 'CCCC',
-    form = '.2f', )
+    form = ['g', '.3f','.3f','.3f'] )
 # tex schreiben
 ev.write('korr', t5)
 
@@ -655,7 +655,7 @@ t6 = lt.latextable(
     [AR,Mu1, Mu2,Mu3],
     "table",
     alignment = 'CCCC',
-    form = '.3f',
+    form = ['g','.4f','.4f','.4f'],
  )
 # tex schreiben
 ev.write('Koeff', t6)
@@ -701,11 +701,10 @@ for j in range(0,4):
 
 
 #Mittelwerte für Messing? und Blei
-mumess_uc = ev.get_uncert(mu1)
-mublei_uc = ev.get_uncert(mu2)
+#mumess_uc = ev.get_uncert(mu1)
+#mublei_uc = ev.get_uncert(mu2)
 
-#print mumess_uc
-#print mublei_uc 
+
 
 
 
@@ -719,21 +718,30 @@ Dmu1=[]
 Dmu2=[]
 Dmu3=[]
 
-print DMu1
+#print DMu1
 
 for i in range(0,9):
 	Dmu1.append(DMu1[i,i])
 	Dmu2.append(DMu2[i,i])
 	Dmu3.append(DMu3[i,i])
 
-print Dmu1
+#print Dmu1
+
 #Koeff Tabelle
 t7 = lt.latextable(
     [AR,Mu1,Dmu1, Mu2,Dmu2,Mu3,Dmu3],
     "table",
     alignment = 'CCCCCCC',
-    form = '.3f',
+    form = ['g','.4f','.4f','.4f','.4f','.4f','.4f'],
  )
 # tex schreiben
 ev.write('Fehler', t7)
+
+###################################
+
+#Mittelwerte für Messing? und Blei
+mumess_uc = ev.get_uncert(mu1)
+mublei_uc = ev.get_uncert(mu2)
+print mumess_uc
+print mublei_uc 
 
