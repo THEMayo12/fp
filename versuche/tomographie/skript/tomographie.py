@@ -705,13 +705,6 @@ for j in range(0,4):
 #mublei_uc = ev.get_uncert(mu2)
 
 
-<<<<<<< HEAD
-=======
-#print mumess_uc
-#print mublei_uc
->>>>>>> 0842bc7e34d0ae8e1578c33999fa4d2425754bcb
-
-
 
 ######FEHLER###################
 
