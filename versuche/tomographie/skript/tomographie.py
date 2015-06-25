@@ -9,7 +9,7 @@ import os
 
 import evaluation as ev
 import evaluation.simpleplot as sp
-import latextable.latextable as lt
+import latextable as lt
 
 # calc with uncertainties and arrays of uncertainties [[val, std], ...]
 import uncertainties as uc
@@ -770,5 +770,5 @@ ev.write('Fehler', t7)
 mumess_uc = ev.get_uncert(mu1)
 mublei_uc = ev.get_uncert(mu2)
 print mumess_uc
-print mublei_uc 
+print mublei_uc
 

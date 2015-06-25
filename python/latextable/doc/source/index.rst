@@ -1,5 +1,5 @@
 .. LateX-Table documentation master file, created by
-   sphinx-quickstart on Sun Jun 21 19:43:17 2015.
+   sphinx-quickstart on Mon Jun 22 22:00:40 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -11,7 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   latextable
+   modules
+
+
 
 Indices and tables
 ==================

@@ -91,9 +91,9 @@ for i in range (0,len(T2)):
 der1=[]
 der2=[]
 for i in range (1,len(Z1)-1):
-	der1.append( (T1[i+1]-T1[i-1])/2. )	
+	der1.append( (T1[i+1]-T1[i-1])/2. )
 for i in range (1,len(Z2)-1):
-	der2.append( (T2[i+1]-T2[i-1])/2. )	
+	der2.append( (T2[i+1]-T2[i-1])/2. )
 figHeiz = plt.figure()
 axHeiz = figHeiz.add_subplot(111)
 
@@ -230,7 +230,7 @@ ax1c = ev.plot_layout(ax1c)
 
 fig1c.tight_layout()
 fig1c.savefig('Temp_Strom_Verlaufc.pdf')
-	
+
 #----------------------------------------
 
 #Es soll ln(J) linear zu 1/T sein
