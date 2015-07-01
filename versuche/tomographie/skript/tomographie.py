@@ -627,13 +627,19 @@ I1=np.log(Iinit/np.array(J1))
 I2=np.log(Iinit/np.array(J2))
 I3=np.log(Iinit/np.array(J3))
 
+XY=np.dot(np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),np.dot(W1,B))),B.transpose()),W1),I1)
 
 #Berechne die Absorptionskoeffizienten
-mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),B)),B.transpose()),I1)
+mu1=np.dot(np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),np.dot(W1,B))),B.transpose()),W1),I1)
 
-mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I2)
-mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I3)
+mu2=np.dot(np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W2,A))),A.transpose()),W2),I2)
+
+mu3=np.dot(np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W3,A))),A.transpose()),W3),I3)
 '''
+Geht nicht:
+mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W2,A))),A.transpose()),np.dot(W2,I2))
+mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W3,A))),A.transpose()),np.dot(W3,I3))
+
 print mu1
 print mu2
 print mu3
@@ -680,7 +686,7 @@ N=[N0,N1,N2,N3]
 #PLOTS
 
 fig2 = plt.figure()
-fig2.set_size_inches(418./72.27/2., 418/72.27*0.618/2.)
+fig2.set_size_inches(418./72.27/2., 418./72.27*0.618/2.)
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):

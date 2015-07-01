@@ -9,7 +9,7 @@ import os
 
 import evaluation as ev
 import evaluation.simpleplot as sp
-import latextable.latextable as lt
+import latextable as lt
 
 # calc with uncertainties and arrays of uncertainties [[val, std], ...]
 import uncertainties as uc
@@ -627,13 +627,18 @@ I1=np.log(Iinit/np.array(J1))
 I2=np.log(Iinit/np.array(J2))
 I3=np.log(Iinit/np.array(J3))
 
+XY=np.dot(np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),np.dot(W1,B))),B.transpose()),W1),I1)
 
 #Berechne die Absorptionskoeffizienten
-mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),B)),B.transpose()),I1)
+mu1=np.dot(np.dot(np.linalg.inv(np.dot(B.transpose(),np.dot(W1,B))),B.transpose()),np.dot(W1,I1))
+mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W2,A))),A.transpose()),np.dot(W2,I2))
+mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W3,A))),A.transpose()),np.dot(W3,I3))
 
-mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I2)
-mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),A)),A.transpose()),I3)
 '''
+Geht nicht:
+mu2=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W2,A))),A.transpose()),np.dot(W2,I2))
+mu3=np.dot(np.dot(np.linalg.inv(np.dot(A.transpose(),np.dot(W3,A))),A.transpose()),np.dot(W3,I3))
+
 print mu1
 print mu2
 print mu3
@@ -680,7 +685,7 @@ N=[N0,N1,N2,N3]
 #PLOTS
 
 fig2 = plt.figure()
-fig2.set_size_inches(418./72.27/2., 418/72.27*0.618/2.)
+fig2.set_size_inches(418./72.27/2., 418./72.27*0.618/2.)
 for j in range(0,4):
 
 	for i in range(0,len(N[j])):
@@ -688,7 +693,7 @@ for j in range(0,4):
 		ax2 = fig2.add_subplot(111)
 
 		ax2.plot(x[j][i], y[j][i], linestyle = 'none', marker = '+', label = 'Messwerte')
-		ax2.plot(x[j][i], erfc(x[j][i],L[j][i],x[j][i][np.argmax(200+y[j][i][200:])],R[j][i],(3.*1./(minir-maxil)/2.)) , label="Fit")
+		ax2.plot(x[j][i], erfc(x[j][i],L[j][i],x[j][i][200+np.argmax(y[j][i][200:])],R[j][i],(3.*1./(minir-maxil)/2.)) , label="Fit")
 
 		ax2.set_xlabel('Kanal')
 		ax2.set_ylabel('Counts')
@@ -770,5 +775,5 @@ ev.write('Fehler', t7)
 mumess_uc = ev.get_uncert(mu1)
 mublei_uc = ev.get_uncert(mu2)
 print mumess_uc
-print mublei_uc 
+print mublei_uc
 
