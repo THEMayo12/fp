@@ -18,8 +18,9 @@
 %	Definitionen für das Dokument
 % ==================================================
 
-\newcommand{\Co}{\ensuremath{^{60}\text{Co}}}
-\newcommand{\Ni}{\ensuremath{^{60}\text{Ni}}}
+\newcommand{\Cs}{\ensuremath{^{137}\text{Cs}}}
+\newcommand{\Ba}{\ensuremath{^{137}\text{Ba}}}
+\renewcommand{\vec}[1]{\vb*{#1}}
 
 % ==================================================
 %	Dokument beginnt
@@ -51,17 +52,19 @@
 
 \input{abschnitte/einleitung.tex}
 \input{abschnitte/theorie.tex}
-%\input{abschnitte/aufbau.tex}
+\input{abschnitte/aufbau.tex}
 \input{abschnitte/durchfuehrung.tex}
 \input{abschnitte/auswertung.tex}
 \input{abschnitte/diskussion.tex}
-\input{abschnitte/anhang.tex}
 
 % ==================================================
 %	Literaturverzeichnis
 % ==================================================
 
 \referenzen
+\anhang
+\input{abschnitte/anhang.tex}
+
 
 % ==================================================
 %	Dokument endet
