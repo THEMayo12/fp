@@ -121,12 +121,9 @@ und nach Anwenden des ln ergibt sich
 A \vec{\mu}_i = \hat{J}_i \label{eq:linear}
 \end{equation}
 mit $\hat{J}_i:=(\ln(I_\text{init}/J_{i,1}),\ldots,\ln(I_\text{init}/J_{i,12}))^\text{T}$
-  \footnote{
+\footnote{
 Da bei Würfel 1 die Projektion 2 fehlt, fällt für $i=1$ die zweite Zeile der Matrix $A$ weg.}.
-Die Gleichung \eqref{eq:linear} kann in die Normalen-Gleichung
-\begin{equation}
-\vec{\mu}_i = \left( A^\text{T}A \right)^{-1} A^\text{T} \hat{J}_i \label{eq:linear2}
-\end{equation}
+Die Gleichung \eqref{eq:linear} kann in die Normalen-Gleichung \eqref{eq:mu}
 überführt werden. Die daraus resultierenden Werte für die Absorptionskoeffizienten sind in
 Tabelle \ref{tab:Koeff} zu sehen.
 \begin{table}[h]
@@ -181,7 +178,7 @@ berechnet, denen wiederum gemäß der Gaußschen Fehlerfortpflanzung der Fehler
 }
 \end{equation}
 zugeordnet wird. \\
-Für die Fehlerabschätzung der Normalengleichung \ref{eq:linear2} werden nun die Matrizen
+Für die Fehlerabschätzung der Normalengleichung \ref{eq:mu} werden nun die Matrizen
 \begin{equation}
 W_i:=\text{diag} (1/ (\Delta\hat{J}_{i,j})^2)
 \end{equation}
