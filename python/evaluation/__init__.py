@@ -49,7 +49,7 @@ except ImportError:
 __all__ = [
     "get_data",
     "get_uncert",
-    "latexEq",
+    "latexEnv",
     "tex_eq",
     "tex_linreg"
     "plot_layout",
@@ -213,7 +213,7 @@ def get_uncert(x):
     return uc.ufloat(np.mean(x), np.std(x))
 
 
-def latexEq(x, **keywords):
+def latexEnv(x, **keywords):
     """function for writing latex-environments
 
     Args:
@@ -228,7 +228,7 @@ def latexEq(x, **keywords):
 
     Example:
         >>> eq = "c^2 = a^2 + c^2"
-        >>> print latexEq([eq, eq], dot=True, environment="align")
+        >>> print latexEnv([eq, eq], dot=True, environment="align")
         %
         \begin{align}
             c^2 &= a^2 + c^2        \\

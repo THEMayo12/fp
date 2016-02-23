@@ -217,10 +217,10 @@ def use_layoutfunc(u):
 
 
 def set_layoutfunc(f):
-    """set layoutfunction which is use in plot().
+    """set layoutfunction which is used in plot().
 
     Args:
-        u (function): new layoutfunction.
+        f (function): new layoutfunction.
 
     Returns:
         None.
