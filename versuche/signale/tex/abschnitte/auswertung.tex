@@ -291,36 +291,36 @@ befinden sich in Tabelle~\ref{tab:Laengen}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[scale=0.5]{bilder/reflexion/F0000TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0000TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \CU-Kabels mit
   offenem Ende.}
   \label{fig:oszi_50k_offen}
   \vspace{2em}
-  \includegraphics[scale=0.5]{bilder/reflexion/F0001TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0001TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \CU-Kabels mit
   kurzgeschlossenem Ende.}
   \label{fig:oszi_50k_kurz}
 \end{figure}
 \begin{figure}[ht]
   \centering
-  \includegraphics[scale=0.5]{bilder/reflexion/F0002TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0002TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \BU-Kabels mit
   offenem Ende.}
   \label{fig:oszi_75k_offen}
   \vspace{2em}
-  \includegraphics[scale=0.5]{bilder/reflexion/F0003TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0003TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des kurzen \BU-Kabels mit
   kurzgeschlossenem Ende.}
   \label{fig:oszi_75k_kurz}
 \end{figure}
 \begin{figure}[ht]
   \centering
-  \includegraphics[scale=0.5]{bilder/reflexion/F0004TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0004TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des langen \CU-Kabels mit
   offenem Ende.}
   \label{fig:oszi_50l_offen}
   \vspace{2em}
-  \includegraphics[scale=0.5]{bilder/reflexion/F0005TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/reflexion/F0005TEK.JPG}
   \caption{Mit dem Oszilloskop aufgenommenes Bild des langen \CU-Kabels mit
   kurzgeschlossenem Ende.}
   \label{fig:oszi_50l_kurz}
@@ -343,8 +343,8 @@ dem langen \CU-Kabel möglich, da nur hier der kapazitive und induktive Verlauf
 der Spannung zu sehen ist. Im Folgenden werden daher nun die Leitungskonstanten
 des langen \CU-Kabels bestimmt.
 
-\paragraph{Der Widerstandsbelag}
-\label{par:der_widerstandsbelag}
+\paragraph{Der Widerstands}
+\label{par:der_widerstands}
 
 Hier wird das Oszillosgraphenbild~\ref{fig:oszi_50l_kurz} digitalisiert.
 Die erhaltenen Daten befinden sich in Tabelle~\ref{tab:R_Daten} und werden
@@ -361,7 +361,7 @@ in
   R = - \frac{Z_0(\Gamma + 1)}{\Gamma - 1}
   \label{eq:R}
 \end{equation}
-liefert schließlich den gewünschten Widerstandsbelag $R$.
+liefert schließlich den gewünschten Widerstand $R$.
 Hierbei gilt für den Wellenwiderstand $Z_0 = \SI{50}{\ohm}$.
 Es gilt also $U_0$ und $U_1$ zu bestimmen, wobei $U_0$ die Höhe des Pulses aus
 Abbildung~\ref{fig:R_Daten} ist und $U_1$ die Höhe der Spannung nach Abfall des
@@ -389,7 +389,7 @@ Die so berechneten Werte lauten
   U_0 &= \input{gleichungen/teil_d/U0_R.tex} \\
   U_1 &= \input{gleichungen/teil_d/U1_R.tex}~.
 \end{align}
-Damit berechnet sich der Widerstandsbelag nach Gleichung~\eqref{eq:Gamma_R} und
+Damit berechnet sich der Widerstand nach Gleichung~\eqref{eq:Gamma_R} und
 \eqref{eq:R} zu
 \begin{equation}
   \underline{R = \input{gleichungen/teil_d/R.tex}}~.
@@ -422,14 +422,14 @@ Damit berechnet sich der Widerstandsbelag nach Gleichung~\eqref{eq:Gamma_R} und
 \end{figure}
 
 \clearpage
-\paragraph{Der induktive Belag}
-\label{par:der_induktive_belag}
+\paragraph{Die Induktivität}
+\label{par:die_induktivitaet}
 
 Ein kurzgeschlossenes Koaxialkabel zeigt ein rein induktives Verhalten, daher
-wird zur Bestimmung des induktiven Belags ebenfalls das
+wird zur Bestimmung der Induktivität ebenfalls das
 Oszillosgraphenbild~\ref{fig:oszi_50l_kurz} mit den entsprechend
 digitalisierten Daten aus Tabelle~\ref{tab:R_Daten} verwandt.
-Jedoch werden diese Daten auf den für den Induktivitätsbelag relevanten Teil
+Jedoch werden diese Daten auf den für die Induktivität relevanten Teil
 eingeschränkt, sodass nur die Werte $U(t)$ aus
 \begin{equation}
   \SI{1430}{\nano\second} <~t~< \SI{2250}{\nano\second}
@@ -443,7 +443,7 @@ einer Spule entsprechend
   \tau = \frac{L}{R+Z_0}~,
   \label{eq:L_abschalt}
 \end{equation}
-wobei $R$ den oben bestimmten Widerstandsbelag und $U_\text{off}$ die
+wobei $R$ den oben bestimmten Widerstand und $U_\text{off}$ die
 Offsetspannung zu \SI{0}{\volt} darstellt. Durch Umstellen und Logarithmierung
 der Gleichung \eqref{eq:L_abschalt} ergibt sich eine Geradengleichung der Form
 \begin{equation}
@@ -451,7 +451,7 @@ der Gleichung \eqref{eq:L_abschalt} ergibt sich eine Geradengleichung der Form
   m \cdot t + \ln U_0 \quad \text{mit} \quad m = - \frac{1}{\tau}
 \end{equation}
 womit schließlich eine lineare Regression durchgeführt und aus der
-Steigung der Induktivitätsbelag bestimmt werden kann.
+Steigung der Induktivität bestimmt werden kann.
 Die Offsetspannung wird entsprechend%
 \begin{equation}
   U_\text{off} = \overline{U(t)}\,,
@@ -472,7 +472,7 @@ Der Fit ergibt dabei die Gleichung
   \label{eq:L_fit}
 \end{equation}
 Aus der Steigung von~\ref{eq:L_fit} wird nun mit Gleichung~\eqref{eq:L_abschalt} der
-Induktivitätsbelag zu
+Induktivität zu
 \begin{equation}
   \underline{L = \input{gleichungen/teil_d/L.tex}}
   \label{eq:indukivitaetsbelag}
@@ -491,28 +491,28 @@ bestimmt.
     \midrule
     \midrule
   \end{tabular}
-  \caption{Darstellung der für den Induktivitätsbelag relevanten Daten sowie
+  \caption{Darstellung der für die Induktivität relevanten Daten sowie
   die berechneten Werte für den Fit.}
   \label{tab:L_Daten}
 \end{table}
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=1.0]{bilder/L.pdf}
-  \caption{Darstellung der für die zur Bestimmung des Induktivitätsbelags
+  \caption{Darstellung der für die zur Bestimmung der Induktivität
     relevanten digitalisierten Daten von Abbildung~\ref{fig:oszi_50l_kurz}.}
   \label{fig:induktivitaetsbelag}
   \includegraphics[scale=1.0]{bilder/L_fit.pdf}
-  \caption{Darstellung der für die zur Bestimmung des Induktivitätsbelags
+  \caption{Darstellung der für die zur Bestimmung der Induktivität
     relevanten digitalisierten Daten von Abbildung~\ref{fig:oszi_50l_kurz}.}
   \label{fig:induktivitaetsbelag_fit}
 \end{figure}
 
 \clearpage
-\paragraph{Der Kapazitätsbelag}
-\label{par:der_kapazit_tsbelag}
+\paragraph{Die Kapazität}
+\label{par:die_kapazitaet}
 
-Entgegen dem Induktivitätsbelag zeigt ein Koaxialkabel mit offenem Ende ein
-rein kapazitives Verhalten. Somit wird zur Bestimmung des Kapazitätsbelags das
+Entgegen der Induktivität zeigt ein Koaxialkabel mit offenem Ende ein
+rein kapazitives Verhalten. Somit wird zur Bestimmung der Kapazität das
 Oszillosgraphenbild~\ref{fig:oszi_50l_offen} verwandt. Die entsprechenden
 digitalisierten Daten sind in Tabelle~\ref{tab:C_roh_Daten} und
 Abbildung~\ref{fig:C_roh_Daten} dargestellt.
@@ -527,12 +527,13 @@ Kondensators gemäß
   \tau = RC~,
   \label{eq:Aufladekurve_C}
 \end{equation}
-wobei $R$ wiederum der obiger Widerstandsbelag ist. Diese Gleichung kann wieder
+wobei $R$ wiederum der obige Widerstand ist. Diese Gleichung kann wieder
 linearisiert werden zu
 \begin{equation}
   \ln(U_0 - U) = - \frac{t}{\tau} + \ln(U_0)~,
+  \label{eq:C_lin}
 \end{equation}
-woraus aus der Steigung der Kapazitätsbelag bestimmt werden kann.
+woraus aus der Steigung die Kapazität bestimmt werden kann.
 Die Sättigungsspannung $U_0$ wird dabei entsprechend
 \begin{equation}
   U_0 = \overline{U(t)}\,,
@@ -550,7 +551,7 @@ Die aus dem Fit erhaltene Gleichung lautet
   \input{gleichungen/teil_d/C_fit.tex}~.
   \label{eq:C_fit}
 \end{equation}
-Aus der Steigung kann nun der Kapazitätsbelag mit Hilfe von
+Aus der Steigung kann nun die Kapazität mit Hilfe von
 Gleichung~\eqref{eq:Aufladekurve_C} zu
 \begin{equation}
   \underline{C = \input{gleichungen/teil_d/C.tex}}
@@ -614,9 +615,10 @@ bestimmt werden.
 
 Nun soll die Länge des langen \BU-Kabels (die Leitungskonstanten der anderen
 Kabel konnten wie oben beschrieben nicht bestimmt werden) mit Hilfe eines
-Smith-Diagramms bestimmt werden. Die vollständige Umdrehung der
-Smith-Diagramms entspricht einer halben Wellenlänge $\lambda$, sodass die
-Länge des Kabels durch
+Smith-Diagramms bestimmt werden. Das verwandte Smith-Diagramm ist
+im Anhang zu finden. Die vollständige Umdrehung der
+Smith-Diagramms entspricht einer halben Wellenlänge $\lambda$, sodass die Länge
+des Kabels durch
 \begin{equation}
   l = \frac{\lambda}{2} \cdot \frac{\varphi}{2 \pi}
 \end{equation}
@@ -733,7 +735,7 @@ ihrer Nennimpedanz abweichen.
 
 \begin{figure}[htpb]
   \centering
-  \includegraphics[scale=0.6]{bilder/mehrfachreflexion/F0000TEK.JPG}
+  \includegraphics[scale=1.0]{bilder/mehrfachreflexion/F0000TEK.JPG}
   \caption{Aufgenommenes Oszillosgraphenbild bei hintereinandergeschalteten
     \CU- und \BU-Kabel.}
 \label{fig:mehrfachreflexion_roh}
@@ -750,45 +752,309 @@ In diesem Versuchsteil sollen die Spannungsverläufe mit drei unterschiedlichen,
 noch unbekannten, Abschlusswiderständen untersucht werden.
 Hierbei wird das kurze \CU-Kabel verwandt.
 
-\paragraph{Abschluss 3}
-\label{ssub:abschluss_3}
+\paragraph{Abschluss 1}
+\label{ssub:abschluss_1}
 
-Der Spannungsverlauf ist in Abbildung~\ref{fig:abschluss_3} dargestellt.
+Der Spannungsverlauf ist in Abbildung~\ref{fig:abschluss_1} dargestellt.
 Im Vergleich der im Anhang befindlichen Abbildung~\ref{fig:abschluesse} handelt
-es sich hier um Abschluss, welcher aus einer Parallelschaltung von einem
+es sich hier um Abschluss, welcher aus einer Reihenschaltung von einem
 Widerstand mit einem Kondensator besteht.
+Zur Bestimmung des Widerstandes wird so vorgegangen wie in
+Abschnitt~\ref{ssub:bestimmung_der_leitungskonstanten}.
+Der Widerstand berechnet sich dabei entsprechend \eqref{eq:R}, wobei der
+Reflexionsfaktor sich aus den Spannungen $U_0$ und $U_1$ zusammensetzt, welche
+nach
+\begin{align}
+  \begin{aligned}
+    U_\text{off} &= \overline{U(t)}\,, \\
+    U_1          &= \overline{U(t)}\,, \\
+    U_0          &= \input{gleichungen/teil_f/abschluss_1/U0_R.tex}
+  \end{aligned}
+  \qquad
+  \begin{aligned}
+    &t~< \SI{200}{\nano\second} \\
+    \SI{223}{\nano\second}  <~&t~< \SI{302}{\nano\second} \\
+    &
+  \end{aligned}
+\end{align}
+bestimmt werden. Die Spannung $U_0$ kann schlecht abgelesen werden, weshalb
+dementsprechend ein großer Fehler angenommen wird.
+Die Daten sind in Abbildung~\ref{fig:abschluss_1_digitalisiert} dargestellt
+sowie in Tabelle~\ref{tab:daten_abschluss_1}.
+Die berechneten Werte für $U_0$ und $U_1$ lauten nach Mittelung
+\begin{align}
+  U_\text{off} &= \input{gleichungen/teil_f/abschluss_1/U_R_off.tex} \\
+  U_1 &= \input{gleichungen/teil_f/abschluss_1/U1_R.tex}~.
+\end{align}
+Damit ergibt sich der Widerstand zu
+\begin{equation}
+  \underline{R = \input{gleichungen/teil_f/abschluss_1/R.tex}}~.
+\end{equation}
+Bei der Bestimmung der Kapazität wird ebenfalls wie in
+Abschnitt~\ref{ssub:bestimmung_der_leitungskonstanten} vorgegangen.
+Die relevanten Daten für den Fit werden dabei aus dem Bereich
+\begin{equation}
+  \SI{319}{\nano\second} < t < \SI{600}{\nano\second}
+\end{equation}
+genommen, während die Sättigungsspannung aus
+\begin{equation}
+  U_0 = \overline{U(t)}\,,\quad
+  \SI{1500}{\nano\second} < t < \SI{2000}{\nano\second}
+\end{equation}
+bestimmt wird.
+Für den Fit wird die Linearisierung \eqref{eq:C_lin} verwandt mit dem
+Unterschied, dass die Zeitkonstante und die Kapazität hier durch
+\begin{equation}
+  \tau = (R + Z_0) C\,,\quad C = - \frac{1}{m (R + Z_0)}
+\end{equation}
+gegeben ist.
+Das Ergebnis des Fits ist in Abbildung~\ref{fig:abschluss_1_fit} dargestellt.
+Die erhaltenen Gleichung lautet
+\begin{equation}
+  \input{gleichungen/teil_f/abschluss_1/C_fit.tex}~,
+\end{equation}
+woraus sich die Kapazität zu
+\begin{equation}
+  \underline{C = \input{gleichungen/teil_f/abschluss_1/C.tex}}
+\end{equation}
+ergibt.
 
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc|cc}
+    \midrule
+    \midrule
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ \\
+    \midrule
+    \input{tabellen/abschluss_1.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der digitalisierten Daten des Oszillosgraphenbild~\ref{fig:abschluss_1}.}
+\label{tab:daten_abschluss_1}
+\end{table}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss_1.pdf}
+  \caption{Graphische Darstellung der digitalisierten Daten des
+    Oszillosgraphenbild~\ref{fig:abschluss_1}.}
+  \label{fig:abschluss_1_digitalisiert}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss/F0005TEK.JPG}
+  \caption{Spannungsverlauf mit Abschlusswiderstand 1.}
+  \label{fig:abschluss_1}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss_1_fit.pdf}
+  \caption{Darstellung der zu Bestimmung der Kapazität linearisierten mit Daten
+  mit entsprechenden Fit.}
+  \label{fig:abschluss_1_fit}
+\end{figure}
+
+\clearpage
 \paragraph{Abschluss 4}
 \label{ssub:abschluss_4}
 
 Der Spannungsverlauf des Signals mit Abschluss 4 ist in
 Abbildung~\ref{fig:abschluss_4} dargestellt. Hierbei handelt es sich um eine
 Reihenschaltung von einem Widerstand mit einer Spule.
+Die digitalisierten Daten sind in Abbildung~\ref{fig:abschluss_3_digitalisiert}
+sowie in Tabelle~\ref{tab:daten_abschluss_4} dargestellt.
+Die zur Bestimmung der Widerstandes notwendigen Spannung werden aus
+\begin{align}
+  \begin{aligned}
+    U_\text{off} &= \overline{U(t)}\,, \\
+    U_1          &= \overline{U(t)}\,, \\
+    U_0          &= \overline{U(t)}\,,
+  \end{aligned}
+  \qquad
+  \begin{aligned}
+    \SI{377}{\nano\second}  <~&t~< \SI{455}{\nano\second} \\
+    \SI{483}{\nano\second}  <~&t~< \SI{568}{\nano\second} \\
+    \SI{2127}{\nano\second}  <~&t~< \SI{2183}{\nano\second}
+  \end{aligned}
+\end{align}
+genommen. Damit ergibt sich für die Spannungen
+\begin{align}
+  U_\text{off} &= \input{gleichungen/teil_f/abschluss_4/U_R_off.tex} \\
+  U_1 &= \input{gleichungen/teil_f/abschluss_4/U1_R.tex} \\
+  U_0 &= \input{gleichungen/teil_f/abschluss_4/U0_R.tex}
+\end{align}
+und für den Widerstand
+\begin{equation}
+  \underline{R = \input{gleichungen/teil_f/abschluss_4/R.tex}}~.
+\end{equation}
+Zur Bestimmung der Induktivität wird ebenso verfahren wie in
+Abschnitt~\ref{ssub:bestimmung_der_leitungskonstanten}, wobei die Zeitkonstante
+hier
+\begin{equation}
+  \tau = -\frac{L}{R + Z_0}
+\end{equation}
+lautet und die Induktivität sich entsprechend
+\begin{equation}
+  L = - \frac{R + Z_0}{m}
+\end{equation}
+mit der Steigung $m$ aus der Fitgeraden zusammensetzt.
+Für den Fit werden die Werte
+\begin{equation}
+  \SI{622}{\nano\second} < t < \SI{2135}{\nano\second}
+\end{equation}
+verwandt, sodass sich die Fitgerade zu
+\begin{equation}
+  \input{gleichungen/teil_f/abschluss_4/L_fit.tex}
+\end{equation}
+ergibt. Diese ist in Abbildung~\ref{fig:abschluss_4_fit} dargestellt.
+Somit ergibt sich schließlich für die Induktivität
+\begin{equation}
+  \underline{L = \input{gleichungen/teil_f/abschluss_4/L.tex}~.}
+\end{equation}
 
-\paragraph{Abschluss 1}
-\label{par:abschluss_1}
-
-Hier befindet sich der Spannungsverlauf in Abbildung~\ref{fig:abschluss_1}.
-Der Vergleich mit den Abschlüssen in Abbildung~\ref{fig:abschluesse} liefert
-hier einen Abschlusswiderstand, welcher aus einer Reihenschaltung eines
-Widerstandes und einem Kondensator besteht.
-
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc|cc}
+    \midrule
+    \midrule
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ \\
+    \midrule
+    \input{tabellen/abschluss_4.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der digitalisierten Daten.
+    Oszillosgraphenbild~\ref{fig:abschluss_4}.}
+  \label{tab:daten_abschluss_4}
+\end{table}
 
 \begin{figure}[htpb]
   \centering
-  \fbox{\includegraphics[scale=0.45]{bilder/abschluss/F0003TEK.JPG}}
-  \caption{Spannungsverlauf mit Abschlusswiderstand 3.}
-\label{fig:abschluss_3}
+  \includegraphics[scale=1.0]{bilder/abschluss_4.pdf}
+  \caption{Darstellung der digitalisierten Daten aus dem
+    Oszillosgraphenbild~\ref{fig:abschluss_4}.}
+\label{fig:abschluss_4_digitalisiert}
 \end{figure}
 
 \begin{figure}[htpb]
   \centering
-  \fbox{\includegraphics[scale=0.5]{bilder/abschluss/F0004TEK.JPG}}
+  \includegraphics[scale=1.0]{bilder/abschluss/F0004TEK.JPG}
   \caption{Spannungsverlauf mit Abschlusswiderstand 4.}
-\label{fig:abschluss_4}
-  \vspace{2em}
-  \fbox{\includegraphics[scale=0.5]{bilder/abschluss/F0005TEK.JPG}}
-  \caption{Spannungsverlauf mit Abschlusswiderstand 1.}
-\label{fig:abschluss_1}
+  \label{fig:abschluss_4}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss_4_fit.pdf}
+  \caption{Darstellung der zu Bestimmung der Induktivität
+    linearisierten mit Daten mit entsprechenden Fit.}
+\label{fig:abschluss_4_fit}
+\end{figure}
+
+\clearpage
+\paragraph{Abschluss 3}
+\label{par:abschluss_3}
+
+Hier befindet sich der Spannungsverlauf in Abbildung~\ref{fig:abschluss_3}.
+Der Vergleich mit den Abschlüssen in Abbildung~\ref{fig:abschluesse} liefert
+hier einen Abschlusswiderstand, welcher aus einer Parallelschaltung eines
+Widerstandes und einem Kondensator besteht.
+Zur Berechnung werden die nötigen Spannungen aus
+\begin{align}
+  \begin{aligned}
+    U_\text{off} &= \overline{U(t)}\,, \\
+    U_1          &= \overline{U(t)}\,, \\
+    U_0          &= \overline{U(t)}\,,
+  \end{aligned}
+  \qquad
+  \begin{aligned}
+    &t~< \SI{500}{\nano\second} \\
+    \SI{1500}{\nano\second}  <~&t~< \SI{2200}{\nano\second} \\
+    \SI{540}{\nano\second}  <~&t~< \SI{607}{\nano\second}
+  \end{aligned}
+\end{align}
+genommen. Diese lauten nach Mittelung
+\begin{align}
+  U_\text{off} &= \input{gleichungen/teil_f/abschluss_3/U_R_off.tex} \\
+  U_1 &= \input{gleichungen/teil_f/abschluss_3/U1_R.tex} \\
+  U_0 &= \input{gleichungen/teil_f/abschluss_3/U0_R.tex}~.
+\end{align}
+Daraus ergibt sich der Widerstand zu
+\begin{equation}
+  \underline{R = \input{gleichungen/teil_f/abschluss_3/R.tex}}~.
+\end{equation}
+Die Kapazität wird wieder über eine Linearisierung bestimmt, wobei die Werte aus
+\begin{equation}
+  \SI{1500}{\nano\second} < t < \SI{2000}{\nano\second}
+\end{equation}
+genommen werden. Die Sättigungsspannung entspricht $U_1$.
+Der Fit ergibt die Gerade
+\begin{equation}
+  \input{gleichungen/teil_f/abschluss_3/C_fit.tex}~.
+\end{equation}
+In der Parallelschaltung ergibt sich die Zeitkonstante zu
+\begin{equation}
+  \tau = \qty(\frac{1}{Z_0} + \frac{1}{R}) C~,
+\end{equation}
+sodass sich die Kapazität aus der Steigung der Fitgeraden gemäß
+\begin{equation}
+  C = \frac{1}{m \qty(\frac{1}{Z_0} + \frac{1}{R})}
+\end{equation}
+bestimmen lässt und sich schließlich zu
+\begin{equation}
+  \underline{C = \input{gleichungen/teil_f/abschluss_3/C.tex}}
+\end{equation}
+ergibt.
+Der Fit ist dabei in Abbildung~\ref{fig:abschluss_3_fit} dargestellt.
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc|cc}
+    \midrule
+    \midrule
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ &
+    $t/\si{\nano\second}$ & $U/\si{\volt}$ \\
+    \midrule
+    \input{tabellen/abschluss_3.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Darstellung der digitalisierten Daten.
+    Oszillosgraphenbild~\ref{fig:abschluss_3}.}
+  \label{tab:daten_abschluss_3}
+\end{table}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss_3.pdf}
+  \caption{Darstellung der digitalisierten Daten aus dem
+    Oszillosgraphenbild~\ref{fig:abschluss_3}.}
+\label{fig:abschluss_3_digitalisiert}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss/F0003TEK.JPG}
+  \caption{Spannungsverlauf mit Abschlusswiderstand 3.}
+  \label{fig:abschluss_3}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/abschluss_3_fit.pdf}
+  \caption{Darstellung der zu Bestimmung der Induktivität
+    linearisierten mit Daten mit entsprechenden Fit.}
+\label{fig:abschluss_3_fit}
 \end{figure}
 

@@ -924,6 +924,479 @@ def teil_e():
     fig_M.savefig("../tex/bilder/mehrfachreflexion/mf.pdf")
     plt.show()
 
+
+# =========================================================
+# 	Teil f:
+# 	Spannungsverlauf bei drei verschiedenen
+# 	Abschlusswiderständen
+# =========================================================
+
+
+def teil_f_abschluss_3():
+    """Spannungsverlauf bei drei verschiedenen Abschlusswiderständen
+    Returns: None
+
+    """
+
+    # =========================================================
+    # 	Abschluss 3
+    # =========================================================
+
+    # ====[ Konstanten ]========================================
+
+    Z0 = 50.0  # ohm, Wellenwiderstand des Kabels
+
+    # ====[ R bestimmen ]=======================================
+
+    # t in ns, U in V
+    t, U = np.loadtxt(
+        "../messwerte/RC3.csv",
+        unpack=True,
+        delimiter=","
+    )
+
+    # Werte selektieren
+    U_R_off_values = U[t < 500.0]
+    U1_R_values = U[(t > 1500) & (t < 2200)]
+    U0_R_values = U[(t > 540) & (t < 607)]
+
+    # Ungenauigkeiten
+    U_R_off = ev.get_uncert(U_R_off_values)
+    U1_R = ev.get_uncert(U1_R_values)
+    U0_R = ev.get_uncert(U0_R_values)
+
+    # Werte speichern
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_3/U_R_off.tex",
+        ev.tex_eq(U_R_off, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_3/U1_R.tex",
+        ev.tex_eq(U1_R, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_3/U0_R.tex",
+        ev.tex_eq(U0_R, unit=r"\volt")  # , form="({:L})")
+    )
+
+    # Offset abziehen
+    U0_R = U0_R - U_R_off
+    U1_R = U1_R - U_R_off
+
+    # Werte bestimmen
+    G = U0_R / U1_R - 1.0
+    R = - Z0*(G + 1.0)/(G - 1.0)
+    R_tex = ev.tex_eq(R, unit=r"\ohm", form="{:L}")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_3/R.tex", R_tex)
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_3/G.tex",
+        ev.tex_eq(G, form="{:L}")
+    )
+
+    # ====[ C bestimmen ]=======================================
+
+    # Werte selektieren
+    t_C_fit = t[(t > 650) & (t < 1200)]
+    U_C_fit = U[(t > 650) & (t < 1200)]
+
+    U0_C = np.mean(U[(t > 1500) & (t < 2000)])
+
+    # Fit
+    U_C_fit_log = np.log(U0_C - U_C_fit)
+
+    def Geradenfkt(x, m, b):
+        return m*x + b
+
+    val_C, std_C = ev.fit(Geradenfkt, t_C_fit, U_C_fit_log)
+
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_3/C_fit.tex",
+        ev.tex_linreg("G_C(t)", val_C, std_C, unit=[r"\per\nano\second", ""])
+    )
+
+    # C berechnen
+    m_C = uc.ufloat(val_C[0], std_C[0])  # m=-1/tau, tau in ns
+    C = - 1.0 / (m_C * (1.0/Z0 + 1.0/R)) * 1e-3 # in mF
+    C_tex = ev.tex_eq(C, unit=r"\pico\farad")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_3/C.tex", C_tex)
+
+    # ====[ Tabelle & Plots ]===================================
+
+    # Daten in Tabelle
+    lt.latextable(
+        [t, U],
+        "../tex/tabellen/abschluss_3.tex",
+        form=["g", ".2f"],
+        alignment="CC",
+        split=4
+    )
+
+    # Data
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t,
+        U,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$U / \si{\volt}$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_3.pdf")
+    # plt.show()
+
+    # Fit
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t_C_fit,
+        U_C_fit_log,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    fig_lim = ax.get_xlim()
+    fig_x = np.linspace(fig_lim[0], fig_lim[1], 1000)
+    ax.plot(
+            fig_x,
+            Geradenfkt(fig_x, val_C[0], val_C[1]),
+            color='k',
+            label="Fit"
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$\ln(U)$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_3_fit.pdf")
+    # plt.show()
+
+
+def teil_f_abschluss_1():
+    """Spannungsverlauf bei drei verschiedenen Abschlusswiderständen
+    Returns: None
+
+    """
+
+    # =========================================================
+    # 	Abschluss 1
+    # =========================================================
+
+    # ====[ Konstanten ]========================================
+
+    Z0 = 50.0  # ohm, Wellenwiderstand des Kabels
+
+    # ====[ R bestimmen ]=======================================
+
+    # t in ns, U in V
+    t, U = np.loadtxt(
+        "../messwerte/RC1.csv",
+        unpack=True,
+        delimiter=","
+    )
+
+    # Werte selektieren
+    U_R_off_values = U[t < 200.0]
+    U1_R_values = U[(t > 223) & (t < 302)]
+
+    # Ungenauigkeiten
+    U_R_off = ev.get_uncert(U_R_off_values)
+    U1_R = ev.get_uncert(U1_R_values)
+    U0_R = uc.ufloat(13.7, 1.0)  # ungenau, nicht mittelbar
+
+    # Werte speichern
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_1/U_R_off.tex",
+        ev.tex_eq(U_R_off, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_1/U1_R.tex",
+        ev.tex_eq(U1_R, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_1/U0_R.tex",
+        ev.tex_eq(U0_R, unit=r"\volt")  # , form="({:L})")
+    )
+
+    # Offset abziehen
+    U0_R = U0_R - U_R_off
+    U1_R = U1_R - U_R_off
+
+    # Werte bestimmen
+    G = U0_R / U1_R - 1.0
+    R = - Z0*(G + 1.0)/(G - 1.0)
+    R_tex = ev.tex_eq(R, unit=r"\ohm", form="{:L}")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_1/R.tex", R_tex)
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_1/G.tex",
+        ev.tex_eq(G, form="{:L}")
+    )
+
+    # ====[ C bestimmen ]=======================================
+
+    # Werte selektieren
+    t_C_fit = t[(t > 319) & (t < 600)]
+    U_C_fit = U[(t > 319) & (t < 600)]
+
+    U0_C = np.mean(U[(t > 800)])
+
+    # Fit
+    U_C_fit_log = np.log(U0_C - U_C_fit)
+
+    def Geradenfkt(x, m, b):
+        return m*x + b
+
+    val_C, std_C = ev.fit(Geradenfkt, t_C_fit, U_C_fit_log)
+
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_1/C_fit.tex",
+        ev.tex_linreg("G_C(t)", val_C, std_C, unit=[r"\per\nano\second", ""])
+    )
+
+    # C berechnen
+    m_C = uc.ufloat(val_C[0], std_C[0])  # m=-1/tau, tau in ns
+    C = - 1.0 / (m_C * (Z0 + R))  # in nF
+    C_tex = ev.tex_eq(C, unit=r"\nano\farad")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_1/C.tex", C_tex)
+
+    # ====[ Tabelle & Plots ]===================================
+
+    # Daten in Tabelle
+    lt.latextable(
+        [t, U],
+        "../tex/tabellen/abschluss_1.tex",
+        form=["g", ".2f"],
+        alignment="CC",
+        split=4
+    )
+
+    # Data
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t,
+        U,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$U / \si{\volt}$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_1.pdf")
+    # plt.show()
+
+    # Fit
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t_C_fit,
+        U_C_fit_log,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    fig_lim = ax.get_xlim()
+    fig_x = np.linspace(fig_lim[0], fig_lim[1], 1000)
+    ax.plot(
+            fig_x,
+            Geradenfkt(fig_x, val_C[0], val_C[1]),
+            color='k',
+            label="Fit"
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$\ln(U)$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_1_fit.pdf")
+    # plt.show()
+
+
+def teil_f_abschluss_4():
+    """Abschlusswiderstand mit Spule und ohmschen Widerstand
+    Returns: None
+
+    """
+
+    # ====[ Konstanten ]========================================
+
+    Z0 = 50.0  # ohm, Wellenwiderstand des Kabels
+
+    # ====[ R bestimmen ]=======================================
+
+    # t in ns, U in V
+    t, U = np.loadtxt(
+        "../messwerte/LC.csv",
+        unpack=True,
+        delimiter=","
+    )
+
+    # Werte selektieren
+    U_R_off_values = U[(t > 377) & (t < 455)]
+    U1_R_values = U[(t > 483) & (t < 568)]
+    U0_R_values = U[(t > 2127) & (t < 2183)]
+
+    # Ungenauigkeiten
+    U_R_off = ev.get_uncert(U_R_off_values)
+    U1_R = ev.get_uncert(U1_R_values)
+    U0_R = ev.get_uncert(U0_R_values)
+
+    # Werte speichern
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_4/U_R_off.tex",
+        ev.tex_eq(U_R_off, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_4/U1_R.tex",
+        ev.tex_eq(U1_R, unit=r"\volt")  # , form="({:L})")
+    )
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_4/U0_R.tex",
+        ev.tex_eq(U0_R, unit=r"\volt")  # , form="({:L})")
+    )
+
+    # Offset abziehen
+    U0_R = U0_R - U_R_off
+    U1_R = U1_R - U_R_off
+
+    # Werte bestimmen
+    G = U0_R / U1_R - 1.0
+    R = - Z0*(G + 1.0)/(G - 1.0)
+    R_tex = ev.tex_eq(R, unit=r"\ohm", form="{:L}")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_4/R.tex", R_tex)
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_4/G.tex",
+        ev.tex_eq(G, form="{:L}")
+    )
+
+    # ====[ L bestimmen ]=======================================
+
+    # Werte selektieren
+    t_L_fit = t[(t > 622) & (t < 2135)]
+    U_L_fit = U[(t > 622) & (t < 2135)]
+
+    U0_L = U1_R.nominal_value
+
+    # Fit
+    U_L_fit_log = np.log(U_L_fit - U0_L)
+
+    def Geradenfkt(x, m, b):
+        return m*x + b
+
+    val_L, std_L = ev.fit(Geradenfkt, t_L_fit, U_L_fit_log)
+
+    ev.write(
+        "../tex/gleichungen/teil_f/abschluss_4/L_fit.tex",
+        ev.tex_linreg("G_L(t)", val_L, std_L, unit=[r"\per\nano\second", ""])
+    )
+
+    # L berechnen
+    m_L = uc.ufloat(val_L[0], std_L[0])  # m=-1/tau, tau in ns
+    L = - (Z0 + R) / m_L * 1e-3
+    L_tex = ev.tex_eq(L, unit=r"\milli\henry")
+
+    ev.write("../tex/gleichungen/teil_f/abschluss_4/L.tex", L_tex)
+
+    # ====[ Tabelle & Plots ]===================================
+
+    # Daten in Tabelle
+    lt.latextable(
+        [t, U],
+        "../tex/tabellen/abschluss_4.tex",
+        form=["g", ".2f"],
+        alignment="CC",
+        split=4
+    )
+
+    # Data
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t,
+        U,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$U / \si{\volt}$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_4.pdf")
+    # plt.show()
+
+    # Fit
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.plot(
+        t_L_fit,
+        U_L_fit_log,
+        color='k',
+        linestyle='none',
+        marker='+',
+        label='Messwerte'
+    )
+
+    fig_lim = ax.get_xlim()
+    fig_x = np.linspace(fig_lim[0], fig_lim[1], 1000)
+    ax.plot(
+            fig_x,
+            Geradenfkt(fig_x, val_L[0], val_L[1]),
+            color='k',
+            label="Fit"
+    )
+
+    ax.set_xlabel(r'$t / \si{\nano\second}$')
+    ax.set_ylabel(r'$\ln(U)$')
+
+    ax.legend(loc='best')
+    ax = ev.plot_layout(ax)
+
+    fig.tight_layout()
+    fig.savefig("../tex/bilder/abschluss_4_fit.pdf")
+    # plt.show()
+
 # ==================================================
 # 	Ausführen der Versuchsteile
 # ==================================================
@@ -931,6 +1404,9 @@ def teil_e():
 
 # teil_a()
 # teil_b()
-teil_c()
-teil_d()
+# teil_c()
+# teil_d()
 # teil_e()
+teil_f_abschluss_3()
+# teil_f_abschluss_1()
+# teil_f_abschluss_4()

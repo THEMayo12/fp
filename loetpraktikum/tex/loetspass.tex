@@ -1,0 +1,227 @@
+
+% {{{
+% ==================================================
+%	Dokumentklasse
+% ==================================================
+
+\documentclass[
+  11pt,
+  a4paper,
+  fleqn,
+  ngerman,
+  parskip,
+  toc=bibliography
+]{scrartcl}
+
+% ==================================================
+%	Encoding
+% ==================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+% ==================================================
+%	Spacheinstellung
+% ==================================================
+
+\usepackage[ngerman]{babel}
+
+% ==================================================
+%	Referenzen
+% ==================================================
+
+\usepackage[ngerman]{varioref}
+% Links im pdf
+\usepackage[pdfborder={0 0 0}, hypertexnames=false]{hyperref}
+% zusammen mit varioref, hyperref folgt damit
+% z. B. in \vref{eq:1} -> in Gl. 1 auf Seite 4, cleveres referenzieren
+\usepackage{cleveref}
+
+% ==================================================
+%	Grafiken, Abbildungen und Tabellen
+% ==================================================
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[font=small, labelfont=bf, format=plain]{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+% for floating figures and floating tables
+\usepackage[vflt]{floatflt}
+
+\usepackage{rotating}
+
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{tikz}
+\usetikzlibrary{shadows, calc, arrows, patterns}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% ==================================================
+%	Seiten-Layout und -Definitionen
+% ==================================================
+
+% Maße für DIN A4
+\usepackage[a4paper]{geometry}
+
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+
+% ==================================================
+%	Float-Parameter
+% ==================================================
+
+% minimaler Anteil der Seite für den Text
+\renewcommand{\textfraction}{0.05}
+% maximaler Anteil der Seite für Floats am Anfang
+\renewcommand{\topfraction}{0.95}
+% maximaler Anteil der Seite für Floats am Enden
+\renewcommand{\bottomfraction}{0.95}
+% mininaler Anteil der Float-Seite für Text
+\renewcommand{\floatpagefraction}{0.35}
+% maximale Anzahl der Floats auf der Seite
+\setcounter{totalnumber}{5}
+
+% ==================================================
+%	Fancy Header
+% ==================================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Stil für gesamtes Dokument
+\fancyhf{}
+
+% Dicke der Linien ändern
+\renewcommand{\headrulewidth}{1.0pt}
+\renewcommand{\footrulewidth}{1.0pt}
+
+% Die Positionen in Kopf- und Fußzeile füllen
+\fancyhead[L]{%
+  TU Dortmund
+  % \includegraphics[scale=0.3]{../../../header/tud_logo_rgb.jpg}
+}
+\fancyhead[R]{%
+  Mario Dunsch
+}
+\fancyfoot[L]{\rightmark}
+\fancyfoot[R]{Seite \thepage}
+
+\addtolength{\headheight}{2\baselineskip}
+
+% Neudefinition von plain (wird auf Kapitel/Verzeichnis-Seiten verwendet)
+\fancypagestyle{plain}{%
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\fancyfoot[L]{\rightmark}
+	\fancyfoot[R]{Seite \thepage}
+}
+
+\fancypagestyle{firstpage}{%
+	\fancyhf{}
+	\fancyhead[L]{}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+
+% ==================================================
+%	Mathematik
+% ==================================================
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{mathtools}
+% für Einheitsmatrix '1'
+\usepackage{bbm}
+
+% Mathematik Font
+\usepackage{fourier}
+\usepackage{tgpagella}
+% \usepackage[sc]{mathpazo}
+% Palatino needs more leading (space between lines)
+% \linespread{1.05}
+
+% Good old mathcal
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+% ==================================================
+%	Physik
+% ==================================================
+
+\usepackage{upgreek}
+\usepackage{physics}
+\usepackage[parse-numbers=false, per-mode=symbol]{siunitx}
+
+% ==================================================
+%	Sonstiges
+% ==================================================
+
+% rechnen mit LateX-Counter
+\usepackage{calc}
+% Euro-Zeichen
+\usepackage{eurosym}
+% für bessere Darstellung von Text (Abstände)
+\usepackage{microtype}
+% Einfügen von Text um Layout zu testen
+\usepackage{lipsum}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Ende des Headers                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% }}}
+
+% ==================================================
+%	Definitionen für das Dokument
+% ==================================================
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\Large\bfseries\filcenter}{}{1em}{}
+
+% ==================================================
+%	Dokument beginnt
+% ==================================================
+
+\begin{document}
+
+% ==================================================
+%	Inhaltversichnis
+% ==================================================
+
+% \thispagestyle{plain}
+% \tableofcontents
+% \newpage
+
+% ==================================================
+%	Haupteil
+% ==================================================
+
+\section*{Lötpraktikum}
+\label{sec:loetpraktikum}
+
+\includegraphics[scale=1.0]{../plots/brueken_100.pdf}\\
+\includegraphics[scale=1.0]{../plots/brueken_1k.pdf}\\
+\includegraphics[scale=1.0]{../plots/brueken_100k.pdf}\\
+\includegraphics[scale=1.0]{../plots/diode.pdf}\\
+\includegraphics[scale=1.0]{../plots/zenerdiode.pdf}\\
+\includegraphics[scale=1.0]{../plots/opv.pdf}\\
+
+
+% ==================================================
+%	Literaturverzeichnis
+% ==================================================
+
+% \bibliographystyle{utphys}
+% \bibliography{literatur}
+
+% ==================================================
+%	Dokument endet
+% ==================================================
+
+\end{document}

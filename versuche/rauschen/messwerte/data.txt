@@ -1,0 +1,2 @@
+Kurzschlusswiderstand R = 0.2 ohm
+U_ein = 120 mVpp

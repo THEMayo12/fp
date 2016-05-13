@@ -301,15 +301,17 @@ def X_sig_fit_squared(X, z2, n2, n3, sig1, sig2):
 
 k = 2.0*np.pi / 1.54e-10
 z1 = 0.0
-z2 = -230.0e-10
+z2 = -210.0e-10
 n1 = 1.0
-n2 = 1.0 - 1.5 * 1e-06
-n3 = 1.0 - 3.0 * 1e-06
-sig1 = 8.0 * 1e-10
-sig2 = 3.0 * 1e-10
+n2 = 1.0 - 2.8 * 1e-06
+n3 = 1.0 - 7.2 * 1e-06
+sig1 = 5.5 * 1e-10
+sig2 = 2.4 * 1e-10
 n = [n2, n3]
 z = [z1, z2]
 sig = [sig1, sig2]
+
+values = [z2, n2, n3, sig1, sig2]
 
 sel = (theta > 0.25) & (theta < 0.7)
 theta_fit = theta[sel]
@@ -331,7 +333,6 @@ theta_plot = np.deg2rad(theta)
 theta_test = np.linspace(0.1, 2.5, 200)
 theta_test_rad = np.deg2rad(theta_test)
 
-values = [z2, n2, n3, sig1, sig2]
 
 fig = plt.figure()
 ax = fig.add_axes([0.15, 0.4, 0.75, 0.6])
@@ -350,13 +351,13 @@ ax_sig2.set_xscale("log")
 ax_fit = plt.axes([0.1, 0.25, 0.05, 0.05])
 b_fit = Button(ax_fit, "Fit")
 
-s_z2 = Slider(ax_z2, "-z2", 120, 250, valinit=180)
+s_z2 = Slider(ax_z2, "-z2", 120, 250, valinit=210)
 s_n2 = Slider(
     ax_n2,
     "n2",
     1.0e-7,
     1.0e-4,
-    valinit=4.59e-6,
+    valinit=2.8e-6,
     valfmt="1.0 - %.2e"
 )
 s_n3 = Slider(
@@ -364,7 +365,7 @@ s_n3 = Slider(
     "n3",
     1.0e-7,
     1.0e-4,
-    valinit=1.6e-6,
+    valinit=7.2e-6,
     valfmt="1.0 - %.2e"
 )
 s_sig1 = Slider(
@@ -372,7 +373,7 @@ s_sig1 = Slider(
     "sig1",
     1.0e-11,
     5.0e-9,
-    valinit=3.9e-10,
+    valinit=5.5e-10,
     valfmt="%.2e"
 )
 s_sig2 = Slider(
@@ -380,7 +381,7 @@ s_sig2 = Slider(
     "sig2",
     1.0e-11,
     1.0e-09,
-    valinit=1.4e-10,
+    valinit=2.4e-10,
     valfmt="%.2e"
 )
 
@@ -395,11 +396,11 @@ l, = ax.semilogy(
     label='Fit'
 )
 
-s_z2.set_val(-val[0]*1e10)
-s_n2.set_val(1.0 - val[1])
-s_n3.set_val(1.0 - val[2])
-s_sig1.set_val(val[3])
-s_sig2.set_val(val[4])
+# s_z2.set_val(-val[0]*1e10)
+# s_n2.set_val(1.0 - val[1])
+# s_n3.set_val(1.0 - val[2])
+# s_sig1.set_val(val[3])
+# s_sig2.set_val(val[4])
 
 ax.semilogy(
         theta,

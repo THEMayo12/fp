@@ -402,12 +402,12 @@ n1 = 1.0
 # sig1 = 3.65257401e-10
 # sig2 = 6.87502927e-10
 
-n1 = 9.99991619e-01
-n2 = 9.99995656e-01
-n3 = 1.00000481e+00
-z2 = -2.10454391e-08
-sig1 = 3.10215472e-10
-sig2 = 3.98169509e-10
+z2 = -210.0e-10
+n1 = 1.0
+n2 = 1.0 - 2.8 * 1e-06
+n3 = 1.0 - 7.2 * 1e-06
+sig1 = 5.5 * 1e-10
+sig2 = 2.4 * 1e-10
 
 n = [n1, n2, n3]
 z = [z1, z2]
@@ -434,7 +434,7 @@ def plot_X_variiert(theta, X_a, psd3):
             theta,
             psd3,
             color='k',
-            # linestyle='-',
+            linestyle='none',
             marker='+',
             markersize=2,
             label='Messwerte'
@@ -446,7 +446,11 @@ def plot_X_variiert(theta, X_a, psd3):
     ax.legend(loc='best')
 
     fig.tight_layout()
+    fig.savefig("../tex/bilder/variiert.pdf")
     plt.show()
+
+
+plot_X_variiert(theta, X_a, psd3)
 
 # ==================================================
 # 	Fit
@@ -556,7 +560,7 @@ def plot_X_fitted(val, theta, psd3):
     plt.show()
 
 
-plot_X_fitted(val, theta, psd3)
+# plot_X_fitted(val, theta, psd3)
 # plot_X_fitted(None, theta, psd3)
 
 # ==================================================
