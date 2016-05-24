@@ -182,7 +182,7 @@ U_a_eigen = U_a_eigen/(10.*(1000.*V_N_eigen)**2)
 
 
 #external input parameters
-A = uc.ufloat(0.3868,0.01) *1000 #kHz in Hz
+A = uc.ufloat(0.39,0.13) *1000 #kHz in Hz
 T = 300. #K
 C_eigen = 0.1*100*10**(-12) #Kabellänge*pF/Meter
 nu_mittel =25000 #Hz
@@ -221,18 +221,18 @@ for i in range(0,len(U1)):
 def G(x, m, b):
     return m*x + b
 
-val1, cov1 = optimize.curve_fit(G, R1[7:], U1[7:])
+val1, cov1 = optimize.curve_fit(G, R1[6:], U1[6:])
 std1 = ev.get_std(cov1)
 
+
 lin_reg1 = ev.tex_linreg(
-        "U_a",
+        "G_1(R)",
         val1,
         std1,
-        unit = ["\volt^2\per\ohm", "\meter"]
+        unit = [r"\volt^2\per\ohm", r"\volt^2"]
 )
 
-
-#print_tex(ev.latexEq(lin_reg1))  			 ### <---
+ev.write('../tex/tabellen/rauschen_korr_reg1.tex', lin_reg1) 			 
 
 
 #steigung
@@ -241,7 +241,7 @@ print(m1)
 k_korr1 = m1/(4*T*A)
 print(k_korr1)
 # tex schreiben
-ev.write('../tex/tabellen/k_korr1', str(k_korr1))		### <---
+ev.write('../tex/tabellen/k_korr1', str(k_korr1*10**20))		### <---
 
 
 
@@ -260,6 +260,10 @@ ax.plot(
     marker='+',
     label='Messwerte'
 )
+
+lim = ax.get_xlim()
+x = np.linspace(lim[0], lim[1], 1000)
+ax.plot(x, G(x, val1[0], val1[1]), label="Fit")
 
 ax.set_xlabel(r'$R_1000$')
 ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
@@ -290,7 +294,7 @@ tab2 = lt.latextable(
 
 
 #Verstärkungsfaktoren rausrechnen
-v2 = 10.*(1000.*200.)**2 #Verstärkungsfaktor
+v2 = 10.*(10*1000.*20.)**2 #Verstärkungsfaktor
 U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2)/v2-U_a_eigen[4]
 
 
@@ -304,16 +308,17 @@ def G(x, m, b):
     return m*x + b
 
 val2, cov2 = optimize.curve_fit(G, 1000*R2[:14], U2[:14]) #  kOhm to Ohm, only linear part
-std2 = ev.get_std(cov1)
+std2 = ev.get_std(cov2)
+
 
 lin_reg2 = ev.tex_linreg(
-        "U_a",
+        "G_2(R)",
         val2,
         std2,
-        unit = ["\volt^2\per\ohm", "\meter"]
+        unit = [r"\volt^2\per\ohm", r"\volt^2"]
 )
 
-#print_tex(ev.latexEq(lin_reg2))
+ev.write('../tex/tabellen/rauschen_korr_reg2.tex', lin_reg2)
 
 #steigung
 m2=uc.ufloat(val2[0],std2[0])
@@ -321,7 +326,7 @@ print(m2)
 k_korr2 = m2/(4*T*A)
 print(k_korr2)
 # tex schreiben
-ev.write('../tex/tabellen/k_korr2', str(k_korr2))
+ev.write('../tex/tabellen/k_korr2', str(k_korr2*10**23))
 
 
 
@@ -338,6 +343,10 @@ ax.plot(
     marker='+',
     label='Messwerte'
 )
+
+lim = ax.get_xlim()
+x = np.linspace(lim[0], lim[1], 1000)
+ax.plot(x, G(x, val2[0], val2[1]), label="Fit")
 
 ax.set_xlabel(r'$R_100k$')
 ax.set_ylabel(r'$U_a$ in $\si{\volt}$')

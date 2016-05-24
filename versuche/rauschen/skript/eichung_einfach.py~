@@ -209,6 +209,7 @@ tab_einfach = lt.latextable(
     "../tex/tabellen/eichung_einfach.tex",
     alignment = 'CC',
     form = '.3f',
+    split = 2
 )
 
 
@@ -257,13 +258,31 @@ fig_eich.savefig("../tex/bilder/eichung_einfach.pdf")
 #---Integration--->
 #einfache Trapezintegration
 
-J=0
+J_ober=0
+J_unter=0
 
 for i in range (1,len(f_eich)):
-	J += (U_a_eich[i]+U_a_eich[i-1])/2. * (f_eich[i]-f_eich[i-1])
+	if f_eich[i]<=24:
+		J_ober += U_a_eich[i]* (f_eich[i]-f_eich[i-1])
+	else:
+		J_ober += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
 
-print(J)
+for i in range (1,len(f_eich)):
+	if f_eich[i]<=24:
+		J_unter += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
+	else:
+		J_unter += U_a_eich[i]* (f_eich[i]-f_eich[i-1])
+
+print(J_ober)
+print(J_unter)
+
+# mittleres Integral mit Fehler
+A = ev.get_uncert([J_ober,J_unter])
+
+print(A)
+
+
 # tex schreiben
-ev.write('../tex/tabellen/eichfaktor_einfach.tex', J)
+ev.write('../tex/tabellen/eichfaktor_einfach.tex', str(A))
 
 #<---Integration---

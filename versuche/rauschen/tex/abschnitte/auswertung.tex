@@ -39,9 +39,10 @@
 		
 		\begin{table}[h]
 		\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{cccc}
 				\toprule \midrule
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ 
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &$\nu \text{ in} \text{ 
+				kHz}$ & $U^2_\text{a}$ in $\text{V}^2$
 				\\
 				\midrule
 				\input{tabellen/eichung_einfach.tex}
@@ -85,7 +86,7 @@
 		\end{equation}
 		wobei $\nu_i$ den $i$-ten Messwert darstellt. Es ergibt sich
 		\begin{equation}
-			A = 18.14\text{ kHz}  \quad . % \input{tabellen/eichfaktor_einfach.tex} 
+			A =  \input{tabellen/eichfaktor_einfach.tex}   \quad . 
 		\end{equation}
 
 
@@ -168,15 +169,11 @@
 
 		Die Ausgleichsgeraden sind durch
 		\begin{equation}
-			G_1(R) = (5.45 \pm 0.30) \times 10^{-15} \frac{\text{V}^2}{\Omega} R 
-					- (xxx)\times 10^{-3}\text{V}^2 		
-					% \input{tabellen/rauschen_einfach_reg2.tex}
+			\input{tabellen/rauschen_einfach_reg1.tex}
 		\end{equation}
 		und
 		\begin{equation}
-			G_2(R) = (0.4 \pm 3.0) \times 10^{-16} \frac{\text{V}^2}{\Omega} R 
-					- (xxx)\times 10^{-3}\text{V}^2 		
-					% \input{tabellen/rauschen_einfach_reg2.tex}
+			\input{tabellen/rauschen_einfach_reg2.tex}
 		\end{equation}
 		
 		Mit der Nyquist-Beziehung erhält man
@@ -190,10 +187,10 @@
 		\end{equation}
 		berechnet werden kann. Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
-		k_\text{B}^{1000\Omega}			=  (25\pm 1.4)\times 10^{-23} \frac{\text{J}}{\text{s}} \\
-		%input{tabellen/k_einfach1.tex}\\ 
-		k_\text{B}^{100\text{k}\Omega}	=	(0.2\pm 1.4)\times 10^{-23} \frac{\text{J}}{\text{s}}  
-		%input{tabellen/k_einfach2.tex}
+		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_einfach1.tex}\times 10^{-23}\frac{\text{J}}
+																			{\text{K}}  \\ 
+		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_einfach2.tex}\times 10^{-23}\frac{\text{J}}
+																			{\text{K}} 
 		\end{align}
 	
 	\subsubsection{Ermittlung der Rauschzahl}
@@ -204,7 +201,7 @@
 		bei $R\approx 500\Omega$ berechnet. Mit den bereits berechneten Größen und 
 		dem Wertepaar $(500\Omega,1.083 \text{V}^2)$ ergibt sich 
 		\begin{equation}
-			F = (1.11 \pm 0.22) \times 10^{3}% \input{tabelle/Rauschzahl.tex}
+			F = \input{tabellen/Rauschzahl.tex} \times 10^{3}
 		\end{equation}
 		
 		
@@ -212,7 +209,7 @@
 		
 		
 		
-		
+\clearpage		
 \subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am 
 			Korrelator-Rauschspektrometer}
 			
@@ -246,8 +243,9 @@
 		
 		\begin{table}[h]
 		\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{cccc}
 				\toprule \midrule
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &
 				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ 
 				\\
 				\midrule
@@ -280,11 +278,11 @@
 		
 		Der Eichfaktor ergibt sich als
 		\begin{equation}
-			A =  \input{tabellen/eichfaktor_korr.tex} %0.386 \text{ kHz}  \quad .  
+			A =  \input{tabellen/eichfaktor_korr.tex}  \quad .  
 		\end{equation}
 
 
-	
+	\clearpage
 	\subsubsection{Rauschmessung}
 		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_korr1} 
 		und \ref{tab:rauschen_korr2} sowie den Abbildungen 
@@ -311,7 +309,7 @@
 	
 	\hfill
 	
-	\begin{minipage}{0.7\textwidth}
+	\begin{minipage}{0.6\textwidth}
 
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_korr1.pdf}
@@ -345,10 +343,10 @@
 			\label{tab:rauschen_korr2}
 
 	\end{minipage}
-	% Auffüllen des Zwischenraums
+
 	\hfill
-	% minipage mit Grafik
-	\begin{minipage}{0.7\textwidth}
+
+	\begin{minipage}{0.6\textwidth}
 
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_korr2.pdf}
@@ -365,15 +363,11 @@
 
 		Die Ausgleichsgeraden sind durch
 		\begin{equation}
-			G_1(R) = (6.14 \pm 0.06) \times 10^{-15} \frac{\text{V}^2}{\Omega} R 
-					- (xxx)\times 10^{-3}\text{V}^2 		
-					% \input{tabellen/rauschen_korr_reg2.tex}
+			\input{tabellen/rauschen_korr_reg1.tex}
 		\end{equation}
 		und
 		\begin{equation}
-			G_2(R) = (4.5 \pm 6.0) \times 10^{-17} \frac{\text{V}^2}{\Omega} R 
-					- (xxx)\times 10^{-3}\text{V}^2 		
-					% \input{tabellen/rauschen_korr_reg2.tex}
+			\input{tabellen/rauschen_korr_reg2.tex}
 		\end{equation}
 		
 		Mit der Nyquist-Beziehung erhält man die Boltzmannkonstante erneut als
@@ -382,21 +376,96 @@
 		\end{equation}
  		Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
-		k_\text{B}^{1000\Omega}			=  (1320.0\pm 40.0)\times 10^{-23} \frac{\text{J}}{\text{s}} 
-		\\
-		%input{tabellen/k_korr1.tex}\\ 
-		k_\text{B}^{100\text{k}\Omega}	=	(10\pm 13)\times 10^{-23} \frac{\text{J}}{\text{s}}  
-		%input{tabellen/k_korr2.tex}
+		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_korr1.tex} \times 10^{-20}\frac{\text{J}}
+																			{\text{K}} \\ 
+		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_korr2.tex} \times 10^{-23}\frac{\text{J}}
+																			{\text{K}} 
 		\end{align}
 	
 	
 
 
-
+\clearpage
 \subsection{Diodenkennlinien}
-
-
+	Zwei Kennlinien der in diesem Versuch benutzten Kathode sind in 
+	den Tabellen \ref{tab:kennlinie1} und \ref{tab:kennlinie2} sowie 
+	den Abbildungen \ref{fig:kennlinie1} und \ref{fig:kennlinie2} zu 
+	sehen.
+	
+	\begin{figure}[htbp]
+	\begin{minipage}{0.3\textwidth} 
+			\centering
+			\begin{tabular}{ccc}
+				\toprule \midrule
+				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$ 
+				& $V_\text{N}$\\
+				\midrule
+				\input{tabellen/kennlinie1.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Diodenkennlinie bei einem Heizstrom von 
+			$0.8$A.}
+			\label{tab:kennlinie1}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.7\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{bilder/kennlinie1.pdf}
+			\caption{Diodenkennlinie bei einem Heizstrom von 
+			$0.8$A.Die Werte wurden bereits um die 
+			Verstärkungsfaktoren $V_\text{N}$ normiert. }
+			\label{fig:kennlinie1}		
+	\end{minipage}
+	\end{figure}		
+	
+	
+	\begin{figure}[htbp]
+	\begin{minipage}{0.3\textwidth} 
+			\centering
+			\begin{tabular}{ccc}
+				\toprule \midrule
+				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$ 
+				& $V_\text{N}$\\
+				\midrule
+				\input{tabellen/kennlinie2.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Diodenkennlinie bei einem Heizstrom von 
+			$0.9$A.}
+			\label{tab:kennlinie2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.7\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{bilder/kennlinie2.pdf}
+			\caption{Diodenkennlinie bei einem Heizstrom von 
+			$0.9$A. Die Werte wurden bereits um die 
+			Verstärkungsfaktoren $V_\text{N}$ normiert.}
+			\label{fig:kennlinie2}		
+	\end{minipage}
+	\end{figure}		
+	
+	
+	
+\clearpage
 \subsection{Bestimmung von $\text{e}_0$ mittels Stromrauschens}
+
+	Die Messwerte sind in Tabelle \ref{tab:elementarladung} zu sehen.
+	\begin{table}[h]
+	\centering
+		\begin{tabular}{cccc}
+		\toprule \midrule
+			$I_\text{Anode}$ in mA & $U^2_\text{a}$ in $\text{V}^2$ &
+			$\Delta U_\text{a}^2$ in $\text{V}^2$ & $V_\text{N}$ \\
+			\midrule
+			\input{tabellen/elementarladung.tex}
+			\midrule \bottomrule
+		\end{tabular}
+		\caption{Messwerte zur Bestimmung der Elementarladung 
+		and der Reinmetallkathode.}
+		\label{tab:elementarladung}
+	\end{table}
+	
 
 \subsection{Frequenzspektrum einer Reinmetallkathode}
 

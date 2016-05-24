@@ -169,194 +169,87 @@ fig1.savefig('file.pdf')
 #                            Beginn Auswertung                            #
 ###########################################################################
 
-#=========================================================
-#     Eigenrauschen
-#=========================================================
+#====================
+# 1.Kennlinie
+#====================
 
-V_N_eigen, U_a_eigen = np.loadtxt("../messwerte/kurzschluss_selektiv.txt", unpack=True)
-U_a_eigen = U_a_eigen/(10.*(1000.*V_N_eigen)**2)
-
+U_anode1, U_a1, delta1, V_N1 = np.loadtxt("../messwerte/kennlinie_8.txt", unpack=True)
 
 
-
-
-
-#external input parameters
-A = uc.ufloat(0.39,0.13) *1000 #kHz in Hz
-T = 300. #K
-C_eigen = 0.1*100*10**(-12) #Kabellänge*pF/Meter
-nu_mittel =25000 #Hz
-
-#=========================================================
-#     Rauschen R_1000
-#=========================================================
-
-R1, U1 = np.loadtxt("../messwerte/R_1000_sel.txt", unpack=True)
-
+# LateX-Tabelle erzeugen
 tab1 = lt.latextable(
-    [R1, U1],
-    "../tex/tabellen/rauschen_korr1.tex",
-    alignment = 'CC',
+    [U_anode1, U_a1, V_N1],
+    "../tex/tabellen/kennl1inie1.tex",
+    alignment = 'CCC',
     form = '.3f',
 )
 
-#Verstärkungsfaktoren rausrechnen
-v11 = 10.*(1000.*10.*50.)**2 #Verstärkungsfaktor
-v12 = 10.*(1000.*10.*20.)**2 #Verstärkungsfaktor
-
-for i in range(0,len(U1)):
-	if i<=(len(U1)-6):
-		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1[i])/v11-U_a_eigen[3]
-	else:
-		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1[i])/v12-U_a_eigen[3]
-
-
-
-
-
-
-#Ausgleichrechnung
-# latex-Gleichung der linearen Regression
-# Geradenfunktion
-def G(x, m, b):
-    return m*x + b
-
-val1, cov1 = optimize.curve_fit(G, R1[6:], U1[6:])
-std1 = ev.get_std(cov1)
-
-
-lin_reg1 = ev.tex_linreg(
-        "G_1(R)",
-        val1,
-        std1,
-        unit = [r"\volt^2\per\ohm", r"\volt^2"]
-)
-
-ev.write('../tex/tabellen/rauschen_korr_reg1.tex', lin_reg1) 			 
-
-
-#steigung
-m1=uc.ufloat(val1[0],std1[0])
-print(m1)
-k_korr1 = m1/(4*T*A)
-print(k_korr1)
-# tex schreiben
-ev.write('../tex/tabellen/k_korr1', str(k_korr1*10**20))		### <---
-
-
-
-
-
-
-#Plotten
 fig1 = plt.figure()
-ax = fig1.add_subplot(111)
+ax1 = fig1.add_subplot(111)
 
-ax.plot(
-    R1,
-    U1,
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
+ax1.plot(U_anode1, U_a1/V_N1**2, linestyle = 'none', marker = '+', label = 'Messwerte')
 
-lim = ax.get_xlim()
-x = np.linspace(lim[0], lim[1], 1000)
-ax.plot(x, G(x, val1[0], val1[1]), label="Fit")
 
-ax.set_xlabel(r'$R_1000$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax1.set_xlabel(r'$U_\text{Anode} / \si{\volt}$')
+ax1.set_ylabel(r'$U_\text{a} / \si{\volt^2}$')
 
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
+ax1.legend(loc = 'best')
+ax1 = ev.plot_layout(ax1)
 
 fig1.tight_layout()
-fig1.savefig('../tex/bilder/rauschen_korr1.pdf')
+fig1.savefig('../tex/bilder/kennlinie1.pdf')
 
 
+#==================
+# 2.Kennlinie
+#===================
+
+U_anode2, U_a2, delta2, V_N2 = np.loadtxt("../messwerte/kennlinie_9.txt", unpack=True)
 
 
-
-
-#=========================================================
-#     Rauschen R_100k
-#=========================================================
-
-R2, U2 = np.loadtxt("../messwerte/R_100k_sel.txt", unpack=True)
-
+# LateX-Tabelle erzeugen
 tab2 = lt.latextable(
-    [R2, U2],
-    "../tex/tabellen/rauschen_korr2.tex",
-    alignment = 'CC',
+    [U_anode2, U_a2, V_N2],
+    "../tex/tabellen/kennlinie2.tex",
+    alignment = 'CCC',
     form = '.3f',
 )
 
-
-#Verstärkungsfaktoren rausrechnen
-v2 = 10.*(10*1000.*20.)**2 #Verstärkungsfaktor
-U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2)/v2-U_a_eigen[4]
-
-
-
-
-
-#Ausgleichrechnung
-# latex-Gleichung der linearen Regression
-# Geradenfunktion
-def G(x, m, b):
-    return m*x + b
-
-val2, cov2 = optimize.curve_fit(G, 1000*R2[:14], U2[:14]) #  kOhm to Ohm, only linear part
-std2 = ev.get_std(cov1)
-
-
-
-lin_reg2 = ev.tex_linreg(
-        "G_2(R)",
-        val2,
-        std2,
-        unit = [r"\volt^2\per\ohm", r"\volt^2"]
-)
-
-ev.write('../tex/tabellen/rauschen_korr_reg2.tex', lin_reg2)
-
-#steigung
-m2=uc.ufloat(val2[0],std2[0])
-print(m2)
-k_korr2 = m2/(4*T*A)
-print(k_korr2)
-# tex schreiben
-ev.write('../tex/tabellen/k_korr2', str(k_korr2*10**23))
-
-
-
-
-#Plotten
 fig2 = plt.figure()
-ax = fig2.add_subplot(111)
+ax2 = fig2.add_subplot(111)
 
-ax.plot(
-    R2,
-    U2,
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
+ax2.plot(U_anode2, U_a2/V_N2**2, linestyle = 'none', marker = '+', label = 'Messwerte')
 
-lim = ax.get_xlim()
-x = np.linspace(lim[0], lim[1], 1000)
-ax.plot(x, G(x, val2[0], val2[1]), label="Fit")
 
-ax.set_xlabel(r'$R_100k$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax2.set_xlabel(r'$U_\text{Anode} / \si{\volt}$')
+ax2.set_ylabel(r'$U_\text{a} / \si{\volt^2}$')
 
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
+ax2.legend(loc = 'best')
+ax2 = ev.plot_layout(ax2)
 
 fig2.tight_layout()
-fig2.savefig('../tex/bilder/rauschen_korr2.pdf')
+fig2.savefig('../tex/bilder/kennlinie2.pdf')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
