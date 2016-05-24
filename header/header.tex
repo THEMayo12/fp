@@ -97,7 +97,7 @@
 \renewcommand{\subsectionmark}[1]{}
 
 % Die Positionen in Kopf- und Fußzeile füllen
-\fancyhead[L]{
+\fancyhead[L]{%
 	TU Dortmund
 }
 \fancyhead[R]{\tit}
@@ -107,14 +107,14 @@
 \addtolength{\headheight}{2\baselineskip}
 
 % Neudefinition von plain (wird auf Kapitel/Verzeichnis-Seiten verwendet)
-\fancypagestyle{plain}{
+\fancypagestyle{plain}{%
 	\fancyhead[L]{}
 	\fancyhead[R]{}
 	\fancyfoot[L]{\rightmark}
 	\fancyfoot[R]{Seite \thepage}
 }
 
-\fancypagestyle{firstpage}{
+\fancypagestyle{firstpage}{%
 	\fancyhf{}
 	\fancyhead[L]{}
 	\renewcommand{\footrulewidth}{0.0pt}
@@ -124,7 +124,7 @@
 %	Bibliograhphie
 % ==================================================
 
-\newcommand{\anhang}{
+\newcommand{\anhang}{%
 	\clearpage
 	\setcounter{page}{0}
 	\pagenumbering{Roman}
@@ -183,8 +183,6 @@
 \usepackage{calc}
 % Euro-Zeichen
 \usepackage{eurosym}
-% ein paar LateX-Fehler beheben
-\usepackage{fixltx2e}
 % für bessere Darstellung von Text (Abstände)
 \usepackage{microtype}
 % Einfügen von Text um Layout zu testen
