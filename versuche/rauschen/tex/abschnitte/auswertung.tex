@@ -4,3 +4,400 @@
 % ==================================================
 
 \section{Auswertung}
+
+\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am 
+			einfachen Rauschspektrometer}
+		
+	
+	\subsubsection{Eichmessung}
+	
+		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind 
+		in Tabelle \ref{tab:eichung_eigenrauschen_einfach} zu sehen. 
+		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von 
+		der Nachverstärkung $V_\text{N}$ gemessen.
+		
+		\begin{table}[h]
+		\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$V_\text{N}$ & $U^2_\text{a}$ in $\text{V}^2$
+				\\
+				\midrule
+				\input{tabellen/eichung_eigenrauschen_einfach.tex}
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum kurzgeschlossenen 
+			Rauschspektrometer. Dabei ist $U_\text{a}$ die 
+			Ausgangsspannung und $V_\text{N}$ die Nachverstärkung.}
+			\label{tab:eichung_eigenrauschen_einfach}
+		\end{table}
+		
+		Die Messwerte der Eichmessung sind in Tabelle 
+		\ref{tab:eichung_einfach} zu sehen. Während der Messung 
+		betrug $V_\text{N}=20$ und die Ausgangsspannung des 
+		Frequenzgenerators $U_\text{ein} = 120 \text{ mV}$.
+		
+		\begin{table}[h]
+		\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ 
+				\\
+				\midrule
+				\input{tabellen/eichung_einfach.tex}
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zur Eichmessung. Dabei ist $U_\text{a}$ 
+			die 
+			Ausgangsspannung und $\nu$ die Frequenz des 
+			Eingangssignals. }
+			\label{tab:eichung_einfach}
+		\end{table}
+		
+		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_einfach} zu sehen. Dabei wurde die Größe 
+		\begin{equation}
+		\beta := \frac{U^2_\text{a, Durchlasskurve}-U_\text{a, Eigenrauschen}^2}
+		{V_= V_\text{N}^2 V_\text{V}^2  U^2_\text{ein}}
+		\end{equation}
+		eingeführt, wobei $V_= =10$, $V_\text{V}=1000$ und $V_\text{N}=20$ (während dieser Messung)
+		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Vorverstärkers beziehungsweise 
+		des Nachverstärkers sind.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.7]{bilder/eichung_einfach.pdf}
+			\caption{Durchlasskurve der einfachen Rauschverstärkerschaltung.}
+			\label{fig:eichung_einfach}
+		\end{figure}
+		
+		Der Eichfaktor 
+		\begin{equation}
+			A:=\int\limits_0^\infty V_= V_\text{V}^2(\nu) V_\text{N}^2(\nu) \text{ d}\nu		
+		\end{equation}				
+		kann dann als
+		\begin{equation}
+			A = \int \limits_0^\infty \beta(\nu) \text{ d}\nu
+		\end{equation}
+		über ein Trapezintegrationsverfahren berechnet werden,
+		\begin{equation}
+			A = \sum\limits_{i=2}^n \frac{\left(\beta(\nu_i)+
+					\beta(\nu_{i-1})\right)(\nu_i-\nu_{i-1})}{2}
+		\end{equation}
+		wobei $\nu_i$ den $i$-ten Messwert darstellt. Es ergibt sich
+		\begin{equation}
+			A = 18.14\text{ kHz}  \quad . % \input{tabellen/eichfaktor_einfach.tex} 
+		\end{equation}
+
+
+	
+	\subsubsection{Rauschmessung}
+		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_einfach1} 
+		und \ref{tab:rauschen_einfach2} sowie den Abbildungen 
+		\ref{fig:rauschen_einfach1} und \ref{fig:rauschen_einfach2} zu sehen.
+		
+		
+	\begin{figure}[htbp]
+
+	\begin{minipage}{0.3\textwidth} 
+
+			\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				\midrule
+				\input{tabellen/rauschen_einfach1.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum Spannungsrauschen am einfachen 
+			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
+			\label{tab:rauschen_einfach1}
+
+	\end{minipage}
+	% Auffüllen des Zwischenraums
+	\hfill
+	% minipage mit Grafik
+	\begin{minipage}{0.7\textwidth}
+
+			\centering
+			\includegraphics[scale=0.7]{bilder/rauschen_einfach1.pdf}
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
+			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von 
+			$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
+			\label{fig:rauschen_einfach1}
+			
+	\end{minipage}
+	% \caption{noch eine Caption}
+	\end{figure}		
+	
+	
+	
+	
+		\begin{figure}[htbp]
+
+	\begin{minipage}{0.3\textwidth} 
+
+			\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				\midrule
+				\input{tabellen/rauschen_einfach2.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum Spannungsrauschen am einfachen 
+			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
+			\label{tab:rauschen_einfach2}
+
+	\end{minipage}
+	% Auffüllen des Zwischenraums
+	\hfill
+	% minipage mit Grafik
+	\begin{minipage}{0.7\textwidth}
+
+			\centering
+			\includegraphics[scale=0.7]{bilder/rauschen_einfach2.pdf}
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
+			Regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine 
+			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
+			\label{fig:rauschen_einfach2}
+			
+	\end{minipage}
+
+	\end{figure}		
+		
+
+		Die Ausgleichsgeraden sind durch
+		\begin{equation}
+			G_1(R) = (5.45 \pm 0.30) \times 10^{-15} \frac{\text{V}^2}{\Omega} R 
+					- (xxx)\times 10^{-3}\text{V}^2 		
+					% \input{tabellen/rauschen_einfach_reg2.tex}
+		\end{equation}
+		und
+		\begin{equation}
+			G_2(R) = (0.4 \pm 3.0) \times 10^{-16} \frac{\text{V}^2}{\Omega} R 
+					- (xxx)\times 10^{-3}\text{V}^2 		
+					% \input{tabellen/rauschen_einfach_reg2.tex}
+		\end{equation}
+		
+		Mit der Nyquist-Beziehung erhält man
+		\begin{equation}
+			U_\text{a}^2 =4k_\text{B}T A R \quad , 
+		\end{equation}
+		sodass mit den Steigungen $m_1$ und $m_2$ der Geradengleichungen $G1(R)$ und $G2(R)$ 
+		die Boltzmannkonstante als
+		\begin{equation}
+		k_\text{B}=\frac{m_i}{4 T A}
+		\end{equation}
+		berechnet werden kann. Für eine Raumtemperatur von $300$K folgt
+		\begin{align}
+		k_\text{B}^{1000\Omega}			=  (25\pm 1.4)\times 10^{-23} \frac{\text{J}}{\text{s}} \\
+		%input{tabellen/k_einfach1.tex}\\ 
+		k_\text{B}^{100\text{k}\Omega}	=	(0.2\pm 1.4)\times 10^{-23} \frac{\text{J}}{\text{s}}  
+		%input{tabellen/k_einfach2.tex}
+		\end{align}
+	
+	\subsubsection{Ermittlung der Rauschzahl}
+		Für das einfache Rauschspektrometer wird die Rauschzahl 
+		\begin{equation}
+			F = \frac{U_\text{a}^2}{4 k_\text{B}T R A}
+		\end{equation}
+		bei $R\approx 500\Omega$ berechnet. Mit den bereits berechneten Größen und 
+		dem Wertepaar $(500\Omega,1.083 \text{V}^2)$ ergibt sich 
+		\begin{equation}
+			F = (1.11 \pm 0.22) \times 10^{3}% \input{tabelle/Rauschzahl.tex}
+		\end{equation}
+		
+		
+		
+		
+		
+		
+		
+\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am 
+			Korrelator-Rauschspektrometer}
+			
+		\subsubsection{Eichmessung}
+	
+		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind 
+		in Tabelle \ref{tab:eichung_eigenrauschen_korr} zu sehen. 
+		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von 
+		der Nachverstärkung $V_\text{N}$ gemessen.
+		
+		\begin{table}[h]
+		\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$V_\text{N}$ & $U^2_\text{a}$ in $\text{V}^2$
+				\\
+				\midrule
+				\input{tabellen/eichung_eigenrauschen_korr.tex}
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum kurzgeschlossenen  
+			Rauschspektrometer nach Korrelationspinzip. Dabei ist $U_\text{a}$ die 
+			Ausgangsspannung und $V_\text{N}$ die Nachverstärkung.}
+			\label{tab:eichung_eigenrauschen_einfach}
+		\end{table}
+		
+		Die Messwerte der Eichmessung sind in Tabelle 
+		\ref{tab:eichung_korr} zu sehen. Während der Messung 
+		betrug $V_\text{N}=2$ und die Ausgangsspannung des 
+		Frequenzgenerators $U_\text{ein} = 120 \text{ mV}$.
+		
+		\begin{table}[h]
+		\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ 
+				\\
+				\midrule
+				\input{tabellen/eichung_korr.tex}
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zur Eichmessung der Korrelatorschaltung. Dabei ist $U_\text{a}$ 
+			die 
+			Ausgangsspannung und $\nu$ die Frequenz des 
+			Eingangssignals. }
+			\label{tab:eichung_korr}
+		\end{table}
+		
+		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_korr} zu sehen. Dabei wurde die Größe  
+		\begin{equation}
+		\beta := \frac{U^2_\text{a, Durchlasskurve}-U_\text{a, Eigenrauschen}^2}
+		{V_= V_\text{selektiv}^2 V_\text{N}^2 V_\text{V}^2  U^2_\text{ein}}
+		\end{equation}
+		eingeführt, wobei $V_= =10$, $V_\text{selektiv}=10$ und $V_\text{V}=1000$
+		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Selektivverstärkers und des 
+		Vorverstärkers sind. Die ersten 13 Werte wurden mit $V_\text{N}=50$, die weiteren 
+		mit $V_\text{N}=20$ aufgenommen.
+				
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.7]{bilder/eichung_korr.pdf}
+			\caption{Durchlasskurve der korrelierten Rauschverstärkerschaltung.}
+			\label{fig:eichung_korr}
+		\end{figure}
+		
+		Der Eichfaktor ergibt sich als
+		\begin{equation}
+			A =  \input{tabellen/eichfaktor_korr.tex} %0.386 \text{ kHz}  \quad .  
+		\end{equation}
+
+
+	
+	\subsubsection{Rauschmessung}
+		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_korr1} 
+		und \ref{tab:rauschen_korr2} sowie den Abbildungen 
+		\ref{fig:rauschen_korr1} und \ref{fig:rauschen_korr2} zu sehen.
+		
+		
+	\begin{figure}[htbp]
+
+	\begin{minipage}{0.3\textwidth} 
+
+			\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				\midrule
+				\input{tabellen/rauschen_korr1.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum Spannungsrauschen am korrelierten 
+			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
+			\label{tab:rauschen_korr1}
+
+	\end{minipage}
+	
+	\hfill
+	
+	\begin{minipage}{0.7\textwidth}
+
+			\centering
+			\includegraphics[scale=0.7]{bilder/rauschen_korr1.pdf}
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
+			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von 
+			$1$ normiert, mit $V_= =10$, $V_\text{N}=20 bzw. V_\text{N}=50$, 
+			$V_\text{selektiv}=10$ und $V_\text{V}=1000$. }
+			\label{fig:rauschen_korr1}
+			
+	\end{minipage}
+
+	\end{figure}		
+	
+	
+	
+	
+		\begin{figure}[htbp]
+
+	\begin{minipage}{0.3\textwidth} 
+
+			\centering
+			\begin{tabular}{cc}
+				\toprule \midrule
+				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				\midrule
+				\input{tabellen/rauschen_korr2.tex}			
+				\midrule \bottomrule
+			\end{tabular}
+			\caption{Messwerte zum Spannungsrauschen am korrelierten  
+			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
+			\label{tab:rauschen_korr2}
+
+	\end{minipage}
+	% Auffüllen des Zwischenraums
+	\hfill
+	% minipage mit Grafik
+	\begin{minipage}{0.7\textwidth}
+
+			\centering
+			\includegraphics[scale=0.7]{bilder/rauschen_korr2.pdf}
+			\caption{Spannungsrauschkurve am korrelierten Rauschspektrometer für einen 
+			regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine 
+			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{selektiv}=10$, $V_\text{N}=200$ und 
+			$V_\text{V}=1000$. }
+			\label{fig:rauschen_korr2}
+			
+	\end{minipage}
+
+	\end{figure}		
+		
+
+		Die Ausgleichsgeraden sind durch
+		\begin{equation}
+			G_1(R) = (6.14 \pm 0.06) \times 10^{-15} \frac{\text{V}^2}{\Omega} R 
+					- (xxx)\times 10^{-3}\text{V}^2 		
+					% \input{tabellen/rauschen_korr_reg2.tex}
+		\end{equation}
+		und
+		\begin{equation}
+			G_2(R) = (4.5 \pm 6.0) \times 10^{-17} \frac{\text{V}^2}{\Omega} R 
+					- (xxx)\times 10^{-3}\text{V}^2 		
+					% \input{tabellen/rauschen_korr_reg2.tex}
+		\end{equation}
+		
+		Mit der Nyquist-Beziehung erhält man die Boltzmannkonstante erneut als
+		\begin{equation}
+		k_\text{B}=\frac{m_i}{4 T A} \quad .
+		\end{equation}
+ 		Für eine Raumtemperatur von $300$K folgt
+		\begin{align}
+		k_\text{B}^{1000\Omega}			=  (1320.0\pm 40.0)\times 10^{-23} \frac{\text{J}}{\text{s}} 
+		\\
+		%input{tabellen/k_korr1.tex}\\ 
+		k_\text{B}^{100\text{k}\Omega}	=	(10\pm 13)\times 10^{-23} \frac{\text{J}}{\text{s}}  
+		%input{tabellen/k_korr2.tex}
+		\end{align}
+	
+	
+
+
+
+\subsection{Diodenkennlinien}
+
+
+\subsection{Bestimmung von $\text{e}_0$ mittels Stromrauschens}
+
+\subsection{Frequenzspektrum einer Reinmetallkathode}
+
+\subsection{Frequenzspektrum einer Oxydkathode}
