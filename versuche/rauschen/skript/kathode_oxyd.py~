@@ -169,54 +169,121 @@ fig1.savefig('file.pdf')
 #                            Beginn Auswertung                            #
 ###########################################################################
 
-# ====[ Reinmetall ]========================================
+# ====[ Oxyd ]==============================================
 
-f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall = np.loadtxt(
-    "../messwerte/kathode.txt",
+
+f_ox, U_a_ox, delta_f, V_N_ox, delta_f = np.loadtxt(
+    "../messwerte/oxyd_kathode.txt",
     unpack=True
 )
 
+
+
 # LateX-Tabelle erzeugen
 t = lt.latextable(
-    [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall],
-    "../tex/tabellen/kathode_rein.tex",
+    [f_ox, U_a_ox, delta_f, V_N_ox, delta_f],
+    "../tex/tabellen/kathode_oxyd.tex",
     alignment = 'CCCCC',
     form = '.3f',
 )
 
 
 
-R = 4680  # ohm
+R = 2200.  # ohm
+
+f_ox    *= 1000
+delta_f *= 1000
 
 
 def W(U_a, nu, R):
     return U_a / (R**2 * nu)
 
-U_a_norm_metall = U_a_metall / V_N_metall**2
+U_a_norm = U_a_ox / V_N_ox**2
 
-fig_metall = plt.figure()
-ax = fig_metall.add_subplot(111)
+
+W_norm =  W(U_a_norm, delta_f, R)
+
+
+# mittleres Schrotrauschen
+W_schrot = ev.get_uncert(W_norm[:11])
+#korrigiertes Funkelrauschen
+W_korr = W_norm-W_schrot.nominal_value
+
+
+# Geradenfunktion
+def G(x, m, b):
+    return m*x + b
+
+
+# linerare Ausgleichrechnung
+val, cov = optimize.curve_fit(G, np.log(W_korr[-8:]), np.log(f_ox[-8:]) )
+std = ev.get_std(cov)
+
+# latex-Gleichung der linearen Regression
+lin_reg = ev.tex_linreg(
+        r"\ln W(\ln\nu)",
+        val,
+        std,
+#        unit = ["\second\per\meter", "\meter"]
+)
+ev.write('../tex/tabellen/kathode_oxyd_gleichung.tex', str(lin_reg) )
+ev.write('../tex/tabellen/kathode_oxyd_exponent.tex', str( uc.ufloat(-val[0],std[0]) ) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#--plot---------------
+
+fig_ox = plt.figure()
+ax = fig_ox.add_subplot(111)
+
+#ax.set_xscale('log')
+#ax.set_yscale('log')
+
+lim = ax.get_xlim()
+x = np.linspace(lim[0], lim[1], 1000)
+ax.plot(np.log(f_ox[-8:]), (G(np.log(f_ox[-8:]), val[0], val[1]*10**(-20) ) ), label="Fit")
+
+
 
 ax.plot(
-    f_metall,
-    W(U_a_norm_metall, delta_f_metall, R),
+    np.log(f_ox[-8:])  ,
+    np.log(W_korr[-8:]),
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='Um den Schrotanteil korrigierter Funkelanteil'
+)
+
+
+ax.plot(
+    np.log(f_ox)  ,
+    np.log(W_norm),
     color='k',
     linestyle='none',
     marker='+',
     label='Messwerte'
 )
 
-# ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
-# ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+
 ax.set_xlabel(r'$\ln(\{\nu\})$')
 ax.set_ylabel(r'$\ln(\{W\})$')
-ax.set_xscale('log')
-ax.set_yscale('log')
+
 
 ax.legend(loc='best')
 # ax = ev.plot_layout(ax)
 
-fig_metall.tight_layout()
-fig_metall.savefig("../tex/bilder/kathode_rein.pdf")
-
+fig_ox.tight_layout()
+fig_ox.savefig("../tex/bilder/kathode_oxyd.pdf")
 

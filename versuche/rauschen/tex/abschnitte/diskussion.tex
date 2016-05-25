@@ -2,5 +2,64 @@
 % ==================================================
 %	Diskussion
 % ==================================================
-
+\clearpage
 \section{Diskussion}
+In Tabelle \ref{tab:ergebnisse} sind noch einmal die Ergebnisse 
+dieser Versuchsdurchführung und die entsprechenden Literaturwerte 
+aufgelistet.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{crc}
+\toprule \midrule
+Physikalische Größe & Ermittelter Wert & Literaturwert \\
+\midrule
+$k_\text{B}$ 	& \input{tabellen/k_einfach1.tex}
+$\times 10^{-23}\frac{\text{J}}{\text{K}}$ & $1.380 648 
+52(79)\times 10^{-23}\frac{\text{J}}{\text{K}}$\cite{pdg}		\\
+"  				& \input{tabellen/k_einfach2.tex}
+$\times 10^{-23}\frac{\text{J}}{\text{K}}$ & "		\\ 
+"  				& \input{tabellen/k_korr1.tex}
+$\times 10^{-23}\frac{\text{J}}{\text{K}}$ & "		\\
+"  				& \input{tabellen/k_korr2.tex}
+$\times 10^{-23}\frac{\text{J}}{\text{K}}$ & "		\\
+$\text{e}_0$		& \input{tabellen/elementarladung.tex}
+$\times 10^{-19}\text{C}$ & $1.602 176 6208(98)\times 
+10^{-19}$C\cite{pdg} \\
+$\alpha$			& \input{tabellen/kathode_oxyd_exponent.tex} 
+&$\mathcal{O}(1)$\\
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Zusammenstellung der Versuchsergebnisse.}
+\label{tab:ergebnisse}
+\end{table}
+
+
+%cite{pdg} http://pdg.lbl.gov/2015/reviews/rpp2015-rev-phys-constants.pdf
+
+
+Bei den ermittelten Werten für die Boltzmankonstante $k_\text{B}$ 
+zeigen sich für die Messungen am einfachen Rauschspektrometer 
+(erste zwei Werte) eine deutlich größere Abweichung vom Literaturwert 
+im vergleich zu den Messungen am Rauschspektrometer nach 
+Korrelationsprinzip. Aus den in der Theorie genannten Gründen 
+war dieses Verhalten bereits zu erwarten. Insbesondere der Wert 
+$k_\text{B}=\input{tabellen/k_korr1.tex}$ am korrelierten Spektrometer 
+mit kleinem Widerstand $R$ bis $1000\Omega$ enthält den Literaturwert 
+in seinem Toleranzbereich. 
+
+Der ermittelte Wert für die Elementarladung $\text{e}_0$ weicht 
+geringfügig nach unten ab. Eine mögliche Begründung für diese 
+Verschiebung ist, dass während der Messreihe die Kathode wieder 
+an eine externe Stromquelle angeschlossen war und nicht allein 
+vom Bleiakkumulator betrieben wurde, sodass Störsignale den 
+Rauscheffekt beeinflusst haben könnten.
+
+Der Exponent des Funkeleffekts, der als Repräsentant eines $1/f$ 
+Rauschens untersucht wurde, liegt wie erwartet in der Größenordnung 
+von $1$, sodass hier wirklich von einem $1/\nu^\alpha\approx 1/\nu$ 
+Rauschen gesprochen werden kann. Wie ebenfalls erwartet trat der 
+Funkeleffekt bei der Oxydkathode deutlich stärker auf als bei 
+der Reinmetallkathode (vgl. dazu Abb. \ref{fig:kathode_rein} und 
+\ref{fig:kathode_oxyd})  .

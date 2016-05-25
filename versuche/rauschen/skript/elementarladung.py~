@@ -174,7 +174,7 @@ I, U_a, delta, V_N = np.loadtxt("../messwerte/elementarladung.txt", unpack=True)
 # LateX-Tabelle erzeugen
 t = lt.latextable(
     [I, U_a, delta, V_N],
-    "../tex/tabellen/elementarladung.tex",
+    "../tex/tabellen/elementarladung_messwerte.tex",
     alignment = 'CCCC',
     form = '.3f',
 )
@@ -185,6 +185,9 @@ t = lt.latextable(
 delta_nu = 20.*10.**3
 R = 2200.
 v = (1000.*V_N)**2 * 10. # vor, nach, gleich
+I_anode = I/1000.
+I_a = (U_a/v)/(R**2)
+
 
 
 # Geradenfunktion
@@ -192,14 +195,45 @@ def G(x, m, b):
     return m*x + b
 
 # linerare Ausgleichrechnung
-val, cov = optimize.curve_fit(G, 1000.*I, (U_a)/(R**2) )
+val, cov = optimize.curve_fit(G, I_anode, I_a)
 std = ev.get_std(cov)
 
 
-e = uc.ufloat(val[0],std[0])/(2*delta_nu)
+# latex-Gleichung der linearen Regression
+lin_reg = ev.tex_linreg(
+        "G(I_0)",
+        val,
+        std,
+        unit = [r"\ampere", r"\ampere^2"]
+)
+
+ev.write('../tex/tabellen/elementarladung_gleichung.tex', lin_reg)
+
+
+#plot
+fig1 = plt.figure()
+ax1 = fig1.add_subplot(111)
+
+ax1.plot(I_anode, I_a, linestyle = 'none', marker = '+', label = 'Messwerte')
+lim = ax1.get_xlim()
+x = np.linspace(lim[0], lim[1], 1000)
+ax1.plot(x, G(x, val[0], val[1]), label="Fit")
+
+ax1.set_xlabel(r'$I_0 / \si{\ampere}$')
+ax1.set_ylabel(r'$I^2 / \si{\ampere}^2$')
+
+ax1.legend(loc = 'best')
+ax1 = ev.plot_layout(ax1)
+
+fig1.tight_layout()
+fig1.savefig('../tex/bilder/elementarladung.pdf')
+#
+
+
+e = uc.ufloat(val[0],std[0])/(2.*delta_nu)
 
 print(e)
-ev.write('../tex/tabellen/elementarladung.tex', str(e) )
+ev.write('../tex/tabellen/elementarladung.tex', str(e*10**19) )
 
 
 

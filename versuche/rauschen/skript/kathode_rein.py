@@ -169,53 +169,22 @@ fig1.savefig('file.pdf')
 #                            Beginn Auswertung                            #
 ###########################################################################
 
-# ====[ Oxyd ]==============================================
-
-
-f_ox, U_a_ox, delta_f, V_N_ox, delta_f = np.loadtxt(
-    "../messwerte/oxyd_kathode.txt",
-    unpack=True
-)
-
-R = 2200  # ohm
-
-
-def W(U_a, nu, R):
-    return U_a / (R**2 * nu)
-
-U_a_norm = U_a_ox / V_N_ox**2
-
-fig_ox = plt.figure()
-ax = fig_ox.add_subplot(111)
-
-ax.plot(
-    f_ox,
-    W(U_a_norm, delta_f, R),
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
-
-# ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
-# ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
-ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
-ax.set_xscale('log')
-ax.set_yscale('log')
-
-ax.legend(loc='best')
-# ax = ev.plot_layout(ax)
-
-fig_ox.tight_layout()
-fig_ox.savefig("../tex/bilder/U_a_ox.pdf")
-
 # ====[ Reinmetall ]========================================
 
-f_metall, U_a_metall, delta_f, V_N_metall, delta_f_metall = np.loadtxt(
+f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall = np.loadtxt(
     "../messwerte/kathode.txt",
     unpack=True
 )
+
+# LateX-Tabelle erzeugen
+t = lt.latextable(
+    [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall],
+    "../tex/tabellen/kathode_rein.tex",
+    alignment = 'CCCCC',
+    form = '.3f',
+)
+
+
 
 R = 4680  # ohm
 
@@ -229,8 +198,8 @@ fig_metall = plt.figure()
 ax = fig_metall.add_subplot(111)
 
 ax.plot(
-    f_metall,
-    W(U_a_norm_metall, delta_f_metall, R),
+    np.log(f_metall),
+    np.log(W(U_a_norm_metall, delta_f_metall, R) ),
     color='k',
     linestyle='none',
     marker='+',
@@ -239,105 +208,15 @@ ax.plot(
 
 # ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
 # ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
-ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
-ax.set_xscale('log')
-ax.set_yscale('log')
+ax.set_xlabel(r'$\ln(\{\nu\})$')
+ax.set_ylabel(r'$\ln(\{W\})$')
+#ax.set_xscale('log')
+#ax.set_yscale('log')
 
 ax.legend(loc='best')
 # ax = ev.plot_layout(ax)
 
 fig_metall.tight_layout()
-fig_metall.savefig("../tex/bilder/U_a_metall.pdf")
-
-# ====[ Kennlinien ]========================================
-
-U_anode_1, U_a_1, dU_A_1, V_N_kennlinie_1 = np.loadtxt(
-    "../messwerte/kennlinie_8.txt",
-    unpack=True
-)
-
-U_a_norm_kennlinie_1 = U_a_1 / V_N_kennlinie_1**2 / R**2
-
-fig_kennlinie_1 = plt.figure()
-ax = fig_kennlinie_1.add_subplot(111)
-
-ax.plot(
-    U_anode_1,
-    U_a_norm_kennlinie_1,
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
-
-ax.set_xlabel(r'$U_\text{Anode}$ in $\si{\volt}$')
-ax.set_ylabel(r'$I_a$')
-
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
-
-fig_kennlinie_1.tight_layout()
-fig_kennlinie_1.savefig("../tex/bilder/kennlinie_1.pdf")
-
-# ====[ Kennlinie 0.9 ]=====================================
+fig_metall.savefig("../tex/bilder/kathode_rein.pdf")
 
 
-U_anode_2, U_a_2, dU_A_2, V_N_kennlinie_2 = np.loadtxt(
-    "../messwerte/kennlinie_9.txt",
-    unpack=True
-)
-
-U_a_norm_kennlinie_2 = U_a_2 / V_N_kennlinie_2**2 / R**2
-
-fig_kennlinie_2 = plt.figure()
-ax = fig_kennlinie_2.add_subplot(111)
-
-ax.plot(
-    U_anode_2,
-    U_a_norm_kennlinie_2,
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
-
-ax.set_xlabel(r'$U_\text{Anode}$ in $\si{\volt}$')
-ax.set_ylabel(r'$I_a$')
-
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
-
-fig_kennlinie_2.tight_layout()
-fig_kennlinie_2.savefig("../tex/bilder/kennlinie_2.pdf")
-
-# ====[ Elementarleidung ]==================================
-
-I_Anode, U_a_e, dU_a_e, V_N_e = np.loadtxt(
-    "../messwerte/elementarladung.txt",
-    unpack=True
-)
-
-U_a_norm_e = U_a_e / V_N_e**2
-I_a_e = U_a_norm_e / R**2
-
-fig_e = plt.figure()
-ax = fig_e.add_subplot(111)
-
-ax.plot(
-    I_Anode,
-    I_a_e,
-    color='k',
-    linestyle='none',
-    marker='+',
-    label='Messwerte'
-)
-
-ax.set_xlabel(r'$I_\text{Anode}$ in $\si{\milli\ampere}$')
-ax.set_ylabel(r'$I_a$ in $\si{\ampere}$')
-
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
-
-fig_e.tight_layout()
-fig_e.savefig("../tex/bilder/elementarladung.pdf")
