@@ -254,11 +254,21 @@ ax1.plot(
     label='Messwerte'
 )
 
+ax1.plot(
+    R1[:6],
+    U1[:6],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
+
+
 lim1 = ax1.get_xlim()
 x1 = np.linspace(lim1[0], lim1[1], 1000)
 ax1.plot(x1, G(x1, val1[0], val1[1]), label="Fit")
 
-ax1.set_xlabel(r'$R_1000$')
+ax1.set_xlabel(r'$R$ in $\si{\ohm}$')
 ax1.set_ylabel(r'$U_a$ in $\si{\volt}$')
 
 ax1.legend(loc='best')
@@ -322,14 +332,12 @@ print(k_einfach2)
 ev.write('../tex/tabellen/k_einfach2', str(k_einfach2*10**23))
 
 
-
-
 #Plotten
 fig2 = plt.figure()
 ax2 = fig2.add_subplot(111)
 
 ax2.plot(
-    R2,
+    1000.*R2,
     U2,
     color='k',
     linestyle='none',
@@ -337,11 +345,19 @@ ax2.plot(
     label='Messwerte'
 )
 
-lim2 = ax2.get_xlim()
-x2 = np.linspace(lim2[0], lim2[1], 1000)
-ax2.plot(x2, G(x2, val2[0], val2[1]), label="Fit")
+ax2.plot(
+    1000.*R2[10:],
+    U2[10:],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
 
-ax2.set_xlabel(r'$R_100k$')
+
+ax2.plot(1000.*R2[:12], G(1000.*R2[:12], val2[0], val2[1]), label="Fit")
+
+ax2.set_xlabel(r'$R$ in $\text{k}\si{\ohm}$')
 ax2.set_ylabel(r'$U_a$ in $\si{\volt}$')
 
 ax2.legend(loc='best')

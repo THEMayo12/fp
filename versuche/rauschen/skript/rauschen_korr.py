@@ -260,12 +260,20 @@ ax.plot(
     marker='+',
     label='Messwerte'
 )
+ax.plot(
+    R1[:6],
+    U1[:6],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
 
 lim = ax.get_xlim()
 x = np.linspace(lim[0], lim[1], 1000)
 ax.plot(x, G(x, val1[0], val1[1]), label="Fit")
 
-ax.set_xlabel(r'$R_1000$')
+ax.set_xlabel(r'$R$ in $\si{\ohm}$')
 ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
 
 ax.legend(loc='best')
@@ -336,7 +344,7 @@ fig2 = plt.figure()
 ax = fig2.add_subplot(111)
 
 ax.plot(
-    R2,
+    1000.*R2,
     U2,
     color='k',
     linestyle='none',
@@ -344,11 +352,19 @@ ax.plot(
     label='Messwerte'
 )
 
-lim = ax.get_xlim()
-x = np.linspace(lim[0], lim[1], 1000)
-ax.plot(x, G(x, val2[0], val2[1]), label="Fit")
+ax.plot(
+    1000.*R2[14:],
+    U2[14:],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
 
-ax.set_xlabel(r'$R_100k$')
+
+ax.plot(1000.*R2[:16], G(1000.*R2[:16], val2[0], val2[1]), label="Fit")
+
+ax.set_xlabel(r'$R$ in $\text{k}\si{\ohm}$')
 ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
 
 ax.legend(loc='best')

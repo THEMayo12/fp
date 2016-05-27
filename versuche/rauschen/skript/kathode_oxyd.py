@@ -226,6 +226,8 @@ lin_reg = ev.tex_linreg(
         std,
 #        unit = ["\second\per\meter", "\meter"]
 )
+
+ev.write('../tex/tabellen/schrotanteil.tex', str(W_schrot*10**15) )
 ev.write('../tex/tabellen/kathode_oxyd_gleichung.tex', str(lin_reg) )
 ev.write('../tex/tabellen/kathode_oxyd_exponent.tex', str( uc.ufloat(-val[0],std[0]) ) )
 
@@ -251,9 +253,8 @@ ax = fig_ox.add_subplot(111)
 #ax.set_xscale('log')
 #ax.set_yscale('log')
 
-lim = ax.get_xlim()
-x = np.linspace(lim[0], lim[1], 1000)
-ax.plot(np.log(f_ox[-8:]), (G(np.log(f_ox[-8:]), val[0], val[1] ) ), label="Fit")
+
+ax.plot(np.log(f_ox[-8:]), (G(np.log(f_ox[-8:]), val[0], val[1] )-0.7 ), label="Fit")
 
 
 
@@ -266,10 +267,18 @@ ax.plot(
     label='Um den Schrotanteil korrigierter Funkelanteil'
 )
 
+ax.plot(
+    np.log(f_ox[:11])  ,
+    np.log(W_norm[:11]),
+    color='k',
+    linestyle='none',
+    marker='x',
+    label='Reines Schrotrauschen'
+)
 
 ax.plot(
-    np.log(f_ox)  ,
-    np.log(W_norm),
+    np.log(f_ox[11:])  ,
+    np.log(W_norm[11:]),
     color='k',
     linestyle='none',
     marker='+',

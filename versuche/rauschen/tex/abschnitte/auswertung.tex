@@ -197,9 +197,41 @@
 		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_einfach1.tex}\times 10^{-23}\frac{\text{J}}
 																			{\text{K}}  \\ 
 		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_einfach2.tex}\times 10^{-23}\frac{\text{J}}
-																			{\text{K}} 
+																			{\text{K}} \quad . 
 		\end{align}
-	
+		Die Korrektur
+		\begin{equation}
+		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} U_a^2 = U_{a\text{, effektiv}}^2
+		\end{equation}
+		die aus der Eigenkapazität der Leitung herrührt wurde mit berücksichtigt, ist 
+		jedoch vernachlässigbar klein, da 
+		sie linear in die Nyquist-Beziehung eingeht. Gemäß der Abschätzung 
+		\begin{align}
+		&\Re(Z) = R  \lesssim  10^4 \Omega \\
+		&\bar{\nu}  \lesssim 10^5 \text{Hz} \\
+		&C = l \rho  \approx 10^{-12}
+		\end{align}
+		wobei $\rho\approx 100 \times 10^{-12} \text{F}/\text{m}$ die in 
+		der Anleitung angegebene Eigenkapazität der Kabel 
+		und $l\approx 10^{-2}$m die Kabellänge ist. Der Korrekturfaktor ist dann 
+		\begin{equation}				
+		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} \approx 
+		\frac{1}{1+2\uppi 10^{-4}}=1+ \mathcal{O}(10^{-4}) 
+		\end{equation}
+		und sein Effekt somit viel kleiner als die erwartete Messunsicherheit. 
+		
+		Die Fehlerabschätzung wird dabei mit der Gaußschen Fehlerfortpflanzung 
+		\begin{equation}
+		\Delta f(x_1,\ldots x_N) 
+		=\sqrt{ \sum_{n=1}^N \left(\left.\frac{\partial f}{\partial x_n}\right|
+		_{(\bar{x}_1,\ldots,\bar{x}_n)}\right)^2 
+		\Delta x_n ^2 }
+		\end{equation}
+		berechnet, wobei $f$ eine beliebige Größe ist, die von den unkorrelierten 
+		Messgrößen $x_n$ abhängt. Dabei  stellt $\bar{x}_n$ den Mittelwert und 
+		$\Delta x_n$ die Standardabweichung der Messgröße $x_n$ dar.
+		
+			
 	\subsubsection{Ermittlung der Rauschzahl}
 		Für das einfache Rauschspektrometer wird die Rauschzahl 
 		\begin{equation}
@@ -578,7 +610,15 @@
 		\label{fig:kathode_oxyd}
 	\end{figure}
 	
-	Die Ausgleichsgerade durch die ersten acht Werte wird durch 
+	Unter der Annahme, dass für große Frequenzen $\nu$ der Funkeleffekt 
+	vernachlässigbar ist, wird aus den im Plot markierten Werten der als 
+	frequenzunabhängig ("weißes Rauschen") angenommene Schrot-Anteil ermittelt. 
+	Um diesen Betrag $W_\text{Schrot}=\input{tabellen/schrotanteil.tex}\times 
+	10^{-15}$ wird der 
+	Bereich niedriger Frequenz korrigiert, bevor die Regressionsgerade berechnet 
+	werden kann.\\
+	
+	Die Ausgleichsgerade durch die ersten acht korrigierten Werte wird durch 
 	\begin{equation}
 	\input{tabellen/kathode_oxyd_gleichung.tex}
 	\end{equation}
