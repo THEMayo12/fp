@@ -41,7 +41,7 @@ ergodischen Prozessen einordnen.
 \subsection{Thermisches Rauschen}
 \label{sub:thermisches_rauschen}
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
   \centering
   \includegraphics[scale=0.3]{bilder/doppelleitung.png}
   \caption{Darstellung einer parallelen, verlustlosen Doppelleitung.}
@@ -137,6 +137,14 @@ die sogenannte \textsc{Nyquist}-Beziehung angegeben werden mit
 Hieran ist zu erkennen, dass $\overline{U^2}$ nur noch von der Breite des
 betrachteten Frequenzbandes abhängig ist.
 
+\begin{figure}[!htpb]
+  \centering
+  \includegraphics[scale=0.3]{bilder/spannungsquadrat.png}
+  \caption{Frequenzabhängigkeit der Rauschspannung an einem ohmschen
+    Widerstand.}
+\label{fig:spannungsquadrat}
+\end{figure}
+
 \paragraph{Realer Widerstand}
 \label{par:realer_widerstand}
 
@@ -151,34 +159,12 @@ verringert gemäß
 Hierin ist $\overline{U_R}^2$ das theoretisch vorhergesagte
 Rauschspannungsquadrat.
 
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[scale=0.3]{bilder/spannungsquadrat.png}
-  \caption{Frequenzabhängigkeit der Rauschspannung an einem ohmschen
-    Widerstand.}
-\label{fig:spannungsquadrat}
-\end{figure}
-
 % ==================================================
 % 	Schrotrauschen
 % ==================================================
 
 \subsection{Schrotrauschen}
 \label{sub:schrotrauschen}
-
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[scale=0.3]{bilder/diodenstrom.png}
-  \caption{Zeitlicher Verlauf des Anodenstrom in einer Hochvakuumdiode.}
-\label{fig:diodenstrom}
-\end{figure}
-
-\begin{figure}[htpb]
-  \centering
-  \includegraphics[scale=0.3]{bilder/diode.png}
-  \caption{Aufbau einer Vakuumdiode zur Messung des Schrotrauschens.}
-\label{fig:diode}
-\end{figure}
 
 Die Emission von Elektronen aus Festkörperoberflächen stellt ebenfalls einen
 statistischen Prozess dar, da die emittierten Elektronen aufgrund ihrer
@@ -188,6 +174,20 @@ eine Form wie in Abbildung~\ref{fig:diodenstrom} an.
 Das Auftreffen der Elektronen auf die Anode ähnelt dem Auftreffen von
 Schrotkörnern auf eine Metallplatte, weshalb dieser Rauscheffekt als
 \emph{Schroteffekt} bezeichnet wird.
+
+\begin{figure}[!htpb]
+  \centering
+  \includegraphics[scale=0.3]{bilder/diodenstrom.png}
+  \caption{Zeitlicher Verlauf des Anodenstrom in einer Hochvakuumdiode.}
+\label{fig:diodenstrom}
+\end{figure}
+
+\begin{figure}[!htpb]
+  \centering
+  \includegraphics[scale=0.3]{bilder/diode.png}
+  \caption{Aufbau einer Vakuumdiode zur Messung des Schrotrauschens.}
+\label{fig:diode}
+\end{figure}
 
 Der Schroteffekt lässt sich am besten an einer Hochvakuumdiode mit einer
 Reinmetallkathode im Sättigungsbereich studieren.
@@ -216,7 +216,7 @@ Im Folgenden soll nun ein Ausdruck für das Rauschstromsquadrat hergeleitet
 werden.
 Dabei wird zunächst das Verhalten eines \emph{einzelnen} Elektrons beim
 Durchlauf der Diode betrachtet werden.
-Der Stromimpuls dieses Elektrons ist gegeben durch
+Der Stromimpuls dieses Elektrons ist gegeben durch%
 \begin{equation}
   i_n(t) = \e_0 f(t - t_n)~,
 \end{equation}
@@ -272,7 +272,7 @@ und im Vergleich mit~\eqref{eq:rauschspektrum}
 \begin{equation}
   W_\text{Sch} = 2 \e_0 I_0 {\abs{F(\nu)}}^2~.
 \end{equation}
-Für den Bereich niedriger Frequenzen $\nu \ll 1/2\pi\tau$ gilt
+Für den Bereich niedriger Frequenzen $\nu \ll 1/(2\pi\tau)$ gilt
 $F(\nu) \approx 1$ und somit vereinfacht sich das Rauschspektrum zu
 \begin{equation}
   W_\text{Sch}(\nu) = 2 \e_0 I_0
@@ -284,10 +284,95 @@ sogenannte \textsc{Schottky}-Beziehung
 \begin{equation}
   \overline{I^2} = 2 \e_0 I_0 \Delta \nu~,
 \end{equation}
-wobei $\Delta\nu$ den Frequenzbereich darstellt indem $\overline{I^2l}$
+wobei $\Delta\nu$ den Frequenzbereich darstellt indem $\overline{I^2}$
 gemessen wird.
+
+% ==================================================
+% 	1/f Rauschen
+% ==================================================
 
 \subsection{$1/f$-Rauschen}
 \label{sub:_1_f_rauschen}
 
+Die spektrale Leistungsdichte von Rauschprozesse gehorchen einer
+$1/\nu$-Gesetzmäßigkeit. Diese Beobachtung ist rein phänomenologisch, sodass es
+noch keine umfassende Theorie zu Beschreibung dieses Phänomens gibt.
+Diese $1/\nu$-Gesetzmäßigkeit beschränkt sich dabei nicht nur auf elektronische
+Bauelemente wie z.B. Widerständen, Halbleiterbauelemente und Elektronenröhren,
+sondern man findet sie auch bei astronomischen, meteorologischen oder
+physiologischen Bereichen.
+Diese Gesetztmäßigkeit erstreckt sich dabei über mehrere Zehnerpotenzen und es
+kann keine untere Schranke angegeben werden.
 
+Nun gibt es einige Spezialfälle in denen die $1/\nu$-Gesetzmäßigkeit abgeleitet
+werden kann. Ein solcher Spezialfall ist das
+\emph{Generations-Rekombinations-Rauschen}. Dies betrifft die Generations und
+Rekombinationsvorgänge von Ladungsträgern in Oxid-Halbleiter-Grenzschichten,
+wie beispielsweise von MOS-Feldeffekttransistoren.
+Die spektrale Leistungsdichte der Dichteschwankungen der Ladungsträger lautet
+hier
+\begin{equation}
+  W_\tau(\nu) = \text{const} \cdot \frac{\tau}{1 + {(2\pi\nu\tau)}^2}~,
+  \label{eq:leistungsdichte}
+\end{equation}
+wobei $\tau$ die Relaxationszeit für den Generations-Rekombinationseffekt ist.
+Für $\nu \ll 1 / \tau$ ist~\eqref{eq:leistungsdichte} nahezu konstant.
+Erst für $\nu \gt 1 / \tau$ fällt $W$ zunehmend ab.
+Diese Kurve ist in Abbildung~\ref{fig:leistungsdichte} dargestellt.
+
+\begin{figure}[!htpb]
+  \centering
+  \includegraphics[scale=0.3]{bilder/leistungsdichte.png}
+  \caption{Modell-Rauschspektrum zur Ableitung einer Beziehung von der Gestalt
+  $W(\nu)\sim\nu^{-1}$.}
+\label{fig:leistungsdichte}
+\end{figure}
+
+Nimmt man nun $\tau$ nicht mehr als konstant an, sondern abhängig von der
+Aktivierungsenergie $E$, welche zwischen den Werten $E_\text{min}$ und
+$E_\text{max}$ liegt mit
+\begin{equation}
+  \tau(E) = \tau_0 \exp[\frac{E}{k_\text{B}T}]~,
+\end{equation}
+so folgt für das Gesamtspektrum
+\begin{equation}
+  W(\nu) = \text{const} \cdot k_\text{B} T
+  \int_{\tau_\text{min}}^{\tau_\text{max}}
+  \frac{1}{1 + {(2\pi\nu\tau)}^2} \dd{\tau}
+  = \frac{\text{const} \cdot k_\text{B}T}{\nu}
+  \qty\Big(\arctan(2\pi\nu\tau_\text{min}) - \arctan(2\pi\nu\tau_\text{max}))~.
+\end{equation}
+Hier können nun drei Frequenzbereiche aus Abbildung~\ref{fig:leistungsdichte}
+beschrieben werden:
+\begin{enumerate}
+  \item Für sehr niedrige Frequenzen ist $2\pi\nu\tau \ll 1/\tau$ und
+    $W(\nu) = \text{const}$. Es handelt sich um weißes Rauschen.
+  \item Für $2\pi\nu \tau_\text{min} \ll 1 \ll 2\pi\nu\tau_\text{max}$ liegt
+    eine $1/\nu$-Abhängigkeit der spektralen Leistungsdichte vor.
+  \item Für sehr hohe Frequenzen $2\pi\nu\tau \gg 1$ liegt eine
+    $1/\nu^2$-Abhängigkeit der spektralen Leistungsdichte vor.
+\end{enumerate}
+
+% ==================================================
+% 	Funkeleffekt
+% ==================================================
+
+\subsection{Funkeleffekt}
+\label{sub:funkeleffekt}
+
+In diesem Versuch soll der sogenannte Funkeleffekt untersucht werden.
+Dieser ist ein Beispiel für das $1/f$-Rauschen.
+Er tritt bei Elektronenröhren mit Oxid-Kathode auf. Hierbei ist dem weißen
+Rauschen des Schrot-Rauschens ein weiterer Rauscheffekt überlagert dessen
+Frequenzspektrum die Form
+\begin{equation}
+  W_F(\nu) = \text{const} \cdot \frac{{I_0}^2}{\nu^\alpha}
+\end{equation}
+mit $\alpha \approx 1$ besitzt.
+Diese Form konnte bis zu Frequenzen von \SI{0.1}{\milli\hertz} experimentell
+bestätigt werden.
+Für den unteren Frequenbereich könnten dabei stoffliche Veränderungen in dem
+System Metallträger-Oxid-Kathode infrage kommen.
+Bei höheren Frequenzen könnten lokale Schwankungen der Austrittsarbeit des
+Oxidmetalls den Rauscheffekt erklären, wobei vorübergehende Fremdatome an der
+Oberfläche absorbiert werden.
