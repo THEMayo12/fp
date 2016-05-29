@@ -169,121 +169,54 @@ fig1.savefig('file.pdf')
 #                            Beginn Auswertung                            #
 ###########################################################################
 
+# ====[ Reinmetall ]========================================
 
-#=========================================================
-#     Eigenrauschen
-#=========================================================
+f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall = np.loadtxt(
+    "../messwerte/kathode.txt",
+    unpack=True
+)
 
-V_N_eigen, U_a_eigen = np.loadtxt("../messwerte/kurzschluss_selektiv.txt", unpack=True)
-
-
-tab_eigenrauschen_einfach = lt.latextable(
-    [V_N_eigen, U_a_eigen], 
-    "../tex/tabellen/eichung_eigenrauschen_korr.tex",
-    alignment = 'CC',
+# LateX-Tabelle erzeugen
+t = lt.latextable(
+    [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall],
+    "../tex/tabellen/kathode_rein.tex",
+    alignment = 'CCCCC',
     form = '.3f',
 )
 
 
-U_a_eigen = U_a_eigen/(10.*(1000.*V_N_eigen*10.)**2) #gleich,vor,nach,selektiv
+
+R = 4680  # ohm
 
 
+def W(U_a, nu, R):
+    return U_a / (R**2 * nu)
 
+U_a_norm_metall = U_a_metall / V_N_metall**2
 
-
-
-
-
-
-
-
-
-# =========================================================
-# 	Eichung
-# =========================================================
-
-f_eich, U_a_eich = np.loadtxt("../messwerte/eichung_selektiv.txt", unpack=True)
-
-tab_einfach = lt.latextable(
-    [f_eich, U_a_eich],
-    "../tex/tabellen/eichung_korr.tex",
-    alignment = 'CC',
-    form = '.3f',
-    split = 2
-)
-
-
-
-
-U_ein = 120./1001.*10**(-3) #V * Abschwächer
-
-V_selektiv = 10.
-V_gleich = 10.
-V_vor = 1000.
-V_nach = 2.
-
-v = V_gleich * (V_vor * V_nach*V_selektiv)**2 #Verstärkungsfaktor
-
-U_a_eich = U_a_eich/(v*U_ein**2) - U_a_eigen[1]/(U_ein**2) #korriegierte Messwerte
-
-
-
-fig_eich = plt.figure()
-ax = fig_eich.add_subplot(111)
+fig_metall = plt.figure()
+ax = fig_metall.add_subplot(111)
 
 ax.plot(
-    f_eich,
-    U_a_eich,
+    np.log(f_metall),
+    np.log(W(U_a_norm_metall, delta_f_metall, R) ),
     color='k',
     linestyle='none',
     marker='+',
     label='Messwerte'
 )
 
-ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
-ax.set_ylabel(r'$\beta $')
+# ax.set_xlabel(r'$\nu$ in $\si{\kilo\hertz}$')
+# ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax.set_xlabel(r'$\ln(\{\nu\})$')
+ax.set_ylabel(r'$\ln(\{W\})$')
+#ax.set_xscale('log')
+#ax.set_yscale('log')
 
 ax.legend(loc='best')
-ax = ev.plot_layout(ax)
+# ax = ev.plot_layout(ax)
 
-fig_eich.tight_layout()
-
-
-
-fig_eich.savefig("../tex/bilder/eichung_korr.pdf")
+fig_metall.tight_layout()
+fig_metall.savefig("../tex/bilder/kathode_rein.pdf")
 
 
-
-
-
-#---Integration--->
-#ober/untersummenintegration und mittelwert
-
-J_ober=0
-J_unter=0
-
-for i in range (1,len(f_eich)):
-	if f_eich[i]<=26:
-		J_ober += U_a_eich[i]* (f_eich[i]-f_eich[i-1])
-	else:
-		J_ober += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
-
-for i in range (1,len(f_eich)):
-	if f_eich[i]<=26:
-		J_unter += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
-	else:
-		J_unter += U_a_eich[i]* (f_eich[i]-f_eich[i-1])
-
-print(J_ober)
-print(J_unter)
-
-# mittleres Integral mit Fehler
-A = ev.get_uncert([J_ober,J_unter])
-
-print(A)
-
-
-# tex schreiben
-ev.write('../tex/tabellen/eichfaktor_korr.tex', str(A))
-
-#<---Integration---

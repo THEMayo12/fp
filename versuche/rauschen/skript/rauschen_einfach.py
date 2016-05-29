@@ -182,7 +182,7 @@ U_a_eigen = U_a_eigen/(10.*(1000.*V_N_eigen)**2)
 
 
 #external input parameters
-A = uc.ufloat(18.1468,0.1) *1000 #kHz in Hz
+A = uc.ufloat(18.15,0.32) *1000 #kHz in Hz
 T = 300. #K
 C_eigen = 0.1*100*10**(-12) #Kabellänge*pF/Meter
 nu_mittel =25000 #Hz
@@ -216,17 +216,17 @@ U1 = (1./(1.+2.*const.pi*R1*nu_mittel*C_eigen)*U1)/v1-U_a_eigen[4]
 def G(x, m, b):
     return m*x + b
 
-val1, cov1 = optimize.curve_fit(G, R1[:6], U1[:6])
+val1, cov1 = optimize.curve_fit(G, R1[6:], U1[6:])
 std1 = ev.get_std(cov1)
 
 lin_reg1 = ev.tex_linreg(
-        "U_a",
+        "G_1(R)",
         val1,
         std1,
-        unit = ["\volt^2\per\ohm", "\meter"]
+        unit = [r"\volt^2\per\ohm", r"\volt^2"]
 )
 
-#print_tex(ev.latexEq(lin_reg1))
+ev.write('../tex/tabellen/rauschen_einfach_reg1.tex', lin_reg1)
 
 #steigung
 m1=uc.ufloat(val1[0],std1[0])
@@ -234,7 +234,7 @@ print(m1)
 k_einfach1 = m1/(4*T*A)
 print(k_einfach1)
 # tex schreiben
-ev.write('../tex/tabellen/k_einfach1', str(k_einfach1))
+ev.write('../tex/tabellen/k_einfach1', str(k_einfach1*10**23))
 
 
 
@@ -243,9 +243,9 @@ ev.write('../tex/tabellen/k_einfach1', str(k_einfach1))
 
 #Plotten
 fig1 = plt.figure()
-ax = fig1.add_subplot(111)
+ax1 = fig1.add_subplot(111)
 
-ax.plot(
+ax1.plot(
     R1,
     U1,
     color='k',
@@ -254,11 +254,25 @@ ax.plot(
     label='Messwerte'
 )
 
-ax.set_xlabel(r'$R_1000$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax1.plot(
+    R1[:6],
+    U1[:6],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
 
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
+
+lim1 = ax1.get_xlim()
+x1 = np.linspace(lim1[0], lim1[1], 1000)
+ax1.plot(x1, G(x1, val1[0], val1[1]), label="Fit")
+
+ax1.set_xlabel(r'$R$ in $\si{\ohm}$')
+ax1.set_ylabel(r'$U_a$ in $\si{\volt}$')
+
+ax1.legend(loc='best')
+ax1 = ev.plot_layout(ax1)
 
 fig1.tight_layout()
 fig1.savefig('../tex/bilder/rauschen_einfach1.pdf')
@@ -297,16 +311,17 @@ def G(x, m, b):
     return m*x + b
 
 val2, cov2 = optimize.curve_fit(G, 1000*R2[:10], U2[:10]) #  kOhm to Ohm, only linear part
-std2 = ev.get_std(cov1)
+std2 = ev.get_std(cov2)
+
 
 lin_reg2 = ev.tex_linreg(
-        "U_a",
+        "G_2(R)",
         val2,
         std2,
-        unit = ["\volt^2\per\ohm", "\meter"]
+        unit = [r"\volt^2\per\ohm", r"\volt^2"]
 )
 
-#print_tex(ev.latexEq(lin_reg2))
+ev.write('../tex/tabellen/rauschen_einfach_reg2.tex', lin_reg2)
 
 #steigung
 m2=uc.ufloat(val2[0],std2[0])
@@ -314,17 +329,15 @@ print(m2)
 k_einfach2 = m2/(4*T*A)
 print(k_einfach2)
 # tex schreiben
-ev.write('../tex/tabellen/k_einfach2', str(k_einfach2))
-
-
+ev.write('../tex/tabellen/k_einfach2', str(k_einfach2*10**23))
 
 
 #Plotten
 fig2 = plt.figure()
-ax = fig2.add_subplot(111)
+ax2 = fig2.add_subplot(111)
 
-ax.plot(
-    R2,
+ax2.plot(
+    1000.*R2,
     U2,
     color='k',
     linestyle='none',
@@ -332,11 +345,23 @@ ax.plot(
     label='Messwerte'
 )
 
-ax.set_xlabel(r'$R_100k$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax2.plot(
+    1000.*R2[10:],
+    U2[10:],
+    color='k',
+    linestyle='none',
+    marker='o',
+    label='nicht im Fit'
+)
 
-ax.legend(loc='best')
-ax = ev.plot_layout(ax)
+
+ax2.plot(1000.*R2[:12], G(1000.*R2[:12], val2[0], val2[1]), label="Fit")
+
+ax2.set_xlabel(r'$R$ in $\text{k}\si{\ohm}$')
+ax2.set_ylabel(r'$U_a$ in $\si{\volt}$')
+
+ax2.legend(loc='best')
+ax2 = ev.plot_layout(ax2)
 
 fig2.tight_layout()
 fig2.savefig('../tex/bilder/rauschen_einfach2.pdf')
@@ -356,7 +381,7 @@ U_500 = U1[8]
 F=U_500/(4*k_einfach1*500*A*T)
 print(F)
 # tex schreiben
-ev.write('../tex/tabellen/Rauschzahl', str(F))
+ev.write('../tex/tabellen/Rauschzahl', str(F*10**(-3)) )
 
 
 

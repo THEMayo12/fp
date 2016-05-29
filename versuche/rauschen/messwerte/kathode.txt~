@@ -1,6 +1,6 @@
 # I_Anode = 1 mA, I_Heiz = 0.8 A, V_sel = 10, U_Anode = 130V , R=2200
 
-# f / kHz | U_a/V | delta_U_a / kHz | V_N | delta nu / kHz
+# f / kHz | U_a/V | delta_f / kHz | V_N | delta nu / kHz
 460		0.487		0.002		20		21.5
 400		0.519		0.03		20		24.3
 360		0.630		0.04		20		24.4
