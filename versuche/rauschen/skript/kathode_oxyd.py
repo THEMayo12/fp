@@ -184,7 +184,7 @@ t = lt.latextable(
     [f_ox, U_a_ox, delta_f, V_N_ox, delta_f],
     "../tex/tabellen/kathode_oxyd.tex",
     alignment = 'CCCCC',
-    form = '.3f',
+    form = ['.3f','.3f','.3f','g', '.3f']
 )
 
 

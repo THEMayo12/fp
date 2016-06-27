@@ -178,10 +178,10 @@ V_N_eigen, U_a_eigen = np.loadtxt("../messwerte/kurzschluss_selektiv.txt", unpac
 
 
 tab_eigenrauschen_einfach = lt.latextable(
-    [V_N_eigen, U_a_eigen], 
+    [V_N_eigen, U_a_eigen],
     "../tex/tabellen/eichung_eigenrauschen_korr.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['g', '.3f'],
 )
 
 

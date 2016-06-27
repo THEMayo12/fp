@@ -5,17 +5,17 @@
 
 \section{Auswertung}
 
-\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am 
+\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am
 			einfachen Rauschspektrometer}
-		
-	
+
+
 	\subsubsection{Eichmessung}
-	
-		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind 
-		in Tabelle \ref{tab:eichung_eigenrauschen_einfach} zu sehen. 
-		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von 
+
+		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind
+		in Tabelle \ref{tab:eichung_eigenrauschen_einfach} zu sehen.
+		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von
 		der Nachverstärkung $V_\text{N}$ gemessen.
-		
+
 		\begin{table}[h]
 		\centering
 			\begin{tabular}{cc}
@@ -26,55 +26,55 @@
 				\input{tabellen/eichung_eigenrauschen_einfach.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum kurzgeschlossenen 
-			Rauschspektrometer. Dabei ist $U_\text{a}$ die 
+			\caption{Messwerte zum kurzgeschlossenen
+			Rauschspektrometer. Dabei ist $U_\text{a}$ die
 			Ausgangsspannung und $V_\text{N}$ die Nachverstärkung.}
 			\label{tab:eichung_eigenrauschen_einfach}
 		\end{table}
-		
-		Die Messwerte der Eichmessung sind in Tabelle 
-		\ref{tab:eichung_einfach} zu sehen. Während der Messung 
-		betrug $V_\text{N}=20$ und die Ausgangsspannung des 
+
+		Die Messwerte der Eichmessung sind in Tabelle
+		\ref{tab:eichung_einfach} zu sehen. Während der Messung
+		betrug $V_\text{N}=20$ und die Ausgangsspannung des
 		Frequenzgenerators $U_\text{ein} = 120 \text{ mV}$.
-		
+
 		\begin{table}[h]
 		\centering
 			\begin{tabular}{cccc}
 				\toprule \midrule
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &$\nu \text{ in} \text{ 
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &$\nu \text{ in} \text{
 				kHz}$ & $U^2_\text{a}$ in $\text{V}^2$
 				\\
 				\midrule
 				\input{tabellen/eichung_einfach.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zur Eichmessung. Dabei ist $U_\text{a}$ 
-			die 
-			Ausgangsspannung und $\nu$ die Frequenz des 
+			\caption{Messwerte zur Eichmessung. Dabei ist $U_\text{a}$
+			die
+			Ausgangsspannung und $\nu$ die Frequenz des
 			Eingangssignals. }
 			\label{tab:eichung_einfach}
 		\end{table}
-		
-		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_einfach} zu sehen. Dabei wurde die Größe 
+
+		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_einfach} zu sehen. Dabei wurde die Größe
 		\begin{equation}
 		\beta := \frac{U^2_\text{a, Durchlasskurve}-U_\text{a, Eigenrauschen}^2}
 		{V_= V_\text{N}^2 V_\text{V}^2  U^2_\text{ein}}
 		\end{equation}
 		eingeführt, wobei $V_= =10$, $V_\text{V}=1000$ und $V_\text{N}=20$ (während dieser Messung)
-		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Vorverstärkers beziehungsweise 
+		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Vorverstärkers beziehungsweise
 		des Nachverstärkers sind.
-		
+
 		\begin{figure}
 			\centering
 			\includegraphics[scale=0.7]{bilder/eichung_einfach.pdf}
 			\caption{Durchlasskurve der einfachen Rauschverstärkerschaltung.}
 			\label{fig:eichung_einfach}
 		\end{figure}
-		
-		Der Eichfaktor 
+
+		Der Eichfaktor
 		\begin{equation}
-			A:=\int\limits_0^\infty V_= V_\text{V}^2(\nu) V_\text{N}^2(\nu) \text{ d}\nu		
-		\end{equation}				
+			A:=\int\limits_0^\infty V_= V_\text{V}^2(\nu) V_\text{N}^2(\nu) \text{ d}\nu
+		\end{equation}
 		kann dann als
 		\begin{equation}
 			A = \int \limits_0^\infty \beta(\nu) \text{ d}\nu
@@ -88,34 +88,34 @@
 			A_\text{unter} = \sum\limits_{\nu_<} \beta_{i-1} (\nu_i-\nu_{i-1}) +
 			\sum\limits_{\nu_>} \beta_{i} (\nu_i-\nu_{i-1})
 		\end{equation}
-		wobei $\nu_i$ den $i$-ten Messwert darstellt. Außerdem 
-		steht $\nu_<$ für die Frequenzen unterhalb und $\nu_>$ für die 
+		wobei $\nu_i$ den $i$-ten Messwert darstellt. Außerdem
+		steht $\nu_<$ für die Frequenzen unterhalb und $\nu_>$ für die
 		Frequenzen oberhalb des Maximums. Als Mittelwert ergibt sich
 		\begin{equation}
-			A =  \input{tabellen/eichfaktor_einfach.tex}   \quad . 
+			A =  \input{tabellen/eichfaktor_einfach.tex}   \quad .
 		\end{equation}
 
 
-	
+
 	\subsubsection{Rauschmessung}
-		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_einfach1} 
-		und \ref{tab:rauschen_einfach2} sowie den Abbildungen 
+		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_einfach1}
+		und \ref{tab:rauschen_einfach2} sowie den Abbildungen
 		\ref{fig:rauschen_einfach1} und \ref{fig:rauschen_einfach2} zu sehen.
-		
-		
+
+
 	\begin{figure}[htbp]
 
-	\begin{minipage}{0.3\textwidth} 
+	\begin{minipage}{0.3\textwidth}
 
 			\centering
 			\begin{tabular}{cc}
 				\toprule \midrule
 				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
 				\midrule
-				\input{tabellen/rauschen_einfach1.tex}			
+				\input{tabellen/rauschen_einfach1.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum Spannungsrauschen am einfachen 
+			\caption{Messwerte zum Spannungsrauschen am einfachen
 			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
 			\label{tab:rauschen_einfach1}
 
@@ -127,32 +127,32 @@
 
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_einfach1.pdf}
-			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
-			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf 
-			eine Verstärkung von 
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
+			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf
+			eine Verstärkung von
 			$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
 			\label{fig:rauschen_einfach1}
-			
+
 	\end{minipage}
 	% \caption{noch eine Caption}
-	\end{figure}		
-	
-	
-	
-	
+	\end{figure}
+
+
+
+
 		\begin{figure}[htbp]
 
-	\begin{minipage}{0.3\textwidth} 
+	\begin{minipage}{0.3\textwidth}
 
 			\centering
 			\begin{tabular}{cc}
 				\toprule \midrule
-				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in \si{\kilo\ohm} & $U_\text{a}^2$ in $V^2$ \\
 				\midrule
-				\input{tabellen/rauschen_einfach2.tex}			
+				\input{tabellen/rauschen_einfach2.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum Spannungsrauschen am einfachen 
+			\caption{Messwerte zum Spannungsrauschen am einfachen
 			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
 			\label{tab:rauschen_einfach2}
 
@@ -164,15 +164,15 @@
 
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_einfach2.pdf}
-			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
-			Regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine 
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
+			Regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine
 			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
 			\label{fig:rauschen_einfach2}
-			
+
 	\end{minipage}
 
-	\end{figure}		
-		
+	\end{figure}
+
 
 		Die Ausgleichsgeraden sind durch
 		\begin{equation}
@@ -182,83 +182,83 @@
 		\begin{equation}
 			\input{tabellen/rauschen_einfach_reg2.tex}
 		\end{equation}
-		
+
 		Mit der Nyquist-Beziehung erhält man
 		\begin{equation}
-			U_\text{a}^2 =4k_\text{B}T A R \quad , 
+			U_\text{a}^2 =4k_\text{B}T A R \quad ,
 		\end{equation}
-		sodass mit den Steigungen $m_1$ und $m_2$ der Geradengleichungen $G1(R)$ und $G2(R)$ 
+		sodass mit den Steigungen $m_1$ und $m_2$ der Geradengleichungen $G1(R)$ und $G2(R)$
 		die Boltzmannkonstante als
 		\begin{equation}
 		k_\text{B}=\frac{m_i}{4 T A}
 		\end{equation}
 		berechnet werden kann. Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
-		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_einfach1.tex}\times 10^{-23}\frac{\text{J}}
-																			{\text{K}}  \\ 
-		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_einfach2.tex}\times 10^{-23}\frac{\text{J}}
-																			{\text{K}} \quad . 
+          k_\text{B}^{1000\Omega}			&=  \input{tabellen/k_einfach1.tex}\times 10^{-23}\frac{\text{J}}
+																			{\text{K}}  \\
+                                                                            k_\text{B}^{100\text{k}\Omega}	&=  \input{tabellen/k_einfach2.tex}\times 10^{-23}\frac{\text{J}}
+																			{\text{K}} \quad .
 		\end{align}
 		Die Korrektur
 		\begin{equation}
 		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} U_a^2 = U_{a\text{, effektiv}}^2
 		\end{equation}
-		die aus der Eigenkapazität der Leitung herrührt wurde mit berücksichtigt, ist 
-		jedoch vernachlässigbar klein, da 
-		sie linear in die Nyquist-Beziehung eingeht. Gemäß der Abschätzung 
+		die aus der Eigenkapazität der Leitung herrührt wurde mit berücksichtigt, ist
+		jedoch vernachlässigbar klein, da
+		sie linear in die Nyquist-Beziehung eingeht. Gemäß der Abschätzung
 		\begin{align}
 		&\Re(Z) = R  \lesssim  10^4 \Omega \\
 		&\bar{\nu}  \lesssim 10^5 \text{Hz} \\
 		&C = l \rho  \approx 10^{-12}
 		\end{align}
-		wobei $\rho\approx 100 \times 10^{-12} \text{F}/\text{m}$ die in 
-		der Anleitung angegebene Eigenkapazität der Kabel 
-		und $l\approx 10^{-2}$m die Kabellänge ist. Der Korrekturfaktor ist dann 
-		\begin{equation}				
-		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} \approx 
-		\frac{1}{1+2\uppi 10^{-4}}=1+ \mathcal{O}(10^{-4}) 
-		\end{equation}
-		und sein Effekt somit viel kleiner als die erwartete Messunsicherheit. 
-		
-		Die Fehlerabschätzung wird dabei mit der Gaußschen Fehlerfortpflanzung 
+		wobei $\rho\approx 100 \times 10^{-12} \text{F}/\text{m}$ die in
+		der Anleitung angegebene Eigenkapazität der Kabel
+		und $l\approx 10^{-2}$m die Kabellänge ist. Der Korrekturfaktor ist dann
 		\begin{equation}
-		\Delta f(x_1,\ldots x_N) 
+		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} \approx
+		\frac{1}{1+2\uppi 10^{-4}}=1+ \mathcal{O}(10^{-4})
+		\end{equation}
+		und sein Effekt somit viel kleiner als die erwartete Messunsicherheit.
+
+		Die Fehlerabschätzung wird dabei mit der Gaußschen Fehlerfortpflanzung
+		\begin{equation}
+		\Delta f(x_1,\ldots x_N)
 		=\sqrt{ \sum_{n=1}^N \left(\left.\frac{\partial f}{\partial x_n}\right|
-		_{(\bar{x}_1,\ldots,\bar{x}_n)}\right)^2 
+		_{(\bar{x}_1,\ldots,\bar{x}_n)}\right)^2
 		\Delta x_n ^2 }
 		\end{equation}
-		berechnet, wobei $f$ eine beliebige Größe ist, die von den unkorrelierten 
-		Messgrößen $x_n$ abhängt. Dabei  stellt $\bar{x}_n$ den Mittelwert und 
+		berechnet, wobei $f$ eine beliebige Größe ist, die von den unkorrelierten
+		Messgrößen $x_n$ abhängt. Dabei  stellt $\bar{x}_n$ den Mittelwert und
 		$\Delta x_n$ die Standardabweichung der Messgröße $x_n$ dar.
-		
-			
+
+
 	\subsubsection{Ermittlung der Rauschzahl}
-		Für das einfache Rauschspektrometer wird die Rauschzahl 
+		Für das einfache Rauschspektrometer wird die Rauschzahl
 		\begin{equation}
 			F = \frac{U_\text{a}^2}{4 k_\text{B}T R A}
 		\end{equation}
-		bei $R\approx 500\Omega$ berechnet. Mit den bereits berechneten Größen und 
-		dem Wertepaar $(500\Omega,1.083 \text{V}^2)$ ergibt sich 
+		bei $R\approx 500\Omega$ berechnet. Mit den bereits berechneten Größen und
+		dem Wertepaar $(500\Omega,1.083 \text{V}^2)$ ergibt sich
 		\begin{equation}
 			F = \input{tabellen/Rauschzahl.tex} \times 10^{3}
 		\end{equation}
-		
-		
-		
-		
-		
-		
-\clearpage		
-\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am 
+
+
+
+
+
+
+\clearpage
+\subsection{Bestimmung von $k_\text{B}$ mittels Spannungsrauschens am
 			Korrelator-Rauschspektrometer}
-			
+
 		\subsubsection{Eichmessung}
-	
-		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind 
-		in Tabelle \ref{tab:eichung_eigenrauschen_korr} zu sehen. 
-		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von 
+
+		Die Messwerte zum kurzgeschlossenen Rauschspektrometer sind
+		in Tabelle \ref{tab:eichung_eigenrauschen_korr} zu sehen.
+		Es wurde das Ausgangssignal $U^2_\text{a}$ in Abhängigkeit von
 		der Nachverstärkung $V_\text{N}$ gemessen.
-		
+
 		\begin{table}[h]
 		\centering
 			\begin{tabular}{cc}
@@ -269,137 +269,117 @@
 				\input{tabellen/eichung_eigenrauschen_korr.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum kurzgeschlossenen  
-			Rauschspektrometer nach Korrelationspinzip. Dabei ist $U_\text{a}$ die 
+			\caption{Messwerte zum kurzgeschlossenen
+			Rauschspektrometer nach Korrelationspinzip. Dabei ist $U_\text{a}$ die
 			Ausgangsspannung und $V_\text{N}$ die Nachverstärkung.}
 			\label{tab:eichung_eigenrauschen_korr}
 		\end{table}
-		
-		Die Messwerte der Eichmessung sind in Tabelle 
-		\ref{tab:eichung_korr} zu sehen. Während der Messung 
-		betrug $V_\text{N}=2$ und die Ausgangsspannung des 
+
+		Die Messwerte der Eichmessung sind in Tabelle
+		\ref{tab:eichung_korr} zu sehen. Während der Messung
+		betrug $V_\text{N}=2$ und die Ausgangsspannung des
 		Frequenzgenerators $U_\text{ein} = 120 \text{ mV}$.
-		
+
 		\begin{table}[h]
 		\centering
 			\begin{tabular}{cccc}
 				\toprule \midrule
 				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ 
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$
 				\\
 				\midrule
 				\input{tabellen/eichung_korr.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zur Eichmessung der Korrelatorschaltung. Dabei ist $U_\text{a}$ 
-			die 
-			Ausgangsspannung und $\nu$ die Frequenz des 
+			\caption{Messwerte zur Eichmessung der Korrelatorschaltung. Dabei ist $U_\text{a}$
+			die
+			Ausgangsspannung und $\nu$ die Frequenz des
 			Eingangssignals. }
 			\label{tab:eichung_korr}
 		\end{table}
-		
-		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_korr} zu sehen. Dabei wurde die Größe  
+
+		Die Durchlasskurve ist in Abbildung \ref{fig:eichung_korr} zu sehen. Dabei wurde die Größe
 		\begin{equation}
 		\beta := \frac{U^2_\text{a, Durchlasskurve}-U_\text{a, Eigenrauschen}^2}
 		{V_= V_\text{selektiv}^2 V_\text{N}^2 V_\text{V}^2  U^2_\text{ein}}
 		\end{equation}
 		eingeführt, wobei $V_= =10$, $V_\text{selektiv}=10$ und $V_\text{V}=1000$
-		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Selektivverstärkers und des 
-		Vorverstärkers sind. Die ersten 13 Werte wurden mit $V_\text{N}=50$, die weiteren 
+		die Verstärkungsfaktoren des Gleichspannungsverstärkers, des Selektivverstärkers und des
+		Vorverstärkers sind. Die ersten 13 Werte wurden mit $V_\text{N}=50$, die weiteren
 		mit $V_\text{N}=20$ aufgenommen.
-				
+
 		\begin{figure}
 			\centering
 			\includegraphics[scale=0.7]{bilder/eichung_korr.pdf}
 			\caption{Durchlasskurve der korrelierten Rauschverstärkerschaltung.}
 			\label{fig:eichung_korr}
 		\end{figure}
-		
+
 		Der Eichfaktor ergibt sich als
 		\begin{equation}
-			A =  \input{tabellen/eichfaktor_korr.tex}  \quad .  
+			A =  \input{tabellen/eichfaktor_korr.tex}  \quad .
 		\end{equation}
 
 
 	\clearpage
 	\subsubsection{Rauschmessung}
-		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_korr1} 
-		und \ref{tab:rauschen_korr2} sowie den Abbildungen 
+		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_korr1}
+		und \ref{tab:rauschen_korr2} sowie den Abbildungen
 		\ref{fig:rauschen_korr1} und \ref{fig:rauschen_korr2} zu sehen.
-		
-		
+
+
 	\begin{figure}[htbp]
-
-	\begin{minipage}{0.3\textwidth} 
-
+	\begin{minipage}{0.3\textwidth}
 			\centering
 			\begin{tabular}{cc}
 				\toprule \midrule
 				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
 				\midrule
-				\input{tabellen/rauschen_korr1.tex}			
+				\input{tabellen/rauschen_korr1.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum Spannungsrauschen am korrelierten 
+			\caption{Messwerte zum Spannungsrauschen am korrelierten
 			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
 			\label{tab:rauschen_korr1}
-
 	\end{minipage}
-	
 	\hfill
-	
 	\begin{minipage}{0.6\textwidth}
-
 			\centering
 			\includegraphics[scale=0.6]{bilder/rauschen_korr1.pdf}
-			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen 
-			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von 
-			$1$ normiert, mit $V_= =10$, $V_\text{N}=20 bzw. V_\text{N}=50$, 
+			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
+			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von
+			$1$ normiert, mit $V_= =10$, $V_\text{N}=20 bzw. V_\text{N}=50$,
 			$V_\text{selektiv}=10$ und $V_\text{V}=1000$. }
 			\label{fig:rauschen_korr1}
-			
 	\end{minipage}
+	\end{figure}
 
-	\end{figure}		
-	
-	
-	
-	
-		\begin{figure}[htbp]
 
-	\begin{minipage}{0.3\textwidth} 
-
+    \begin{figure}[htbp]
+	\begin{minipage}{0.3\textwidth}
 			\centering
 			\begin{tabular}{cc}
 				\toprule \midrule
-				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in \si{\kilo\ohm} & $U_\text{a}^2$ in $V^2$ \\
 				\midrule
-				\input{tabellen/rauschen_korr2.tex}			
+				\input{tabellen/rauschen_korr2.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Messwerte zum Spannungsrauschen am korrelierten  
+			\caption{Messwerte zum Spannungsrauschen am korrelierten
 			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
 			\label{tab:rauschen_korr2}
-
 	\end{minipage}
-
 	\hfill
-
 	\begin{minipage}{0.6\textwidth}
-
 			\centering
 			\includegraphics[scale=0.6]{bilder/rauschen_korr2.pdf}
-			\caption{Spannungsrauschkurve am korrelierten Rauschspektrometer für einen 
-			regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine 
-			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{selektiv}=10$, $V_\text{N}=200$ und 
+			\caption{Spannungsrauschkurve am korrelierten Rauschspektrometer für einen
+			regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine
+			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{selektiv}=10$, $V_\text{N}=200$ und
 			$V_\text{V}=1000$. }
 			\label{fig:rauschen_korr2}
-			
 	\end{minipage}
-
-	\end{figure}		
-		
-
+	\end{figure}
 		Die Ausgleichsgeraden sind durch
 		\begin{equation}
 			\input{tabellen/rauschen_korr_reg1.tex}
@@ -408,7 +388,7 @@
 		\begin{equation}
 			\input{tabellen/rauschen_korr_reg2.tex}
 		\end{equation}
-		
+
 		Mit der Nyquist-Beziehung erhält man die Boltzmannkonstante erneut als
 		\begin{equation}
 		k_\text{B}=\frac{m_i}{4 T A} \quad .
@@ -416,155 +396,155 @@
  		Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
 		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_korr1.tex} \times 10^{-20}\frac{\text{J}}
-																			{\text{K}} \\ 
+																			{\text{K}} \\
 		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_korr2.tex} \times 10^{-23}\frac{\text{J}}
-																			{\text{K}} 
+																			{\text{K}}
 		\end{align}
-	
-	
+
+
 
 
 \clearpage
 \subsection{Diodenkennlinien}
-	Zwei Kennlinien der in diesem Versuch benutzten Kathode sind in 
-	den Tabellen \ref{tab:kennlinie1} und \ref{tab:kennlinie2} sowie 
-	den Abbildungen \ref{fig:kennlinie1} und \ref{fig:kennlinie2} zu 
+	Zwei Kennlinien der in diesem Versuch benutzten Kathode sind in
+	den Tabellen \ref{tab:kennlinie1} und \ref{tab:kennlinie2} sowie
+	den Abbildungen \ref{fig:kennlinie1} und \ref{fig:kennlinie2} zu
 	sehen.
-	
+
 	\begin{figure}[htbp]
-	\begin{minipage}{0.3\textwidth} 
+	\begin{minipage}{0.4\textwidth}
 			\centering
 			\begin{tabular}{ccc}
 				\toprule \midrule
-				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$ 
+				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$
 				& $V_\text{N}$\\
 				\midrule
-				\input{tabellen/kennlinie1.tex}			
+				\input{tabellen/kennlinie1.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Diodenkennlinie bei einem Heizstrom von 
+			\caption{Diodenkennlinie bei einem Heizstrom von
 			$0.8$A.}
 			\label{tab:kennlinie1}
 	\end{minipage}
 	\hfill
-	\begin{minipage}{0.7\textwidth}
+	\begin{minipage}{0.6\textwidth}
 			\centering
-			\includegraphics[scale=0.7]{bilder/kennlinie1.pdf}
-			\caption{Diodenkennlinie bei einem Heizstrom von 
-			$0.8$A.Die Werte wurden bereits um die 
+			\includegraphics[scale=0.6]{bilder/kennlinie1.pdf}
+			\caption{Diodenkennlinie bei einem Heizstrom von
+			$0.8$A.Die Werte wurden bereits um die
 			Verstärkungsfaktoren $V_\text{N}$ normiert. }
-			\label{fig:kennlinie1}		
+			\label{fig:kennlinie1}
 	\end{minipage}
-	\end{figure}		
-	
-	
+	\end{figure}
+
+
 	\begin{figure}[htbp]
-	\begin{minipage}{0.3\textwidth} 
+	\begin{minipage}{0.4\textwidth}
 			\centering
 			\begin{tabular}{ccc}
 				\toprule \midrule
-				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$ 
+				$U_\text{Anode}$ in V & $U_\text{a}^2$ in $V^2$
 				& $V_\text{N}$\\
 				\midrule
-				\input{tabellen/kennlinie2.tex}			
+				\input{tabellen/kennlinie2.tex}
 				\midrule \bottomrule
 			\end{tabular}
-			\caption{Diodenkennlinie bei einem Heizstrom von 
+			\caption{Diodenkennlinie bei einem Heizstrom von
 			$0.9$A.}
 			\label{tab:kennlinie2}
 	\end{minipage}
 	\hfill
-	\begin{minipage}{0.7\textwidth}
+	\begin{minipage}{0.6\textwidth}
 			\centering
-			\includegraphics[scale=0.7]{bilder/kennlinie2.pdf}
-			\caption{Diodenkennlinie bei einem Heizstrom von 
-			$0.9$A. Die Werte wurden bereits um die 
+			\includegraphics[scale=0.6]{bilder/kennlinie2.pdf}
+			\caption{Diodenkennlinie bei einem Heizstrom von
+			$0.9$A. Die Werte wurden bereits um die
 			Verstärkungsfaktoren $V_\text{N}$ normiert.}
-			\label{fig:kennlinie2}		
+			\label{fig:kennlinie2}
 	\end{minipage}
-	\end{figure}		
-	
-	
-	
+	\end{figure}
+
+
+
 \clearpage
 \subsection{Bestimmung von $\text{e}_0$ mittels Stromrauschens}
 
-	Die Messwerte sind in Tabelle \ref{tab:elementarladung_messwerte} 
+	Die Messwerte sind in Tabelle \ref{tab:elementarladung_messwerte}
 	zu sehen.
 	\begin{table}[h]
 	\centering
 		\begin{tabular}{cccc}
-		\toprule 
+		\toprule
 		\midrule
 			$I_0$ in mA & $U^2_\text{a}$ in $\text{V}^2$ &
 			$\Delta U_\text{a}^2$ in $\text{V}^2$ & $V_\text{N}$ \\
 			\midrule
 			\input{tabellen/elementarladung_messwerte.tex}
-			\midrule 
+			\midrule
 			\bottomrule
 		\end{tabular}
-		\caption{Messwerte zur Bestimmung der Elementarladung 
-		and der Reinmetallkathode. Dabei ist $I_0$ der eigestellte 
+		\caption{Messwerte zur Bestimmung der Elementarladung
+		and der Reinmetallkathode. Dabei ist $I_0$ der eigestellte
 		Anodenstrom.}
 		\label{tab:elementarladung_messwerte}
 	\end{table}
-	
-	Über die Schottkybeziehung für das Schrotrauschen 
+
+	Über die Schottkybeziehung für das Schrotrauschen
 	\begin{equation}
 		I^2 = 2 \text{e}_0 I_0 \Delta \nu
-	\end{equation}		
-	ergibt sich die Elementarladung als 
+	\end{equation}
+	ergibt sich die Elementarladung als
 	\begin{equation}
 	\text{e}_0 = \frac{m}{2 \Delta \nu} \quad ,
 	\end{equation}
-	wobei $m$ die Steigung der Ausgleichsgeraden 
+	wobei $m$ die Steigung der Ausgleichsgeraden
 	\begin{equation}
 	\input{tabellen/elementarladung_gleichung.tex}
 	\end{equation}
-	darstellt. Die über das Ohmsche Gesetz und die 
-	Verstärkungsfaktoren $V_= =10$, $V_\text{V}=1000$ und 
-	$V_\text{N}$ in das Rauschstromquadrat $I^2$ umgerechneten 
-	Messwerte sowie die Ausgleichsgerade sind in Abbildung 
-	\ref{fig:elementarladung} zu sehen. Außerdem wurde das 
-	Frequenzband ($100$-$120$)kHz gewählt, sodass in dieser 
+	darstellt. Die über das Ohmsche Gesetz und die
+	Verstärkungsfaktoren $V_= =10$, $V_\text{V}=1000$ und
+	$V_\text{N}$ in das Rauschstromquadrat $I^2$ umgerechneten
+	Messwerte sowie die Ausgleichsgerade sind in Abbildung
+	\ref{fig:elementarladung} zu sehen. Außerdem wurde das
+	Frequenzband ($100$-$120$)kHz gewählt, sodass in dieser
 	Versuchsdurchführung $\nu = 20000$Hz beträgt.
-		
+
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.7]{bilder/elementarladung.pdf}
-		\caption{Darstellung der Messwerte zur Ermittlung der 
-		Elementarladung $\text{e}_0$. Die gemessene Ausgangsspannung 
+		\caption{Darstellung der Messwerte zur Ermittlung der
+		Elementarladung $\text{e}_0$. Die gemessene Ausgangsspannung
 		wurde bereits in den Rauschstrom umgerechnet.}
 		\label{fig:elementarladung}
 	\end{figure}
-	
-	Für den Wert der Elementarladung ergibt sich 
+
+	Für den Wert der Elementarladung ergibt sich
 	\begin{equation}
-	\text{e}_0 = \input{tabellen/elementarladung.tex} \times 
+	\text{e}_0 = \input{tabellen/elementarladung.tex} \times
 				10^{-19}\text{C} \quad .
 	\end{equation}
-	
+
 \clearpage
 \subsection{Frequenzspektrum einer Reinmetallkathode}
 
-	Die aufgenommenen Messwerte sind in Tabelle 
-	\ref{tab:kathode_rein} zu sehen. Es wurde bereits das 
-	entsprechende $\Delta \nu$ gemäß der beiliegenden Tabelle 
-	ausgerechnet. Eine Darstellung der Ausgangsspannung $U_a^2$ in 
-	Abhängikeit von der Rauschfrequenz $\nu$ ist in Abbildung 
+	Die aufgenommenen Messwerte sind in Tabelle
+	\ref{tab:kathode_rein} zu sehen. Es wurde bereits das
+	entsprechende $\Delta \nu$ gemäß der beiliegenden Tabelle
+	ausgerechnet. Eine Darstellung der Ausgangsspannung $U_a^2$ in
+	Abhängikeit von der Rauschfrequenz $\nu$ ist in Abbildung
 	\ref{fig:kathode_rein} zu sehen.
 	\begin{table}
 		\centering
 		\begin{tabular}{ccccc}
 		\toprule \midrule
-		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in   
+		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in
 		$\text{V}^2$& $V_\text{N}$ & $\Delta \nu$ in kHz\\
 		\midrule
 		\input{tabellen/kathode_rein.tex}
 		\midrule
 		\bottomrule
 		\end{tabular}
-		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für 
+		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für
 		die Reinmetallkathode.}
 		\label{tab:kathode_rein}
 	\end{table}
@@ -572,7 +552,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.7]{bilder/kathode_rein.pdf}
-		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in 
+		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in
 		Abhängikeit von der Rauschfrequenz $\nu$.}
 		\label{fig:kathode_rein}
 	\end{figure}
@@ -580,24 +560,24 @@
 \clearpage
 \subsection{Frequenzspektrum einer Oxydkathode}
 
-	Die aufgenommenen Messwerte sind in Tabelle 
-	\ref{tab:kathode_oxyd} zu sehen. Es wurde bereits das 
-	entsprechende $\Delta \nu$ gemäß der beiliegenden Tabelle 
-	ausgerechnet. Eine Darstellung der Ausgangsspannung $U_a^2$ in 
-	Abhängikeit von der Rauschfrequenz $\nu$ ist in Abbildung 
+	Die aufgenommenen Messwerte sind in Tabelle
+	\ref{tab:kathode_oxyd} zu sehen. Es wurde bereits das
+	entsprechende $\Delta \nu$ gemäß der beiliegenden Tabelle
+	ausgerechnet. Eine Darstellung der Ausgangsspannung $U_a^2$ in
+	Abhängikeit von der Rauschfrequenz $\nu$ ist in Abbildung
 	\ref{fig:kathode_oxyd} zu sehen.
 	\begin{table}
 		\centering
 		\begin{tabular}{ccccc}
 		\toprule \midrule
-		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in   
+		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in
 		$\text{V}^2$& $V_\text{N}$ & $\Delta \nu$ in kHz\\
 		\midrule
 		\input{tabellen/kathode_oxyd.tex}
 		\midrule
 		\bottomrule
 		\end{tabular}
-		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für 
+		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für
 		die Oxydkathode.}
 		\label{tab:kathode_oxyd}
 	\end{table}
@@ -605,24 +585,24 @@
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.7]{bilder/kathode_oxyd.pdf}
-		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in 
+		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in
 		Abhängikeit von der Rauschfrequenz $\nu$.}
 		\label{fig:kathode_oxyd}
 	\end{figure}
-	
-	Unter der Annahme, dass für große Frequenzen $\nu$ der Funkeleffekt 
-	vernachlässigbar ist, wird aus den im Plot markierten Werten der als 
-	frequenzunabhängig ("weißes Rauschen") angenommene Schrot-Anteil ermittelt. 
-	Um diesen Betrag $W_\text{Schrot}=\input{tabellen/schrotanteil.tex}\times 
-	10^{-15}$ wird der 
-	Bereich niedriger Frequenz korrigiert, bevor die Regressionsgerade berechnet 
+
+	Unter der Annahme, dass für große Frequenzen $\nu$ der Funkeleffekt
+	vernachlässigbar ist, wird aus den im Plot markierten Werten der als
+	frequenzunabhängig ("weißes Rauschen") angenommene Schrot-Anteil ermittelt.
+	Um diesen Betrag $W_\text{Schrot}=\input{tabellen/schrotanteil.tex}\times
+	10^{-15}$ wird der
+	Bereich niedriger Frequenz korrigiert, bevor die Regressionsgerade berechnet
 	werden kann.\\
-	
-	Die Ausgleichsgerade durch die ersten acht korrigierten Werte wird durch 
+
+	Die Ausgleichsgerade durch die ersten acht korrigierten Werte wird durch
 	\begin{equation}
 	\input{tabellen/kathode_oxyd_gleichung.tex}
 	\end{equation}
-	beschrieben, wobei Steigung $\alpha$ der Ausgleichsgeraden 
+	beschrieben, wobei Steigung $\alpha$ der Ausgleichsgeraden
 	\begin{equation}
 	\alpha = \input{tabellen/kathode_oxyd_exponent.tex}
 	\end{equation}

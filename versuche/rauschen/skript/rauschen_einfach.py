@@ -197,7 +197,7 @@ tab1 = lt.latextable(
     [R1, U1],
     "../tex/tabellen/rauschen_einfach1.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['g', '.3f'],
 )
 
 #Verstärkungsfaktoren rausrechnen
@@ -292,7 +292,7 @@ tab2 = lt.latextable(
     [R2, U2],
     "../tex/tabellen/rauschen_einfach2.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['.1f', '.3f'],
 )
 
 

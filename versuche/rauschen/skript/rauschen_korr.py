@@ -197,7 +197,7 @@ tab1 = lt.latextable(
     [R1, U1],
     "../tex/tabellen/rauschen_korr1.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['g', '.3f'],
 )
 
 #Verstärkungsfaktoren rausrechnen
@@ -232,7 +232,7 @@ lin_reg1 = ev.tex_linreg(
         unit = [r"\volt^2\per\ohm", r"\volt^2"]
 )
 
-ev.write('../tex/tabellen/rauschen_korr_reg1.tex', lin_reg1) 			 
+ev.write('../tex/tabellen/rauschen_korr_reg1.tex', lin_reg1)
 
 
 #steigung
@@ -297,7 +297,7 @@ tab2 = lt.latextable(
     [R2, U2],
     "../tex/tabellen/rauschen_korr2.tex",
     alignment = 'CC',
-    form = '.3f',
+    form =['.1f', '.3f'],
 )
 
 

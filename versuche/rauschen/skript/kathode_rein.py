@@ -180,8 +180,8 @@ f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall = np.loadtxt(
 t = lt.latextable(
     [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall],
     "../tex/tabellen/kathode_rein.tex",
-    alignment = 'CCCCC',
-    form = '.3f',
+    alignment='CCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f'],
 )
 
 

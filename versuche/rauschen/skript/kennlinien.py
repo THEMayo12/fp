@@ -179,9 +179,9 @@ U_anode1, U_a1, delta1, V_N1 = np.loadtxt("../messwerte/kennlinie_8.txt", unpack
 # LateX-Tabelle erzeugen
 tab1 = lt.latextable(
     [U_anode1, U_a1, V_N1],
-    "../tex/tabellen/kennl1inie1.tex",
+    "../tex/tabellen/kennlinie1.tex",
     alignment = 'CCC',
-    form = '.3f',
+    form = ['.1f', '.3f', 'g'],
 )
 
 fig1 = plt.figure()
@@ -212,7 +212,7 @@ tab2 = lt.latextable(
     [U_anode2, U_a2, V_N2],
     "../tex/tabellen/kennlinie2.tex",
     alignment = 'CCC',
-    form = '.3f',
+    form = ['.1f', '.3f', 'g'],
 )
 
 fig2 = plt.figure()

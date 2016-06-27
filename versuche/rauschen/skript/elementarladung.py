@@ -176,7 +176,7 @@ t = lt.latextable(
     [I, U_a, delta, V_N],
     "../tex/tabellen/elementarladung_messwerte.tex",
     alignment = 'CCCC',
-    form = '.3f',
+    form =['.1f', '.2f', '.2f', 'g'],
 )
 
 

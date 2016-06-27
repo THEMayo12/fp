@@ -4,3 +4,102 @@
 % ==================================================
 
 \section{Durchführung}
+
+\subsection{Einfaches Spektrometer}
+\label{sub:einfaches_spektrometer}
+
+\subsubsection{Eigenrauschen des Rauschspektrometers}
+\label{ssub:eigenrauschen_des_rauschspektrometers}
+
+Zur Bestimmung des Eigenrauschens des einfachen Rauschspektrometers wird die
+Verstärkerschaltung aus Abbildung~\ref{fig:spektrometer} verwandt, wobei der
+Widerstand durch einen Kurzschluss ersetzt wird.
+Der Bandpass wird dabei so eingestellt, dass nur Frequenzen zwischen
+\SI{20}{\kilo\hertz}und \SI{30}{\kilo\hertz} durchgelassen
+werden.  Die Ausgangsspannung besteht nun lediglich aus dem Rauschen der
+Verstärkerschaltung, das bei allen anderen Messungen den Untergrund darstellt.
+
+\subsubsection{Durchlasskurve des Bandfilters}
+\label{ssub:durchlasskurve_des_bandfilters}
+
+Die Durchlasskurve des Bandfilters wird mit dem Aufbau aus
+Abbildung~\ref{fig:spektrometer} vermessen.
+Hierbei wird anstelle des Widerstands ein Frequenzgenerator angeschlossen.
+Der Bandpass wird hierbei aus der vorigen Messung nicht verstellt.
+Die Frequenzen werden nun logarithmisch über drei Zehnerpotenzen variiert.
+Die Ausgangsspannungen und die Verstärkungen des Nachverstärkers werden notiert.
+
+\subsubsection{Rauschmessung des Widerstands}
+\label{ssub:rauschmessung_des_widerstands}
+
+Es wird nun die Ausgangsspannung in Abhängigkeit des Widerstandes gemessen und
+die jeweilige Nachverstärkung notiert.
+Hierzu werden zwei Potentiometer verwandt mit den Bereichen
+\SIrange[range-phrase=--, range-units=single]{0}{1000}{\ohm}
+und
+\SIrange[range-phrase=--, range-units=single]{1}{10}{\kilo\ohm}.
+
+\subsection{Korrelatorschaltung}
+\label{sub:korrelatorschaltung}
+
+\subsubsection{Eigenrauschen des Spektrometers}
+\label{ssub:eigenrauschen_des_spektrometers}
+
+Es wird bei der Korrelatorschaltung angenommen, dass das Eigenrauschen zu
+vernachlässigen ist, weshalb dieses folglich nicht bestimmt wird.
+
+\subsubsection{Durchlasskurve des Selektivverstärkers}
+\label{ssub:durchlasskurve_des_selektivverstärkers}
+
+Zur Bestimmung der Durchlasskurve des Selektivverstärkers wird die Schaltung
+aus Abbildung~\ref{fig:korrelator} verwandt, wobei anstelle des Widerstands
+wieder ein Frequenzgenerator angeschlossen wird.
+Anschließend wird die Ausgangsspannung zu Frequenzen zwischen
+\SIrange{3}{60}{\kilo\hertz} vermessen.
+
+\subsubsection{Rauschmessung des Widerstands mit der Korrelatorschaltung}
+\label{ssub:rauschmessung_des_widerstands_mit_der_korrelatorschaltung}
+
+Die Rauschmessung erfolgt analog zu
+Abschnitt~\ref{ssub:rauschmessung_des_widerstands}, wobei jedoch
+Schaltung~\ref{fig:korrelator} verwandt wird.
+
+\subsection{Vermessung der Hochvakuumdiode mit Reinmetallkathode}
+\label{sub:vermessung_der_hochvakuumdiode_mit_reinmetallkathode}
+
+\subsubsection{Kennlinie der Diode}
+\label{ssub:kennlinie_der_diode}
+
+Zur Vermessung der Kennlinie wird die Schaltung aus Abbildung~\ref{fig:schrot}
+verwandt. Hierbei wird nun die Heizspannung varriert und anschließend die
+Ausgangsspannung in Abhängigkeit der Anodenspannung gemessen.
+
+\subsubsection{Messung zur Bestimmung der Elementarladung}
+\label{ssub:messung_zur_bestimmung_der_elementarladung}
+
+Hierbei wird die Anodenstrom auf \SI{130}{\volt} eingestellt und die
+Ausgangsspannung in Abhängigkeit des Anodenstroms gemessen.
+Für diese Messung wird der Bandpassfilter mit $\Delta\nu = \SI{20}{\kilo\hertz}$
+in dem Bereich \SIrange{100}{120}{\kilo\hertz} benutzt. Zudem werden die
+Nachverstärkungen notiert.
+
+\subsubsection{Messung des Frequenzspektrums}
+\label{ssub:messung_des_frequenzspektrums}
+
+Das Frequenzspektrum wird bei einem konstanten Heizstrom von \SI{0.8}{\ampere}
+einer Anodenspannung von \SI{130}{\volt} und einem Anodenstrom von
+\SI{1}{\milli\ampere} aufgenommen. Hierbei arbeitet die Diode im
+Sättigungsbetrieb.
+Der Innenwiderstand der Diode beträgt hier \SI{4680}{\ohm}.
+Bei der Messung werden die Frequenzen über vier Zehnerpotenzen
+\SIrange{0.010}{460}{\kilo\hertz} variiert. Bei Frequenzen von
+\SIrange{100}{460}{\kilo\hertz} wird ein Bandpassfilter verwandt und sonst der
+Selektivverstärker. Es werden die Ausgangsspannungen und die Nachverstärkungen
+notiert.
+
+\subsection{Vermessung der Hochvakuumdiode mit Oxydkathode}
+\label{sub:vermessung_der_hochvakuumdiode_mit_oxydkathode}
+
+Die Messung wird hier analog zu der in
+Abschnitt~\ref{ssub:messung_des_frequenzspektrums} durchgeführt.
+Der Innenwiderstand beträgt hier \SI{2200}{\ohm}.
