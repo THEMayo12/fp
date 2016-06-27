@@ -176,13 +176,6 @@ f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall = np.loadtxt(
     unpack=True
 )
 
-# LateX-Tabelle erzeugen
-t = lt.latextable(
-    [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall],
-    "../tex/tabellen/kathode_rein.tex",
-    alignment='CCCCC',
-    form=['.3f', '.3f', '.3f', 'g', '.3f'],
-)
 
 
 
@@ -193,6 +186,17 @@ def W(U_a, nu, R):
     return U_a / (R**2 * nu)
 
 U_a_norm_metall = U_a_metall / V_N_metall**2
+
+
+# LateX-Tabelle erzeugen
+t = lt.latextable(
+    [f_metall, U_a_metall, delta_U, V_N_metall, delta_f_metall, np.log(f_metall), np.log(W(U_a_norm_metall, delta_f_metall, R)),np.log(W(delta_U, delta_f_metall, R))],
+    "../tex/tabellen/kathode_rein.tex",
+    alignment='CCCCCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f'],
+)
+
+
 
 fig_metall = plt.figure()
 ax = fig_metall.add_subplot(111)

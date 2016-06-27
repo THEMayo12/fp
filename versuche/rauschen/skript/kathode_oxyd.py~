@@ -172,7 +172,7 @@ fig1.savefig('file.pdf')
 # ====[ Oxyd ]==============================================
 
 
-f_ox, U_a_ox, delta_f, V_N_ox, delta_f = np.loadtxt(
+f_ox, U_a_ox, delta_U, V_N_ox, delta_f = np.loadtxt(
     "../messwerte/oxyd_kathode.txt",
     unpack=True
 )
@@ -184,7 +184,7 @@ t = lt.latextable(
     [f_ox, U_a_ox, delta_f, V_N_ox, delta_f],
     "../tex/tabellen/kathode_oxyd.tex",
     alignment = 'CCCCC',
-    form = '.3f',
+    form = ['.3f','.3f','.3f','g', '.3f']
 )
 
 
@@ -199,6 +199,19 @@ def W(U_a, nu, R):
     return U_a / (R**2 * nu)
 
 U_a_norm = U_a_ox / V_N_ox**2
+
+# LateX-Tabelle erzeugen
+t = lt.latextable(
+    [f_ox, U_a_ox, delta_U, V_N_ox, delta_f, np.log(f_ox), np.log(W(U_a_norm, delta_f, R)),np.log(W(delta_U, delta_f, R))],
+    "../tex/tabellen/kathode_oxyd.tex",
+    alignment='CCCCCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f'],
+)
+
+
+
+
+
 
 
 W_norm =  W(U_a_norm, delta_f, R)
@@ -221,7 +234,7 @@ std = ev.get_std(cov)
 
 # latex-Gleichung der linearen Regression
 lin_reg = ev.tex_linreg(
-        r"\ln W(\ln\nu)",
+        r" ",
         val,
         std,
 #        unit = ["\second\per\meter", "\meter"]
@@ -254,7 +267,7 @@ ax = fig_ox.add_subplot(111)
 #ax.set_yscale('log')
 
 
-ax.plot(np.log(f_ox[-8:]), (G(np.log(f_ox[-8:]), val[0], val[1] )-0.8 ), label="Fit")
+ax.plot(np.log(f_ox[-8:]), (G(np.log(f_ox[-8:]), val[0], val[1] )-0.7 ), label="Fit")
 
 
 

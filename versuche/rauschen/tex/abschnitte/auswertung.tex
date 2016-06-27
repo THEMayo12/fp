@@ -39,11 +39,10 @@
 
 		\begin{table}[h]
 		\centering
-			\begin{tabular}{cccc}
+			\begin{tabular}{ccc|ccc}
 				\toprule \midrule
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &$\nu \text{ in} \text{
-				kHz}$ & $U^2_\text{a}$ in $\text{V}^2$
-				\\
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ & $\beta$ &
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ & $\beta$ \\
 				\midrule
 				\input{tabellen/eichung_einfach.tex}
 				\midrule \bottomrule
@@ -92,7 +91,7 @@
 		steht $\nu_<$ für die Frequenzen unterhalb und $\nu_>$ für die
 		Frequenzen oberhalb des Maximums. Als Mittelwert ergibt sich
 		\begin{equation}
-			A =  \input{tabellen/eichfaktor_einfach.tex}   \quad .
+			A =  \SI{(\input{tabellen/eichfaktor_einfach.tex})}{\kilo\hertz}  \quad .
 		\end{equation}
 
 
@@ -102,74 +101,59 @@
 		und \ref{tab:rauschen_einfach2} sowie den Abbildungen
 		\ref{fig:rauschen_einfach1} und \ref{fig:rauschen_einfach2} zu sehen.
 
-
-	\begin{figure}[htbp]
-
-	\begin{minipage}{0.3\textwidth}
-
+\begin{table}[h]
 			\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{ccc}
 				\toprule \midrule
-				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in $\Omega$ & $U_\text{a,gemessen}^2$ in $V^2$ 
+				& $U_\text{a}^2 \times 10^{-9}$ in $V^2$ \\
 				\midrule
 				\input{tabellen/rauschen_einfach1.tex}
 				\midrule \bottomrule
 			\end{tabular}
 			\caption{Messwerte zum Spannungsrauschen am einfachen
-			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
+			Rauschspektrometer für $R_\text{max}=1000 \Omega$. 
+			Dabei wurde $U_\text{a,gemessen}^2$ nach den Signalverstärkern gemessen, während 
+			$U_\text{a}^2$ um den Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2$ korrigiert 
+			wurde, mit $V_= 
+			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$.}
 			\label{tab:rauschen_einfach1}
-
-	\end{minipage}
-	% Auffüllen des Zwischenraums
-	\hfill
-	% minipage mit Grafik
-	\begin{minipage}{0.7\textwidth}
-
+\end{table}
+\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_einfach1.pdf}
 			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
-			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf
-			eine Verstärkung von
-			$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
+			Regelbaren Widerstand bis $1000\Omega$.}
 			\label{fig:rauschen_einfach1}
-
-	\end{minipage}
-	% \caption{noch eine Caption}
 	\end{figure}
 
 
 
 
-		\begin{figure}[htbp]
-
-	\begin{minipage}{0.3\textwidth}
-
+	\begin{table}[h]
 			\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{ccc}
 				\toprule \midrule
-				$R$ in \si{\kilo\ohm} & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in \si{\kilo\ohm} & $U_\text{a,gemessen}^2$ in $V^2$ 
+				& $U_\text{a}^2 \times 10^{-9}$ in $V^2$\\
 				\midrule
 				\input{tabellen/rauschen_einfach2.tex}
 				\midrule \bottomrule
 			\end{tabular}
 			\caption{Messwerte zum Spannungsrauschen am einfachen
-			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
+			Rauschspektrometer für $R_\text{max}=100 \text{ k}\Omega$. 
+			Dabei wurde $U_\text{a,gemessen}^2$ nach den Signalverstärkern gemessen, während 
+			$U_\text{a}^2$ um den Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2$ korrigiert 
+			wurde, mit $V_= 
+			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$.}
 			\label{tab:rauschen_einfach2}
-
-	\end{minipage}
-	% Auffüllen des Zwischenraums
-	\hfill
-	% minipage mit Grafik
-	\begin{minipage}{0.7\textwidth}
-
+	\end{table}
+	\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.7]{bilder/rauschen_einfach2.pdf}
 			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
-			Regelbaren Widerstand bis $100\text{k}\Omega$. Die Werte wurden bereits auf eine
-			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{N}=200$ und $V_\text{V}=1000$. }
+			Regelbaren Widerstand bis $100\text{k}\Omega$.}
 			\label{fig:rauschen_einfach2}
-
-	\end{minipage}
 
 	\end{figure}
 
@@ -194,11 +178,14 @@
 		\end{equation}
 		berechnet werden kann. Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
-          k_\text{B}^{1000\Omega}			&=  \input{tabellen/k_einfach1.tex}\times 10^{-23}\frac{\text{J}}
+          k_\text{B}^{1000\Omega}			&=  (\input{tabellen/k_einfach1.tex})\times 10^{-23}\frac{\text{J}}
 																			{\text{K}}  \\
-                                                                            k_\text{B}^{100\text{k}\Omega}	&=  \input{tabellen/k_einfach2.tex}\times 10^{-23}\frac{\text{J}}
+                                                                            k_\text{B}^{100\text{k}\Omega}	&=  (\input{tabellen/k_einfach2.tex})\times 10^{-23}\frac{\text{J}}
 																			{\text{K}} \quad .
 		\end{align}
+		Der Fehler wurde dabei mit der Gaußschen Fehlerfortpflanzung \eqref{eq:gauss} 
+		berechnet. Die fehlerbehafteten Größen sind $A$ und $m$.
+		
 		Die Korrektur
 		\begin{equation}
 		\frac{1}{1+2 \uppi \Re(Z) \bar{\nu} C} U_a^2 = U_{a\text{, effektiv}}^2
@@ -225,7 +212,7 @@
 		\Delta f(x_1,\ldots x_N)
 		=\sqrt{ \sum_{n=1}^N \left(\left.\frac{\partial f}{\partial x_n}\right|
 		_{(\bar{x}_1,\ldots,\bar{x}_n)}\right)^2
-		\Delta x_n ^2 }
+		\Delta x_n ^2 } \label{eq:gauss}
 		\end{equation}
 		berechnet, wobei $f$ eine beliebige Größe ist, die von den unkorrelierten
 		Messgrößen $x_n$ abhängt. Dabei  stellt $\bar{x}_n$ den Mittelwert und
@@ -240,8 +227,10 @@
 		bei $R\approx 500\Omega$ berechnet. Mit den bereits berechneten Größen und
 		dem Wertepaar $(500\Omega,1.083 \text{V}^2)$ ergibt sich
 		\begin{equation}
-			F = \input{tabellen/Rauschzahl.tex} \times 10^{3}
+			F = \input{tabellen/Rauschzahl.tex}
 		\end{equation}
+		Dabei wurden $k_\text{B}^{1000\Omega}$ und $A$ als fehlerbehaftete Größen 
+		verstanden, und der Fehler wurde mittels \eqref{eq:gauss} berechnet.
 
 
 
@@ -282,11 +271,10 @@
 
 		\begin{table}[h]
 		\centering
-			\begin{tabular}{cccc}
+			\begin{tabular}{ccc|ccc}
 				\toprule \midrule
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ &
-				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$
-				\\
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ & $\beta$ &
+				$\nu \text{ in} \text{ kHz}$ & $U^2_\text{a}$ in $\text{V}^2$ & $\beta$ \\
 				\midrule
 				\input{tabellen/eichung_korr.tex}
 				\midrule \bottomrule
@@ -317,7 +305,7 @@
 
 		Der Eichfaktor ergibt sich als
 		\begin{equation}
-			A =  \input{tabellen/eichfaktor_korr.tex}  \quad .
+			A =  \SI{(\input{tabellen/eichfaktor_korr.tex})}{\kilo\hertz}  \quad .
 		\end{equation}
 
 
@@ -328,49 +316,55 @@
 		\ref{fig:rauschen_korr1} und \ref{fig:rauschen_korr2} zu sehen.
 
 
-	\begin{figure}[htbp]
-	\begin{minipage}{0.3\textwidth}
+		\begin{table}[h]
 			\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{ccc}
 				\toprule \midrule
-				$R$ in $\Omega$ & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in $\Omega$ & $U_\text{a,gemessen}^2$ in $V^2$ 
+				& $U_\text{a}^2 \times 10^{-11}$ in $V^2$\\
 				\midrule
 				\input{tabellen/rauschen_korr1.tex}
 				\midrule \bottomrule
 			\end{tabular}
 			\caption{Messwerte zum Spannungsrauschen am korrelierten
-			Rauschspektrometer vor der Normierung. $R_\text{max}=1000 \Omega$.}
+			Rauschspektrometer mit $R_\text{max}=1000 \Omega$. Dabei sind 
+			$U_\text{a,gemessen}^2$ die gemessenen Werte, während $U_\text{a}^2$ um den 
+			Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2 V_\text{selektiv}$ korrigiert. 
+			Mit $V_= =10$, $V_\text{N}=20$($R\geq 750\Omega$) bzw. $V_\text{N}=50$
+			($R<750\Omega$), $V_\text{selektiv}=10$ und $V_\text{V}=1000$. }
 			\label{tab:rauschen_korr1}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.6\textwidth}
+	\end{table}
+	
+	\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.6]{bilder/rauschen_korr1.pdf}
 			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
 			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von
-			$1$ normiert, mit $V_= =10$, $V_\text{N}=20 bzw. V_\text{N}=50$,
-			$V_\text{selektiv}=10$ und $V_\text{V}=1000$. }
+			$1$ normiert, mit}
 			\label{fig:rauschen_korr1}
-	\end{minipage}
 	\end{figure}
 
 
-    \begin{figure}[htbp]
-	\begin{minipage}{0.3\textwidth}
+    
+	\begin{table}[h]
 			\centering
-			\begin{tabular}{cc}
+			\begin{tabular}{ccc}
 				\toprule \midrule
-				$R$ in \si{\kilo\ohm} & $U_\text{a}^2$ in $V^2$ \\
+				$R$ in \si{\kilo\ohm} & $U_\text{a,gemessen}^2$ in $V^2$ 
+				&$U_\text{a}^2 \times 10^{-12}$ in $V^2$ \\
 				\midrule
 				\input{tabellen/rauschen_korr2.tex}
 				\midrule \bottomrule
 			\end{tabular}
 			\caption{Messwerte zum Spannungsrauschen am korrelierten
-			Rauschspektrometer. $R_\text{max}=100 \text{k}\Omega$.}
+			Rauschspektrometer mit $R_\text{max}=100 \text{ k}\Omega$. Dabei sind 
+			$U_\text{a,gemessen}^2$ die gemessenen Werte, während $U_\text{a}^2$ um den 
+			Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2 V_\text{selektiv}$ korrigiert. 
+			Mit $V_= =10$, $V_\text{N}=200$, $V_\text{selektiv}=10$ und $V_\text{V}=1000$.}
 			\label{tab:rauschen_korr2}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.6\textwidth}
+	\end{table}
+
+	\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.6]{bilder/rauschen_korr2.pdf}
 			\caption{Spannungsrauschkurve am korrelierten Rauschspektrometer für einen
@@ -378,8 +372,8 @@
 			Verstärkung von 	$1$ normiert, mit $V_= =10$, $V_\text{selektiv}=10$, $V_\text{N}=200$ und
 			$V_\text{V}=1000$. }
 			\label{fig:rauschen_korr2}
-	\end{minipage}
 	\end{figure}
+
 		Die Ausgleichsgeraden sind durch
 		\begin{equation}
 			\input{tabellen/rauschen_korr_reg1.tex}
@@ -395,12 +389,12 @@
 		\end{equation}
  		Für eine Raumtemperatur von $300$K folgt
 		\begin{align}
-		k_\text{B}^{1000\Omega}			=  \input{tabellen/k_korr1.tex} \times 10^{-20}\frac{\text{J}}
+		k_\text{B}^{1000\Omega}			=  (\input{tabellen/k_korr1.tex}) \times 10^{-23}\frac{\text{J}}
 																			{\text{K}} \\
-		k_\text{B}^{100\text{k}\Omega}	=  \input{tabellen/k_korr2.tex} \times 10^{-23}\frac{\text{J}}
+		k_\text{B}^{100\text{k}\Omega}	=  (\input{tabellen/k_korr2.tex}) \times 10^{-23}\frac{\text{J}}
 																			{\text{K}}
 		\end{align}
-
+		Die Fehlerrechnung folgt analog zum einfachen Rauschspektrometer.
 
 
 
@@ -520,9 +514,16 @@
 
 	Für den Wert der Elementarladung ergibt sich
 	\begin{equation}
-	\text{e}_0 = \input{tabellen/elementarladung.tex} \times
+	\text{e}_0 = (\input{tabellen/elementarladung.tex}) \times
 				10^{-19}\text{C} \quad .
 	\end{equation}
+	Nach der Gaußschen Fehlerfortpflanzung wurde wieder gemäß \eqref{eq:gauss} mit der 
+	fehlerbehafteten Größe $m$ durchgeführt.
+	\begin{equation}
+	\Delta \text{e}_0 = \sqrt{\left( \frac{\Delta m}{2 \Delta \nu} \right)^2}
+	\end{equation}
+	wobei $\Delta m$ der Fehler der Regressionsgeradensteigung ist und 
+	$\Delta \nu=20\text{ kHz}$ das Frequenzband darstellt. 
 
 \clearpage
 \subsection{Frequenzspektrum einer Reinmetallkathode}
@@ -533,27 +534,35 @@
 	ausgerechnet. Eine Darstellung der Ausgangsspannung $U_a^2$ in
 	Abhängikeit von der Rauschfrequenz $\nu$ ist in Abbildung
 	\ref{fig:kathode_rein} zu sehen.
-	\begin{table}
+	\begin{table}[h]
 		\centering
-		\begin{tabular}{ccccc}
+		\begin{tabular}{cccccccc}
 		\toprule \midrule
-		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in
-		$\text{V}^2$& $V_\text{N}$ & $\Delta \nu$ in kHz\\
+		$\nu$ in kHz	 & $U_a^2$ in $\text{V}^2$	& $\Delta U_a^2$ in $\text{V}^2$ & 
+		$V_\text{N}$	 & $\Delta \nu$ in kHz 		& $\ln \{\nu\}$				     &	
+		$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
 		\midrule
 		\input{tabellen/kathode_rein.tex}
 		\midrule
 		\bottomrule
 		\end{tabular}
-		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für
-		die Reinmetallkathode.}
+		\caption{Messwerte für
+		die Reinmetallkathode. Dabei ist $\nu$ die Frequenz und $\Delta \nu$ die 
+		Durchlassbreite. $U_\text{a}$ ist die gemessene Ausgangsspannung, mit der 
+		(vernachlässigbar kleinen) Ungenauigkeit $\Delta U_\text{a}$. $V_\text{N}$ 
+		ist der Nachverstärkungsfaktor. $W$ ist das Frequenzspektrum 
+		$W(\nu)=U_\text{a}(\nu) R^{-2} \nu^{-1}$. Es bedeutet $\{\nu \}$ den 
+		Zahlenwert von $\nu$ in der Einheit kHz und $\ln\{W\}$ den Zahlenwert 
+		von $W$ in den Einheiten $\text{V}^2$ und kHz.}
 		\label{tab:kathode_rein}
 	\end{table}
 
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.7]{bilder/kathode_rein.pdf}
-		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in
-		Abhängikeit von der Rauschfrequenz $\nu$.}
+		\caption{Darstellung des Frequenzspektrums $\ln\{W(\nu)\}$ in
+		Abhängikeit von der Rauschfrequenz $\ln\{\nu\}$. Dabei sind $\{ . \}$ wieder 
+		die Zahlenwerte in den Einheiten $\text{V}^2$ und kHz.}
 		\label{fig:kathode_rein}
 	\end{figure}
 
@@ -568,25 +577,33 @@
 	\ref{fig:kathode_oxyd} zu sehen.
 	\begin{table}
 		\centering
-		\begin{tabular}{ccccc}
+		\begin{tabular}{cccccccc}
 		\toprule \midrule
-		$\nu$ in kHz & $U_a^2$ in $\text{V}^2$& $\Delta U_a^2$ in
-		$\text{V}^2$& $V_\text{N}$ & $\Delta \nu$ in kHz\\
+		$\nu$ in kHz	 & $U_a^2$ in $\text{V}^2$	& $\Delta U_a^2$ in $\text{V}^2$ & 
+		$V_\text{N}$	 & $\Delta \nu$ in kHz 		& $\ln \{\nu\}$				     &	
+		$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
 		\midrule
 		\input{tabellen/kathode_oxyd.tex}
 		\midrule
 		\bottomrule
 		\end{tabular}
-		\caption{Messwerte und Durchlassbreiten $\Delta \nu$ für
-		die Oxydkathode.}
+		\caption{Messwerte für
+		die Oxydkathode. Dabei ist $\nu$ die Frequenz und $\Delta \nu$ die 
+		Durchlassbreite. $U_\text{a}$ ist die gemessene Ausgangsspannung, mit der 
+		(vernachlässigbar kleinen) Ungenauigkeit $\Delta U_\text{a}$. $V_\text{N}$ 
+		ist der Nachverstärkungsfaktor. $W$ ist das Frequenzspektrum 
+		$W(\nu)=U_\text{a}(\nu) R^{-2} \nu^{-1}$. Es bedeutet $\{\nu \}$ den 
+		Zahlenwert von $\nu$ in der Einheit kHz und $\ln\{W\}$ den Zahlenwert 
+		von $W$ in den Einheiten $\text{V}^2$ und kHz.}
 		\label{tab:kathode_oxyd}
 	\end{table}
 
 	\begin{figure}
 		\centering
 		\includegraphics[scale=0.7]{bilder/kathode_oxyd.pdf}
-		\caption{Darstellung des Frequenzspektrums $W(\nu)$ in
-		Abhängikeit von der Rauschfrequenz $\nu$.}
+		\caption{Darstellung des Frequenzspektrums $\ln\{W(\nu)\}$ in
+		Abhängikeit von der Rauschfrequenz $\ln\{\nu\}$. Dabei sind $\{ . \}$ wieder 
+		die Zahlenwerte in den Einheiten $\text{V}^2$ und kHz.}
 		\label{fig:kathode_oxyd}
 	\end{figure}
 
@@ -602,8 +619,12 @@
 	\begin{equation}
 	\input{tabellen/kathode_oxyd_gleichung.tex}
 	\end{equation}
-	beschrieben, wobei Steigung $\alpha$ der Ausgleichsgeraden
+	beschrieben. Dabei ist stellt $G$ die Ausgleichgerade für $\ln\{W\}$ in Abhängigkeit 
+	von $f=\ln\{\nu\}$ dar, wieder in Einheiten V und kHz. Die Wahl der Einheiten im 
+	Logarithmus ist dabei irrelevant, da dadurch der y-Achsenabschnitt, aber nicht 
+	die Steigung beeinflusst wird. Die Steigung $\alpha$ der 
+	Ausgleichsgeraden
 	\begin{equation}
 	\alpha = \input{tabellen/kathode_oxyd_exponent.tex}
 	\end{equation}
-	den Koeffizienten des Funkelrauschens darstellt.
+	stellt dann den Koeffizienten des Funkelrauschens dar.

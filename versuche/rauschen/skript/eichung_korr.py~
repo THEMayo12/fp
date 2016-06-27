@@ -178,10 +178,10 @@ V_N_eigen, U_a_eigen = np.loadtxt("../messwerte/kurzschluss_selektiv.txt", unpac
 
 
 tab_eigenrauschen_einfach = lt.latextable(
-    [V_N_eigen, U_a_eigen], 
+    [V_N_eigen, U_a_eigen],
     "../tex/tabellen/eichung_eigenrauschen_korr.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['g', '.3f'],
 )
 
 
@@ -263,13 +263,13 @@ J_ober=0
 J_unter=0
 
 for i in range (1,len(f_eich)):
-	if f_eich[i]<=24:
+	if f_eich[i]<=26:
 		J_ober += U_a_eich[i]* (f_eich[i]-f_eich[i-1])
 	else:
 		J_ober += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
 
 for i in range (1,len(f_eich)):
-	if f_eich[i]<=24:
+	if f_eich[i]<=26:
 		J_unter += U_a_eich[i-1]* (f_eich[i]-f_eich[i-1])
 	else:
 		J_unter += U_a_eich[i]* (f_eich[i]-f_eich[i-1])

@@ -172,7 +172,7 @@ fig1.savefig('file.pdf')
 # ====[ Oxyd ]==============================================
 
 
-f_ox, U_a_ox, delta_f, V_N_ox, delta_f = np.loadtxt(
+f_ox, U_a_ox, delta_U, V_N_ox, delta_f = np.loadtxt(
     "../messwerte/oxyd_kathode.txt",
     unpack=True
 )
@@ -200,6 +200,19 @@ def W(U_a, nu, R):
 
 U_a_norm = U_a_ox / V_N_ox**2
 
+# LateX-Tabelle erzeugen
+t = lt.latextable(
+    [f_ox, U_a_ox, delta_U, V_N_ox, delta_f, np.log(f_ox), np.log(W(U_a_norm, delta_f, R)),np.log(W(delta_U, delta_f, R))],
+    "../tex/tabellen/kathode_oxyd.tex",
+    alignment='CCCCCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f'],
+)
+
+
+
+
+
+
 
 W_norm =  W(U_a_norm, delta_f, R)
 
@@ -221,7 +234,7 @@ std = ev.get_std(cov)
 
 # latex-Gleichung der linearen Regression
 lin_reg = ev.tex_linreg(
-        r"\ln W(\ln\nu)",
+        r"G(f)",
         val,
         std,
 #        unit = ["\second\per\meter", "\meter"]

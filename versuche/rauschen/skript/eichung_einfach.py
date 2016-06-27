@@ -202,16 +202,7 @@ U_a_eigen = U_a_eigen/(10.*(1000.*V_N_eigen)**2)
 # 	Eichung
 # =========================================================
 
-f_eich, U_a_eich = np.loadtxt("../messwerte/eichung.txt", unpack=True)
-
-tab_einfach = lt.latextable(
-    [f_eich, U_a_eich],
-    "../tex/tabellen/eichung_einfach.tex",
-    alignment = 'CC',
-    form = '.3f',
-    split = 2
-)
-
+f_eich, U_a_eich_0 = np.loadtxt("../messwerte/eichung.txt", unpack=True)
 
 
 
@@ -223,7 +214,17 @@ V_nach = 20.
 
 v = V_gleich * (V_vor * V_nach)**2 #Verstärkungsfaktor
 
-U_a_eich = U_a_eich/(v*U_ein**2) - U_a_eigen[4]/(U_ein**2) #korriegierte Messwerte
+U_a_eich = U_a_eich_0/(v*U_ein**2) - U_a_eigen[4]/(U_ein**2) #korriegierte Messwerte
+
+
+tab_einfach = lt.latextable(
+    [f_eich, U_a_eich_0, U_a_eich],
+    "../tex/tabellen/eichung_einfach.tex",
+    alignment = 'CCC',
+    form = '.3f',
+    split = 2
+)
+
 
 
 

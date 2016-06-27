@@ -178,10 +178,10 @@ V_N_eigen, U_a_eigen = np.loadtxt("../messwerte/kurzschluss.txt", unpack=True)
 
 
 tab_eigenrauschen_einfach = lt.latextable(
-    [V_N_eigen, U_a_eigen], 
+    [V_N_eigen, U_a_eigen],
     "../tex/tabellen/eichung_eigenrauschen_einfach.tex",
     alignment = 'CC',
-    form = '.3f',
+    form = ['g', '.1f'],
 )
 
 
@@ -256,7 +256,7 @@ fig_eich.savefig("../tex/bilder/eichung_einfach.pdf")
 
 
 #---Integration--->
-#einfache Trapezintegration
+#ober/untersummenintegration und mittelwert
 
 J_ober=0
 J_unter=0

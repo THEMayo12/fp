@@ -191,26 +191,28 @@ nu_mittel =25000 #Hz
 #     Rauschen R_1000
 #=========================================================
 
-R1, U1 = np.loadtxt("../messwerte/R_1000_sel.txt", unpack=True)
+R1, U1_mess = np.loadtxt("../messwerte/R_1000_sel.txt", unpack=True)
 
-tab1 = lt.latextable(
-    [R1, U1],
-    "../tex/tabellen/rauschen_korr1.tex",
-    alignment = 'CC',
-    form = ['g', '.3f'],
-)
 
 #Verstärkungsfaktoren rausrechnen
 v11 = 10.*(1000.*10.*50.)**2 #Verstärkungsfaktor
 v12 = 10.*(1000.*10.*20.)**2 #Verstärkungsfaktor
 
+U1 = np.array(U1_mess)
+
 for i in range(0,len(U1)):
 	if i<=(len(U1)-6):
-		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1[i])/v11-U_a_eigen[3]
+		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1_mess[i])/v11-U_a_eigen[3]
 	else:
-		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1[i])/v12-U_a_eigen[3]
+		U1[i]=(1./(1.+2.*const.pi*R1[i]*nu_mittel*C_eigen)*U1_mess[i])/v12-U_a_eigen[3]
 
 
+tab1 = lt.latextable(
+    [R1, U1_mess, U1*10**11],
+    "../tex/tabellen/rauschen_korr1.tex",
+    alignment = 'CCC',
+    form = ['g', '.3f', '.5f'],
+)
 
 
 
@@ -268,13 +270,14 @@ ax.plot(
     marker='o',
     label='nicht im Fit'
 )
+ax.ticklabel_format(useOffset = round(val1[1], 5), axis = "y")
 
 lim = ax.get_xlim()
 x = np.linspace(lim[0], lim[1], 1000)
-ax.plot(x, G(x, val1[0], val1[1]), label="Fit")
+ax.plot(x, G(x, val1[0], val1[1]), label=r"$G_1$")
 
 ax.set_xlabel(r'$R$ in $\si{\ohm}$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax.set_ylabel(r'$U_a^2$ in $\si{\volt}^2$')
 
 ax.legend(loc='best')
 ax = ev.plot_layout(ax)
@@ -291,21 +294,21 @@ fig1.savefig('../tex/bilder/rauschen_korr1.pdf')
 #     Rauschen R_100k
 #=========================================================
 
-R2, U2 = np.loadtxt("../messwerte/R_100k_sel.txt", unpack=True)
+R2, U2_mess = np.loadtxt("../messwerte/R_100k_sel.txt", unpack=True)
 
-tab2 = lt.latextable(
-    [R2, U2],
-    "../tex/tabellen/rauschen_korr2.tex",
-    alignment = 'CC',
-    form =['.1f', '.3f'],
-)
 
 
 #Verstärkungsfaktoren rausrechnen
 v2 = 10.*(10*1000.*20.)**2 #Verstärkungsfaktor
-U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2)/v2-U_a_eigen[4]
+U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2_mess)/v2-U_a_eigen[4]
 
 
+tab2 = lt.latextable(
+    [R2, U2_mess, U2*10**12],
+    "../tex/tabellen/rauschen_korr2.tex",
+    alignment = 'CCC',
+    form =['.1f', '.3f', '.5f'],
+)
 
 
 
@@ -361,11 +364,12 @@ ax.plot(
     label='nicht im Fit'
 )
 
+ax.ticklabel_format(useOffset = round(val1[1], 5), axis = "y")
 
-ax.plot(1000.*R2[:16], G(1000.*R2[:16], val2[0], val2[1]), label="Fit")
+ax.plot(1000.*R2[:16], G(1000.*R2[:16], val2[0], val2[1]), label=r"$G_2$")
 
-ax.set_xlabel(r'$R$ in $\text{k}\si{\ohm}$')
-ax.set_ylabel(r'$U_a$ in $\si{\volt}$')
+ax.set_xlabel(r'$R$ in $\si{\ohm}$')
+ax.set_ylabel(r'$U_a^2$ in $\si{\volt}^2$')
 
 ax.legend(loc='best')
 ax = ev.plot_layout(ax)
