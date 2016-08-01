@@ -235,6 +235,9 @@ e = uc.ufloat(val[0],std[0])/(2.*delta_nu)
 print(e)
 ev.write('../tex/tabellen/elementarladung.tex', str(e*10**19) )
 
+print(e)
+print(ev.tex_eq(e))
+
 
 
 

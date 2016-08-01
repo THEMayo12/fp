@@ -191,7 +191,7 @@ ax1.plot(U_anode1, U_a1/V_N1**2, linestyle = 'none', marker = '+', label = 'Mess
 
 
 ax1.set_xlabel(r'$U_\text{Anode} / \si{\volt}$')
-ax1.set_ylabel(r'$U_\text{a} / \si{\volt^2}$')
+ax1.set_ylabel(r'$U_\text{a}^2 / \si{\volt^2}$')
 
 ax1.legend(loc = 'best')
 ax1 = ev.plot_layout(ax1)
@@ -222,7 +222,7 @@ ax2.plot(U_anode2, U_a2/V_N2**2, linestyle = 'none', marker = '+', label = 'Mess
 
 
 ax2.set_xlabel(r'$U_\text{Anode} / \si{\volt}$')
-ax2.set_ylabel(r'$U_\text{a} / \si{\volt^2}$')
+ax2.set_ylabel(r'$U_\text{a}^2 / \si{\volt^2}$')
 
 ax2.legend(loc = 'best')
 ax2 = ev.plot_layout(ax2)
