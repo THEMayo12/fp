@@ -202,10 +202,10 @@ U_a_norm = U_a_ox / V_N_ox**2
 
 # LateX-Tabelle erzeugen
 t = lt.latextable(
-    [f_ox/1000, U_a_ox, delta_U, V_N_ox, delta_f/1000, np.log(f_ox), np.log(W(U_a_norm, delta_f, R)),np.log(W(delta_U, delta_f, R))],
+    [f_ox/1000, U_a_ox, delta_U, V_N_ox, delta_f/1000, np.log(f_ox),10.**14.* W(U_a_norm, delta_f, R),np.log(W(U_a_norm, delta_f, R)),np.log(W(delta_U, delta_f, R))],
     "../tex/tabellen/kathode_oxyd.tex",
-    alignment='CCCCCCCC',
-    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f'],
+    alignment='CCCCCCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f','.3f'],
 )
 
 

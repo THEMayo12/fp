@@ -99,7 +99,10 @@
 	\subsubsection{Rauschmessung}
 		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_einfach1}
 		und \ref{tab:rauschen_einfach2} sowie den Abbildungen
-		\ref{fig:rauschen_einfach1} und \ref{fig:rauschen_einfach2} zu sehen.
+		\ref{fig:rauschen_einfach1} und \ref{fig:rauschen_einfach2} zu sehen. 
+		Werte die sich auf das $\SI{0-1000}{\ohm}$ Potentiometer beziehen werden 
+		mit $1$ indiziert, solche, die sich auf das $\SI{1-10}{\kilo\ohm}$ 
+		Potentiometer beziehen mit $2$.
 
 \begin{table}[h]
 			\centering
@@ -116,7 +119,11 @@
 			Dabei wurde $U_\text{a,gemessen}^2$ nach den Signalverstärkern gemessen, während
 			$U_\text{a}^2$ um den Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2$ korrigiert
 			wurde, mit $V_=
-			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$.}
+			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$. Außerdem wurde 
+			$U^2_a$ um den entsprechenden Wert des Eigenrauschens (vgl. 
+			Tabelle \ref{tab:eichung_einfach}) korrigiert, wodurch sich 
+			der große Offset der korrigierten Werte erklären lässt.  
+			}
 			\label{tab:rauschen_einfach1}
 \end{table}
 \begin{figure}[h]
@@ -145,7 +152,9 @@
 			Dabei wurde $U_\text{a,gemessen}^2$ nach den Signalverstärkern gemessen, während
 			$U_\text{a}^2$ um den Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2$ korrigiert
 			wurde, mit $V_=
-			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$.}
+			=10$, $V_\text{N}=200$ und $V_\text{V}=1000$. Wieder wurde das 
+			Eigenrauschen gemäß Tabelle \ref{tab:eichung_eigenrauschen_einfach} 
+			abgezogen, wodurch der große Offset in $U_\text{a}^2$ entsteht. }
 			\label{tab:rauschen_einfach2}
 	\end{table}
 	\begin{figure}[h]
@@ -171,12 +180,12 @@
 		\begin{equation}
 			U_\text{a}^2 =4k_\text{B}T A R \quad ,
 		\end{equation}
-		sodass mit den Steigungen $m_1$ und $m_2$ der Geradengleichungen $G1(R)$ und $G2(R)$
+		sodass mit den Steigungen $m_1$ und $m_2$ der Geradengleichungen $G_1(R)$ und $G_2(R)$
 		die Boltzmannkonstante als
 		\begin{equation}
 		k_\text{B}=\frac{m_i}{4 T A}
 		\end{equation}
-		berechnet werden kann. Für eine Raumtemperatur von $300$K folgt
+		berechnet werden kann. Für eine Raumtemperatur von $T= 300$ K folgt
 		\begin{align}
           k_\text{B}^{1000\Omega}			&=  (\input{tabellen/k_einfach1.tex})\times 10^{-23}\frac{\text{J}}
 																			{\text{K}}  \\
@@ -184,7 +193,14 @@
 																			{\text{K}} \quad .
 		\end{align}
 		Der Fehler wurde dabei mit der Gaußschen Fehlerfortpflanzung \eqref{eq:gauss}
-		berechnet. Die fehlerbehafteten Größen sind $A$ und $m$.
+		berechnet. Die fehlerbehafteten Größen sind $A$ und $m$,
+		\begin{equation}
+		\Delta k_\text{B}=\sqrt{
+		\left(\left. \frac{1}{4 T A} \right|_{\bar{A}}\right)^2 \Delta m^2 
+		+		
+		\left(\left. -\frac{m}{4 T A^2} \right|_{(\bar{A},\bar{m})}\right)^2 \Delta A^2
+		} \quad .
+		\end{equation}
 
 		Die Korrektur
 		\begin{equation}
@@ -313,7 +329,9 @@
 	\subsubsection{Rauschmessung}
 		Die Messwerte für die Rauschmessung sind in den Tabellen \ref{tab:rauschen_korr1}
 		und \ref{tab:rauschen_korr2} sowie den Abbildungen
-		\ref{fig:rauschen_korr1} und \ref{fig:rauschen_korr2} zu sehen.
+		\ref{fig:rauschen_korr1} und \ref{fig:rauschen_korr2} zu sehen. Der 
+		Index $1$ steht wieder für das $\SI{0-1000}{\ohm}$ Potentiometer, 
+		der Index $2$ für das $\SI{1-10}{\kilo\ohm}$ Potentiometer.
 
 
 		\begin{table}[h]
@@ -331,7 +349,10 @@
 			$U_\text{a,gemessen}^2$ die gemessenen Werte, während $U_\text{a}^2$ um den
 			Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2 V_\text{selektiv}$ korrigiert.
 			Mit $V_= =10$, $V_\text{N}=20$($R\geq 750\Omega$) bzw. $V_\text{N}=50$
-			($R<750\Omega$), $V_\text{selektiv}=10$ und $V_\text{V}=1000$. }
+			($R<750\Omega$), $V_\text{selektiv}=10$ und $V_\text{V}=1000$. 
+			Das Eigenrauschen wurde gemäß Tabelle 
+			\ref{tab:eichung_eigenrauschen_korr} von den gemessenen Werten 
+			abgezogen.}
 			\label{tab:rauschen_korr1}
 	\end{table}
 
@@ -340,7 +361,7 @@
 			\includegraphics[scale=0.6]{bilder/rauschen_korr1.pdf}
 			\caption{Spannungsrauschkurve am einfachen Rauschspektrometer für einen
 			Regelbaren Widerstand bis $1000\Omega$. Die Werte wurden bereits auf eine Verstärkung von
-			$1$ normiert, mit}
+			$1$ normiert.}
 			\label{fig:rauschen_korr1}
 	\end{figure}
 
@@ -360,7 +381,9 @@
 			Rauschspektrometer mit $R_\text{max}=100 \text{ k}\Omega$. Dabei sind
 			$U_\text{a,gemessen}^2$ die gemessenen Werte, während $U_\text{a}^2$ um den
 			Verstärkungsfaktor $V_= V_\text{N}^2 V_\text{V}^2 V_\text{selektiv}$ korrigiert.
-			Mit $V_= =10$, $V_\text{N}=200$, $V_\text{selektiv}=10$ und $V_\text{V}=1000$.}
+			Mit $V_= =10$, $V_\text{N}=200$, $V_\text{selektiv}=10$ und $V_\text{V}=1000$. Das Eigenrauschen wurde gemäß Tabelle 
+			\ref{tab:eichung_eigenrauschen_korr} von den gemessenen Werten 
+			abgezogen. }
 			\label{tab:rauschen_korr2}
 	\end{table}
 
@@ -387,7 +410,7 @@
 		\begin{equation}
 		k_\text{B}=\frac{m_i}{4 T A} \quad .
 		\end{equation}
- 		Für eine Raumtemperatur von $300$K folgt
+ 		Für eine Raumtemperatur von $T=300$ K folgt
 		\begin{align}
 		k_\text{B}^{1000\Omega}			=  (\input{tabellen/k_korr1.tex}) \times 10^{-23}\frac{\text{J}}
 																			{\text{K}} \\
@@ -536,11 +559,11 @@
 	\ref{fig:kathode_rein} zu sehen.
 	\begin{table}[h]
 		\centering
-		\begin{tabular}{cccccccc}
+		\begin{tabular}{ccccccccc}
 		\toprule \midrule
 		$\nu$ in kHz	 & $U_a^2$ in $\text{V}^2$	& $\Delta U_a^2$ in $\text{V}^2$ &
 		$V_\text{N}$	 & $\Delta \nu$ in kHz 		& $\ln \{\nu\}$				     &
-		$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
+		$W\times 10^{11}$&$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
 		\midrule
 		\input{tabellen/kathode_rein.tex}
 		\midrule
@@ -577,11 +600,11 @@
 	\ref{fig:kathode_oxyd} zu sehen.
 	\begin{table}
 		\centering
-		\begin{tabular}{cccccccc}
+		\begin{tabular}{ccccccccc}
 		\toprule \midrule
 		$\nu$ in kHz	 & $U_a^2$ in $\text{V}^2$	& $\Delta U_a^2$ in $\text{V}^2$ &
 		$V_\text{N}$	 & $\Delta \nu$ in kHz 		& $\ln \{\nu\}$				     &
-		$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
+		$W\times 10^{14}$&$\ln \{W\}$	 & $\ln \{\Delta W\} $ \\
 		\midrule
 		\input{tabellen/kathode_oxyd.tex}
 		\midrule
