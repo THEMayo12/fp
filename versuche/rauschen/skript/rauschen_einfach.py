@@ -196,7 +196,7 @@ R1, U1_mess = np.loadtxt("../messwerte/R_1000.txt", unpack=True)
 
 #Verstärkungsfaktoren rausrechnen
 v1 = 10.*(1000.*200.)**2 #Verstärkungsfaktor
-U1 = (1./(1.+2.*const.pi*R1*nu_mittel*C_eigen)*U1_mess)/v1-U_a_eigen[4]
+U1 = (1./(1.+2.*const.pi*R1*nu_mittel*C_eigen)*U1_mess)/v1-U_a_eigen[7]
 
 
 tab1 = lt.latextable(
@@ -290,7 +290,7 @@ R2, U2_mess = np.loadtxt("../messwerte/R_100k.txt", unpack=True)
 
 #Verstärkungsfaktoren rausrechnen
 v2 = 10.*(1000.*200.)**2 #Verstärkungsfaktor
-U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2_mess)/v2-U_a_eigen[4]
+U2 = (1./(1.+2.*const.pi*R2*nu_mittel*C_eigen)*U2_mess)/v2-U_a_eigen[7]
 
 
 tab2 = lt.latextable(
