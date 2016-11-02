@@ -1,6 +1,169 @@
+%http://www.lenntech.de/pse/elemente/cu.htm als Molmasse
+
 
 % ==================================================
 %	Theorie
 % ==================================================
 
 \section{Theorie}
+Wird einem Mol eines Stoffes die Energiemenge $Q$ zugeführt, so wird dadurch eine
+Temperaturänderung $\Delta T$ hervorgerufen. Mithilfe der \textit{Molwärme} $C$ lässt sich dies als 
+\begin{equation}
+Q = C \Delta T
+\end{equation}
+schreiben. Die Molwärme ist im allgemeinen eine stoffspezifische und 
+temperaturabhängige Größe.
+
+Ist die \textit{innere Energie} $U$ bekannt, so werden die 
+\textit{Molwärme bei konstantem Druck} $C_p$ und die 
+\textit{Molwärme bei konstantem Volumen} $C_V$ als
+\begin{equation}
+C_p = \left. \frac{\partial}{\partial T} \right|_p U
+\quad \text{bzw.} \quad 
+C_V = \left. \frac{\partial}{\partial T} \right|_V U
+\end{equation}
+definiert. Sie hängen über die Korrekturformel 
+\begin{equation}
+C_p - C_V = 9 \alpha^2 \kappa V_0 T \label{eq:theorie:korrekturformel}
+\end{equation}
+zusammen. Dabei ist $\alpha$ der \textit{lineare Ausdehnungskoeffizient}, 
+$\kappa$ das \textit{Kompressionsmodul}, $V_0$ das Molvolumen und $T$ die 
+Temperatur.
+
+\paragraph{Klassisches Modell}
+	Der klassische harmonische Oszillator besitzt eine \textit{mittlere 
+	kinetische 
+	Energie 
+	pro Freiheitsgrad} $\langle u \rangle_\text{kin}$ von
+	\begin{equation}
+	\langle u \rangle_\text{kin} = \frac{1}{2} \text{k}_\text{B} T \quad ,
+	\end{equation}
+	wobei $T$ die Temperatur und $\text{k}_\text{B}$ die Boltzmann-Konstante 
+	darstellen. Die innere Energie eines Mols wird dann für Atome mit 
+	drei Freiheitsgraden und mit der 
+	allgemeinen Gaskonstante $\text{R}$ zu 
+	\begin{equation}
+	U = 3 \text{R} T
+	\end{equation}
+	berechnet. Es folgt 
+	\begin{equation}
+	C_V = 3 \text{R} \quad . \label{eq:theorie:C_klassisch}
+	\end{equation}
+	In der klassischen Theorie ergibt sich demnach ein konstanter Wert, 
+	der nicht von der Temperatur oder dem Material abhängt.
+
+\paragraph{Einstein-Modell}
+	Im Einstein-Modell wird die Energie-Quantelung der harmonischen 
+	Oszillatoren berücksichtigt unter der Annahme, dass jedes Atom eine 
+	harmonische Oszillation mit der Kreisfrequenz $\omega$ vollführt. 
+	Der quantenmechanische harmonische 
+	Oszillator mit Kreisfrequenz $\omega$ besitzt eine 
+	\textit{mittlere Energie pro Freiheitsgrad} 
+	$\langle u \rangle$ von 
+	\begin{equation}
+	\langle u \rangle = n \hbar \omega \quad .
+	\end{equation}
+	Dabei ist $\hbar$ das reduzierte Plancksche Wirkungsquantum und 
+	$n$ kann die Werte $0,1,2,\ldots$ annehmen. Gemäß der 
+	Boltzmann-Verteilung ist die Wahrscheinlichkeit $W$, dafür, dass ein 
+	Oszillator die eine bestimmte Energie $n\hbar \omega$ besitzt, 
+	\begin{equation}
+	W(n) = \exp\left(-\frac{n \hbar \omega}{\text{k}_\text{B}T}\right)
+	\quad .
+	\end{equation}
+	Unter Berücksichtigung der Boltzmann-Verteilung ergibt sich die innere 
+	Energie 
+	\begin{equation}
+	U=3 \frac{\text{R}}{\text{k}_\text{B}} \frac{\hbar \omega}{
+	\exp\left(\frac{\hbar \omega}{\text{k}_\text{B} T}\right)-1} 
+	\end{equation}
+	und somit 
+	\begin{equation}
+	C_V = 3 \text{R} \frac{\hbar^2 \omega^2}{\text{k}_\text{B}^2} 
+	\frac{1}{T^2} \frac{\exp\left(\frac{\hbar \omega}{\text{k}_\text{B} 
+	T}\right)}{\left(\exp\left(\frac{\hbar \omega}{\text{k}_\text{B} 
+	T}\right)-1\right)^2} \quad .
+	\label{eq:theorie:C_Einstein}
+	\end{equation}
+	
+\paragraph{Debye-Modell}
+	Im Debye-Modell werden nun alle Eigenschwingungen des Körpers 
+	berücksichtigt. Dazu wir die \textit{spektrale Verteilung} $Z(\omega)$ 
+	eingeführt. Mit dieser Modifikation folgt für die innere Energie 
+	\begin{equation}
+	U= \int\limits_0^{\omega_\text{max}} Z(\omega)
+	\frac{\hbar \omega}{
+	\exp\left(\frac{\hbar \omega}{\text{k}_\text{B} T}\right)-1} 
+	\,\,\, \text{d}\omega \quad .
+	\end{equation}
+	Nun werden die Annahmen gemacht, dass die \textit{Phasengeschwindigkeit 
+	einer Transver\\salwelle} $v_\text{tr}$ und 
+	die \textit{Phasengeschwindigkeit 
+	einer Longitudinalwelle} $v_\text{l}$ Frequenz- und 
+	Richtungsunabhängig sind. Dann ist im Würfel der Kantenlänge $L$
+	\begin{equation}
+	Z(\omega) \,\,\, \text{d}\omega = 
+	\frac{L^3}{2 \uppi^2} \omega^2 \left( 
+	\frac{1}{v_\text{l}^3} + \frac{2}{v_\text{tr}^3} \right)
+	\,\,\, \text{d} \omega \quad .
+	\end{equation}
+	Ein Kristall aus $N$ Atomen besitzt genau $3N$ Eigenschwingungen, sodass 
+	die Bedingung 
+	\begin{equation}
+	\int\limits_0^{\omega_\text{D}} Z(\omega) 
+	\,\,\, \text{d} \omega
+	= 3 N
+	\end{equation}
+	erfüllt sein muss. Die obere Grenze $\omega_\text{D}$ ist die 
+	\textit{Debye-Frequenz}. Für die genannten Annahmen gilt 
+	\begin{equation}
+	\omega_\text{D}^3 = \frac{18 \uppi^2 N}{L^3} \left(
+	\frac{1}{v_\text{l}^3} + \frac{2}{v_\text{tr}^3}
+	\right)^{-1} \quad . \label{eq:theorie:debye_frequenz}
+	\end{equation}
+	Die \textit{Debye-Temperatur} $\theta_\text{D}$ wird über 
+	\begin{equation}
+	\text{k}_\text{B} \theta_\text{D} = \hbar \omega_\text{D} 
+	\label{eq:theorie:debye_temperatur}
+	\end{equation}
+	definiert. Für die Molwärme folgt schließlich 
+	\begin{equation}
+	C_V = 9 \text{R} \left(\frac{T}{\theta_\text{D}}\right)^3
+	 \int\limits_0^{\frac{\theta_\text{D}}{T}} 
+	 \frac{x^4\exp(x)}{\left(\exp(x)-1\right)^2} \,\,\, \text{d}x
+	 \quad .
+	 \label{eq:theorie:C_Debye}
+	\end{equation}
+	Hier ist insbesondere anzumerken, dass die Molwärme als Funktion 
+	von $(\theta_\text{D}/T)$ universell ist, die einzige materialspezifische 
+	Größe ist die Debye-Temperatur $\theta_\text{D}$.
+	
+Ein Vergleich der drei Ergebnisse \eqref{eq:theorie:C_klassisch}, 
+\eqref{eq:theorie:C_Einstein} und \eqref{eq:theorie:C_Debye} zeigt, dass 
+das Hochtemperaturverhalten durch den Wert $C_V = 3\text{R}$ bestimmt ist. 
+Dieses Verhalten ist auch als das Dulong-Petit'sche Gesetz bekannt. 
+Für niedrige Temperaturen beschreibt das Debye-Modell die Molwärme als 
+$C_V\propto T^3$. Dieses Verhalten ist als das $T^3$-Gesetz bekannt. Für extrem 
+niedrige Temperaturen muss dieses Gesetz noch einmal modifiziert werden, 
+dies ist für diesen Versuch aber vernachlässigbar.
+
+\paragraph{Theoretische Berechnung von $\omega_\text{D}$ und $\theta_\text{D}$}
+Es sollen nun die Debye-Frequenz und die Debye-Temperatur berechnet werden. 
+Dazu werden zunächst einige Materialgrößen zusammengetragen. Die Kupferprobe 
+hat in diesem Versuch eine Masse von $m=\SI{342}{\gram}$. Die Molare Masse 
+von Kupfer ist $M=\SI{63.55}{\gram \per \mol}$ \cite{Molmasse}. Die Dichte 
+von Kupfer bei $T=\SI{20}{\celsius}$ ist $\rho = \SI{8.95}{\gram \per \cm^3}$ 
+\cite{Molmasse}. 
+Die Phasengeschwindigkeit beträgt $v_\text{l}=\SI{4.7\times 10^{3}}{\meter \per \second}$ bzw. $v_\text{tr}=\SI{2.26\times 10^{3}}{\meter\per\second}$.
+
+Damit ist die Anzahl der Oszillatoren $N=m/M=3.241\times 10^{24}$. Das 
+Volumen der Probe ist $V=L^3 \approx m/\rho =\SI{3.821\times 10^{-5}}{\m^3}$. 
+
+Aus \eqref{eq:theorie:debye_frequenz} folgt damit
+\begin{equation}
+\omega_\text{D} = \SI{4.351 \times 10^{13} }{\second^{-1}} 
+\end{equation}
+und mit \eqref{eq:theorie:debye_temperatur}
+\begin{equation}
+\theta_\text{D} = \SI{332.3}{\kelvin} = \SI{59.19}{\celsius} \quad . 
+\end{equation}
