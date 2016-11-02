@@ -198,14 +198,15 @@ delta_f *= 1000
 def W(U_a, nu, R):
     return U_a / (R**2 * nu)
 
-U_a_norm = U_a_ox / V_N_ox**2
+U_a_norm = U_a_ox/(V_N_ox**2*1000**2*10)
+
 
 # LateX-Tabelle erzeugen
 t = lt.latextable(
-    [f_ox/1000, U_a_ox, delta_U, V_N_ox, delta_f/1000, np.log(f_ox),10.**14.* W(U_a_norm, delta_f, R),np.log(W(U_a_norm, delta_f, R)),np.log(W(delta_U, delta_f, R))],
+    [f_ox/1000, U_a_ox, delta_U, V_N_ox, delta_f/1000, np.log(f_ox),10.**21.* W(U_a_norm, delta_f, R),np.log(W(U_a_norm, delta_f, R))],
     "../tex/tabellen/kathode_oxyd.tex",
-    alignment='CCCCCCCCC',
-    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f','.3f'],
+    alignment='CCCCCCCC',
+    form=['.3f', '.3f', '.3f', 'g', '.3f', '.3f', '.3f','.3f'],
 )
 
 
@@ -218,7 +219,7 @@ W_norm =  W(U_a_norm, delta_f, R)
 
 
 # mittleres Schrotrauschen
-W_schrot = ev.get_uncert(W_norm[:11])
+W_schrot = ev.get_uncert(W_norm[11:])
 #korrigiertes Funkelrauschen
 W_korr = W_norm-W_schrot.nominal_value
 
@@ -227,6 +228,7 @@ W_korr = W_norm-W_schrot.nominal_value
 def G(x, m, b):
     return m*x + b
 
+print(W_korr)
 
 # linerare Ausgleichrechnung
 val, cov = optimize.curve_fit(G, np.log(W_korr[-8:]), np.log(f_ox[-8:]) )
