@@ -47,6 +47,42 @@
 %	Hauptteil
 % ==================================================
 
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc|cc}
+    \midrule
+    \midrule
+    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+    \midrule
+    \input{../messwerte/R.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{caption}
+\label{tab:label}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{cc|cc|cc|cc}
+    \midrule
+    \midrule
+    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+    \midrule
+    \input{../messwerte/T.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{caption}
+\label{tab:label}
+\end{table}
+
 \input{abschnitte/einleitung.tex}
 \input{abschnitte/theorie.tex}
 \input{abschnitte/aufbau.tex}
