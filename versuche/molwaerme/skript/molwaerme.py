@@ -204,7 +204,7 @@ def Energie(U_, I_, dt_):
 
 def Calc_C_p(E_, dT_):
     """Spezifische molare Wärmekapazität """
-    return M_/m_ * E_/dT_
+    return M_/m_ * np.divide(E_, dT_, out=np.zeros_like(E), where=dT_ != 0)
 
 
 def time2sec(s_):
@@ -229,9 +229,6 @@ def Celsius2kelvin(T):
 
 def Calc_C_V(C_p, a, k, V0, T):
     """Calculate C_V """
-    print(len(C_p))
-    print(len(a))
-    print(len(T))
     return C_p - 9*a**2 * k*V0*T
 
 # ====[ Read in data ]======================================
@@ -246,15 +243,15 @@ t, R_rar, I_rar, U_rar, R_Geh, I_Geh, U_Geh = np.loadtxt(
 
 # ====[ Add uncertainties ]=================================
 
-I_rar = np.array(I_rar[1:])
-U_rar = np.array(U_rar[1:])
+# I_rar = np.array(I_rar[1:])
+# U_rar = np.array(U_rar[1:])
 
 R = unp.uarray(R_rar, 0.1)
 I = unp.uarray(I_rar, 0.1) * 1e-3  # convert from mA to A
 U = unp.uarray(U_rar, 0.01)
 
 # Calc delta time and remove first entry
-dt = np.array(t[1:] - t[:-1])
+dt = np.array(np.concatenate(([0], t[1:] - t[:-1])))
 
 # Table of Ausdehnungskoeffizient
 T_alpha = np.arange(70, 310, 10)
@@ -293,22 +290,22 @@ E = Energie(U, I, dt)
 T_Celsius = Temp(R)
 T_Kelvin = Celsius2kelvin(T_Celsius)
 # TODO: delta problem Do 2016/11/03
-dT = np.array(T_Kelvin[1:] - T_Kelvin[:-1])
+dT = np.array(np.concatenate(([0], T_Kelvin[1:] - T_Kelvin[:-1])))
 
 C_p = Calc_C_p(E, dT)
 
 # ====[ C_V ]===============================================
 
-alpha_interp = Calc_alpha(unp.nominal_values(T_Kelvin[1:]), T_alpha, alpha)
-C_V = Calc_C_V(C_p, alpha_interp, kappa_, V0_, T_Kelvin[1:])
+alpha_interp = Calc_alpha(unp.nominal_values(T_Kelvin), T_alpha, alpha)
+C_V = Calc_C_V(C_p, alpha_interp, kappa_, V0_, T_Kelvin)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
 ax.errorbar(
     unp.nominal_values(T_Kelvin[1:]),
-    unp.nominal_values(C_V),
-    yerr=unp.std_devs(C_V),
+    unp.nominal_values(C_V[1:]),
+    yerr=unp.std_devs(C_V[1:]),
     color='k',
     linestyle='none',
     marker='.',
@@ -330,4 +327,69 @@ fig.savefig(
     "../tex/bilder/cv.pdf",
     bbox_extra_artists=(lgd,),
     bbox_inches='tight'
+)
+
+lt.latextable(
+    [R, T_Celsius, T_Kelvin, C_p, alpha_interp*1e5, C_V],
+    "../tex/tabellen/C_V",
+    form=".3f"
+)
+
+# ====[ Debye ]=============================================
+
+
+def find_nearest(array, value):
+    idx = (np.abs(array-value)).argmin()
+    return np.array([array[idx], idx])
+
+
+def get_debye(A, C_V):
+    y = []
+
+    for i in range(len(A)):
+        y.append(find_nearest(A[i], C_V))
+
+    y = np.array(y)
+    x = find_nearest(y[:, 0], C_V)[1]
+
+    return float("{}.{}".format(int(x), int(y[x, 1])))
+
+
+debye_array = np.array(
+    [
+        [24.9430, 24.9310, 24.8930, 24.8310, 24.7450, 24.6340, 24.5000,
+         24.3430, 24.1630, 23.9610],
+        [23.7390, 23.4970, 23.2360, 22.9560, 22.6600, 22.3480, 22.0210,
+         21.6800, 21.3270, 20.9630],
+        [20.5880, 20.2050, 19.8140, 19.4160, 19.0120, 18.6040, 18.1920,
+         17.7780, 17.3630, 16.9470],
+        [16.5310, 16.1170, 15.7040, 15.2940, 14.8870, 14.4840, 14.0860,
+         13.6930, 13.3050, 12.9230]
+    ]
+)
+
+C_V_debye = unp.nominal_values(C_V[(T_Kelvin > 80) & (T_Kelvin < 170)][1:])
+T_Kelvin_debye = unp.nominal_values(
+    T_Kelvin[(T_Kelvin > 80) & (T_Kelvin < 170)][1:]
+)
+debye = np.array([get_debye(debye_array, cv) for cv in C_V_debye])
+debye_temp = debye * T_Kelvin_debye
+
+lt.latextable(
+    [
+        T_Kelvin_debye,
+        C_V_debye,
+        debye,
+        debye_temp
+    ],
+    "../tex/tabellen/debye.tex",
+)
+
+ev.write(
+    "../tex/gleichungen/debye_average.tex",
+    ev.tex_eq(
+        uc.ufloat(np.mean(debye_temp), np.std(debye_temp)),
+        form="{:.3gL}",
+        unit="\kelvin"
+    )
 )
