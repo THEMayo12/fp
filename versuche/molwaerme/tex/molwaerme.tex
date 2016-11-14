@@ -29,9 +29,9 @@
 %	Titelseite
 % ==================================================
 
-\titel{Titel}
-\versuch{Versuch}
-\newcommand{\thedate}{13.10.2014}
+\titel{Molwärme von Kupfer}
+\versuch{V47}
+\newcommand{\thedate}{31.10.2016}
 
 \input{../../../header/titel.tex}
 
@@ -47,54 +47,56 @@
 %	Hauptteil
 % ==================================================
 
-\begin{table}[htpb]
-  \centering
-  \begin{tabular}{cc|cc|cc|cc}
-    \midrule
-    \midrule
-    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
-    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
-    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
-    $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
-    \midrule
-    \input{../messwerte/R.tex}
-    \midrule
-    \midrule
-  \end{tabular}
-  \caption{caption}
-\label{tab:label}
-\end{table}
-
-\begin{table}[htpb]
-  \centering
-  \begin{tabular}{cc|cc|cc|cc}
-    \midrule
-    \midrule
-    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
-    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
-    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
-    $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
-    \midrule
-    \input{../messwerte/T.tex}
-    \midrule
-    \midrule
-  \end{tabular}
-  \caption{caption}
-\label{tab:label}
-\end{table}
+% \begin{table}[htpb]
+%   \centering
+%   \begin{tabular}{cc|cc|cc|cc}
+%     \midrule
+%     \midrule
+%     $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+%     $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+%     $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+%     $R / \si{\ohm}$ & $T / \si{\kelvin}$ &
+%     \midrule
+%     \input{../messwerte/R.tex}
+%     \midrule
+%     \midrule
+%   \end{tabular}
+%   \caption{caption}
+% \label{tab:label}
+% \end{table}
+%
+% \begin{table}[htpb]
+%   \centering
+%   \begin{tabular}{cc|cc|cc|cc}
+%     \midrule
+%     \midrule
+%     $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+%     $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+%     $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+%     $T / \si{\kelvin}$ & $R / \si{\ohm}$ &
+%     \midrule
+%     \input{../messwerte/T.tex}
+%     \midrule
+%     \midrule
+%   \end{tabular}
+%   \caption{caption}
+% \label{tab:label}
+% \end{table}
 
 \input{abschnitte/einleitung.tex}
 \input{abschnitte/theorie.tex}
 \input{abschnitte/aufbau.tex}
 \input{abschnitte/durchfuehrung.tex}
+\clearpage
 \input{abschnitte/auswertung.tex}
+\clearpage
 \input{abschnitte/diskussion.tex}
 
 % ==================================================
 %	Literaturverzeichnis
 % ==================================================
 
-% \referenzen
+\referenzen%
 
 % ==================================================
 %	Dokument endet

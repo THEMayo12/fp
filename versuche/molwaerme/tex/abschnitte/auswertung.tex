@@ -4,3 +4,217 @@
 % ==================================================
 
 \section{Auswertung}
+
+\input{abschnitte/fehlerrechnung.tex}
+
+\subsection{Bestimmung der Molwärme}
+\label{sub:bestimmung_der_molwärme}
+
+Die in diesem Versuch aufgenommenen Messwerte sind in
+Tabelle~\ref{tab:messwerte} dargestellt. Um $C_p$ zu bestimmen wird zunächst
+die zugeführte Energie berechnet. Dazu wird die erste Spalte in
+Tabelle~\ref{tab:messwerte} in Sekunden umgerechnet und die Zeitdifferenzen
+berechnet.  Die Zeitdifferenzen und die zugehörigen Spannungen und Ströme,
+sowie die daraus berechneten Energien sind in Tabelle~\ref{tab:energie}
+dargestellt. Als Fehler werden dabei die letzte Stelle Stelle der Anzeige der
+Digitalmessgeräte genommen. Dies sind für die Spannung \SI{0.01}{\volt} und für
+den Strom \SI{0.1}{\mA}.
+
+Zur Bestimmung von $C_p$ werden nun aus den aufgenommenen Widerständen
+die Temperaturen in Grad Celsius mit Hilfe
+von~\eqref{eq:T_berechnung} ermittelt. Für den Fehler des Widerstandes wird
+ebenfalls die letzte Stelle des Anzeigegerätes verwandt mit \SI{0.1}{\ohm}.
+Desweiteren werden die Temperaturdifferenzen bestimmt.
+Die Zwischenergebnisse sowie die mit Hilfe von~\eqref{eq:C_p}
+berechneten $C_p$ bei den jeweiligen
+Temperaturen sind in Tabelle~\ref{tab:C_p} angegeben.
+
+Die Molwärme $C_V$ wird nun mit Gleichung~\ref{eq:theorie:korrekturformel}
+bestimmt.
+Hierfür werden die Größen
+\begin{align}
+  \kappa &= \SI{1.378 \times 10^{-11}}{\newton\per\cubic\meter} \\
+  V_0 &= \frac{M}{\varrho} = \SI{7.124 \times 10^{-6}}{\cubic\meter\per\mol}
+\end{align}
+mit
+\begin{align}
+  \varrho &= \SI{8.92}{\gram\per\cubic\meter} \\
+  M &= \SI{63.55}{\gram\per\mol}
+\end{align}
+verwandt.
+Die Werte für den Längenausdehnungskoeffizienten $\alpha$ werden aus der Tabelle
+in Abbildung~\ref{fig:alpha} gemäß
+\begin{equation}
+  \alpha(T) = \frac{\alpha_i - \alpha_{i-1}}{T_i - T_{i-1}} \qty(T - T_{i-1})
+  + \alpha_{i-1}
+\end{equation}
+linear interpoliert.
+Die interpolierten $\alpha$ und das berechnete $C_V$ sind in
+Tabelle~\ref{tab:C_V} dargestellt.
+In Abbildung~\ref{fig:C_V} sind die Molwärmen $C_V$ in Abhängigkeit der
+Temperaturen in Kelvin dargestellt.
+Hier ist um \SI{210}{\kelvin} ein Einbruch des Verlaufes zu erkennen.
+Aus diesem Grund ist in Abbildung~\ref{fig:temp} die Gehäuse- und
+Probentemperatur graphisch dargestellt.
+In Tabelle~\ref{tab:temp} sind die entsprechenden Werte angegeben.
+Darin ist zu erkennen, dass der Einbruch im Verlauf von $C_V$ mit dem
+Auseinanderlaufen der Temperaturen zusammenhängt.
+Somit hat es in diesem Bereich ein Wärmeabfuhr von der Probe gegeben, sodass
+die Energie zu gering berechnet wird und damit auch $C_V$ zu gering ausfällt.
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{ccccc}
+    \midrule
+    \midrule
+    Zeit & $R~/~\si{\ohm}$ & $I~/~\si{\milli\ampere}$ &
+    $U~/~\si{\volt}$ & $R_\text{Geh}~/~\si{\ohm}$\\
+    \midrule
+    \input{tabellen/messwerte.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Im Versuch aufgenommene Messwerte für den Widerstand $R$ des
+    Pt-100 der Probe und $R_\text{Geh}$ des Gehäuses sowie den Strom $I$
+    und der Spannung $U$.}
+  \label{tab:messwerte}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{rrr||rr}
+    \midrule
+    \midrule
+    Zeit &
+    $U~/~\si{\volt}$ &
+    $I~/~\si{\mA}$ &
+    $\Delta t~/~\si{\second}$ &
+    $E~/~\si{\joule}$ \\
+    \midrule
+    \input{tabellen/E.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Werte für die Berechnung der zugeführten Energie.}
+\label{tab:energie}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{rr||rrr}
+    \midrule
+    \midrule
+    Zeit & $R~/~\si{\ohm}$ & $T~/~\si{\celsius}$ &%& $T~/~\si{\kelvin}$ &
+    $\Delta T~/~\si{\kelvin}$ &
+    $C_p~/~\si{\joule\per\mol\per\kelvin}$ \\
+    % $\alpha~/~\SI{10^-6}{\per\kelvin}$ &
+    % $C_V~/~\si{\joule\per\mol\per\kelvin}$ \\
+    \midrule
+    \input{tabellen/C_p.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Werte zur Berechnung von $C_p$.}
+\label{tab:C_p}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{crr||cr}
+    \midrule
+    \midrule
+    Zeit & $T~/~\si{\kelvin}$ &
+    $C_p~/~\si{\joule\per\mol\per\kelvin}$ &
+    $\alpha~/~\SI{10^{-5}}{\per\kelvin}$ &
+    $C_V~/~\si{\joule\per\mol\per\kelvin}$ \\
+    \midrule
+    \input{tabellen/C_V.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Werte zur Berechnung von $C_V$.}
+\label{tab:C_V}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{bilder/alpha.png}
+  \caption{Ausdehnungskoeffizienten $\alpha$~\cite{FP}.}
+\label{fig:alpha}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1.0]{bilder/cv.pdf}
+  \caption{Darstellung von $C_V$ in Abhängigkeit der Temperatur $T$.}
+\label{fig:C_V}
+\end{figure}
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{c||ccc}
+    \midrule
+    \midrule
+    Zeit & $T~/~\si{\kelvin}$ & $T_\text{Geh}~/~\si{\kelvin}$ &
+    $C_V~/~\si{\joule\per\mol\per\kelvin}$ \\
+    \midrule
+    \input{tabellen/temp.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Werte der Temperatur der Probe $T$ und des Gehäuses $T_\text{Geh}$
+  sowie der Molwärmen $C_V$ bie den jeweiligen Messzeiten.}
+\label{tab:temp}
+\end{table}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1.0]{bilder/temp.pdf}
+  \caption{Darstellung der Proben- und Gehäusetemperatur in Abhängigkeit der
+  Zeit. Zum Vergleich is zudem ist die Molwärme $C_V$ aufgetragen.}
+\label{fig:temp}
+\end{figure}
+
+\clearpage
+\subsection{Berechnung der Debye-Temperatur}
+\label{sub:berechnung_der_debye_temperatur}
+
+Die Debye-Temperatur $\theta_D$ wird nun anhand der Wertepaare $(C_V, T)$ aus
+Tabelle~\ref{tab:C_V} per Vergleich mit
+\begin{equation}
+  C_V = f\qty(\frac{\theta_D}{T})
+\end{equation}
+aus den Werten der Abbildung~\ref{fig:debye} bestimmt.
+Hierbei werden nur Werte zwischen \SI{80}{\kelvin} und \SI{170}{\kelvin}
+betrachtet.
+Die abgelesenen Werte für $\theta_D/T$ sowie die daraus berechneten
+Debye-Temperaturen sind in Tabelle~\ref{tab:debye} angegeben.
+Anschließend wird die Debye-Temperatur aus dem Mittelwert der Debye-Temperaturen
+mit der entsprechenden mittleren Fehler des Mittelwertes zu
+\begin{equation}
+  \theta_D = \input{gleichungen/debye_average.tex}
+\end{equation}
+bestimmt.
+
+\begin{table}[htpb]
+  \centering
+  \begin{tabular}{ccc||c}
+    \midrule
+    \midrule
+    $T~/~\si{\kelvin}$ & $C_V~/~\si{\joule\per\mol}$ & $\theta~/~T$ &
+    $\theta~/~\si{\kelvin}$ \\
+    \midrule
+    \input{tabellen/debye.tex}
+    \midrule
+    \midrule
+  \end{tabular}
+  \caption{Debye-Temperaturen.}
+  \label{tab:debye}
+\end{table}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.3]{bilder/debye.png}
+  \caption{Zahlenwerte für die Debye-Funktion~\cite{FP}.}
+\label{fig:debye}
+\end{figure}

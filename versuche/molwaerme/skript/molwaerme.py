@@ -13,6 +13,8 @@ import evaluation as ev
 import evaluation.simpleplot as sp
 import latextable as lt
 
+import datetime
+
 # calc with uncertainties and arrays of uncertainties [[val, std], ...]
 import uncertainties as uc
 import uncertainties.unumpy as unp
@@ -21,6 +23,7 @@ import uncertainties.unumpy as unp
 import numpy as np
 
 # plot engine
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.ticker import AutoMinorLocator
@@ -236,9 +239,23 @@ def Calc_C_V(C_p, a, k, V0, T):
 
 # R = np.loadtxt("../messwerte/", unpack=True)
 t, R_rar, I_rar, U_rar, R_Geh, I_Geh, U_Geh = np.loadtxt(
-    "../messwerte/messwerte.txt",
+    "../messwerte/messwerte2.txt",
     unpack=True,
     converters={0: time2sec}
+)
+
+t_total = np.loadtxt(
+    "../messwerte/messwerte2.txt",
+    unpack=True,
+    dtype=str,
+    usecols=(0,)
+    # converters={0: lambda s: s}
+)
+
+lt.latextable(
+    [t_total, R_rar, I_rar, U_rar, R_Geh],
+    "../tex/tabellen/messwerte.tex",
+    form=["", ".1f", ".1f", ".2f", ".1f"]
 )
 
 # ====[ Add uncertainties ]=================================
@@ -287,12 +304,27 @@ alpha = np.array([
 
 E = Energie(U, I, dt)
 
+lt.latextable(
+    [
+        t_total,
+        [ev.tex_eq(u) for u in U],
+        [ev.tex_eq(i) for i in I*1000],
+        dt,
+        [ev.tex_eq(e) for e in E]
+    ],
+    "../tex/tabellen/E.tex",
+    form=["", ".2f", ".2f", ".3g", ".1f"]
+)
+
 T_Celsius = Temp(R)
 T_Kelvin = Celsius2kelvin(T_Celsius)
 # TODO: delta problem Do 2016/11/03
-dT = np.array(np.concatenate(([0], T_Kelvin[1:] - T_Kelvin[:-1])))
+dT = np.array(np.concatenate(
+    ([T_Kelvin[0] - T_Kelvin[0]], T_Kelvin[1:] - T_Kelvin[:-1])
+))
 
 C_p = Calc_C_p(E, dT)
+C_p[0] = uc.ufloat(0, 0)
 
 # ====[ C_V ]===============================================
 
@@ -330,7 +362,29 @@ fig.savefig(
 )
 
 lt.latextable(
-    [R, T_Celsius, T_Kelvin, C_p, alpha_interp*1e5, C_V],
+    [
+        t_total,
+        [ev.tex_eq(r) for r in R],
+        [ev.tex_eq(T) for T in T_Celsius],
+        # [ev.tex_eq(T) for T in T_Kelvin],
+        [ev.tex_eq(d) for d in dT],
+        [ev.tex_eq(C) for C in C_p],
+        # alpha_interp*1e5,
+        # [ev.tex_eq(C) for C in C_V]
+    ],
+    # R, T_Celsius, T_Kelvin, C_p, alpha_interp*1e5, C_V],
+    "../tex/tabellen/C_p",
+    form=".3f"
+)
+
+lt.latextable(
+    [
+        t_total,
+        [ev.tex_eq(T) for T in T_Kelvin],
+        [ev.tex_eq(C) for C in C_p],
+        alpha_interp*1e5,
+        [ev.tex_eq(C) for C in C_V]
+    ],
     "../tex/tabellen/C_V",
     form=".3f"
 )
@@ -383,13 +437,105 @@ lt.latextable(
         debye_temp
     ],
     "../tex/tabellen/debye.tex",
+    form=[".2f", ".1f", ".1f", ".2f"]
 )
 
 ev.write(
     "../tex/gleichungen/debye_average.tex",
     ev.tex_eq(
-        uc.ufloat(np.mean(debye_temp), np.std(debye_temp)),
+        uc.ufloat(
+            np.mean(debye_temp),
+            1.0/np.sqrt((len(debye_temp) - 1)) * np.std(debye_temp)
+        ),
         form="{:.3gL}",
         unit="\kelvin"
     )
 )
+
+# =========================================================
+# 	Comment
+# =========================================================
+
+T_Geh_Celsius = Temp(R_Geh)
+T_Geh_Kelvin = Celsius2kelvin(T_Geh_Celsius)
+datetimes = [datetime.datetime.strptime(t, "%H:%M:%S") for t in t_total]
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+ax.plot(
+    matplotlib.dates.date2num(datetimes),
+    T_Geh_Kelvin,
+    color='k',
+    linestyle='none',
+    marker='+',
+    label=r'Temperatur Geh\"ause'
+)
+
+ax.plot(
+    matplotlib.dates.date2num(datetimes),
+    unp.nominal_values(T_Kelvin),
+    color='k',
+    linestyle='none',
+    marker='.',
+    label='Temperatur Probe'
+)
+
+ax2 = ax.twinx()
+ax2.plot(
+    matplotlib.dates.date2num(datetimes),
+    unp.nominal_values(C_V),
+    color='k',
+    linestyle='none',
+    marker='v',
+    ms=3,
+    label=r'Molw\"arme'
+)
+ax.plot(np.nan, marker='v', ms=3, ls='none', color='k', label=r'Molw\"arme')
+ax2.set_ylabel('$C_V~/~\si{\joule\per\mol\per\kelvin}$')
+
+ax.set_xlabel(r'Zeit')
+ax.set_ylabel(r'$T~/~\si{\kelvin}$')
+
+ax.set_axisbelow(True)
+ax.legend(loc=4)
+# lgd = ax.legend(bbox_to_anchor=(1.05, 1.05))
+ax.xaxis.set_minor_locator(AutoMinorLocator())
+ax.yaxis.set_minor_locator(AutoMinorLocator())
+ax.grid(which='major', ls=":", color="0.65")
+
+fig_lim = ax.get_xlim()
+ax.set_xlim(
+    matplotlib.dates.date2num(
+        datetime.datetime.strptime("00:00:00", "%H:%M:%S")
+    ),
+    fig_lim[1]
+)
+
+fig.autofmt_xdate()
+
+# Choose your xtick format string
+date_fmt = '%H:%M:%S'
+
+# Use a DateFormatter to set the data to the correct format.
+date_formatter = matplotlib.dates.DateFormatter(date_fmt)
+ax.xaxis.set_major_formatter(date_formatter)
+
+# fig.tight_layout()
+fig.savefig(
+    "../tex/bilder/temp.pdf",
+    bbox_extra_artists=(lgd,),
+    bbox_inches='tight'
+)
+
+lt.latextable(
+    [
+        t_total,
+        unp.nominal_values(T_Kelvin),
+        T_Geh_Kelvin,
+        unp.nominal_values(C_V)
+    ],
+    "../tex/tabellen/temp.tex",
+    form=".1f"
+)
+
