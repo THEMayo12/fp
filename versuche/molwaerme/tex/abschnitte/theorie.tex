@@ -11,7 +11,7 @@ Temperaturänderung $\Delta T$ hervorgerufen. Mithilfe der \textit{Molwärme} $C
 \begin{equation}
 Q = C \Delta T
 \end{equation}
-schreiben. Die Molwärme ist im allgemeinen eine stoffspezifische und 
+schreiben. Die Molwärme ist im Allgemeinen eine stoffspezifische und 
 temperaturabhängige Größe.
 
 Ist die \textit{innere Energie} $U$ bekannt, so werden die 
@@ -142,9 +142,29 @@ Ein Vergleich der drei Ergebnisse \eqref{eq:theorie:C_klassisch},
 \eqref{eq:theorie:C_Einstein} und \eqref{eq:theorie:C_Debye} zeigt, dass 
 das Hochtemperaturverhalten durch den Wert $C_V = 3\text{R}$ bestimmt ist. 
 Dieses Verhalten ist auch als das Dulong-Petit'sche Gesetz bekannt. 
-Für niedrige Temperaturen beschreibt das Debye-Modell die Molwärme als 
-$C_V\propto T^3$. Dieses Verhalten ist als das $T^3$-Gesetz bekannt. Für extrem 
-niedrige Temperaturen muss dieses Gesetz noch einmal modifiziert werden, 
+
+Das Tieftemperaturverhalten kann im Einstein-Modell  \eqref{eq:theorie:C_Einstein} 
+mit 
+\begin{equation}
+\exp(\nicefrac{\hbar \omega}{\text{k}_\text{B}T})-1 \approx \exp(\nicefrac{\hbar \omega}{\text{k}_\text{B}T}) 
+\end{equation}
+für kleine $T$ zu 
+\begin{equation}
+C_V \simeq 3 \text{R} \frac{\hbar^2 \omega^2}{\text{k}_\text{B}^2} 
+\frac{1}{T^2} \exp\left(-\frac{\hbar \omega}{\text{k}_\text{B} T} \right) 
+\propto T^{-2}\exp(\text{k}_\text{B}T)
+\end{equation}
+abgeschätzt werden und zeigt damit ein exponentielles Verhalten. Im Debye-Modell \eqref{eq:theorie:C_Debye} folgt für 
+niedrige Temperaturen hingegen die Abschätzung 
+\begin{equation}
+C_V \simeq 9 \text{R} \left( \frac{T}{\theta_\text{D}}\right)^3 
+\int\limits_0^\infty \frac{x^4\exp(x)}{(\exp(x)-1)^2} \,\,\, \text{d}x 
+\propto T^3 \quad .
+\end{equation}
+Dieses Verhalten ist als das $T^3$-Gesetz bekannt und beschreibt 
+das Verhalten der Molwärme  bei niedrigen Temperaturen deutlich präziser 
+als das Einstein-Modell. Für extrem 
+niedrige Temperaturen muss das $T^3$ Gesetz noch einmal modifiziert werden, 
 dies ist für diesen Versuch aber vernachlässigbar.
 
 \paragraph{Theoretische Berechnung von $\omega_\text{D}$ und $\theta_\text{D}$}

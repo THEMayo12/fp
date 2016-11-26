@@ -10,16 +10,19 @@
 \caption{Schematische Abbildung des Versuchsaufbaus. \cite{FP}}
 \label{fig:aufbau}
 \end{figure}
-Der Versuchsaufbau ist in Abbildung~\ref{fig:aufbau} zu sehen. Der
-Rezipient befindet sich in einem Gehäuse, das mittels einer Vakuumpumpe
-evakuiert werden kann. Über ein Ventil kann das Gehäuse mit Helium befüllt
-werden. Rezipient und Gehäuse besitzen jeweils eine eigene Heizwicklung, sodass
-diese über getrennte Stromversorgungen einzeln geheizt werden können. Die
-Temperaturmessung geschieht mittels Widerstandsmessung eines Pt-100-Messwiderstandes,
-für den die Beziehung
+Der Versuchsaufbau ist in Abbildung~\ref{fig:aufbau} zu sehen. 
+Die Kupfer-Probe  befindet sich von einem Kupfer-Zylinder umgeben 
+in einem Rezipienten. Sowohl Probe als auch Zylinder sind mit jeweils einer 
+Heizwicklung und einem Pt-100-Messwiderstand versehen, um Sie getrennt 
+voneinander heizen und die Temperatur bestimmen zu können.
+Der Rezipient befindet sich in einem Dewargefäß. Er kann mit Hilfe einer 
+Vakuumpumpe evakuiert werden. Außerdem kann er über ein Ventil mit 
+Heliumgas befüllt werden.
+
+Für die Temperaturmessung mit Hilfe des Messwiderstandes gilt die Beziehung
 \begin{equation}
-T = 0.00135 R^2 + 2.296 R -243.02
+T = 0.00135 \left(\frac{R}{\si{\ohm}}\right)^2 \si{\celsius}+ 2.296 
+\left(\frac{R}{\si{\ohm}} \right) \si{\celsius}-243.02 \si{\celsius}
 \label{eq:T_berechnung}
 \end{equation}
-zwischen dem gemessenen Widerstandswert $R$ in $\Omega$ und der Temperatur $T$ in
-$\si{\celsius}$ gilt. Das Gehäuse befindet sich in einem Dewargefäß.
+zwischen dem gemessenen Widerstandswert $R$ und der Temperatur $T$.
