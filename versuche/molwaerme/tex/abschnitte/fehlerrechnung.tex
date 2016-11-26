@@ -1,0 +1,65 @@
+%
+% ========================================
+%	Fehlerrechung
+% ========================================
+\subsection{Fehlerrechnung}
+%
+Grundsätzlich ist jedes Messergebnis mit einem Fehler behaftet. Das gemessene
+Ergebnis weicht vom idealen, wahren Ergebnis ab. In diesem Versuch ist dabei
+eine ausführliche Fehlerrechnung notwendig.  Die dafür benötigten Formel werden
+nun kurz dargestellt.
+\begin{description}
+  \item[arithmetisches Mittel:] Bei Messwerten mit statistischen Fehlern
+    entspricht das arithmetische Mittel dem empirischen Erwartungswert.
+    Es ist definiert als
+  \begin{equation}
+    \langle x \rangle = \frac{1}{n} \sum_{i = 1}^n x_i
+    \label{eq:Mittelwert}\\
+    % \big(x_i : \text{$i$-te Messwert}\,,
+    % \quad n : \text{Anzahl der Messwerte} \big)~. \notag
+  \end{equation}
+  mit dem $i$-ten Messwert $x_i$ und der Anzahl der Messwerte $n$.
+  %
+  \item[mittlerer Fehler des Mittelwertes:] Je größer die Zahl der Messungen
+    ist, desto vertrauenswürdiger ist der arithmetische Mittelwert.
+    Dies wird mit dem mittleren Fehler des Mittelwertes $\sigma_m$ ausgedrückt.
+    Er ist definiert als
+  \begin{equation}
+    \sigma_m = \frac{\sigma}{\sqrt{n}} =
+    \sqrt{\sum_{i = 1}^n \frac{(x_i - \langle x \rangle)^2}{n(n-1)}}~.
+    \label{eq:absloluter_Fehler}
+  \end{equation}
+  Zudem entspricht $\sigma_m$ dem absoluten Fehler $\Delta x$ einer
+  fehlerbehafteten Größe $x$.
+  %
+  \item[Gauß'sche Fehlerfortpflanzung:] Besteht eine Messgröße $y$ aus mehreren
+    fehlerbehafteten Größen $x_i$, so muss eine Fehlerfortpflanzung
+    durchgeführt werden. Sie hat die Form
+  \begin{equation}
+    \Delta y =
+    \sqrt{\sum_{i = 1}^n \left(\pdv{y}{x_i} \Delta x_i  \right)^2}~,
+    \label{Gauss}
+  \end{equation}
+  % \begin{equation*}
+  % \left(\,
+  %     \begin{aligned}
+  %     y &:
+  %     \text{zusammengesetzte Größe mit mehreren fehlerbehafteten Größen}~, \\
+  %     \Delta y &: \text{absoluter Fehler von $y$}~, \\
+  %     \Delta x_i &: \text{absolute Fehler der einzelnen Größen}
+  %     \end{aligned}
+  % \,\right)~.
+  % \end{equation*}
+  wobei $y$ die zusammengesetzte Größe mit mehreren fehlerbehafteten Größen
+  ist, $\Delta y$ der absolute Fehler von $y$ und $\Delta x_i$ der absolute
+  Fehler der einzelnen Größen.
+  %
+\end{description}
+%
+Die Angabe einer Messgröße besitzt damit die Form
+\begin{equation}
+  y = \langle y \rangle \pm \Delta y~. \notag
+\end{equation}
+%
+%
+\clearpage
